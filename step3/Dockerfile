@@ -8,4 +8,4 @@ RUN uname -a
 # ENV mygithubcreds creds
 # COPY file1.txt file1.txt
 
-CMD ["/bin/sh", "uname -a"]
+CMD ["/bin/sh"]
