@@ -1,8 +1,8 @@
 # Docker Build Examples and Demos
 A repository for showing examples of how containers are built. 
 
-## Example 1 - Layers
-Demonstrates how layers are stored.  
+## Example 1 - Layers, Hiding and Squaashing
+Demonstrates how layers are stored, files are hidden and can be squashed.  
 Steps [README.md](./step1/README.md)  
 
 
@@ -26,14 +26,20 @@ Demonstrate root user
 Steps [README.md](./step5/README.md)  
 
 
-## Example 6 - Multistage 
-Demonstrate multistage build  
+## Example 6 - Multistage small image size
+Demonstrate multistage build small image size 
 Steps [README.md](./step6/README.md)  
+
+
+## Example 7 - Buildkit
+Demonstrate buildkit  
+Steps [README.md](./step7/README.md)  
+
 
 ## TODO
 1. Build a rootfs container
 1. Show patching a container to fix an issue reported by GCR
-1. Show how multistage builds work 
+1. Show how multistage builds work for testing
 1. Show a buildkit example - two containers building simultaneously 
 1. Cache invalidation - package managers 
 1. Ordering of layers
