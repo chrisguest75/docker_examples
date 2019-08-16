@@ -13,8 +13,7 @@ Steps [README.md](./step2/README.md)
 
 ## Example 3 - Buildargs 
 Demonstrate how buildargs are stored in the image  
-*Can I prove that you can escape a root container to find it?* 
-
+Steps [README.md](./step3/README.md)  
 
 ## TODO
 1. Build a rootfs container
@@ -22,4 +21,4 @@ Demonstrate how buildargs are stored in the image
 1. Show how multistage builds work
 1. Show a buildkit example
 1. Show a docker context issue (large files)
-1. 
+1. Cache invalidation - package managers
