@@ -1,7 +1,7 @@
 # Docker Build Examples and Demos
 A repository for showing examples of how containers are built. 
 
-## Example 1 - Layers, Hiding and Squaashing
+## Example 1 - Layers, Hiding and Squashing
 Demonstrates how layers are stored, files are hidden and can be squashed.  
 Steps [README.md](./step1/README.md)  
 
@@ -27,7 +27,7 @@ Steps [README.md](./step5/README.md)
 
 
 ## Example 6 - Multistage small image size
-Demonstrate multistage build small image size 
+Demonstrate multistage build small image size  
 Steps [README.md](./step6/README.md)  
 
 
@@ -48,3 +48,4 @@ Steps [README.md](./step7/README.md)
 1. onbuild
 1. read only containers
 1. cmd line containers
+1. Signing builds
