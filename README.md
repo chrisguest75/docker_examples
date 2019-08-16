@@ -22,9 +22,13 @@ Steps [README.md](./step4/README.md)
 
 
 ## Example 5 - Root user 
-Demonstrate root user
+Demonstrate root user  
 Steps [README.md](./step5/README.md)  
 
+
+## Example 6 - Multistage 
+Demonstrate multistage build  
+Steps [README.md](./step6/README.md)  
 
 ## TODO
 1. Build a rootfs container
@@ -37,3 +41,4 @@ Steps [README.md](./step5/README.md)
 1. Secrets
 1. onbuild
 1. read only containers
+1. cmd line containers
