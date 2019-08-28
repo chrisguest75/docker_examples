@@ -32,7 +32,7 @@ Steps [README.md](./step6/README.md)
 
 
 ## Example 7 - Buildkit
-Demonstrate buildkit  
+Demonstrate buildkit parallel building
 Steps [README.md](./step7/README.md)  
 
 
