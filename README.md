@@ -36,6 +36,11 @@ Demonstrate buildkit
 Steps [README.md](./step7/README.md)  
 
 
+## Example 8 - Layer caching
+Demonstrate layer caching. 
+Steps [README.md](./step8/README.md)  
+
+
 ## TODO
 1. Build a rootfs container
 1. Show patching a container to fix an issue reported by GCR
@@ -49,3 +54,4 @@ Steps [README.md](./step7/README.md)
 1. read only containers
 1. cmd line containers
 1. Signing builds
+1. entrypoint versus cmd
