@@ -45,13 +45,12 @@ Steps [README.md](./step8/README.md)
 1. Build a rootfs container
 1. Show patching a container to fix an issue reported by GCR
 1. Show how multistage builds work for testing
-1. Show a buildkit example - two containers building simultaneously 
 1. Cache invalidation - package managers 
 1. Ordering of layers
-1. Squashing
 1. Secrets
 1. onbuild
 1. read only containers
 1. cmd line containers
 1. Signing builds
 1. entrypoint versus cmd
+1. Docker in docker
