@@ -18,6 +18,8 @@ code ./scratchtest
 Squashing relies on experimental features being enabled. 
 On MacOSX you can do this through the daemon preferences in the GUI 
 
+NOTE: Squashing provides no layer caching benefits.
+
 ```
 docker build --squash -t squashtest .      
 docker image save -o ./squashtest.tar squashtest 

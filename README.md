@@ -53,4 +53,9 @@ Steps [README.md](./step8/README.md)
 1. cmd line containers
 1. Signing builds
 1. entrypoint versus cmd
-1. Docker in docker
+1. Docker in docker kaniko. 
+1. Build software using qemu and copy it in. 
+1. Build something for arm and for x86 and support both inside a single container. 
+1. Unpack the filesystem flattened.  Filesystem view in a single container.
+1. Start a cgroup manually using an unpacked container.
+1. Injecting another container into a container. 
