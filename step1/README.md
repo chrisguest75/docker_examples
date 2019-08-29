@@ -6,7 +6,7 @@ Demonstrate adding a file to a scratch base.
 Unpack the image tar and see how the file is stored in a layer. 
 Also demonstrates how the overwritten files still exist in the earlier layers. 
 
-```
+```sh
 docker build -t scratchtest .
 docker image save -o ./scratchtest.tar scratchtest
 
