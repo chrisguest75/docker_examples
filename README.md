@@ -36,16 +36,16 @@ Steps [README.md](./step6/README.md)
 
 
 ## Example 7 - Buildkit
-Demonstrate buildkit parallel building
+Demonstrate buildkit parallel building  
 Steps [README.md](./step7/README.md)  
 
 
 ## Example 8 - Layer caching
-Demonstrate layer caching. 
+Demonstrate layer caching.  
 Steps [README.md](./step8/README.md)  
 
 ## Example 11 - Layer caching
-Demonstrate passing through cmd line parameters in docker run
+Demonstrate passing through cmd line parameters in docker run  
 Steps [README.md](./step11/README.md)  
 
 ## TODO
