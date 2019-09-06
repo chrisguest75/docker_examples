@@ -5,6 +5,10 @@ A repository for showing examples of how containers are built.
 Demonstrates how layers are stored, files are hidden and can be squashed.  
 Steps [README.md](./step1/README.md)  
 
+## Example 1b - Mv, Rm, Sh
+** Not working!! **
+Building a simple container with mv, rm, sh.  Probably missing libs.  
+Steps [README.md](./step1b/README.md)  
 
 ## Example 2 - Kernel versions
 Demonstrates how kernel versions are different for build and execution.  
@@ -59,3 +63,5 @@ Steps [README.md](./step8/README.md)
 1. Unpack the filesystem flattened.  Filesystem view in a single container.
 1. Start a cgroup manually using an unpacked container.
 1. Injecting another container into a container. 
+1. Running passing cmdline params 
+1. Snaps??

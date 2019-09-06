@@ -1,4 +1,4 @@
-# Example 1a - Mv, Rm, Sh
+# Example 1b - Mv, Rm, Sh
 ** Not working!! **
 Building a simple container with mv, rm, sh.  Probably missing libs. 
 
