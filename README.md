@@ -44,7 +44,7 @@ Steps [README.md](./step7/README.md)
 Demonstrate layer caching.  
 Steps [README.md](./step8/README.md)  
 
-## Example 11 - Layer caching
+## Example 11 - Cmdline passthrough
 Demonstrate passing through cmd line parameters in docker run  
 Steps [README.md](./step11/README.md)  
 
