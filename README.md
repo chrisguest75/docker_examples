@@ -57,7 +57,6 @@ Steps [README.md](./step11/README.md)
 1. Secrets
 1. onbuild
 1. read only containers
-1. cmd line containers
 1. Signing builds
 1. entrypoint versus cmd
 1. Docker in docker kaniko. 
@@ -66,5 +65,6 @@ Steps [README.md](./step11/README.md)
 1. Unpack the filesystem flattened.  Filesystem view in a single container.
 1. Start a cgroup manually using an unpacked container.
 1. Injecting another container into a container. 
-1. Running passing cmdline params 
 1. Snaps??
+1. Sending docker commands to background in bash.  
+1. Showing the process tree for docker
