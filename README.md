@@ -55,6 +55,11 @@ Demonstrate creating background processes
 Steps [README.md](./step12/README.md)  
 
 
+## Example 13 - Users and permissions
+Users and permissions
+Steps [README.md](./step13/README.md)  
+
+
 ## TODO
 1. Build a rootfs container
 1. Show patching a container to fix an issue reported by GCR
@@ -77,3 +82,6 @@ Steps [README.md](./step12/README.md)
 1. Showing the process tree for docker
 1. Demo using cache-from.....  Use a timed layer.
 1. Cron in a container. 
+1. memory restrictions and how they manifest. 
+1. Can I use a cgroup command inside a container?
+1. Docker users. 

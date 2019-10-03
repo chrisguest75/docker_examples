@@ -1,5 +1,6 @@
 # Script to follow
 Show a docker context issue (large files)
+Using .dockerignore to prevent bloating the docker context and increasing build times.  
 
 ```
 docker build --no-cache -t scratchtest .
