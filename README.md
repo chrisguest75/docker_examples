@@ -51,17 +51,17 @@ Steps [README.md](./step11/README.md)
 
 
 ## Example 12 - Background processes
-Demonstrate creating background processes
+Demonstrate creating background processes  
 Steps [README.md](./step12/README.md)  
 
 
 ## Example 13 - Users and permissions
-Users and permissions
+Users and permissions  
 Steps [README.md](./step13/README.md)  
 
 
 ## Example 14 - OOM - Out of memory
-Demonstrate an out of memory issue
+Demonstrate an out of memory issue.  Includes sysdig...
 Steps [README.md](./step14/README.md)  
 
 
@@ -91,3 +91,4 @@ Steps [README.md](./step14/README.md)
 1. Can I use a cgroup command inside a container?
 1. Docker users. 
 1. Demonstrate an Out of memory issue  
+1. Binding to different networks localhost vs 127.0.0.1 or 0.0.0.0
