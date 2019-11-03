@@ -92,3 +92,5 @@ Steps [README.md](./step14/README.md)
 1. Docker users. 
 1. Demonstrate an Out of memory issue  
 1. Binding to different networks localhost vs 127.0.0.1 or 0.0.0.0
+1. Here docs and string during building images.. https://gist.github.com/abn/a16e9d799312fb492861
+
