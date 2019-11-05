@@ -31,3 +31,19 @@ You can try to blow the memory of the container whilst in the shell but it doesn
 ```
 docker run -it --rm --entrypoint /bin/bash --name oom oom       
 ```
+
+
+# Sysdig capture
+
+```
+docker run -itd --rm --memory=500m --name oom oom
+watch -n 1 docker ps 
+```
+
+```
+sudo sysdig container.id=$(docker ps -aqf "name=oom")
+```
+
+```
+docker run -d -v $(pwd):/captures -p8080:3000 sysdig/sysdig-inspect:latest
+```
