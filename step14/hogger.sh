@@ -21,7 +21,8 @@ function malloc() {
 
 #yes | tr \\n x | head -c $((1024*1024*500)) | grep n
 #yes | tr \\n x | head -c $((1024*1024*1024)) | pv -L $((1024*1024*100)) | grep n
-
+MAX_MEMORY=$(cgget -n --values-only --variable memory.limit_in_bytes /)
+echo "MAX_MEMORY=${MAX_MEMORY}"
 malloc '10024' '1024'
 EXITCODE=$?
 exit ${EXITCODE}
