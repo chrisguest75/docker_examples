@@ -1,3 +1,6 @@
+## Example 4 - Docker Context 
+Show a docker context issue (large files) 
+
 # Script to follow
 Show a docker context issue (large files)
 Using .dockerignore to prevent bloating the docker context and increasing build times.  

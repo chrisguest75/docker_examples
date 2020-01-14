@@ -1,3 +1,6 @@
+## Example 6 - Multistage small image size
+Demonstrate multistage build small image size  
+
 # Script to follow
 Demonstrate multistage build
 

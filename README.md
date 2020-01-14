@@ -24,22 +24,22 @@ Steps [README.md](./03_buildargs_storage/README.md)
 
 ## Example 4 - Docker Context 
 Show a docker context issue (large files)  
-Steps [README.md](./step4/README.md)  
+Steps [README.md](./04_docker_context/README.md)  
 
 
 ## Example 5 - Root user 
 Demonstrate root user  
-Steps [README.md](./step5/README.md)  
+Steps [README.md](./05_root_user/README.md)  
 
 
 ## Example 6 - Multistage small image size
 Demonstrate multistage build small image size  
-Steps [README.md](./step6/README.md)  
+Steps [README.md](./06_multistage/README.md)  
 
 
 ## Example 7 - Buildkit
 Demonstrate buildkit parallel building  
-Steps [README.md](./step7/README.md)  
+Steps [README.md](./07_buildkit/README.md)  
 
 
 ## Example 8 - Layer caching

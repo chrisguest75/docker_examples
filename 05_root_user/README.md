@@ -1,3 +1,6 @@
+## Example 5 - Root user 
+Demonstrate root user  
+
 # Script to follow
 Demonstrate root user
 
