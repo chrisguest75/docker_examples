@@ -10,7 +10,7 @@ Steps [README.md](./01_layers_hiding/README.md)
 ## Example 1b - Mv, Rm, Sh
 ** Not working!! **
 Building a simple container with mv, rm, sh.  Probably missing libs.  
-Steps [README.md](./step1b/README.md)  
+Steps [README.md](./01b_mv_cp_rm/README.md)  
 
 ## Example 2 - Kernel versions
 Demonstrates how kernel versions are different for build and execution.  
