@@ -1,3 +1,6 @@
+## Example 3 - Buildargs 
+Demonstrate how buildargs are stored in the image  
+
 # Script to follow
 *Can I prove that you can escape a root container to find it?* 
 

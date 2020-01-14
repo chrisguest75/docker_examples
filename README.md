@@ -14,12 +14,12 @@ Steps [README.md](./01b_mv_cp_rm/README.md)
 
 ## Example 2 - Kernel versions
 Demonstrates how kernel versions are different for build and execution.  
-Steps [README.md](./step2/README.md)  
+Steps [README.md](./02_kernel_versions/README.md)  
 
 
 ## Example 3 - Buildargs 
 Demonstrate how buildargs are stored in the image  
-Steps [README.md](./step3/README.md)  
+Steps [README.md](./03_buildargs_storage/README.md)  
 
 
 ## Example 4 - Docker Context 
