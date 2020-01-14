@@ -42,34 +42,34 @@ Demonstrate buildkit parallel building
 Steps [README.md](./07_buildkit/README.md)  
 
 
-## Example 8 - Layer caching
+## Example 8 - Layer caching with arguments
 Demonstrate layer caching.  
-Steps [README.md](./step8/README.md)  
+Steps [README.md](./08_caching_arguments/README.md)  
 
 
 ## Example 11 - Cmdline passthrough
 Demonstrate passing through cmd line parameters in docker run 
-Steps [README.md](./step11/README.md)  
+Steps [README.md](./11_cmdline_passthrough/README.md)  
 
 
 ## Example 12 - Background processes
 Demonstrate creating background processes  
-Steps [README.md](./step12/README.md)  
+Steps [README.md](./12_background_processes/README.md)  
 
 
 ## Example 13 - Users and permissions
 Users and permissions  
-Steps [README.md](./step13/README.md)  
+Steps [README.md](./13_users_and_permissions/README.md)  
 
 
 ## Example 14 - OOM - Out of memory
 Demonstrate an out of memory issue.  Includes sysdig...
-Steps [README.md](./step14/README.md)  
+Steps [README.md](./14_out_of_memory/README.md)  
 
 
 ## Example 15 - ENTRYPOINT and CMD
 Demonstrate how ENTRYPOINT and CMD differ
-Steps [README.md](./step15/README.md)  
+Steps [README.md](./15_entrypoint_and_cmd/README.md)  
 
 
 ## Example 16 - Layer caching with non-deterministic executions

@@ -1,4 +1,4 @@
-# Example 13 - Users ad Permissions
+# Example 13 - Users and Permissions
 Demonstrates how users work within a container. 
 
 ## Script to follow
