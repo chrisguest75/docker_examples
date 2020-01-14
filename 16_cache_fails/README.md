@@ -2,7 +2,8 @@
 Demonstrate layer caching behaviour with non-deterministic commands.
 We pull the time from a time service to demonstrate the non-determinism. This would be akin to any command requiring an updated file. 
 
-## Build Container
+## Script to follow
+### Build Container
 Build the container without caching.  The output of the build will show a build with a time pulled from an echo service.  
 ```
 docker build -f makecurl.Dockerfile --no-cache -t 16_cache_fails . 
@@ -55,7 +56,7 @@ Therefore, the image is not rebuilt and we have an old file.
 docker run -it --rm 16_cache_fails
 ```
 
-## Build Reordered Apt List.
+### Build Reordered Apt List.
 No caching will occur here as the order of the commands in the apt are different. 
 This means the subsequent layers are also invalidated and everything is rebuilt.  
 ```

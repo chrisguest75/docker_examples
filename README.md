@@ -5,7 +5,7 @@ The aim is to use examples to show how Docker behaves when building containers a
 
 ## Example 1 - Layers, Hiding and Squashing
 Demonstrates how layers are stored, files are hidden and can be squashed.  
-Steps [README.md](./step1/README.md)  
+Steps [README.md](./01_layers_hiding/README.md)  
 
 ## Example 1b - Mv, Rm, Sh
 ** Not working!! **
