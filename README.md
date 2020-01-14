@@ -1,5 +1,7 @@
 # Docker Build Examples and Demos
-A repository for showing examples of how containers are built. 
+A repository for showing examples of how containers are built and proving concepts that exist. 
+
+The aim is to use examples to show how Docker behaves when building containers and to squash some assumptions. 
 
 ## Example 1 - Layers, Hiding and Squashing
 Demonstrates how layers are stored, files are hidden and can be squashed.  
@@ -46,7 +48,7 @@ Steps [README.md](./step8/README.md)
 
 
 ## Example 11 - Cmdline passthrough
-Demonstrate passing through cmd line parameters in docker run  
+Demonstrate passing through cmd line parameters in docker run 
 Steps [README.md](./step11/README.md)  
 
 
@@ -64,9 +66,15 @@ Steps [README.md](./step13/README.md)
 Demonstrate an out of memory issue.  Includes sysdig...
 Steps [README.md](./step14/README.md)  
 
+
 ## Example 15 - ENTRYPOINT and CMD
 Demonstrate how ENTRYPOINT and CMD differ
 Steps [README.md](./step15/README.md)  
+
+
+## Example 16 - Layer caching with non-deterministic executions
+Demonstrate how layer caching works with non-determinstic commands.
+Steps [README.md](./16_cache_fails/README.md)  
 
 
 ## TODO
