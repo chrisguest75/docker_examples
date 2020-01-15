@@ -77,6 +77,11 @@ Demonstrate how layer caching works with non-determinstic commands.
 Steps [README.md](./16_cache_fails/README.md)  
 
 
+## Example 17 - Microscanner
+Demonstrate how to use Microscanner to detect vulnerabilities.
+Steps [README.md](./17_microscanner/README.md)  
+
+
 ## TODO
 1. Build a rootfs container
 1. Show patching a container to fix an issue reported by GCR
@@ -95,7 +100,6 @@ Steps [README.md](./16_cache_fails/README.md)
 1. Start a cgroup manually using an unpacked container.
 1. Injecting another container into a container. 
 1. Snaps??
-1. Sending docker commands to background in bash.  
 1. Showing the process tree for docker
 1. Demo using cache-from.....  Use a timed layer.
 1. Cron in a container. 
