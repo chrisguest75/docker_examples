@@ -82,6 +82,16 @@ Demonstrate how to use Microscanner to detect vulnerabilities.
 Steps [README.md](./17_microscanner/README.md)  
 
 
+## Example 18 - Hadolint
+Demonstrate hadolint
+Steps [README.md](./18_hadolint/README.md) 
+
+
+## Example 19 - apt_locking
+Demonstrate an apt locking technique
+Steps [README.md](./19_apt_locking/README.md) 
+
+
 ## TODO
 1. Build a rootfs container
 1. Show patching a container to fix an issue reported by GCR
