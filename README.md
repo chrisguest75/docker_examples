@@ -92,6 +92,11 @@ Demonstrate an apt locking technique
 Steps [README.md](./19_apt_locking/README.md) 
 
 
+## Example 20 - build_root
+Demonstrates building a root image  
+Steps [README.md](./20_build_root/README.md) 
+
+
 ## TODO
 1. Build a rootfs container
 1. Show patching a container to fix an issue reported by GCR
