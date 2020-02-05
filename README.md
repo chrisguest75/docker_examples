@@ -87,18 +87,28 @@ Demonstrate hadolint
 Steps [README.md](./18_hadolint/README.md) 
 
 
-## Example 19 - apt_locking
+## Example 19 - Locking versions with APT
 Demonstrate an apt locking technique
 Steps [README.md](./19_apt_locking/README.md) 
 
 
-## Example 20 - build_root
+## Example 20 - Building a rootfs image
 Demonstrates building a root image  
 Steps [README.md](./20_build_root/README.md) 
 
 
+
+
+
+## Example 23 - Building bash5 for Unbuntu 16.04
+Demonstrates building bash 5 on an ubuntu image. 
+Steps [README.md](./23_bash5_ubuntu/README.md) 
+
+
+# README.md
+
+
 ## TODO
-1. Build a rootfs container
 1. Show patching a container to fix an issue reported by GCR
 1. Show how multistage builds work for testing
 1. Cache invalidation - package managers 

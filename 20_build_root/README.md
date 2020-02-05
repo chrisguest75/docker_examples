@@ -2,7 +2,7 @@
 Demonstrates building a root image
 
 ## TODO
-1. Make it version agnositc
+1. Make it version agnostic
 
 
 ## Build rootfs.tar
