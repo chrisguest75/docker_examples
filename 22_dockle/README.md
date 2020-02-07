@@ -1,5 +1,7 @@
 # README.md
 
+## TODO  
+!. Show how to fix the issues raised
 
 ## Installation
 Goto [Dockle](https://github.com/goodwithtech/dockle)

@@ -98,7 +98,9 @@ Steps [README.md](./20_build_root/README.md)
 
 
 
-
+## Example 22 - Example of using dockle
+Demonstrates using dockle to find issues with images. 
+Steps [README.md](./22_dockle/README.md) 
 
 ## Example 23 - Building bash5 for Unbuntu 16.04
 Demonstrates building bash 5 on an ubuntu image. 
