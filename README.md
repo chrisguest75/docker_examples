@@ -114,7 +114,7 @@ Steps [README.md](./24_reverse_shell/README.md)
 
 
 ## TODO
-1. Reverse shell into a container
+1. Create a layer and add it manually to the image
 1. Show patching a container to fix an issue reported by GCR
 1. Show how multistage builds work for testing
 1. Cache invalidation - package managers 
