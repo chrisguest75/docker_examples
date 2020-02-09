@@ -39,7 +39,7 @@ Steps [README.md](./06_multistage/README.md)
 
 ## Example 7 - Buildkit
 Demonstrate buildkit parallel building  
-Steps [README.md](./07_buildkit/README.md)  
+Steps [README.md](./07_buildkit_parallelbuilds/README.md)  
 
 
 ## Example 8 - Layer caching with arguments
@@ -115,6 +115,8 @@ Steps [README.md](./24_reverse_shell/README.md)
 
 ## TODO
 1. Create a layer and add it manually to the image
+1. Docker content trust https://docs.docker.com/engine/security/trust/content_trust/
+1. Reverse shell readonly and also with non-root user.
 1. Show patching a container to fix an issue reported by GCR
 1. Show how multistage builds work for testing
 1. Cache invalidation - package managers 

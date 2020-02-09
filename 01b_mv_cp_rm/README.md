@@ -1,6 +1,8 @@
 # Example 1b - Mv, Rm, Sh
-** Not working!! **
-Building a simple container with mv, rm, sh.  Probably missing libs. 
+
+# TODO
+1. ** Not working!! ** Building a simple container with mv, rm, sh.  Probably missing libs. 
+1. How do I debug what is missing? 
 
 ## Script to follow
 Demonstrate removing files

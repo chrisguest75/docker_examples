@@ -11,7 +11,9 @@ Build args are not part of the run time environment
 # Build the image
 docker build --build-arg mygithubcreds=creds -t scratchtest .
 # This will print out the internal environment variables.
-docker run scratchtest
+docker run --rm scratchtest
+# You will see the creds in the image history
+docker history scratchtest  
 ```
 
 Save a local copy of the image
@@ -34,3 +36,30 @@ Find the "mygithubcreds" in the layer json files
 code ./scratchtest
 ```
 
+# Clean up   
+```sh
+# Remove files
+rm -rf ./scratchtest
+rm scratchtest.tar
+docker rmi scratchtest
+```
+
+# Docker buildkit secrets 
+
+```sh
+export DOCKER_BUILDKIT=1
+echo "export mygithubcreds=creds" > mysecret.txt
+# This is not working...  Failure to mount
+docker build -f buildkit.Dockerfile --progress=plain --secret id=mysecret,src=mysecret.txt -t scratchtest .
+unset DOCKER_BUILDKIT 
+
+```
+
+
+# Clean up   
+```sh
+# Remove files
+rm -rf ./scratchtest
+rm scratchtest.tar
+docker rmi scratchtest
+```
