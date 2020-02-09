@@ -1,4 +1,7 @@
 # Example 1b - Mv, Rm, Sh
+Try copying files in a scratch container. 
+
+NOTE: Probably easier to build a rootfs and copy the files into the tar. 
 
 # TODO
 1. ** Not working!! ** Building a simple container with mv, rm, sh.  Probably missing libs. 
