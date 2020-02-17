@@ -56,8 +56,8 @@ The directory structure should look something like this.
 Look at the contents  
 ```sh
 # extract layer tars
-find * -iname "layer.tar*" -execdir mkdir layer \;                         
-find * -iname "layer.tar*" -execdir tar -xvf {} -C ./layer \;    
+find ./scratchtest/* -iname "layer.tar*" -execdir mkdir layer \;                         
+find ./scratchtest/* -iname "layer.tar*" -execdir tar -xvf {} -C ./layer \;    
 
 # Use editor to examine contents of the json files and untared layers.
 code ./scratchtest

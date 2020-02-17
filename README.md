@@ -114,9 +114,11 @@ Steps [README.md](./24_reverse_shell/README.md)
 
 
 ## TODO
+1. Build a apt-mirror https://www.tecmint.com/setup-local-repositories-in-ubuntu/
+1. Demonstrate how apparmor works with docker.
+1. Build a busybox image.  https://github.com/ukanth/afwall/wiki/HOWTO-Compiling-busybox
 1. Create a layer and add it manually to the image
 1. Docker content trust https://docs.docker.com/engine/security/trust/content_trust/
-1. Reverse shell readonly and also with non-root user.
 1. Show patching a container to fix an issue reported by GCR
 1. Show how multistage builds work for testing
 1. Cache invalidation - package managers 

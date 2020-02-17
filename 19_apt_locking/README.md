@@ -3,8 +3,8 @@ Demonstrates locking apt to specific versions of packages.
 
 ## Installation
 ```
-docker build -t 1604.apt_locking -f 1604.Dockerfile .  
-docker build -t 1804.apt_locking -f 1804.Dockerfile .  
+docker build --no-cache -t 1604.apt_locking -f 1604.Dockerfile .  
+docker build --no-cache -t 1804.apt_locking -f 1804.Dockerfile .  
 ```
 
 ## Run 
