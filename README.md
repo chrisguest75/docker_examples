@@ -8,7 +8,7 @@ Demonstrates how layers are stored, files are hidden and can be squashed.
 Steps [README.md](./01_layers_hiding/README.md)  
 
 ## Example 1b - Mv, Rm, Sh
-** Not working!! **
+** Not working!! **  
 Building a simple container with mv, rm, sh.  Probably missing libs.  
 Steps [README.md](./01b_mv_cp_rm/README.md)  
 
@@ -16,107 +16,89 @@ Steps [README.md](./01b_mv_cp_rm/README.md)
 Demonstrates how kernel versions are different for build and execution.  
 Steps [README.md](./02_kernel_versions/README.md)  
 
-
 ## Example 3 - Buildargs 
 Demonstrate how buildargs are stored in the image  
 Steps [README.md](./03_buildargs_storage/README.md)  
-
 
 ## Example 4 - Docker Context 
 Show a docker context issue (large files)  
 Steps [README.md](./04_docker_context/README.md)  
 
-
 ## Example 5 - Root user 
 Demonstrate root user  
 Steps [README.md](./05_root_user/README.md)  
 
-
 ## Example 6 - Multistage small image size
-Demonstrate multistage build small image size  
+Demonstrate multistage build small image size   
 Steps [README.md](./06_multistage/README.md)  
-
 
 ## Example 7 - Buildkit
 Demonstrate buildkit parallel building  
 Steps [README.md](./07_buildkit_parallelbuilds/README.md)  
 
-
 ## Example 8 - Layer caching with arguments
 Demonstrate layer caching.  
 Steps [README.md](./08_caching_arguments/README.md)  
 
-
 ## Example 11 - Cmdline passthrough
-Demonstrate passing through cmd line parameters in docker run 
+Demonstrate passing through cmd line parameters in docker run  
 Steps [README.md](./11_cmdline_passthrough/README.md)  
-
 
 ## Example 12 - Background processes
 Demonstrate creating background processes  
 Steps [README.md](./12_background_processes/README.md)  
 
-
 ## Example 13 - Users and permissions
 Users and permissions  
 Steps [README.md](./13_users_and_permissions/README.md)  
 
-
 ## Example 14 - OOM - Out of memory
-Demonstrate an out of memory issue.  Includes sysdig...
+Demonstrate an out of memory issue.  Includes sysdig...  
 Steps [README.md](./14_out_of_memory/README.md)  
 
-
 ## Example 15 - ENTRYPOINT and CMD
-Demonstrate how ENTRYPOINT and CMD differ
+Demonstrate how ENTRYPOINT and CMD differ  
 Steps [README.md](./15_entrypoint_and_cmd/README.md)  
 
-
-## Example 16 - Layer caching with non-deterministic executions
-Demonstrate how layer caching works with non-determinstic commands.
+## Example 16 - Layer caching with non-deterministic executions  
+Demonstrate how layer caching works with non-determinstic commands.  
 Steps [README.md](./16_cache_fails/README.md)  
 
-
-## Example 17 - Microscanner
-Demonstrate how to use Microscanner to detect vulnerabilities.
+## Example 17 - Microscanner  
+Demonstrate how to use Microscanner to detect vulnerabilities.  
 Steps [README.md](./17_microscanner/README.md)  
 
-
 ## Example 18 - Hadolint
-Demonstrate hadolint
-Steps [README.md](./18_hadolint/README.md) 
-
+Demonstrate hadolint  
+Steps [README.md](./18_hadolint/README.md)  
 
 ## Example 19 - Locking versions with APT
-Demonstrate an apt locking technique
-Steps [README.md](./19_apt_locking/README.md) 
-
+Demonstrate an apt locking technique  
+Steps [README.md](./19_apt_locking/README.md)  
 
 ## Example 20 - Building a rootfs image
 Demonstrates building a root image  
-Steps [README.md](./20_build_root/README.md) 
-
-
+Steps [README.md](./20_build_root/README.md)  
 
 ## Example 22 - Example of using dockle
-Demonstrates using dockle to find issues with images. 
-Steps [README.md](./22_dockle/README.md) 
+Demonstrates using dockle to find issues with images.  
+Steps [README.md](./22_dockle/README.md)  
 
 ## Example 23 - Building bash5 for Unbuntu 16.04
-Demonstrates building bash 5 on an ubuntu image. 
-Steps [README.md](./23_bash5_ubuntu/README.md) 
+Demonstrates building bash 5 on an ubuntu image.  
+Steps [README.md](./23_bash5_ubuntu/README.md)  
 
 ## Example 24 - Reverse shells
-Demonstrates getting access into a container
-Steps [README.md](./24_reverse_shell/README.md) 
+Demonstrates getting access into a container  
+Steps [README.md](./24_reverse_shell/README.md)  
 
 ## Example 26 - Sidecar debugging 
-Demonstrates sidecar techniques for debugging
-Steps [README.md](./26_sidecar_debugging/README.md) 
+Demonstrates sidecar techniques for debugging  
+Steps [README.md](./26_sidecar_debugging/README.md)  
 
 ## Example 27 - Readonly containers 
-Demonstrates a readonly container
-Steps [README.md](./27_readonly_containers/README.md) 
+Demonstrates a readonly container  
+Steps [README.md](./27_readonly_containers/README.md)  
 
 # README.md
 
