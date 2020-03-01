@@ -5,7 +5,8 @@ Demonstrate how to inject a sidecar container with some extra debugging tools
 Build and execute the container with some code we want to debug.
 ```sh
 docker build -f code.Dockerfile -t code_sidecar . 
-docker run -d -it --rm --name code_sidecar code_sidecar  
+docker run -d --read-only -it --rm --name code_sidecar code_sidecar  
+docker exec -it  $(docker ps --filter name=code_sidecar -q) /bin/bash             
 ```
 
 Inject the container with some extra debugging tools
@@ -23,3 +24,6 @@ ps -aux
 ```sh
 docker stop $(docker ps --filter name=code_sidecar -q)           
 ```
+
+
+          

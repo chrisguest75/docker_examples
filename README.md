@@ -114,6 +114,9 @@ Steps [README.md](./24_reverse_shell/README.md)
 Demonstrates sidecar techniques for debugging
 Steps [README.md](./26_sidecar_debugging/README.md) 
 
+## Example 27 - Readonly containers 
+Demonstrates a readonly container
+Steps [README.md](./27_readonly_containers/README.md) 
 
 # README.md
 
@@ -122,6 +125,7 @@ Steps [README.md](./26_sidecar_debugging/README.md)
 1. mounting volumes and permissions.
 1. Build a apt-mirror https://www.tecmint.com/setup-local-repositories-in-ubuntu/
 1. Demonstrate how apparmor works with docker.
+1. Use different CAPS_SYS parameters. 
 1. Build a busybox image.  https://github.com/ukanth/afwall/wiki/HOWTO-Compiling-busybox
 1. Create a layer and add it manually to the image
 1. Docker content trust https://docs.docker.com/engine/security/trust/content_trust/
@@ -131,15 +135,12 @@ Steps [README.md](./26_sidecar_debugging/README.md)
 1. Ordering of layers
 1. Secrets
 1. onbuild
-1. read only containers
 1. Signing builds
-1. entrypoint versus cmd
 1. Docker in docker kaniko. 
 1. Build software using qemu and copy it in. 
 1. Build something for arm and for x86 and support both inside a single container. 
 1. Unpack the filesystem flattened.  Filesystem view in a single container.
 1. Start a cgroup manually using an unpacked container.
-1. Injecting another container into a container. 
 1. Snaps??
 1. Showing the process tree for docker
 1. Demo using cache-from.....  Use a timed layer.
