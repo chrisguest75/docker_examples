@@ -110,10 +110,16 @@ Steps [README.md](./23_bash5_ubuntu/README.md)
 Demonstrates getting access into a container
 Steps [README.md](./24_reverse_shell/README.md) 
 
+## Example 26 - Sidecar debugging 
+Demonstrates sidecar techniques for debugging
+Steps [README.md](./26_sidecar_debugging/README.md) 
+
+
 # README.md
 
 
 ## TODO
+1. mounting volumes and permissions.
 1. Build a apt-mirror https://www.tecmint.com/setup-local-repositories-in-ubuntu/
 1. Demonstrate how apparmor works with docker.
 1. Build a busybox image.  https://github.com/ukanth/afwall/wiki/HOWTO-Compiling-busybox
