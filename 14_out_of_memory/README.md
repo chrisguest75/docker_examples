@@ -32,6 +32,24 @@ You can try to blow the memory of the container whilst in the shell but it doesn
 docker run -it --rm --entrypoint /bin/bash --name oom oom       
 ```
 
+## OOM events on Docker for Desktop host 
+To enter the host machine on Docker for Desktop.
+
+```sh
+docker run -it --privileged --pid=host debian nsenter -t 1 -m -u -n -i sh
+```
+
+```sh
+dmesg
+```
+
+You should see messages like
+```
+[89942.480388] Memory cgroup out of memory: Kill process 46211 (process) score 561 or sacrifice child
+[89942.482095] Killed process 46433 (process) total-vm:536552kB, anon-rss:12012kB, file-rss:53740kB, shmem-rss:4kB
+[89942.488774] oom_reaper: reaped process 46433 (chrome), now anon-rss:0kB, file-rss:0kB, shmem-rss:4kB
+```
+
 
 # Sysdig capture
 
