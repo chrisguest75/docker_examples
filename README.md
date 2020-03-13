@@ -40,6 +40,10 @@ Steps [README.md](./07_buildkit_parallelbuilds/README.md)
 Demonstrate layer caching.  
 Steps [README.md](./08_caching_arguments/README.md)  
 
+## Example 9 - Kaniko
+Demonstrate using Kaniko to build a Docker image  
+Steps [README.md](./09_kaniko/README.md)  
+
 ## Example 11 - Cmdline passthrough
 Demonstrate passing through cmd line parameters in docker run  
 Steps [README.md](./11_cmdline_passthrough/README.md)  
@@ -104,6 +108,11 @@ Steps [README.md](./27_readonly_containers/README.md)
 
 
 ## TODO
+1. Docker registry v2 examples. 
+1. Docker container escape with docker copy. 
+https://www.andreafortuna.org/2019/11/26/cve-2019-14271-a-docker-cp-container-escape-vulnerability/
+1. Add procdump to the sidecar
+1. PID1 - init-system https://cloud.google.com/solutions/best-practices-for-building-containers
 1. mounting volumes and permissions.
 1. Build a apt-mirror https://www.tecmint.com/setup-local-repositories-in-ubuntu/
 1. Demonstrate how apparmor works with docker.
