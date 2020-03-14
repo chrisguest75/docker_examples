@@ -1,0 +1,16 @@
+{
+  "name": "28_distroless",
+  "version": "1.0.0",
+  "description": "Demonstrate Distroless containers where the shell is removed.",
+  "main": "index.js",
+  "dependencies": {
+    "pino": "^5.17.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
