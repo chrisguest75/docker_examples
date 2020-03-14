@@ -105,7 +105,7 @@ Demonstrates a readonly container
 Steps [README.md](./27_readonly_containers/README.md)  
 
 ## Example 28 - Distroless 
-Demonstrates a distroless container build
+Demonstrates a distroless container build  
 Steps [README.md](./28_distroless/README.md)  
 
 # README.md
