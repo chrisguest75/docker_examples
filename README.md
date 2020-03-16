@@ -96,6 +96,10 @@ Steps [README.md](./23_bash5_ubuntu/README.md)
 Demonstrates getting access into a container  
 Steps [README.md](./24_reverse_shell/README.md)  
 
+## Example 25 - Apparmor
+Demonstrates using Apparmor to restrict processes in a container. 
+Steps [README.md](./25_apparmor/README.md)  
+
 ## Example 26 - Sidecar debugging 
 Demonstrates sidecar techniques for debugging  
 Steps [README.md](./26_sidecar_debugging/README.md)  
