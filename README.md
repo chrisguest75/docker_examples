@@ -97,7 +97,7 @@ Demonstrates getting access into a container
 Steps [README.md](./24_reverse_shell/README.md)  
 
 ## Example 25 - Apparmor
-Demonstrates using Apparmor to restrict processes in a container. 
+Demonstrates using Apparmor to restrict processes in a container.   
 Steps [README.md](./25_apparmor/README.md)  
 
 ## Example 26 - Sidecar debugging 
@@ -112,10 +112,20 @@ Steps [README.md](./27_readonly_containers/README.md)
 Demonstrates a distroless container build  
 Steps [README.md](./28_distroless/README.md)  
 
+## Example 29 - External env processing 
+A technique to use in CI systems where it is not possible to parameterise the workflow/pipeline.  
+Steps [README.md](./29_external_env_process/README.md)  
+
+
 # README.md
 
 
 ## TODO
+1. Docker volume mounting 
+    docker create -v /cfg --name configs alpine:3.4 /bin/true
+    docker cp path/in/your/source/code/app_config.yml configs:/cfg
+    docker run --volumes-from configs app-image:1.2.3
+
 1. Docker registry v2 examples. 
 1. Docker container escape with docker copy. 
 https://www.andreafortuna.org/2019/11/26/cve-2019-14271-a-docker-cp-container-escape-vulnerability/
