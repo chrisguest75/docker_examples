@@ -44,8 +44,8 @@ Steps [README.md](./08_caching_arguments/README.md)
 Demonstrate using Kaniko to build a Docker image  
 Steps [README.md](./09_kaniko/README.md)  
 
-## Example 11 - Cmdline passthrough
-Demonstrate passing through cmd line parameters in docker run  
+## Example 11 - Parameters and piping passthrough
+Demonstrate passing parameters and piping into docker run.     
 Steps [README.md](./11_cmdline_passthrough/README.md)  
 
 ## Example 12 - Background processes
