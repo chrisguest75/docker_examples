@@ -118,9 +118,8 @@ Steps [README.md](./29_workflow_feature_flags/README.md)
 
 
 # README.md
-
-
 ## TODO
+1. Calculating accurate image sizes
 1. Docker volume mounting 
     docker create -v /cfg --name configs alpine:3.4 /bin/true
     docker cp path/in/your/source/code/app_config.yml configs:/cfg

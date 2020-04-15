@@ -13,7 +13,7 @@ function map-pipe {
                 local prefix=${BRANCH}_
                 local name="${var/${prefix}/}" 
                 echo "# FROM ${var}=${value}"
-                echo "export ${name}=${value}"
+                echo "export ${name}=\"${value}\""
             fi
         fi
         if [[ -n "${COMMIT_SHA1}" ]]; then 
@@ -21,7 +21,7 @@ function map-pipe {
                 local prefix=${COMMIT_SHA1}_
                 local name="${var/${prefix}/}" 
                 echo "# FROM ${var}=${value}"
-                echo "export ${name}=${value}"
+                echo "export ${name}=\"${value}\""
             fi
         fi
     done
@@ -39,7 +39,7 @@ function map {
             local prefix=${BRANCH}_
             local name="${var/${prefix}/}" 
             echo "# FROM ${var}=${value}"
-            echo "export ${name}=${value}"
+            echo "export ${name}=\"${value}\""
         done < <(env | grep ^${BRANCH})
     fi
     if [[ -n "${COMMIT_SHA1}" ]]; then 
@@ -48,7 +48,7 @@ function map {
             local prefix=${COMMIT_SHA1}_
             local name="${var/${prefix}/}" 
             echo "# FROM ${var}=${value}"
-            echo "export ${name}=${value}"
+            echo "export ${name}=\"${value}\""
         done < <(env | grep ^${COMMIT_SHA1})
     fi
     #env
@@ -60,3 +60,4 @@ else
     map 
 fi
 
+exit 0

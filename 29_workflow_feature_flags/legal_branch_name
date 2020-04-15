@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+if [[ -z $BRANCH ]]; then
+    if [[ -n $1 ]]; then
+        BRANCH=$1
+    else
+        echo "BRANCH not set and no parameter passed"
+        exit 1
+    fi 
+else 
+    if [[ -n $1 ]]; then
+        BRANCH=$1
+    fi
+fi
+
+function check-legal-branch {
+    local BRANCH=$1
+
+    if [[ $BRANCH =~ ^[_a-zA-Z][_a-zA-Z0-9]*$ ]]; then
+        echo "$BRANCH is legal"
+        return 0
+    else
+        echo "$BRANCH is not legal"
+        return 1
+    fi
+}
+
+check-legal-branch $BRANCH
+exit $?
