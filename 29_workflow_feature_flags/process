@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
 function map {
+    echo "# BRANCH is set to ${BRANCH}"
+    echo "# COMMIT_SHA1 is set to ${COMMIT_SHA1}"
+    echo ""
+
     # find env variables that start with branch and commitid
     if [[ -n "${BRANCH}" ]]; then 
         while IFS='=' read -r var value 
@@ -8,7 +12,7 @@ function map {
             local prefix=${BRANCH}_
             local name="${var/${prefix}/}" 
             #export ${name}=${value}
-            echo "#FROM ${var}=${value}"
+            echo "# FROM ${var}=${value}"
             echo "export ${name}=${value}"
         done < <(env | grep ^${BRANCH})
     fi
@@ -18,7 +22,7 @@ function map {
             local prefix=${COMMIT_SHA1}_
             local name="${var/${prefix}/}" 
             #export ${name}=${value}
-            echo "#FROM ${var}=${value}"
+            echo "# FROM ${var}=${value}"
             echo "export ${name}=${value}"
         done < <(env | grep ^${COMMIT_SHA1})
     fi

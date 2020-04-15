@@ -43,10 +43,23 @@ docker build -t workflow-flags .
 To execute we snapshot the environment.  Pass it in as a file and output a new set of exports to be dot sourced.  The dot sourcing overrides the values for that particular commit or branch.   
 
 ```sh
-# Copy environment into a file to be passed into container.  
+# Setup the fake ci environment variables
 . ./ci_env
+```
+
+In the workflow we would use it like this. 
+```sh
+# Copy environment into a file to be passed into container.  
 tmp_env=$(mktemp)
 env > ${tmp_env}
 docker run -e BRANCH=master -e COMMIT_SHA1= --env-file ${tmp_env} workflow-flags
 ```
 
+It will echo out.  Which can be written out to a file and dot sourced back over your environment. 
+```sh
+# BRANCH is set to master
+# COMMIT_SHA1 is set to 
+
+# FROM master_FORCE_TEST_FAIL=true
+export FORCE_TEST_FAIL=true
+```
