@@ -112,9 +112,9 @@ Steps [README.md](./27_readonly_containers/README.md)
 Demonstrates a distroless container build  
 Steps [README.md](./28_distroless/README.md)  
 
-## Example 29 - External env processing 
+## Example 29 - Workflow feature flags
 A technique to use in CI systems where it is not possible to parameterise the workflow/pipeline.  
-Steps [README.md](./29_external_env_process/README.md)  
+Steps [README.md](./29_workflow_feature_flags/README.md)  
 
 
 # README.md

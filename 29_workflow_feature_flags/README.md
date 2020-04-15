@@ -1,4 +1,4 @@
-# README.md
+# Workflow Feature Flags
 A technique to use in CI systems where it is not possible to parameterise the workflow/pipeline.  
 
 Copied from my [14_ci_env_overrides](https://github.com/chrisguest75/shell_examples/tree/master/14_ci_env_overrides) example. 
@@ -36,7 +36,7 @@ export SKIP_TESTS=false
 It is a simple one script container. 
 
 ```sh
-docker build -t process-env . 
+docker build -t workflow-flags . 
 ```
 
 ## Run 
@@ -47,6 +47,6 @@ To execute we snapshot the environment.  Pass it in as a file and output a new s
 . ./ci_env
 tmp_env=$(mktemp)
 env > ${tmp_env}
-docker run -e BRANCH=master -e COMMIT_SHA1= --env-file ${tmp_env} process-env
+docker run -e BRANCH=master -e COMMIT_SHA1= --env-file ${tmp_env} workflow-flags
 ```
 
