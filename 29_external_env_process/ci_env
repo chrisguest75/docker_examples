@@ -1,0 +1,5 @@
+export master_FORCE_TEST_FAIL=true
+export chris_branch_SKIP_TESTS=true
+export chris_branch_DEBUG_TEST_LOGS=true
+export chris_branch_TF_LOG=DEBUG
+export fb93e86f557c95d86e5dfc84973661183be8c5fa_SKIP_TESTS=false
