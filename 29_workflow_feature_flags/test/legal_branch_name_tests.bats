@@ -42,3 +42,83 @@ teardown() {
     assert_line --index 0 --regexp '^parameter is legal'
     assert_success
 }
+
+@test "Parameter has precdence (no BRANCH set)" {
+    unset BRANCH
+    run legal_branch_name parameter 
+    #echo $output >&3 
+    assert_line --index 0 --regexp '^parameter is legal'
+    assert_success
+}
+
+@test "No parameter set" {
+    export BRANCH=master
+    run legal_branch_name  
+    #echo $output >&3 
+    assert_line --index 0 --regexp '^master is legal'
+    assert_success
+}
+
+#*******************************************************************
+#* Legal names
+#*******************************************************************
+
+@test "Leading underscore" {
+    export BRANCH=_master
+    run legal_branch_name  
+    #echo $output >&3 
+    assert_line --index 0 --regexp '^_master is legal'
+    assert_success
+}
+
+@test "Leading underscores" {
+    export BRANCH=__master
+    run legal_branch_name  
+    #echo $output >&3 
+    assert_line --index 0 --regexp '^__master is legal'
+    assert_success
+}
+
+@test "Contains numbers" {
+    export BRANCH=__master55
+    run legal_branch_name  
+    #echo $output >&3 
+    assert_line --index 0 --regexp '^__master55 is legal'
+    assert_success
+}
+
+@test "Contains numbers (in name)" {
+    export BRANCH=__master55s
+    run legal_branch_name  
+    #echo $output >&3 
+    assert_line --index 0 --regexp '^__master55s is legal'
+    assert_success
+}
+
+@test "Contains mixed case" {
+    export BRANCH=MixedCase
+    run legal_branch_name  
+    #echo $output >&3 
+    assert_line --index 0 --regexp '^MixedCase is legal'
+    assert_success
+}
+
+#*******************************************************************
+#* Illegal names
+#*******************************************************************
+
+@test "Starting with number" {
+    export BRANCH=5master
+    run legal_branch_name  
+    #echo $output >&3 
+    assert_line --index 0 --regexp '^5master is not legal'
+    assert_failure
+}
+
+@test "Starting with number" {
+    export BRANCH=feat/feature
+    run legal_branch_name  
+    #echo $output >&3 
+    assert_line --index 0 --regexp '^feat/feature is not legal'
+    assert_failure
+}
