@@ -63,3 +63,17 @@ It will echo out.  Which can be written out to a file and dot sourced back over 
 # FROM master_FORCE_TEST_FAIL=true
 export FORCE_TEST_FAIL=true
 ```
+
+# Piping 
+We can simplify the process by piping the env 
+```sh 
+docker run -i -e BRANCH=master -e COMMIT_SHA1= workflow-flags --stdin <  <(env) 
+```
+
+# Oneliner
+For a complete one liner 
+```sh
+export master_FORCE_TEST_FAIL=true  
+. <(docker run -i -e BRANCH=master -e COMMIT_SHA1= workflow-flags --stdin <  <(env))
+env
+```

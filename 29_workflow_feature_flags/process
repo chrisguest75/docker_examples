@@ -1,5 +1,32 @@
 #!/usr/bin/env bash
 
+function map-pipe {
+    echo "# BRANCH is set to ${BRANCH}"
+    echo "# COMMIT_SHA1 is set to ${COMMIT_SHA1}"
+    echo ""
+
+    # find env variables that start with branch and commitid
+    while IFS='=' read -r var value 
+    do
+        if [[ -n "${BRANCH}" ]]; then 
+            if [[ $var =~ ^${BRANCH} ]]; then
+                local prefix=${BRANCH}_
+                local name="${var/${prefix}/}" 
+                echo "# FROM ${var}=${value}"
+                echo "export ${name}=${value}"
+            fi
+        fi
+        if [[ -n "${COMMIT_SHA1}" ]]; then 
+            if [[ $var =~ ^${COMMIT_SHA1} ]]; then
+                local prefix=${COMMIT_SHA1}_
+                local name="${var/${prefix}/}" 
+                echo "# FROM ${var}=${value}"
+                echo "export ${name}=${value}"
+            fi
+        fi
+    done
+}
+
 function map {
     echo "# BRANCH is set to ${BRANCH}"
     echo "# COMMIT_SHA1 is set to ${COMMIT_SHA1}"
@@ -11,7 +38,6 @@ function map {
         do
             local prefix=${BRANCH}_
             local name="${var/${prefix}/}" 
-            #export ${name}=${value}
             echo "# FROM ${var}=${value}"
             echo "export ${name}=${value}"
         done < <(env | grep ^${BRANCH})
@@ -21,7 +47,6 @@ function map {
         do
             local prefix=${COMMIT_SHA1}_
             local name="${var/${prefix}/}" 
-            #export ${name}=${value}
             echo "# FROM ${var}=${value}"
             echo "export ${name}=${value}"
         done < <(env | grep ^${COMMIT_SHA1})
@@ -29,5 +54,9 @@ function map {
     #env
 }
 
-map 
+if [[ $1 == "--stdin" ]]; then
+    map-pipe
+else
+    map 
+fi
 
