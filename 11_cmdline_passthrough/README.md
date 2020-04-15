@@ -1,11 +1,38 @@
-## Example 11 - Cmdline passthrough
-Demonstrate passing through cmd line parameters in docker run 
+# Example 11 - Cmdline passthrough
+Demonstrate passing parameters and piping into docker run.
 
-# Script to follow
-Demonstrate passing through cmd line parameters in docker run
+This helps to create oneliner docker commands. 
 
+## Build 
+```sh
+docker build -t oneliner .
 ```
-docker build -t scratchtest .
-docker run scratchtest sleep 10  
-docker run scratchtest /bin/demo sifsf sdihgsdsvfsafasf  safasfasfg  
+
+## Run simple command
+Simple commands
+```sh
+docker run oneliner sleep 10  
+docker run oneliner /bin/demo sifsf sdihgsdsvfsafasf  safasfasfg  
 ```
+
+## Run command recieving pipe
+Piping we have to make the run interactive.  
+```sh
+cat pipeable.sh | docker run -i oneliner /bin/pipeable
+docker run -i oneliner /bin/pipeable < pipeable.sh
+docker run -i oneliner /bin/pipeable <<EOF
+HEREDOCS
+EOF
+```
+
+Will output. 
+```sh
+[PIPED] #!/bin/sh
+[PIPED] 
+[PIPED] while IFS="" read -r line
+[PIPED] do
+[PIPED]   # shellcheck disable=SC2053
+[PIPED]   echo "[PIPED] ${line}"
+[PIPED] done
+```
+
