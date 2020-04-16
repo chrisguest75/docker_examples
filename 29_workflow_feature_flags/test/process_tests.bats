@@ -162,6 +162,16 @@ teardown() {
     assert_success
 }
 
+@test "Values containing equals work" {
+    export master_FORCE_TEST_FAIL=HELLO=WORLD=NEXT
+    export BRANCH=master
+    run process 
+    #echo $output >&3 
+    assert_line --index 2 --regexp '^# FROM master_FORCE_TEST_FAIL=HELLO=WORLD=NEXT'
+    assert_line --index 3 --regexp '^export FORCE_TEST_FAIL="HELLO=WORLD=NEXT"'    
+    assert_success
+}
+
 @test "Quoted values work" {
     export master_FORCE_TEST_FAIL="true"
     export BRANCH=master
@@ -189,6 +199,16 @@ teardown() {
     #echo $output >&3 
     assert_line --index 2 --regexp '^# FROM master_FORCE_TEST_FAIL='
     assert_line --index 3 --regexp '^export FORCE_TEST_FAIL=""'    
+    assert_success
+}
+
+@test "Stdin values containing equals work" {
+    export master_FORCE_TEST_FAIL=HELLO=WORLD=NEXT
+    export BRANCH=master
+    run cat <(env | process --stdin)
+    #echo $output >&3 
+    assert_line --index 2 --regexp '^# FROM master_FORCE_TEST_FAIL=HELLO=WORLD=NEXT'
+    assert_line --index 3 --regexp '^export FORCE_TEST_FAIL="HELLO=WORLD=NEXT"'    
     assert_success
 }
 
