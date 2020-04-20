@@ -116,6 +116,10 @@ Steps [README.md](./28_distroless/README.md)
 A technique to use in CI systems where it is not possible to parameterise the workflow/pipeline.  
 Steps [README.md](./29_workflow_feature_flags/README.md)  
 
+## Example 30 - Dive CI Tool
+Demonstrates using dive tool to analyse images.
+Steps [README.md](./30_dive_ci/README.md)  
+
 
 # README.md
 ## TODO
