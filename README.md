@@ -123,9 +123,10 @@ Steps [README.md](./30_dive_ci/README.md)
 
 # README.md
 ## TODO
+1. Diffing using different tools https://docs.docker.com/engine/reference/commandline/diff/
 1. Docker in docker kaniko. 
 1. container structure tests. 
-1. Calculating accurate image sizes
+1. Calculating accurate image sizes - looks like container-diff can output this. 
 1. Docker volume mounting 
     docker create -v /cfg --name configs alpine:3.4 /bin/true
     docker cp path/in/your/source/code/app_config.yml configs:/cfg
