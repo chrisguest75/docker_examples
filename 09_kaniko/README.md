@@ -26,12 +26,21 @@ brew install dive
 Create an output directory
 ```sh
 mkdir -p ./output
+mkdir -p ./cache
+```
+## Creating cache
+Create a cache folder to speed up rebuilds
+```sh
+docker run -v $(pwd):/workspace gcr.io/kaniko-project/warmer:latest --cache-dir=/workspace/cache --image=ubuntu:16.04
 ```
 
 ## Kaniko build of image
+Use reproducible builds to see if we can reproduce sha1
 ```sh
 # kaniko build
-docker run -v $(pwd):/workspace -v $(pwd)/output:/output -it gcr.io/kaniko-project/executor:latest --context dir:///workspace/ --no-push --destination=image --tarPath=/output/kanikobuild.tar 
+TAR_NAME=kanikobuild_$(date "+%Y%m%d-%H%M%S")
+docker run -v $(pwd):/workspace -v $(pwd)/output:/output -it gcr.io/kaniko-project/executor:latest --context dir:///workspace/ --no-push --destination=kanikobuild --tarPath=/output/${TAR_NAME}.tar --reproducible --cache-dir=/workspace/cache --cache=false
+docker import ./output/${TAR_NAME}.tar ${TAR_NAME}:latest
 ```
 
 ## Docker build of image
@@ -44,8 +53,7 @@ docker save -o ./output/dockerbuild.tar dockerkanikocompare
 ## Compare
 Output the SHA1 for each image 
 ```sh
-container-diff analyze ./output/dockerbuild.tar
-container-diff analyze ./output/kanikobuild.tar
+find ./output/ -name "*.tar" -exec container-diff analyze {} \;
 ```
 
 If you repeat the process and ensuring caching is turned off you will see different SHA being created.  
