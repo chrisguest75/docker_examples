@@ -40,7 +40,7 @@ function map {
             local name="${var/${prefix}/}" 
             echo "# FROM ${var}=${value}"
             echo "export ${name}=\"${value}\""
-        done < <(env | grep ^${BRANCH})
+        done < <(env | grep "^${BRANCH}")
     fi
     if [[ -n "${COMMIT_SHA1}" ]]; then 
         while IFS='=' read -r var value 
@@ -49,7 +49,7 @@ function map {
             local name="${var/${prefix}/}" 
             echo "# FROM ${var}=${value}"
             echo "export ${name}=\"${value}\""
-        done < <(env | grep ^${COMMIT_SHA1})
+        done < <(env | grep "^${COMMIT_SHA1}")
     fi
     #env
 }

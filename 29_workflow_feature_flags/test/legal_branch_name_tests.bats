@@ -28,14 +28,14 @@ teardown() {
 #* 
 #*******************************************************************
 
-@test "No branch or parameter" {
+@test "No branch or parameter fails" {
     run legal_branch_name 
     #echo $output >&3 
     assert_line --index 0 --regexp '^BRANCH not set and no parameter passed'
     assert_failure
 }
 
-@test "Parameter has precdence" {
+@test "Cmdline parameter has precdence" {
     local BRANCH=5master
     run legal_branch_name parameter 
     #echo $output >&3 
@@ -43,7 +43,7 @@ teardown() {
     assert_success
 }
 
-@test "Parameter has precdence (no BRANCH set)" {
+@test "Cmdline parameter has precdence (no BRANCH set)" {
     unset BRANCH
     run legal_branch_name parameter 
     #echo $output >&3 
@@ -51,7 +51,7 @@ teardown() {
     assert_success
 }
 
-@test "No parameter set" {
+@test "No parameter set on cmdline works" {
     export BRANCH=master
     run legal_branch_name  
     #echo $output >&3 
@@ -63,7 +63,7 @@ teardown() {
 #* Legal names
 #*******************************************************************
 
-@test "Leading underscore" {
+@test "Leading underscore succeeds" {
     export BRANCH=_master
     run legal_branch_name  
     #echo $output >&3 
@@ -71,7 +71,7 @@ teardown() {
     assert_success
 }
 
-@test "Leading underscores" {
+@test "Leading underscores succeeds" {
     export BRANCH=__master
     run legal_branch_name  
     #echo $output >&3 
@@ -79,7 +79,7 @@ teardown() {
     assert_success
 }
 
-@test "Contains numbers" {
+@test "Contains numbers succeeds" {
     export BRANCH=__master55
     run legal_branch_name  
     #echo $output >&3 
@@ -87,7 +87,7 @@ teardown() {
     assert_success
 }
 
-@test "Contains numbers (in name)" {
+@test "Contains numbers (in name) succeeds" {
     export BRANCH=__master55s
     run legal_branch_name  
     #echo $output >&3 
@@ -95,7 +95,7 @@ teardown() {
     assert_success
 }
 
-@test "Contains mixed case" {
+@test "Contains mixed case succeeds" {
     export BRANCH=MixedCase
     run legal_branch_name  
     #echo $output >&3 
@@ -107,7 +107,7 @@ teardown() {
 #* Illegal names
 #*******************************************************************
 
-@test "Starting with number" {
+@test "Starting with number is illegal" {
     export BRANCH=5master
     run legal_branch_name  
     #echo $output >&3 
@@ -115,7 +115,7 @@ teardown() {
     assert_failure
 }
 
-@test "Starting with number" {
+@test "Branch name feat/feature is not supported" {
     export BRANCH=feat/feature
     run legal_branch_name  
     #echo $output >&3 
