@@ -25,5 +25,5 @@ function check-legal-branch {
     fi
 }
 
-check-legal-branch $BRANCH
+check-legal-branch "$BRANCH"
 exit $?
