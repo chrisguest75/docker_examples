@@ -123,7 +123,10 @@ Steps [README.md](./30_dive_ci/README.md)
 
 # README.md
 ## TODO
-1. Calculating accurate image sizes
+1. Diffing using different tools https://docs.docker.com/engine/reference/commandline/diff/
+1. Docker in docker kaniko. 
+1. container structure tests. 
+1. Calculating accurate image sizes - looks like container-diff can output this. 
 1. Docker volume mounting 
     docker create -v /cfg --name configs alpine:3.4 /bin/true
     docker cp path/in/your/source/code/app_config.yml configs:/cfg
@@ -148,7 +151,6 @@ https://www.andreafortuna.org/2019/11/26/cve-2019-14271-a-docker-cp-container-es
 1. Secrets
 1. onbuild
 1. Signing builds
-1. Docker in docker kaniko. 
 1. Build software using qemu and copy it in. 
 1. Build something for arm and for x86 and support both inside a single container. 
 1. Unpack the filesystem flattened.  Filesystem view in a single container.

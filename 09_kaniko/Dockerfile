@@ -1,7 +1,6 @@
-FROM bash:5.0.7 as bash
+FROM ubuntu:16.04
+RUN apt update && apt-cache madison curl && apt install curl=7.47.0-1ubuntu2.14 -y
 
-ARG sleeptime
-RUN echo ${sleeptime}
-RUN sleep ${sleeptime}
+RUN apt-cache madison bash curl
 
-CMD ["bash", "-c", "env"]
+RUN apt list --installed bash curl -a
