@@ -16,7 +16,7 @@ TODO:
 1. The .tar files from Kaniko are much smaller than the docker counterparts
 
 ## Prereqs
-Install container-diff and [dive](../30_dive_ci/README.md)
+Install [container-diff](https://github.com/GoogleContainerTools/container-diff) and [dive](../30_dive_ci/README.md)
 
 ```sh
 brew install container-diff
@@ -57,6 +57,11 @@ find ./output/ -name "*.tar" -exec container-diff analyze {} \;
 ```
 
 If you repeat the process and ensuring caching is turned off you will see different SHA being created.  
+
+Compare docker build to kaniko build.
+```sh
+container-diff diff ./output/dockerbuild.tar ./output/${TAR_NAME}.tar --type file
+```
 
 ## Analyse
 We can also use the dive tool to look inside the container image 
