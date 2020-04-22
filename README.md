@@ -124,7 +124,7 @@ Steps [README.md](./30_dive_ci/README.md)
 # README.md
 ## TODO
 1. Diffing using different tools https://docs.docker.com/engine/reference/commandline/diff/
-1. Docker in docker kaniko. 
+1. Kaniko. Caching, speed?  
 1. container structure tests. 
 1. Calculating accurate image sizes - looks like container-diff can output this. 
 1. Docker volume mounting 
