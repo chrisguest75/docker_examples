@@ -35,13 +35,13 @@ teardown() {
 }
 
 @test "Shellcheck process" {
-    run shellcheck process
+    run shellcheck ${BATS_TEST_DIRNAME}/../process
     #echo $output >&3 
     assert_success
 }
 
 @test "Shellcheck legal_branch_name" {
-    run shellcheck legal_branch_name
+    run shellcheck ${BATS_TEST_DIRNAME}/../legal_branch_name
     #echo $output >&3 
     assert_success
 }
