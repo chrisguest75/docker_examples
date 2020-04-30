@@ -1,0 +1,32 @@
+schemaVersion: '2.0.0' # Make sure to test the latest schema version
+
+fileExistenceTests:
+- name: '.env'
+  path: '/turn/.env'
+  shouldExist: false
+    
+- name: 'ranges.csv'
+  path: '/turn/ranges.csv'
+  shouldExist: false
+
+- name: 'generate.sh'
+  path: '/turn/generate.sh'
+  shouldExist: true
+  isExecutableBy: 'owner'
+
+- name: 'test folder'
+  path: '/turn/test'
+  shouldExist: false
+
+- name: 'user mapping'
+  path: '/turn/user_mapping.json'
+  shouldExist: false
+
+- name: 'Dockerfile'
+  path: '/turn/Dockerfile'
+  shouldExist: false
+
+- name: 'repo folder'
+  path: '/repo'
+  shouldExist: true
+  
