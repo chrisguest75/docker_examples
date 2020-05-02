@@ -10,11 +10,11 @@ brew install container-structure-test
 ```
 
 ## TODO 
-1. .env 
-1. apt cache removals.
-1. logs 
-1. apk versions
-1. globbing
+1. Checks
+    1.  recursive .env file check
+1. apk & Apt cache removals.
+1. Log removal 
+1. Why is container-diff not returning differences for two containers.
 
 ## Examples
 Build the container to be tested
@@ -22,7 +22,7 @@ Build the container to be tested
 docker build -t structure1604 -f 1604.Dockerfile .
 ```
 
-Run the tests
+Run the tests and see the root user check fails.
 ```sh
 container-structure-test test --image structure1604 --config structure_1604.yaml
 ```
