@@ -14,8 +14,20 @@ docker build --no-cache -t faildivetest -f fail.Dockerfile .
 ```
 
 ## Analyse 
+Analyse docker image in registry
 ```sh
 dive passdivetest --ci
 dive faildivetest --ci
 ```
+
+Analyse from tar
+```sh
+# passdivetest
+docker save passdivetest > passdivetest.tar
+dive --source docker-archive passdivetest
+# faildivetest
+docker save faildivetest > faildivetest.tar
+dive --source docker-archive faildivetest
+```
+
 
