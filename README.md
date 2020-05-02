@@ -124,9 +124,12 @@ Steps [README.md](./30_dive_ci/README.md)
 Demonstrates copying data out of container images.
 Steps [README.md](./32_file_extraction/README.md)  
 
+## Example 33 - Label metadata
+Demonstrates adding label metadata to builds that helps us trace pipelines and build sources.
+Steps [README.md](./33_label_metadata/README.md) 
+
 # README.md
 ## TODO
-1. docker labels
 1. Diffing using different tools https://docs.docker.com/engine/reference/commandline/diff/
 1. Kaniko. Caching, speed?  
 1. container structure tests. 
