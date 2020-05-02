@@ -120,6 +120,10 @@ Steps [README.md](./29_workflow_feature_flags/README.md)
 Demonstrates using dive tool to analyse images.
 Steps [README.md](./30_dive_ci/README.md)  
 
+## Example 31 - Structure Tests
+Demonstrates how to use container structure testing.
+Steps [README.md](./31_structure_tests/README.md)  
+
 ## Example 32 - File extraction
 Demonstrates copying data out of container images.
 Steps [README.md](./32_file_extraction/README.md)  
