@@ -4,17 +4,36 @@ Demonstrates how to use container structure testing.
 [Docs](https://github.com/GoogleContainerTools/container-structure-test)
 
 ## Prereqs
-Install 
+Install the container-structure-test tool 
 ```sh
 brew install container-structure-test       
 ```
 
-## Examples
+## TODO 
+1. .env 
+1. apt cache removals.
+1. logs 
+1. apk versions
+1. globbing
 
+## Examples
+Build the container to be tested
 ```sh
-docker run -it --rm --entrypoint /bin/bash chrisguest/turn   
+docker build -t structure1604 -f 1604.Dockerfile .
 ```
 
+Run the tests
 ```sh
-container-structure-test test --image chrisguest/turn --config test_turn.yaml
+container-structure-test test --image structure1604 --config structure_1604.yaml
+```
+
+Run the container to confirm it runs
+```sh
+docker run -it --rm structure1604
+```
+
+## Development of rules 
+Shell into the container and look around
+```sh
+docker run -it --rm --entrypoint /bin/bash structure1604
 ```

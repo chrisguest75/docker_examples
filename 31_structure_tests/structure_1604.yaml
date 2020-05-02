@@ -1,0 +1,12 @@
+schemaVersion: '2.0.0' # Make sure to test the latest schema version
+
+fileExistenceTests:
+- name: '.env'
+  path: '/work/.env'
+  shouldExist: false
+    
+- name: 'work folder'
+  path: '/work'
+  shouldExist: true
+
+  
