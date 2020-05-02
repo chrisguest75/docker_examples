@@ -37,3 +37,13 @@ Shell into the container and look around
 ```sh
 docker run -it --rm --entrypoint /bin/bash structure1604
 ```
+
+Use container diff to analyse if files should be there or not
+```sh
+docker save structure1604:latest > structure1604.tar 
+docker save ubuntu:16.04 > ubuntu1604.tar
+
+container-diff diff -t file structure1604.tar ubuntu1604.tar
+```
+
+
