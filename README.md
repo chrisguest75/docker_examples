@@ -117,19 +117,19 @@ A technique to use in CI systems where it is not possible to parameterise the wo
 Steps [README.md](./29_workflow_feature_flags/README.md)  
 
 ## Example 30 - Dive CI Tool
-Demonstrates using dive tool to analyse images.
+Demonstrates using dive tool to analyse images.  
 Steps [README.md](./30_dive_ci/README.md)  
 
 ## Example 31 - Structure Tests
-Demonstrates how to use container structure testing.
+Demonstrates how to use container structure testing.  
 Steps [README.md](./31_structure_tests/README.md)  
 
 ## Example 32 - File extraction
-Demonstrates copying data out of container images.
+Demonstrates copying data out of container images.  
 Steps [README.md](./32_file_extraction/README.md)  
 
 ## Example 33 - Label metadata
-Demonstrates adding label metadata to builds that helps us trace pipelines and build sources.
+Demonstrates adding label metadata to builds that helps us trace pipelines and build sources.  
 Steps [README.md](./33_label_metadata/README.md) 
 
 # README.md
