@@ -1,0 +1,35 @@
+schemaVersion: '2.0.0' # Make sure to test the latest schema version
+
+commandTests:
+#- name: "whoami"
+#  excludedOutput: ["root"]
+#  command: "whoami"
+
+- name: "empty /tmp"
+  command: "ls"
+  args: ["-l", "/tmp"]
+  expectedOutput: ["total 0"]
+
+- name: "empty /var/tmp"
+  command: "ls"
+  args: ["-l", "/var/tmp"]
+  expectedOutput: ["total 0"]
+
+- name: "curl exists"
+  command: "curl"
+  args: ["--version"]
+  expectedOutput: ["curl 7.47.0*"]
+
+fileExistenceTests:
+- name: '.env'
+  path: '/*/.env'
+  shouldExist: false
+    
+- name: 'work folder'
+  path: '/work'
+  shouldExist: true
+
+metadataTest:
+  cmd: ["curl", "www.google.com"]
+  workdir: "/work"
+
