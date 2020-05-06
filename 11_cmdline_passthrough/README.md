@@ -12,7 +12,7 @@ docker build -t oneliner .
 Simple commands
 ```sh
 docker run oneliner sleep 10  
-docker run oneliner /bin/demo sifsf sdihgsdsvfsafasf  safasfasfg  
+docker run oneliner /bin/demo Hello from the demo.sh  
 ```
 
 ## Run command recieving pipe
@@ -34,5 +34,15 @@ Will output.
 [PIPED]   # shellcheck disable=SC2053
 [PIPED]   echo "[PIPED] ${line}"
 [PIPED] done
+```
+
+## Build a default entrypoint
+```sh
+docker build -f default_entrypoint.Dockerfile -t default_pipeable .
+docker run -i default_pipeable <<EOF
+The default is the pipeable script.
+But it can be overridden
+EOF
+docker run --entrypoint=demo default_pipeable Overiding the entrypoint
 ```
 
