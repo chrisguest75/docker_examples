@@ -134,9 +134,10 @@ Steps [README.md](./33_label_metadata/README.md)
 
 # README.md
 ## TODO
+1. Speed of different file system layers.  i.e. If we have a 1000 layers how fast is it to find a file?
+1. cgroups and namespaces 
 1. Diffing using different tools https://docs.docker.com/engine/reference/commandline/diff/
 1. Kaniko. Caching, speed?  
-1. container structure tests. 
 1. Calculating accurate image sizes - looks like container-diff can output this. 
 1. Docker volume mounting 
     docker create -v /cfg --name configs alpine:3.4 /bin/true
