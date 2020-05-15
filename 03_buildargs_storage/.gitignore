@@ -1,2 +1,3 @@
-scratchtest
-scratchtest.tar
+buildargstest
+*.tar
+mysecret.txt

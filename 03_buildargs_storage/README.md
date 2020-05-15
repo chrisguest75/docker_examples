@@ -1,65 +1,79 @@
-## Example 3 - Buildargs 
+# Example 3 - Buildargs 
 Demonstrate how buildargs are stored in the image. 
 Meaning anyone with access to the image will have access to the credentials
 
 TODO:
     1. *Can I prove that you can escape a root container to find it?* 
 
-# Script to follow
+## Script to follow
 Build args are not part of the run time environment
 ```sh
 # Build the image
-docker build --build-arg mygithubcreds=creds -t scratchtest .
+docker build --build-arg mygithubcreds=creds -t $(basename $(pwd)) .
 # This will print out the internal environment variables.
-docker run --rm scratchtest
+docker run --rm $(basename $(pwd))
+```
+
+## Analyse 
+We can see the secret in the history
+```sh
 # You will see the creds in the image history
-docker history scratchtest  
+docker history $(basename $(pwd)) | grep creds
+
+48137c61225e        5 minutes ago       |1 mygithubcreds=creds /bin/sh -c echo ${myg…   0B                  
+352371b94548        5 minutes ago       /bin/sh -c #(nop)  ARG mygithubcreds            0B      
 ```
 
 Save a local copy of the image
 ```sh
-docker image save -o ./scratchtest.tar scratchtest
+docker image save -o ./$(basename $(pwd)).tar $(basename $(pwd))
 ```
 
 Now examine the layers  
 ```sh
 # Unpack the image
-mkdir -p ./scratchtest && tar -xvf scratchtest.tar -C $_
+mkdir -p ./buildargstest && tar -xvf $(basename $(pwd)).tar -C $_
 # Examine the structure
-tree ./scratchtest
+tree ./buildargstest
 # Find the embedded credentials
-find ./scratchtest/* -iname "*.json" -exec grep --color=always -H 'mygithubcreds=creds' {} \;
+find ./buildargstest/* -iname "*.json" -exec grep --color=always -H 'mygithubcreds=creds' {} \;
 ```
 
 Find the "mygithubcreds" in the layer json files
 ```sh
-code ./scratchtest
+code ./buildargstest
 ```
 
-# Clean up   
+## Clean up   
 ```sh
 # Remove files
-rm -rf ./scratchtest
-rm scratchtest.tar
-docker rmi scratchtest
+rm -rf ./buildargstest
+rm $(basename $(pwd)).tar
+docker rmi $(basename $(pwd))
 ```
 
-# Docker buildkit secrets 
+## Docker buildkit secrets 
+[Buildkit Secrets Docs](https://docs.docker.com/develop/develop-images/build_enhancements/)  
+To enable buildkit you can either **export DOCKER_BUILDKIT=1** or use **docker build buildx**
+
+Uses an experimental dockerfile syntax.
+```dockerfile
+# syntax = docker/dockerfile:1.0-experimental
+FROM bash:5.0.7 as bash
+```
 
 ```sh
-export DOCKER_BUILDKIT=1
 echo "export mygithubcreds=creds" > mysecret.txt
-# This is not working...  Failure to mount
-docker build -f buildkit.Dockerfile --progress=plain --secret id=mysecret,src=mysecret.txt -t scratchtest .
+docker buildx build --no-cache -f $(pwd)/buildkit.Dockerfile --progress=plain --secret id=mysecret,src=mysecret.txt -t $(basename $(pwd)) .
 unset DOCKER_BUILDKIT 
-
 ```
 
-
-# Clean up   
-```sh
-# Remove files
-rm -rf ./scratchtest
-rm scratchtest.tar
-docker rmi scratchtest
+The build output from buildkit should contain the exported creds
+```log
+#10 [3/3] RUN --mount=type=secret,id=mysecret,dst=/tmp/mysecret.txt cat /tmp...
+#10 0.310 export mygithubcreds=creds
+#10 DONE 0.4s
 ```
+
+If you repeat the analysis and cleanup sections above you'll see the secret is not contained in the metadata.  
+

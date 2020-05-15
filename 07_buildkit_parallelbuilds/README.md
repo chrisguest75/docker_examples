@@ -6,25 +6,25 @@ Demonstrate docker buildkit parallel builds.
 
 
 
-```
+```sh
 unset DOCKER_BUILDKIT
 docker build --build-arg sleeptime1=10 --build-arg sleeptime2=15  -t build_kit .
 ```
 
 Show that layer caching works in multistage.
-```
+```sh
 docker build --build-arg sleeptime1=11 --build-arg sleeptime2=15  -t build_kit .
 ```
 
 Demonstrate ordering and parallel build
-```
+```sh
 export DOCKER_BUILDKIT=1 
 docker build --build-arg sleeptime1=10 --build-arg sleeptime2=15  -t build_kit .
 docker run -it docker_terraform version
 ```
 
 Example log of parallel builds 
-```
+```log
 [+] Building 18.2s (11/11) FINISHED                                                                                                                                                            
  => [internal] load .dockerignore  
  => => transferring context: 2B    

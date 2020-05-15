@@ -10,22 +10,22 @@ Also demonstrates how the overwritten files still exist in the earlier layers.
 
 ```sh
 # Build the image
-docker build -t scratchtest .
+docker build -t $(basename $(pwd)) .
 # Save a local copy of it
-docker image save -o ./scratchtest.tar scratchtest
+docker image save -o ./$(basename $(pwd)).tar $(basename $(pwd))
 ```
 
 Now examine the layers  
 ```sh
 # Unpack the image
-mkdir -p ./scratchtest && tar -xvf scratchtest.tar -C $_
+mkdir -p ./hidingtest && tar -xvf $(basename $(pwd)).tar -C $_
 # Examine the structure
-ls -l ./scratchtest
+ls -l ./hidingtest
 ```
 
 The directory structure should look something like this.  
 ```sh
-./scratchtest
+./hidingtest
 ├── [        160]  2febfdaf2bda9c61d12f88721c1e599496e5d7688f6fea1387038118f97b1868
 │   ├── [          3]  VERSION
 │   ├── [        477]  json
@@ -56,19 +56,19 @@ The directory structure should look something like this.
 Look at the contents  
 ```sh
 # extract layer tars
-find ./scratchtest/* -iname "layer.tar*" -execdir mkdir layer \;                         
-find ./scratchtest/* -iname "layer.tar*" -execdir tar -xvf {} -C ./layer \;    
+find ./hidingtest/* -iname "layer.tar*" -execdir mkdir layer \;                         
+find ./hidingtest/* -iname "layer.tar*" -execdir tar -xvf {} -C ./layer \;    
 
 # Use editor to examine contents of the json files and untared layers.
-code ./scratchtest
+code ./hidingtest
 ```
 
 Clean up   
 ```sh
 # Remove files
-rm -rf ./scratchtest
-rm scratchtest.tar
-docker rmi scratchtest
+rm -rf ./hidingtest
+rm $(basename $(pwd)).tar
+docker rmi $(basename $(pwd))
 ```
 
 ## Squashing
