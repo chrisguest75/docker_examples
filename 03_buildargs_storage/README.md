@@ -1,6 +1,5 @@
 # Example 3 - Buildargs 
-Demonstrate how buildargs are stored in the image. 
-Meaning anyone with access to the image will have access to the credentials
+Demonstrate how buildargs are stored in the image.  Meaning anyone with access to the image will have access to the credentials.  With an example of new buildkit build time volume mounts to workaround this. 
 
 TODO:
     1. *Can I prove that you can escape a root container to find it?* 

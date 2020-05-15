@@ -1,7 +1,11 @@
-## Example 6 - Multistage small image size
+# Example 6 - Multistage small image size
 Demonstrate multistage build small image size using multistage
 
-# Script to follow
+TODO:
+1. Add the build targets 
+1. Caching?
+
+## Script to follow
 Demonstrate multistage build
 
 ```sh

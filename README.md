@@ -1,7 +1,7 @@
 # Docker Build Examples and Demos
-A repository for showing examples of how containers are built and proving concepts that exist. 
+A repository for showing examples of how Docker builds containers and how tools fit into the ecosystem.  Working through examples to demonstrate and prove concepts that exist. 
 
-The aim is to use examples to show how Docker behaves when building containers and to squash some assumptions. 
+The aim is to use examples to show how Docker behaves when building containers and to highlight incorrect assumptions about behaviour. 
 
 ## Example 1 - Layers, Hiding and Squashing
 Demonstrates how layers are stored, files are hidden and can be squashed.  
@@ -17,7 +17,7 @@ Demonstrates how kernel versions are different for build and execution.
 Steps [README.md](./02_kernel_versions/README.md)  
 
 ## Example 3 - Buildargs 
-Demonstrate how buildargs are stored in the image  
+Demonstrate how buildargs are stored in the image.  Meaning anyone with access to the image will have access to the credentials.  With an example of new buildkit build time volume mounts to workaround this.  
 Steps [README.md](./03_buildargs_storage/README.md)  
 
 ## Example 4 - Docker Context 
@@ -37,7 +37,7 @@ Demonstrate buildkit parallel building
 Steps [README.md](./07_buildkit_parallelbuilds/README.md)  
 
 ## Example 8 - Layer caching with arguments
-Demonstrate layer caching.  
+Demonstrate layer caching and how different build arguments values will not be cached until built.   
 Steps [README.md](./08_caching_arguments/README.md)  
 
 ## Example 9 - Kaniko
