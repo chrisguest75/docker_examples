@@ -132,6 +132,10 @@ Steps [README.md](./32_file_extraction/README.md)
 Demonstrates adding label metadata to builds that helps us trace pipelines and build sources.  
 Steps [README.md](./33_label_metadata/README.md) 
 
+## Example 35 - Layer Poisoning
+Demonstrate how to inject file into multiple running containers from host. 
+Steps [README.md](./35_layer_poisoning/README.md) 
+
 # README.md
 ## TODO
 1. Speed of different file system layers.  i.e. If we have a 1000 layers how fast is it to find a file?
