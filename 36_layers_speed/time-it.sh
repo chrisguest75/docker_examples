@@ -40,13 +40,15 @@ function time_function() {
     end=${EPOCHREALTIME}
     runtime=$(bc <<< "(${end} - ${start})")
     #echo "${runtime} seconds"
-    time_samples+=( $runtime )
+    time_samples+=( "$runtime" )
 }
 
 echo "Testing \"$FUNCTION_TO_TEST\" for $ITERATIONS iterations"
 for count in $(seq "$ITERATIONS"); do
-    echo "Iteration $count"
-    time_function $FUNCTION_TO_TEST "$@"
+    echo "$(date +'%H%M%S-%m_%d_%Y') iteration:$count"
+    time_function "$FUNCTION_TO_TEST" "$@"
+    timetaken=${time_samples[-1]}
+    echo "$(date +'%H%M%S-%m_%d_%Y') iteration:$count timetaken:$timetaken"
     #time_samples+=( "$RANDOM.$RANDOM" )
 done
 
