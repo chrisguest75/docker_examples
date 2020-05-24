@@ -2,7 +2,7 @@
 Demonstrate multistage build small image size using multistage
 
 TODO:
-1. Add the build targets 
+1. Add the build targets --target
 1. Caching?
 
 ## Script to follow
