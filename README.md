@@ -136,6 +136,10 @@ Steps [README.md](./33_label_metadata/README.md)
 Demonstrate how to inject file into multiple running containers from host.   
 Steps [README.md](./35_layer_poisoning/README.md) 
 
+## Example 36 - Layers Speed Tests
+Demonstrates timing differences with layers building and running  
+Steps [README.md](./36_layers_speed/README.md) 
+
 # README.md
 ## TODO
 1. Content trust
