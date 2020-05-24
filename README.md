@@ -133,11 +133,12 @@ Demonstrates adding label metadata to builds that helps us trace pipelines and b
 Steps [README.md](./33_label_metadata/README.md) 
 
 ## Example 35 - Layer Poisoning
-Demonstrate how to inject file into multiple running containers from host. 
+Demonstrate how to inject file into multiple running containers from host.   
 Steps [README.md](./35_layer_poisoning/README.md) 
 
 # README.md
 ## TODO
+1. Content trust
 1. Speed of different file system layers.  i.e. If we have a 1000 layers how fast is it to find a file?
 1. cgroups and namespaces 
 1. Diffing using different tools https://docs.docker.com/engine/reference/commandline/diff/
