@@ -140,6 +140,11 @@ Steps [README.md](./35_layer_poisoning/README.md)
 Demonstrates timing differences with layers building and running  
 Steps [README.md](./36_layers_speed/README.md) 
 
+## Example 37 - Registry Proxy
+Demonstrate how to run a pull through registry proxy.  
+Steps [README.md](./37_registry_proxy/README.md) 
+
+
 # README.md
 ## TODO
 1. Content trust
