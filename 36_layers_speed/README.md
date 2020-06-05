@@ -3,6 +3,8 @@ Demonstrates timing differences with layers building and running
 
 Build some image with ten layers.  Then extend to 50 layers to see if timing is linear.
 
+NOTE: So far it doesn't seem that much slower to have lots of layers during execution. 
+
 ## Test building layers
 ### Test Functions
 ```sh
@@ -52,8 +54,7 @@ SUM:55.5448 COUNT:3 AVG:18.5149 MEDIAN:18.7924640178 MIN:17.9259240627 MAX:18.82
 
 
 ## Many layers and finding files 
-
-
+Attempt to work out if using lots of layers slows down file access.
 
 ```sh
 # few layers
