@@ -144,6 +144,9 @@ Steps [README.md](./36_layers_speed/README.md)
 Demonstrate how to run a pull through registry proxy.  
 Steps [README.md](./37_registry_proxy/README.md) 
 
+## Example 38 - Alpine APK
+Demonstrate how to install a custom package in Alpine.  
+Steps [README.md](./38_alpine_apk/README.md) 
 
 # README.md
 ## TODO
