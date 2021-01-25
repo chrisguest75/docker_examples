@@ -1,0 +1,10 @@
+FROM ubuntu:20.04 as base
+
+RUN apt update && apt install bash
+
+FROM base as noca
+RUN apt install --no-install-recommends curl -y
+
+FROM base as withca
+RUN apt install ca-certificates curl -y
+
