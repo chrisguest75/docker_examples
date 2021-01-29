@@ -8,3 +8,5 @@ RUN apt install --no-install-recommends curl -y
 FROM base as withca
 RUN apt install ca-certificates curl -y
 
+#FROM base as withnssca
+#RUN apt install nss-cacerts curl -y
