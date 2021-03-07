@@ -2,7 +2,10 @@
 Create an ssl proxy for a container.
 
 TODO:
-* trust 
+* trust self signed 
+* test ssl - tlsv1, tlsv1.2
+* unaccept certificate
+* 
 
 ```sh
 # create self signed certs
