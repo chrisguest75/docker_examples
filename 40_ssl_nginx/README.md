@@ -1,5 +1,5 @@
 # README
-Create an ssl proxy for a container.
+Create an ssl nginx endpoint for a container.
 
 TODO:
 * trust self signed 
