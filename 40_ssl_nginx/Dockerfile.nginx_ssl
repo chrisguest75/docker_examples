@@ -1,0 +1,6 @@
+FROM nginx:latest
+COPY ./cert.pem /etc/nginx/conf.d/cert.pem
+COPY ./key.pem /etc/nginx/conf.d/key.pem
+COPY ./nginx_ssl.conf /etc/nginx/conf.d/default.conf
+COPY ./basic.html /usr/share/nginx/html/index.html
+
