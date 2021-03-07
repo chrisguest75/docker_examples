@@ -55,10 +55,6 @@ sudo nano /etc/hosts
 ## Run the site
 
 ```sh
-
-
-
-
 # docker build 
 docker build -t nginx_ssl -f Dockerfile.nginx_ssl .             
 docker run -it --rm -d -p 8080:443 --name web nginx_ssl
@@ -71,22 +67,45 @@ open https://localhost:8080
 # curl will fail because of self signed
 curl https://localhost:8080     
 curl -k https://localhost:8080     
-
-# kill container
-docker stop web
 ```
 
 ## Test SSL
 
+```sh
 https://github.com/drwetter/testssl.sh
-
+```
 
 
 ## Setup trust 
+The CA will need to be added to local CA list
+### Debian/Ubuntu 
+```sh
+#openssl x509 -outform der -in ./ca/chrisguestCA.pem -out ./ca/chrisguestCA.crt
+#sudo cp ./ca/chrisguestCA.crt /usr/local/share/ca-certificates
+
+sudo cp ./ca/chrisguestCA.pem /usr/local/share/ca-certificates/chrisguestCA.crt
+sudo update-ca-certificates
+
+cat /etc/ssl/certs/ca-certificates.crt      
+
+# debian
+xdg-open https://testsite.local:8080
+
+# curl will should not fail because of self signed
+curl -vvvv https://testsite.local:8080     
+```
+
+### Debian/Ubuntu (chromium) 
+```sh
+```
 
 
 
-
+## Kill container
+```sh
+# kill container
+docker stop web
+```
 
 ## Troubleshooting
 ```sh
