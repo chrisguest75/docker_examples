@@ -97,6 +97,10 @@ curl -vvvv https://testsite.local:8080
 
 ### Debian/Ubuntu (chromium) 
 ```sh
+apt-get install libnss3-tools
+
+# manual import
+chrome://settings/certificates
 ```
 
 
@@ -109,5 +113,11 @@ docker stop web
 
 ## Troubleshooting
 ```sh
-docker exec -it web /bin/sh        
+# Get into container
+docker exec -it web /bin/sh 
+
+# exporting the certificate fields.
+openssl x509 -in ./ca/chrisguestCA.pem -text   
+openssl x509 -in ./certs/testsite.local.crt -text 
+
 ```
