@@ -148,6 +148,11 @@ Steps [README.md](./37_registry_proxy/README.md)
 Demonstrate how to install a custom package in Alpine.  
 Steps [README.md](./38_alpine_apk/README.md) 
 
+
+## Example 41 - DevContainers
+Use remote-containers vscode extension  
+Steps [README.md](./41_remote_containers/README.md) 
+
 # README.md
 ## TODO
 1. Content trust
