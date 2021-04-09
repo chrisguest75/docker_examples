@@ -103,11 +103,9 @@ Steps [README.md](./25_apparmor/README.md)
 ## Example 26 - Sidecar debugging 
 Demonstrates sidecar techniques for debugging  
 Steps [README.md](./26_sidecar_debugging/README.md)  
-
 ## Example 27 - Readonly containers 
 Demonstrates a readonly container  
 Steps [README.md](./27_readonly_containers/README.md)  
-
 ## Example 28 - Distroless 
 Demonstrates a distroless container build  
 Steps [README.md](./28_distroless/README.md)  
@@ -115,7 +113,6 @@ Steps [README.md](./28_distroless/README.md)
 ## Example 29 - Workflow feature flags
 A technique to use in CI systems where it is not possible to parameterise the workflow/pipeline.  
 Steps [README.md](./29_workflow_feature_flags/README.md)  
-
 ## Example 30 - Dive CI Tool
 Demonstrates using dive tool to analyse images.  
 Steps [README.md](./30_dive_ci/README.md)  
@@ -132,6 +129,10 @@ Steps [README.md](./32_file_extraction/README.md)
 Demonstrates adding label metadata to builds that helps us trace pipelines and build sources.  
 Steps [README.md](./33_label_metadata/README.md) 
 
+## Example 34 - Volume Images 
+Demonstrates how to configure an image that can be mounted as a volume into a container.  
+Steps [README.md](./34_volume_images/README.md) 
+
 ## Example 35 - Layer Poisoning
 Demonstrate how to inject file into multiple running containers from host.   
 Steps [README.md](./35_layer_poisoning/README.md) 
@@ -147,7 +148,6 @@ Steps [README.md](./37_registry_proxy/README.md)
 ## Example 38 - Alpine APK
 Demonstrate how to install a custom package in Alpine.  
 Steps [README.md](./38_alpine_apk/README.md) 
-
 
 ## Example 41 - DevContainers
 Use remote-containers vscode extension  
