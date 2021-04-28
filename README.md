@@ -153,33 +153,35 @@ Steps [README.md](./38_alpine_apk/README.md)
 Use remote-containers vscode extension  
 Steps [README.md](./41_remote_containers/README.md) 
 
+## Example 42 - Buildpacks
+Demonstrate how to use a build pack to build a simple container  
+Steps [README.md](./42_buildpacks/README.md)  
+
+
 # README.md
 ## TODO
+1. Add a basic setup and tooling  00_starting 
+1. Show how multistage builds work for testing
+1. Demo using cache-from.....  Use a timed layer.
+1. Demonstrate how apparmor works with docker.
+1. Use different CAPS_SYS parameters. 
+1. Build a apt-mirror https://www.tecmint.com/setup-local-repositories-in-ubuntu/
 1. Content trust
 1. Speed of different file system layers.  i.e. If we have a 1000 layers how fast is it to find a file?
 1. cgroups and namespaces 
 1. Diffing using different tools https://docs.docker.com/engine/reference/commandline/diff/
 1. Kaniko. Caching, speed?  
 1. Calculating accurate image sizes - looks like container-diff can output this. 
-1. Docker volume mounting 
-    docker create -v /cfg --name configs alpine:3.4 /bin/true
-    docker cp path/in/your/source/code/app_config.yml configs:/cfg
-    docker run --volumes-from configs app-image:1.2.3
-
 1. Docker registry v2 examples. 
 1. Docker container escape with docker copy. 
 https://www.andreafortuna.org/2019/11/26/cve-2019-14271-a-docker-cp-container-escape-vulnerability/
 1. Add procdump to the sidecar
 1. PID1 - init-system https://cloud.google.com/solutions/best-practices-for-building-containers
 1. mounting volumes and permissions.
-1. Build a apt-mirror https://www.tecmint.com/setup-local-repositories-in-ubuntu/
-1. Demonstrate how apparmor works with docker.
-1. Use different CAPS_SYS parameters. 
 1. Build a busybox image.  https://github.com/ukanth/afwall/wiki/HOWTO-Compiling-busybox
 1. Create a layer and add it manually to the image
 1. Docker content trust https://docs.docker.com/engine/security/trust/content_trust/
 1. Show patching a container to fix an issue reported by GCR
-1. Show how multistage builds work for testing
 1. Cache invalidation - package managers 
 1. Ordering of layers
 1. Secrets
@@ -191,12 +193,10 @@ https://www.andreafortuna.org/2019/11/26/cve-2019-14271-a-docker-cp-container-es
 1. Start a cgroup manually using an unpacked container.
 1. Snaps??
 1. Showing the process tree for docker
-1. Demo using cache-from.....  Use a timed layer.
 1. Cron in a container. 
 1. memory restrictions and how they manifest. 
 1. Can I use a cgroup command inside a container?
 1. Docker users. 
-1. Demonstrate an Out of memory issue  
 1. Binding to different networks localhost vs 127.0.0.1 or 0.0.0.0
 1. Here docs and string during building images.. https://gist.github.com/abn/a16e9d799312fb492861
 
