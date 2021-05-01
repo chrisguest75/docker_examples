@@ -10,7 +10,7 @@ TODO:
         ```
 
 ## Script to follow
-Caching with arguments
+Caching behaviour with build arguments
 
 ```sh
 # Before starting remove the cached image (this leaves behind intermediate layers though)
