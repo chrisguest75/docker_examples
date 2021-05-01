@@ -153,6 +153,9 @@ Steps [README.md](./38_alpine_apk/README.md)
 Use remote-containers vscode extension  
 Steps [README.md](./41_remote_containers/README.md) 
 
+## Example 42 - Docker systemd service
+Demonstrate how to use docker containers as systemd.  
+Steps [README.md](./42_docker_systemd_service/README.md)  
 # README.md
 ## TODO
 1. Content trust
