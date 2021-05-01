@@ -1,0 +1,20 @@
+[Unit]
+Description=An example webservice running in docker in systemd
+After=docker.service
+Requires=docker.service
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=${USER}
+ExecStartPre=-/usr/bin/docker exec %n stop
+ExecStartPre=-/usr/bin/docker rm %n
+xecStartPre=/usr/bin/docker pull nginx:1.19.10
+ExecStart=/usr/bin/docker run --rm  --name %n -p 8080:80 nginx:1.19.10
+
+[Install]
+WantedBy=multi-user.target
+
+
