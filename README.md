@@ -154,7 +154,7 @@ Use remote-containers vscode extension
 Steps [README.md](./41_remote_containers/README.md) 
 
 ## Example 42 - Buildpacks
-Demonstrate how to use a build pack to build a simple container  
+Demonstrate how to use a build pack to build a simple Python container  
 Steps [README.md](./42_buildpacks/README.md)  
 
 

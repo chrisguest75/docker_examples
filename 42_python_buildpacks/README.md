@@ -1,5 +1,5 @@
 # README
-Demonstrate how to use a build pack to build a simple container
+Demonstrate how to use a build pack to build a simple Python container
 
 TODO: 
 * Why are the images so big?
@@ -37,7 +37,7 @@ dive buildpackexample
 ```
 
 # Resources 
-[buildpacks](https://buildpacks.io/)  
-[samples](https://github.com/buildpacks/samples)  
-[google samples](https://github.com/GoogleCloudPlatform/buildpack-samples)  
-[google entrypoint](https://github.com/GoogleCloudPlatform/buildpacks#default-entrypoint-behavior)  
+* [buildpacks](https://buildpacks.io/)  
+* [samples](https://github.com/buildpacks/samples)  
+* [google samples](https://github.com/GoogleCloudPlatform/buildpack-samples)  
+* [google entrypoint](https://github.com/GoogleCloudPlatform/buildpacks#default-entrypoint-behavior)  
