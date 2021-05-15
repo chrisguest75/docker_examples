@@ -153,12 +153,14 @@ Steps [README.md](./38_alpine_apk/README.md)
 Use remote-containers vscode extension  
 Steps [README.md](./41_remote_containers/README.md) 
 
-## Example 42 - Buildpacks
+## Example 42 - Docker systemd service
+Demonstrate how to use docker containers as systemd.  
+Steps [README.md](./42_docker_systemd_service/README.md)  
+
+## Example 43 - Buildpacks
 Demonstrate how to use a build pack to build a simple Python container  
-Steps [README.md](./42_buildpacks/README.md)  
+Steps [README.md](./43_buildpacks/README.md)  
 
-
-# README.md
 ## TODO
 1. Add a basic setup and tooling  00_starting 
 1. Show how multistage builds work for testing
