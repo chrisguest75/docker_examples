@@ -14,4 +14,7 @@ export DOCKER_CONTENT_TRUST=0
 # works
 docker pull chrisguest/results2slack     
 
+
+
+docker trust inspect ubuntu:18.04       
 ```
