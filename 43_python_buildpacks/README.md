@@ -7,9 +7,10 @@ TODO:
 * Can we run tests inside them?
 
 ## Install 
-Installing pack cli tool
+Installing pack cli tool [instructions](https://buildpacks.io/docs/tools/pack/)
+
 ```sh
-#macosx 
+#macosx or linux 
 brew install buildpacks/tap/pack
 ```
 
