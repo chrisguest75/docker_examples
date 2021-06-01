@@ -29,6 +29,6 @@ docker scan nginx:1.20.1
 ## Processing with JQ
 ```sh
 docker scan --json ubuntu:18.04 | jq   
-docker scan --json --group-issues ubuntu:16.04
+docker scan --json --group-issues ubuntu:16.04 | jq -r '.vulnerabilities[] | [.title, .severity]'
 ```
 
