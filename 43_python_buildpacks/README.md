@@ -41,4 +41,5 @@ dive buildpackexample
 * [buildpacks](https://buildpacks.io/)  
 * [samples](https://github.com/buildpacks/samples)  
 * [google samples](https://github.com/GoogleCloudPlatform/buildpack-samples)  
+* [google buildpacks](https://github.com/GoogleCloudPlatform/buildpacks)  
 * [google entrypoint](https://github.com/GoogleCloudPlatform/buildpacks#default-entrypoint-behavior)  
