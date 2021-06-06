@@ -24,6 +24,10 @@ docker scan ubuntu:20.04
 
 # 122 vulnerabilities 😲
 docker scan nginx:1.20.1    
+
+# 5 vulnerabilities
+docker scan nginx:1.21.0-alpine    
+
 ```
 
 ## Processing with JQ
