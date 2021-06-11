@@ -1,5 +1,5 @@
 # README
-Demonstrate some examples of using docker scan.
+Demonstrate some examples of using `docker scan`.
 
 TODO:
 1) use jq to aggregate

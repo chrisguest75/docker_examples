@@ -2,7 +2,6 @@
 A repository for showing examples of how Docker builds containers and how tools fit into the ecosystem.  Working through examples to demonstrate and prove concepts that exist. 
 
 The aim is to use examples to show how Docker behaves when building containers and to highlight incorrect assumptions about behaviour. 
-
 ## Example 1 - Layers, Hiding and Squashing
 Demonstrates how layers are stored, files are hidden and can be squashed.  
 Steps [README.md](./01_layers_hiding/README.md)  
@@ -169,6 +168,10 @@ Steps [README.md](./43_buildpacks/README.md)
 Demonstrate a simple reverse proxy to manage build deployments  
 Steps [README.md](./44_reverse_proxy/README.md)  
 
+## Example 44 - Docker Scan
+Demonstrate some examples of using `docker scan`.  
+Steps [README.md](./44_docker_scan/README.md)  
+
 ## TODO
 1. Add a basic setup and tooling  00_starting 
 1. Show how multistage builds work for testing
@@ -209,4 +212,9 @@ https://www.andreafortuna.org/2019/11/26/cve-2019-14271-a-docker-cp-container-es
 1. Docker users. 
 1. Binding to different networks localhost vs 127.0.0.1 or 0.0.0.0
 1. Here docs and string during building images.. https://gist.github.com/abn/a16e9d799312fb492861
+1. docker info
+1. docker context
+1. docker plugins. 
+1. docker compose v2 - https://github.com/compose-spec/compose-spec/blob/master/spec.md
+1. service profiles.  docker compose --profile name up -d 
 
