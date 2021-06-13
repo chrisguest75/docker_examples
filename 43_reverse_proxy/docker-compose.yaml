@@ -24,3 +24,9 @@ services:
         ports:
             - "8080:80"
 
+    ubuntu:
+        image: "ubuntu:21.04"
+        command: [ "/bin/sh", "-c", "sleep infinity" ]  
+
+networks:
+    overlay:
