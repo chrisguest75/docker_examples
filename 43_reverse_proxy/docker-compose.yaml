@@ -1,15 +1,20 @@
 services:
     info_a:
         image: "stefanprodan/podinfo:5.2.1"
+        environment:
+            - VERSION=0.0.1        
         ports:
             - "9001:9898"
+        command: [ "./podinfo", "--level=debug" ]            
 
     info_b:
         image: "stefanprodan/podinfo:5.2.1"
+        environment:
+            - VERSION=0.0.2
         ports:
             - "9002:9898"
+        command: [ "./podinfo", "--level=debug" ]  
 
-            
     nginx:
         image: "nginx:1.20.1"
         volumes:

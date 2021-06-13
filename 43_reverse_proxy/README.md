@@ -11,20 +11,29 @@ TODO:
 docker compose up -d
 
 
-docker exec -it $(docker ps --filter name=43_reverse_proxy_nginx_1 -q) /bin/sh             
+docker exec -it $(docker ps --filter name=43_reverse_proxy_nginx_1 -q) /bin/sh   
+
+docker logs $(docker ps --filter name=43_reverse_proxy_nginx_1 -q)
+docker logs $(docker ps --filter name=43_reverse_proxy_info_a_1 -q)
+docker logs $(docker ps --filter name=43_reverse_proxy_info_b_1 -q)
 ```
 
 
 
 ```sh
-curl 0.0.0.0:9001          
-curl 0.0.0.0:9002          
-curl 0.0.0.0:8080
+curl -i http://0.0.0.0:9001/env          
+curl -i http://0.0.0.0:9002/env          
+curl -i http://0.0.0.0:8080
+curl -i http://0.0.0.0:8080/a
+curl -i http://0.0.0.0:8080/b
 ```
 
+# Clean up
 ```sh
-docker compose up -d
+docker compose down
 ```
 
 ## Resources
 * [podinfo](https://github.com/stefanprodan/podinfo)  
+* [compose-spec](https://github.com/compose-spec/compose-spec/blob/master/spec.md)  
+* [cmdline options](https://github.com/stefanprodan/podinfo/blob/master/charts/podinfo/templates/deployment.yaml)  
