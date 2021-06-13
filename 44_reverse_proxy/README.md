@@ -12,9 +12,9 @@ docker compose up -d
 
 ## Testing
 ```sh
-# services
-curl -i http://0.0.0.0:9001/a/env          
-curl -i http://0.0.0.0:9002/b/env
+# services without proxy
+curl -i http://0.0.0.0:9001/env          
+curl -i http://0.0.0.0:9002/env
 
 # nginx reverse proxy
 curl -i http://0.0.0.0:8080

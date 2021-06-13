@@ -161,6 +161,10 @@ Steps [README.md](./42_docker_systemd_service/README.md)
 Demonstrate how to use a build pack to build a simple Python container  
 Steps [README.md](./43_buildpacks/README.md)  
 
+## Example 44 - Reverse Proxy
+Demonstrate a simple reverse proxy to manage build deployments  
+Steps [README.md](./44_reverse_proxy/README.md)  
+
 ## TODO
 1. Add a basic setup and tooling  00_starting 
 1. Show how multistage builds work for testing

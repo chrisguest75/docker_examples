@@ -29,18 +29,14 @@ services:
             - "8080:80"
         networks:
             - service_bridge
-            #- proxy_host       
     
     ubuntu:
         image: "ubuntu:21.04"
         command: [ "/bin/sh", "-c", "sleep infinity" ]  
         networks:
             - service_bridge
-            #- proxy_host       
 
 networks:
     service_bridge:
         driver: bridge
 
-    #proxy_host:
-    #    driver: host        
