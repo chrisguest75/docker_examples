@@ -1,8 +1,12 @@
 services:
-    info:
+    info_a:
         image: "stefanprodan/podinfo:5.2.1"
         ports:
-            - "9898:9898"
+            - "9001:9898"
+    info_b:
+        image: "stefanprodan/podinfo:5.2.1"
+        ports:
+            - "9002:9898"
     nginx:
         image: "nginx:1.20.1"
         ports:
