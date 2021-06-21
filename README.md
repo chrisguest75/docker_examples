@@ -1,7 +1,8 @@
 # Docker Build Examples and Demos
 A repository for showing examples of how Docker builds containers and how tools fit into the ecosystem.  Working through examples to demonstrate and prove concepts that exist. 
 
-The aim is to use examples to show how Docker behaves when building containers and to highlight incorrect assumptions about behaviour. 
+The aim is to use examples to show how Docker behaves when building containers and to highlight incorrect assumptions about behaviour.  
+
 ## Example 1 - Layers, Hiding and Squashing
 Demonstrates how layers are stored, files are hidden and can be squashed.  
 Steps [README.md](./01_layers_hiding/README.md)  
@@ -102,9 +103,11 @@ Steps [README.md](./25_apparmor/README.md)
 ## Example 26 - Sidecar debugging 
 Demonstrates sidecar techniques for debugging  
 Steps [README.md](./26_sidecar_debugging/README.md)  
+
 ## Example 27 - Readonly containers 
 Demonstrates a readonly container  
 Steps [README.md](./27_readonly_containers/README.md)  
+
 ## Example 28 - Distroless 
 Demonstrates a distroless container build  
 Steps [README.md](./28_distroless/README.md)  
@@ -217,4 +220,5 @@ https://www.andreafortuna.org/2019/11/26/cve-2019-14271-a-docker-cp-container-es
 1. docker plugins. 
 1. docker compose v2 - https://github.com/compose-spec/compose-spec/blob/master/spec.md
 1. service profiles.  docker compose --profile name up -d 
+1. nginx letsencrypt
 
