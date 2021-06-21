@@ -4,6 +4,11 @@ Demonstrate a simple reverse proxy to manage build deployments
 TODO: 
 * TLS on nginx from letsencrypt
 
+Demonstrates:
+* Setting headers from environment variables.
+* Using the built in template processing.
+* Compose depends_on
+
 ## Start
 ```sh
 # start 
@@ -27,15 +32,15 @@ curl -i http://0.0.0.0:8080/b/env
 ## Debugging
 ```sh
 # nginx
-docker exec -it $(docker ps --filter name=43_reverse_proxy_nginx_1 -q) /bin/sh   
+docker exec -it $(docker ps --filter name=44_reverse_proxy_nginx_1 -q) /bin/sh   
 
 # logs from containers
-docker logs $(docker ps --filter name=43_reverse_proxy_nginx_1 -q)
-docker logs $(docker ps --filter name=43_reverse_proxy_info_a_1 -q)
-docker logs $(docker ps --filter name=43_reverse_proxy_info_b_1 -q)
+docker logs $(docker ps --filter name=44_reverse_proxy_nginx_1 -q)
+docker logs $(docker ps --filter name=44_reverse_proxy_info_a_1 -q)
+docker logs $(docker ps --filter name=44_reverse_proxy_info_b_1 -q)
 
 # get onto ubuntu container
-docker exec -it $(docker ps --filter name=43_reverse_proxy_ubuntu_1 -q) /bin/sh   
+docker exec -it $(docker ps --filter name=44_reverse_proxy_ubuntu_1 -q) /bin/sh   
 ```
 
 # Clean up
@@ -50,3 +55,10 @@ docker compose down
 * [reverse-proxy](https://phoenixnap.com/kb/docker-nginx-reverse-proxy)  
 * [docker-networks](https://docs.docker.com/network/)  
 * [plugins_network](https://docs.docker.com/engine/extend/plugins_network/)  
+
+
+
+
+
+
+
