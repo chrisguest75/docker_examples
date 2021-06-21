@@ -8,6 +8,9 @@ Demonstrates:
 * Setting headers from environment variables.
 * Using the built in template processing.
 * Compose depends_on
+* Round robin over list of backend
+* Rewrites
+* Return a generated /info page
 
 ## Start
 ```sh
@@ -27,6 +30,12 @@ curl -i http://0.0.0.0:8080/a/
 curl -i http://0.0.0.0:8080/b/
 curl -i http://0.0.0.0:8080/a/env
 curl -i http://0.0.0.0:8080/b/env
+
+# round robin
+curl -i http://0.0.0.0:8080/c/env
+
+# dynamic page
+curl -i http://0.0.0.0:8080/info
 ```
 
 ## Debugging
