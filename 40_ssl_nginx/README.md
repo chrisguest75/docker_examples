@@ -25,15 +25,13 @@ Create the self-sgned certificates
 ```sh
 # output directory
 mkdir -p ./certs    
+cp ./testsite.local.ext ./certs/testsite.local.ext
 
 # create the key
 openssl genrsa -out ./certs/testsite.local.key 2048
 
 # certificate signing request (fill in defaults and challenge password as "challenge")
 openssl req -new -key ./certs/testsite.local.key -out ./certs/testsite.local.csr
-
-
-cp ./testsite.local.ext ./certs/testsite.local.ext
 
 # generate the ssl cert
 openssl x509 -req -in ./certs/testsite.local.csr -CA ./ca/chrisguestCA.pem -CAkey ./ca/chrisguestCA.key -CAcreateserial \
@@ -109,6 +107,26 @@ Import the ./ca/chrisguestCA.pem using File->Import Items
 Find common name and select 'get info', select always trust
 ```
 
+## Rotate certificate
+```sh
+# new certificate signing request (fill in defaults and challenge password as "challenge")
+openssl req -new -key ./certs/testsite.local.key -out ./certs/testsite.local.csr
+
+# generate the new ssl cert (now 1925 days)
+openssl x509 -req -in ./certs/testsite.local.csr -CA ./ca/chrisguestCA.pem -CAkey ./ca/chrisguestCA.key -CAcreateserial \
+-out ./certs/testsite.local.crt -days 1925 -sha256 -extfile ./certs/testsite.local.ext
+
+# rotate the container
+docker stop web
+docker build -t nginx_ssl -f Dockerfile.nginx_ssl .             
+docker run -it --rm -d -p 8080:443 --name web nginx_ssl
+
+# check the date
+curl -vvvv -k https://testsite.local:8080
+
+# seems curl caches the certificate
+open https://testsite.local:8080  
+```
 
 ## Cleanup 
 ```sh
