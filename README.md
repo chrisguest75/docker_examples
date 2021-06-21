@@ -150,7 +150,7 @@ Demonstrate how to install a custom package in Alpine.
 Steps [README.md](./38_alpine_apk/README.md) 
 
 ## Example 40 - SSL nginx
-Create an ssl nginx endpoint for a container.  
+Create a self-signed ssl nginx endpoint for a container.  
 Steps [README.md](./40_ssl_nginx/README.md) 
 
 ## Example 41 - DevContainers
