@@ -168,9 +168,9 @@ Steps [README.md](./43_buildpacks/README.md)
 Demonstrate a simple reverse proxy to manage build deployments  
 Steps [README.md](./44_reverse_proxy/README.md)  
 
-## Example 44 - Docker Scan
+## Example 45 - Docker Scan
 Demonstrate some examples of using `docker scan`.  
-Steps [README.md](./44_docker_scan/README.md)  
+Steps [README.md](./45_docker_scan/README.md)  
 
 ## TODO
 1. Add a basic setup and tooling  00_starting 
