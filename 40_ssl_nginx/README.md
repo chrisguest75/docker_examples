@@ -1,45 +1,46 @@
 # README
-Create an ssl nginx endpoint for a container.
+Create a self-signed ssl nginx endpoint for a container.  
+Host the page on 
+
 
 TODO:
 * trust self signed 
 * test ssl - tlsv1, tlsv1.2
 * unaccept certificate
-* https://deliciousbrains.com/ssl-certificate-authority-for-local-https-development/
-* https://jamielinux.com/docs/openssl-certificate-authority/
-* https://certificatetools.com/
+
 
 ## Create Certificate Authority
-Create a CA 
+Create a Certificate Authority 
 ```sh
-# output directory
+# output directory for ca key and cert
 mkdir -p ./ca    
 
-# create the ca key
+# create the ca key (enter a passphrase)
 openssl genrsa -des3 -out ./ca/chrisguestCA.key 2048
 
-# 
+# create the ca certificate (fill in defaults)
+# Common Name is what is displayed in macosx keychain
 openssl req -x509 -new -nodes -key ./ca/chrisguestCA.key -sha256 -days 365 -out ./ca/chrisguestCA.pem
 ```
 
 ## Create Self-Signed Certificates
-
+Create the self-sgned certificates
 ```sh
+# output directory
 mkdir -p ./certs    
 
+# create the key
 openssl genrsa -out ./certs/testsite.local.key 2048
 
+# certificate signing request (fill in defaults and challenge password as "challenge")
 openssl req -new -key ./certs/testsite.local.key -out ./certs/testsite.local.csr
 
+
+cp ./testsite.local.ext ./certs/testsite.local.ext
+
+# generate the ssl cert
 openssl x509 -req -in ./certs/testsite.local.csr -CA ./ca/chrisguestCA.pem -CAkey ./ca/chrisguestCA.key -CAcreateserial \
 -out ./certs/testsite.local.crt -days 825 -sha256 -extfile ./certs/testsite.local.ext
-
-
-```
-
-```sh
-# create self signed certs
-# openssl req -subj '/CN=localhost' -x509 -newkey rsa:4096 -nodes -keyout key.pem -out cert.pem -days 365
 ```
 ## Modify hosts
 
@@ -47,13 +48,12 @@ openssl x509 -req -in ./certs/testsite.local.csr -CA ./ca/chrisguestCA.pem -CAke
 # edit hosts
 sudo nano /etc/hosts 
 
-# add an override
+# add an override to hosts
 0.0.0.0         testsite.local
-
 ```
 
 ## Run the site
-
+Build the example and host on localhost
 ```sh
 # docker build 
 docker build -t nginx_ssl -f Dockerfile.nginx_ssl .             
@@ -61,20 +61,17 @@ docker run -it --rm -d -p 8080:443 --name web nginx_ssl
 
 # debian
 xdg-open https://localhost:8080
+xdg-open https://testsite.local:8080  
+
 # macosx
 open https://localhost:8080
+open https://testsite.local:8080  
 
 # curl will fail because of self signed
 curl https://localhost:8080     
-curl -k https://localhost:8080     
+curl -k https://localhost:8080  
+curl -k https://testsite.local:8080     
 ```
-
-## Test SSL
-
-```sh
-https://github.com/drwetter/testssl.sh
-```
-
 
 ## Setup trust 
 The CA will need to be added to local CA list
@@ -91,24 +88,39 @@ cat /etc/ssl/certs/ca-certificates.crt
 # debian
 xdg-open https://testsite.local:8080
 
-# curl will should not fail because of self signed
+# curl will should now not fail because of self signed
 curl -vvvv https://testsite.local:8080     
 ```
 
 ### Debian/Ubuntu (chromium) 
 ```sh
+# debian only
 apt-get install libnss3-tools
 
-# manual import
+# manual import (macosx manage certificates)
 chrome://settings/certificates
 ```
 
+### MacOSX
+```sh
+# manual import (macosx manage certificates)
+open chrome://settings/certificates
+```
+
+Import the ./ca/chrisguestCA.pem using File->Import Items
+Find common name and select "get info", select always trust
 
 
-## Kill container
+
+## Cleanup 
 ```sh
 # kill container
 docker stop web
+
+# remove the host entry
+sudo nano /etc/hosts 
+
+# remove the certificates from keychain and ca-certificates
 ```
 
 ## Troubleshooting
@@ -119,5 +131,14 @@ docker exec -it web /bin/sh
 # exporting the certificate fields.
 openssl x509 -in ./ca/chrisguestCA.pem -text   
 openssl x509 -in ./certs/testsite.local.crt -text 
-
 ```
+## Test SSL
+
+```sh
+https://github.com/drwetter/testssl.sh
+```
+
+# Resources 
+* https://deliciousbrains.com/ssl-certificate-authority-for-local-https-development/
+* https://jamielinux.com/docs/openssl-certificate-authority/
+* https://certificatetools.com/
