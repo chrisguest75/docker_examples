@@ -1,13 +1,10 @@
 # README
 Create a self-signed ssl nginx endpoint for a container.  
-Host the page on 
-
+Host the page from Docker on `testsite.local`
 
 TODO:
-* trust self signed 
 * test ssl - tlsv1, tlsv1.2
 * unaccept certificate
-
 
 ## Create Certificate Authority
 Create a Certificate Authority 
@@ -101,15 +98,16 @@ apt-get install libnss3-tools
 chrome://settings/certificates
 ```
 
-### MacOSX
+### MacOSX (keychain trust)
 ```sh
 # manual import (macosx manage certificates)
 open chrome://settings/certificates
-```
 
+# open keychain
 Import the ./ca/chrisguestCA.pem using File->Import Items
-Find common name and select "get info", select always trust
 
+Find common name and select 'get info', select always trust
+```
 
 
 ## Cleanup 
@@ -132,6 +130,7 @@ docker exec -it web /bin/sh
 openssl x509 -in ./ca/chrisguestCA.pem -text   
 openssl x509 -in ./certs/testsite.local.crt -text 
 ```
+
 ## Test SSL
 
 ```sh
