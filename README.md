@@ -149,6 +149,10 @@ Steps [README.md](./37_registry_proxy/README.md)
 Demonstrate how to install a custom package in Alpine.  
 Steps [README.md](./38_alpine_apk/README.md) 
 
+## Example 40 - SSL nginx
+Create an ssl nginx endpoint for a container.  
+Steps [README.md](./40_ssl_nginx/README.md) 
+
 ## Example 41 - DevContainers
 Use remote-containers vscode extension  
 Steps [README.md](./41_remote_containers/README.md) 
