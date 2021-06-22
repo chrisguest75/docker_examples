@@ -72,21 +72,28 @@ connect to localhost:27017
 
 ## Example queries
 ```js
+// count high and low
 db.getCollection('nginx1_21_0_array').find({severity: 'high'}).count()
 db.getCollection('nginx1_21_0_array').find({severity: 'low'}).count()
 
+// return groups
+db.getCollection('nginx1_21_0_array').find({}, {id: 1, title: 1, packageName: 1, severity: 1, from: 1, description: 1})
 
-db.getCollection('nginx1_21_0_array').find({}, {title: 1, packageName: 1, severity: 1, from: 1, description: 1})
+// how many distinct ids are there?
+db.getCollection('nginx1_21_0_array').distinct("id")
 
-
+// make into urls
+db.getCollection('nginx1_21_0_array').aggregate(
+   [
+      { $project: { url: { $concat: [ "https://snyk.io/vuln/", "$id" ] } } }
+   ]
+)
 ```
 
 ## Cleanup 
 ```sh
 docker compose down     
 ```
-
-
 
 ## Processing with JQ
 ```sh
