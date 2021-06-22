@@ -4,11 +4,9 @@ Demonstrate some examples of using `docker scan`.
 Docker scan works with public and private images
 
 TODO:
-1) use jq to aggregate
-    * Counts
-    * High sev.
-    * Generate a report.  
-1) Fix an image.
+* use jq to aggregate; Counts, High sev, Generate a report.  
+* scan a nix image and then repair it.  
+* Fix an image.
 
 ## Scanning
 ```sh
