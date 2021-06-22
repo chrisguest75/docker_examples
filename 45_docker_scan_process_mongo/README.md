@@ -1,6 +1,8 @@
 # README
 Demonstrate some examples of using `docker scan`.
 
+Docker scan works with public and private images
+
 TODO:
 1) use jq to aggregate
     * Counts
@@ -8,6 +10,7 @@ TODO:
     * Generate a report.  
 1) Fix an image.
 
+## Scanning
 ```sh
 # show options
 docker scan
@@ -35,7 +38,7 @@ mkdir -p ./scans
 docker scan --json nginx:1.21.0 > ./scans/nginx1_21_0.json  
 ```
 
-## Load data into mongo for aggregation
+## Load data into MongoDB for aggregation
 ```sh
 # process the vulnerabilities
 cat ./scans/nginx1_21_0.json | jq .vulnerabilities | less
@@ -45,13 +48,13 @@ cat ./scans/nginx1_21_0.json | jq .vulnerabilities > ./scans/nginx1_21_0_array.j
 docker compose up -d
 
 # exec into db
-docker exec -it $(docker ps --filter name=45_docker_scan_mongodb_1 -q) /bin/bash  
+docker exec -it $(docker ps --filter name=45_docker_scan_process_mongo_mongodb_1 -q) /bin/bash
 
 # import vulnerabilities
 mongoimport --username=root --password=rootpassword --host 0.0.0.0 --type json --file /scans/nginx1_21_0_array.json --jsonArray  --authenticationDatabase admin
 ```
 
-## Query the data
+## Query the data (cli)
 ```sh
 mongo -u root -p rootpassword
 use test
@@ -59,6 +62,24 @@ show collections
 db.nginx1_21_0_array.find()
 ```
 
+## Query the data (gui)
+```sh
+https://robomongo.org/
+brew install robo-3t
+
+connect to localhost:27017
+```
+
+## Example queries
+```js
+db.getCollection('nginx1_21_0_array').find({severity: 'high'}).count()
+db.getCollection('nginx1_21_0_array').find({severity: 'low'}).count()
+
+
+db.getCollection('nginx1_21_0_array').find({}, {title: 1, packageName: 1, severity: 1, from: 1, description: 1})
+
+
+```
 
 ## Cleanup 
 ```sh
@@ -76,3 +97,4 @@ docker scan --json --group-issues ubuntu:16.04 | jq -r '.vulnerabilities[] | [.t
 # Resources 
 https://dev.to/sonyarianto/how-to-spin-mongodb-server-with-docker-and-docker-compose-2lef
 https://hub.docker.com/_/mongo
+cheatsheet mongo+find
