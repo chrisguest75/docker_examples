@@ -36,28 +36,32 @@ docker scan --json nginx:1.21.0 > ./scans/nginx1_21_0.json
 ```
 
 ## Load data into mongo for aggregation
-
 ```sh
-docker compose up -d
-docker exec -it $(docker ps --filter name=45_docker_scan_client_1 -q) /bin/sh  
-
-docker exec -it $(docker ps --filter name=45_docker_scan_mongodb_1 -q) /bin/sh  
-mongo -u root -p rootpassword
-use scans
-db.scans.save({test:"test"})
-db.scans.find()
-
+# process the vulnerabilities
 cat ./scans/nginx1_21_0.json | jq .vulnerabilities | less
 cat ./scans/nginx1_21_0.json | jq .vulnerabilities > ./scans/nginx1_21_0_array.json
 
-mongoimport -u root -p rootpassword --port 27017 --db scans --collection example --type json --file /scans/nginx1_21_0_array.json --jsonArray
+# start mongo server
+docker compose up -d
+
+# exec into db
+docker exec -it $(docker ps --filter name=45_docker_scan_mongodb_1 -q) /bin/bash  
+
+# import vulnerabilities
+mongoimport --username=root --password=rootpassword --host 0.0.0.0 --type json --file /scans/nginx1_21_0_array.json --jsonArray  --authenticationDatabase admin
+```
+
+## Query the data
+```sh
+mongo -u root -p rootpassword
+use test
+show collections
+db.nginx1_21_0_array.find()
+```
 
 
-
-https://stackoverflow.com/questions/19441228/insert-json-file-into-mongodb/19441357
-
-https://hub.docker.com/_/mongo?tab=description&page=1&ordering=last_updated
-
+## Cleanup 
+```sh
 docker compose down     
 ```
 
@@ -71,3 +75,4 @@ docker scan --json --group-issues ubuntu:16.04 | jq -r '.vulnerabilities[] | [.t
 
 # Resources 
 https://dev.to/sonyarianto/how-to-spin-mongodb-server-with-docker-and-docker-compose-2lef
+https://hub.docker.com/_/mongo
