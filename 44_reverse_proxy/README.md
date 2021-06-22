@@ -38,6 +38,16 @@ curl -i http://0.0.0.0:8080/c/env
 curl -i http://0.0.0.0:8080/info
 ```
 
+## Add header testing
+add_header is completely overridden by the lowest level block 
+`http` -> `server` -> `location`
+Specifiying any add_header at a lower level will mean higher level add_headers do not apply.  Regardless of the header name.
+
+```sh
+# check for headers at each level
+curl -i http://0.0.0.0:8080/a/env
+```
+
 ## Debugging
 ```sh
 # nginx
