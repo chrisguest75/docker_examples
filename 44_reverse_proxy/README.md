@@ -11,6 +11,7 @@ Demonstrates:
 * Round robin over list of backend
 * Rewrites
 * Return a generated /info page
+* Header based routing to different backends
 
 ## Start
 ```sh
@@ -36,6 +37,13 @@ curl -i http://0.0.0.0:8080/c/env
 
 # dynamic page
 curl -i http://0.0.0.0:8080/info
+
+# header based routing
+# go to default (info_a)
+curl -i http://0.0.0.0:8080/group
+curl -i -H "group: unknown" http://0.0.0.0:8080/group/env   
+# go to default (info_b)
+curl -i -H "group: new" http://0.0.0.0:8080/group/env     
 ```
 
 ## Add header testing
@@ -59,7 +67,11 @@ docker logs $(docker ps --filter name=44_reverse_proxy_info_a_1 -q)
 docker logs $(docker ps --filter name=44_reverse_proxy_info_b_1 -q)
 
 # get onto ubuntu container
-docker exec -it $(docker ps --filter name=44_reverse_proxy_ubuntu_1 -q) /bin/sh   
+docker exec -it $(docker ps --filter name=44_reverse_proxy_ubuntu_1 -q) /bin/sh
+
+# reboot nginx
+docker stop $(docker ps --filter name=44_reverse_proxy_nginx_1 -q) 
+docker compose up -d
 ```
 
 # Clean up
