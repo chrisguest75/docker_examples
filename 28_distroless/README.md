@@ -3,11 +3,17 @@ Demonstrate Distroless containers where the shell is removed.
 
 TODO:
 1. Add the node12 changes.
+1. 
 
 ## Build example 
 ```sh
-docker build --no-cache -f Dockerfile -t distroless .
-docker run -it --rm distroless  
+# node10
+docker build --no-cache -f v10.Dockerfile -t v10_distroless .
+docker run -it --rm v10_distroless  
+
+# node14
+docker build --no-cache -f v14.Dockerfile -t v14_distroless .
+docker run -it --rm v14_distroless  
 ```
 
 ## Build debug example 
@@ -33,3 +39,19 @@ docker run -v /var/run/docker.sock:/var/run/docker.sock -it --rm --entrypoint /b
 # Run this inside the container
 bazel run //experimental/nodejs --verbose_failures --sandbox_debug  
 ```
+
+## Docker Scan (vulnerability scanning) 
+```sh
+# scan v10
+docker scan v10_distroless  
+
+# scan v14
+docker scan v14_distroless  
+
+# scan debug
+docker scan distroless-debug  
+```
+
+# Resources 
+* []https://github.com/GoogleContainerTools/distroless
+* Node build tags [here](https://github.com/GoogleContainerTools/distroless/blob/main/nodejs/README.md)
