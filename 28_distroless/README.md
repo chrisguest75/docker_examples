@@ -53,5 +53,6 @@ docker scan distroless-debug
 ```
 
 # Resources 
-* []https://github.com/GoogleContainerTools/distroless
-* Node build tags [here](https://github.com/GoogleContainerTools/distroless/blob/main/nodejs/README.md)
+* Distroless repo [here](https://github.com/GoogleContainerTools/distroless)  
+* Node build tags [here](https://github.com/GoogleContainerTools/distroless/blob/main/nodejs/README.md)  
+* NodeJS bestpractices [here](https://snyk.io/wp-content/uploads/10-best-practices-to-containerize-Node.js-web-applications-with-Docker.pdf)  
