@@ -4,6 +4,7 @@ Demonstrate how to use Docker in Docker
 TODO:
 * Work out if I can use CAP_SYS rather than privilege
 --cap-add=SYS_ADMIN /dev and /sys RO or RW
+* Mapping ports https://github.com/alekslitvinenk/dind
 
 ## Start container
 It requires privilege to start Docker in Docker
@@ -47,3 +48,5 @@ docker ps -a
 
 # Resources
 * Repo for DinD [here](https://github.com/docker-library/docker)  
+* https://github.com/alekslitvinenk/dind
+* https://github.com/cruizba/ubuntu-dind
