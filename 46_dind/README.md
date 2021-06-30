@@ -1,6 +1,10 @@
 # README.md
 Demonstrate how to use Docker in Docker
 
+TODO:
+* Work out if I can use CAP_SYS rather than privilege
+--cap-add=SYS_ADMIN /dev and /sys RO or RW
+
 ## Start container
 It requires privilege to start Docker in Docker
 ```sh
