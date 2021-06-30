@@ -3,9 +3,12 @@ Demonstrate some examples of using `docker scan`.
 
 Docker scan works with public and private images
 
+For reducing number of vulnerabilities refer to:
+* Distroless [README.md](../28_distroless/README.md)  
+* Nix [README.md](https://github.com/chrisguest75/nix-examples/blob/master/README.md)  
+
 TODO:
 * use jq to aggregate; Counts, High sev, Generate a report.  
-* scan a nix image and then repair it.  
 * Fix an image.
 
 ## Scanning
@@ -133,6 +136,18 @@ db.getCollection('scans').aggregate([
 ])
 ```
 
+## Full report
+
+```js
+// *** not sure how to aggregate severity array. ***
+db.getCollection('scans').aggregate([
+  {$project: { _id: 0, image: "$path", severity:"$vulnerabilities.severity" } }
+  ,{ $addFields: { imagepath: "$image" }}
+])
+```
+
+
+
 ## Cleanup 
 ```sh
 docker compose down     
@@ -146,10 +161,14 @@ docker scan --json --group-issues ubuntu:16.04 | jq -r '.vulnerabilities[] | [.t
 
 # Resources 
 https://dev.to/sonyarianto/how-to-spin-mongodb-server-with-docker-and-docker-compose-2lef
+
 https://hub.docker.com/_/mongo
 cheatsheet mongo+find
 
 https://docs.mongodb.com/manual/core/aggregation-pipeline/
+
 https://stackoverflow.com/questions/21509045/mongodb-group-by-array-inner-elements
 
 https://docs.mongodb.com/manual
+
+https://stackoverflow.com/questions/59017042/aggregation-at-each-document-level-mongodb
