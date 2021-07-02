@@ -26,6 +26,10 @@ do
       echo "Skipping $SCAN_FOLDER/$OUTPUT.json already exists - delete file to recreate"
     fi
 
+    #TMPFILE=$(mktemp)
+    #jq --arg imagepath "$IMAGE" '. + {imagepath: $imagepath}' "$SCAN_FOLDER/$OUTPUT.json" > "$TMPFILE"
+    #cp "$TMPFILE" "$SCAN_FOLDER/$OUTPUT.json"
+
     # if we had an error scanning work out what it was.
     if [[ $EXITCODE != 0 ]]; then
       if [[ -f "$SCAN_FOLDER/$OUTPUT.json" ]]; then
@@ -40,7 +44,8 @@ do
     fi
 done <<< "$IMAGES"
 
-
+echo "Process the results './out/images.json'"
+./aggregate.sh | jq -s '{images: (.)}' > ./out/images.json  
 
 
 

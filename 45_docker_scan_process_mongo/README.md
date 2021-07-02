@@ -153,11 +153,23 @@ db.getCollection('scans').aggregate([
 docker compose down     
 ```
 
-## Processing with JQ
+## Processing with JQ (this is done automatically by `scan.sh`)
 ```sh
-docker scan --json ubuntu:18.04 | jq   
-docker scan --json --group-issues ubuntu:16.04 | jq -r '.vulnerabilities[] | [.title, .severity]'
+mkdir -p ./out
+# pull all images (docker scan) into a single json document
+./aggregate.sh | jq -s '{images: (.)}' > ./out/images.json  
 ```
+
+
+## Liveserver in vscode
+Use the live share extension.  
+The example uses a `./out/images.json` file that has to be served up from a webserver.
+
+```sh 
+# use a live server to server up pages that have resources
+code --install-extension ritwickdey.LiveServer
+```
+
 
 # Resources 
 https://dev.to/sonyarianto/how-to-spin-mongodb-server-with-docker-and-docker-compose-2lef
