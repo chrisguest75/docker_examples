@@ -77,8 +77,15 @@ docker inspect $(docker ps --filter name=nginx -q)
 docker stop $(docker ps --filter name=nginx -q)
 ```
 
+## NOTES
+When running `docker inspect` the output in ContainerConfig will be different.  
+
+*ContainerConfig* This data again is referring to the temporary container created when the Docker build command was executed.
+[REF](https://www.ctl.io/developers/blog/post/what-to-inspect-when-youre-inspecting)  
+
 # Resources
 * docker-registry-v2 slides [here](https://www.slideshare.net/Docker/docker-registry-v2)  
 * docker image docs [here](https://docs.docker.com/engine/reference/commandline/images/)  
 * labels-custom-metadata [here](https://docs.docker.com/config/labels-custom-metadata/)  
 * Quay tag expiration [here](https://access.redhat.com/documentation/en-us/red_hat_quay/3/html/use_red_hat_quay/working_with_tags#tag-expiration)  
+* what-to-inspect-when-youre-inspecting [here](https://www.ctl.io/developers/blog/post/what-to-inspect-when-youre-inspecting)  
