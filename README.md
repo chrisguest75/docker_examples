@@ -25,7 +25,7 @@ Show a docker context issue (large files)
 Steps [README.md](./04_docker_context/README.md)  
 
 ## Example 5 - Root user 
-Demonstrate root user  
+Demonstrate root user and privilege inside the container.  
 Steps [README.md](./05_root_user/README.md)  
 
 ## Example 6 - Multistage small image size
