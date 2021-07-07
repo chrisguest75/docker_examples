@@ -45,6 +45,9 @@ do
 done <<< "$IMAGES"
 
 echo "Process the results './out/images.json'"
+if [[ ! -d ./out ]]; then
+  mkdir -p ./out
+fi 
 ./aggregate.sh | jq -s '{images: (.)}' > ./out/images.json  
 
 
