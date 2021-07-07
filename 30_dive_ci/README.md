@@ -2,9 +2,14 @@
 Demonstrates using dive tool to analyse images.
 
 ## Prereqs
-
+[Website](https://github.com/wagoodman/dive)   
 ```sh
+# macos
 brew install dive
+
+# debian 
+wget https://github.com/wagoodman/dive/releases/download/v0.9.2/dive_0.9.2_linux_amd64.deb
+sudo apt install ./dive_0.9.2_linux_amd64.deb
 ```
 
 ## Build image
