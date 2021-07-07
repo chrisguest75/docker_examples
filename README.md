@@ -25,7 +25,7 @@ Show a docker context issue (large files)
 Steps [README.md](./04_docker_context/README.md)  
 
 ## Example 5 - Root user 
-Demonstrate root user  
+Demonstrate root user and privilege inside the container.  
 Steps [README.md](./05_root_user/README.md)  
 
 ## Example 6 - Multistage small image size
@@ -175,6 +175,11 @@ Steps [README.md](./44_reverse_proxy/README.md)
 Demonstrate some examples of using `docker scan`.  
 Steps [README.md](./45_docker_scan/README.md)  
 
+## Example 46 - Docker in Docker (DinD)
+Demonstrate how to use Docker in Docker 
+Steps [README.md](./46_dind/README.md)  
+
+
 ## TODO
 1. Add a basic setup and tooling  00_starting 
 1. Show how multistage builds work for testing
@@ -188,7 +193,7 @@ Steps [README.md](./45_docker_scan/README.md)
 1. Diffing using different tools https://docs.docker.com/engine/reference/commandline/diff/
 1. Kaniko. Caching, speed?  
 1. Calculating accurate image sizes - looks like container-diff can output this. 
-1. Docker registry v2 examples. 
+1. Docker registry v2 examples. https://www.slideshare.net/Docker/docker-registry-v2  
 1. Docker container escape with docker copy. 
 https://www.andreafortuna.org/2019/11/26/cve-2019-14271-a-docker-cp-container-escape-vulnerability/
 1. Add procdump to the sidecar
@@ -221,4 +226,5 @@ https://www.andreafortuna.org/2019/11/26/cve-2019-14271-a-docker-cp-container-es
 1. docker compose v2 - https://github.com/compose-spec/compose-spec/blob/master/spec.md
 1. service profiles.  docker compose --profile name up -d 
 1. nginx letsencrypt
+1. docker manifests 
 
