@@ -169,6 +169,10 @@ Steps [README.md](./43_buildpacks/README.md)
 Demonstrate a simple reverse proxy to manage build deployments  
 Steps [README.md](./44_reverse_proxy/README.md)  
 
+## Example 46 - Docker in Docker (DinD)
+Demonstrate how to use Docker in Docker 
+Steps [README.md](./46_dind/README.md)  
+
 ## TODO
 1. Add a basic setup and tooling  00_starting 
 1. Show how multistage builds work for testing
