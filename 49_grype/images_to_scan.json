@@ -1,0 +1,10 @@
+{
+    "images": [
+        { "imagepath": "ubuntu:20.04"},
+        { "imagepath": "nginx:1.21.0"},
+        { "imagepath": "alpine:3.14"},
+        { "imagepath": "mongo:latest"},
+        { "imagepath": "node:lts-alpine3.13"}
+        
+    ]
+}
