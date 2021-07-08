@@ -44,6 +44,10 @@ Steps [README.md](./08_caching_arguments/README.md)
 Demonstrate using Kaniko to build a Docker image  
 Steps [README.md](./09_kaniko/README.md)  
 
+## Example 10 - Distro Versions
+Demonstrate different ways to find distro versions inside a container
+Steps [README.md](./10_distro_versions/README.md)  
+
 ## Example 11 - Parameters and piping passthrough
 Demonstrate passing parameters and piping into docker run.     
 Steps [README.md](./11_cmdline_passthrough/README.md)  
