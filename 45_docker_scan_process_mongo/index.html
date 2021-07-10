@@ -25,21 +25,25 @@
       function load() {
         let tableData = undefined;
         let tablearray = [];  
-        d3.json("out/images.json").then(function(data){ 
+        d3.json("scans/out/images_docker.json").then(function(data){ 
           tableData = data.images;
 
           let table = d3.select("#images-table")
           tableData.forEach(d => {
             let item = [];
-            let high = d.issues.find(element => element.severity == "high");
-            let medium = d.issues.find(element => element.severity == "medium");
-            let low = d.issues.find(element => element.severity == "low");
+            let critical = d.issues.find(element => element.severity.toLowerCase() == "critical");
+            let high = d.issues.find(element => element.severity.toLowerCase() == "high");
+            let medium = d.issues.find(element => element.severity.toLowerCase() == "medium");
+            let low = d.issues.find(element => element.severity.toLowerCase() == "low");
+            critical = critical ? critical.count : 0
             high = high ? high.count : 0
             medium = medium ? medium.count : 0
             low = low ? low.count : 0
             let error= d.error != "" ? '<i class="fas fa-exclamation-triangle"></i>' : "";     
 
+            item.push("-");
             item.push(d.image); 
+            item.push(critical);
             item.push(high);
             item.push(medium); 
             item.push(low);
@@ -71,7 +75,9 @@
           <table id="images-table" class="table compact">
             <thead>
               <tr>
+                <th scope="col">Namespace</th>
                 <th scope="col">Image</th>
+                <th scope="col">Critical</th>
                 <th scope="col">High</th>
                 <th scope="col">Medium</th>
                 <th scope="col">Low</th>

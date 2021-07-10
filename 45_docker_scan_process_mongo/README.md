@@ -7,9 +7,8 @@ For reducing number of vulnerabilities refer to:
 * Distroless [README.md](../28_distroless/README.md)  
 * Nix [README.md](https://github.com/chrisguest75/nix-examples/blob/master/README.md)  
 
-TODO:
-* use jq to aggregate; Counts, High sev, Generate a report.  
-* Fix an image.
+Other scanning examples:
+* Grype [README.md](../49_grype/README.md)  
 
 ## Scanning
 ```sh

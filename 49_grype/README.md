@@ -5,6 +5,9 @@ For reducing number of vulnerabilities refer to:
 * Distroless [README.md](../28_distroless/README.md)  
 * Nix [README.md](https://github.com/chrisguest75/nix-examples/blob/master/README.md)  
 
+Other scanning examples:
+* Docker Scan [README.md](../45_docker_scan_process_mongo/README.md)  
+
 ## Prerequisites
 ```sh
 # install grype
@@ -26,5 +29,5 @@ The example uses a `./out/images.json` file that has to be served up from a webs
 code --install-extension ritwickdey.LiveServer
 ```
 
-
 # Resources 
+* grype docs [here](https://github.com/anchore/grype)  

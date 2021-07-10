@@ -44,8 +44,12 @@ do
     fi
 done <<< "$IMAGES"
 
-echo "Process the results './out/images.json'"
-./aggregate.sh | jq -s '{images: (.)}' > ./out/images.json  
+echo "Process the results './scans/out/images_docker.json'"
+if [[ ! -d ./scans/out ]]; then
+  mkdir -p ./scans/out
+fi 
+./aggregate.sh | jq -s '{images: (.)}' > ./scans/out/images_docker.json  
+
 
 
 
