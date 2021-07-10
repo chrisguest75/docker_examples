@@ -5,6 +5,10 @@ For reducing number of vulnerabilities refer to:
 * Distroless [README.md](../28_distroless/README.md)  
 * Nix [README.md](https://github.com/chrisguest75/nix-examples/blob/master/README.md)  
 
+Other scanning examples:
+* Docker Scan [README.md](../45_docker_scan_process_mongo/README.md)  
+* Grype [README.md](../49_grype/README.md)  
+
 ## Prerequisites
 ```sh
 # install trivy
@@ -32,3 +36,4 @@ code --install-extension ritwickdey.LiveServer
 
 # Resources 
 * trivy docs [here](https://aquasecurity.github.io/trivy/v0.18.3/installation/)  
+* container-vulnerability-scanning-with-trivy [here](https://www.bluetab.net/en/container-vulnerability-scanning-with-trivy/)  

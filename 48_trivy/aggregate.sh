@@ -10,6 +10,6 @@ fi
 FILES="$SCAN_FOLDER/*"
 for f in $FILES
 do
-  jq --arg cluster "$CLUSTER"  -c '{ "cluster": $cluster, "issues":(.[].Vulnerabilities | group_by(.Severity) | map({"severity":.[0].Severity, "count":length})), "image":.[].Target, "namespace":.[].namespace, "inputfile":input_filename, "error": (if .[].error == null then "" else .[].error end)}' $f
+  jq --arg cluster "$CLUSTER"  -c '{ "cluster": $cluster, "issues":(.[].Vulnerabilities | group_by(.Severity) | map({"severity":.[0].Severity, "count":length})), "image":.[].imagepath, "namespace":.[].namespace, "inputfile":input_filename, "error": (if .[].error == null then "" else .[].error end)}' $f
 done
 

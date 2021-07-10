@@ -20,8 +20,29 @@ do
       # Grype Scan
       # ************************************************
       echo -e "Performing the scan: $IMAGE"
-      trivy -f json -o "$SCAN_FOLDER/$OUTPUT.json" $IMAGE 
+      TRIVYOUT=$(trivy -f json -o "$SCAN_FOLDER/$OUTPUT.json" $IMAGE)
       EXITCODE=$?
+
+      echo "$TRIVYOUT" | grep "vulnerability detection may be insufficient because security updates"
+      if [[ $? == 0 ]]; then
+          TMPFILE=$(mktemp)
+          jq --arg imagepath "$IMAGE" --arg error "The vulnerability detection may be insufficient because security updates are not provided" '.[] + {imagepath: $imagepath, error: $error, Vulnerabilities: []}' "$SCAN_FOLDER/$OUTPUT.json" > "$TMPFILE"
+          cp "$TMPFILE" "$SCAN_FOLDER/$OUTPUT.json"
+          EXITCODE=1
+      else
+          TMPFILE=$(mktemp)
+          jq --arg imagepath "$IMAGE" '[ .[] + {imagepath: $imagepath} ]' "$SCAN_FOLDER/$OUTPUT.json" > "$TMPFILE"
+          cp "$TMPFILE" "$SCAN_FOLDER/$OUTPUT.json"
+
+          ERROR=$(jq '.[].Vulnerabilities' "$SCAN_FOLDER/$OUTPUT.json")
+          if [[ $ERROR == "null" ]]; then
+            TMPFILE=$(mktemp)
+            jq --arg imagepath "$IMAGE" '[ .[] + { Vulnerabilities: []} ]' "$SCAN_FOLDER/$OUTPUT.json" > "$TMPFILE"
+            cp "$TMPFILE" "$SCAN_FOLDER/$OUTPUT.json"
+          fi
+
+          EXITCODE=$EXITCODE
+      fi
     else  
       echo "Skipping $SCAN_FOLDER/$OUTPUT.json already exists - delete file to recreate"
     fi
