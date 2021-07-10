@@ -183,6 +183,14 @@ Steps [README.md](./45_docker_scan/README.md)
 Demonstrate how to use Docker in Docker 
 Steps [README.md](./46_dind/README.md)  
 
+## Example 48 - trivy
+Demonstrate some examples of using `trivy`.  
+Steps [README.md](./48_trivy/README.md)  
+
+## Example 49 - grype
+Demonstrate some examples of using `grype`.  
+Steps [README.md](./49_grype/README.md)  
+
 
 ## TODO
 1. Add a basic setup and tooling  00_starting 

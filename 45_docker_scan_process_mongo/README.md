@@ -9,6 +9,7 @@ For reducing number of vulnerabilities refer to:
 
 Other scanning examples:
 * Grype [README.md](../49_grype/README.md)  
+* Trivy [README.md](../48_trivy/README.md)  
 
 ## Scanning
 ```sh
