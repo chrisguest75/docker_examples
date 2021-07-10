@@ -1,5 +1,10 @@
 FROM ubuntu:18.04
 
-RUN apt-get update && apt-get install htop --no-install-recommends -y && apt-get clean \
-        && rm -rf /var/lib/apt/lists/*
+# add a user that matches the container you are investigating
+ARG USERID=1001
+ARG GROUPID=1001
+RUN addgroup --system --gid $GROUPID nodeuser
+RUN adduser --system --uid $USERID --gid $GROUPID nodeuser
 
+RUN apt-get update && apt-get install htop --no-install-recommends -y 
+RUN apt install lsof strace nano -y
