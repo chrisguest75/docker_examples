@@ -38,10 +38,12 @@ mkdir -p ./scans/docker
 docker scan --json nginx:1.21.0 > ./scans/docker/nginx1_21_0.json  
 ```
 
-## Script to scan many
+## Script to scan many and create report
 ```sh
 # scan images listed in `images_to_scan.json`
 ./scan.sh
+
+# open index.html in vscode and open live server
 ```
 
 ## Load data into MongoDB for aggregation
@@ -162,7 +164,7 @@ mkdir -p ./out
 
 ## Liveserver in vscode
 Use the live share extension.  
-The example uses a `./out/images.json` file that has to be served up from a webserver.
+The example uses a `./scans/out/images_docker.json` file that has to be served up from a webserver.
 
 ```sh 
 # use a live server to server up pages that have resources
@@ -171,15 +173,11 @@ code --install-extension ritwickdey.LiveServer
 
 
 # Resources 
-https://dev.to/sonyarianto/how-to-spin-mongodb-server-with-docker-and-docker-compose-2lef
 
-https://hub.docker.com/_/mongo
-cheatsheet mongo+find
-
-https://docs.mongodb.com/manual/core/aggregation-pipeline/
-
-https://stackoverflow.com/questions/21509045/mongodb-group-by-array-inner-elements
-
-https://docs.mongodb.com/manual
-
-https://stackoverflow.com/questions/59017042/aggregation-at-each-document-level-mongodb
+* MongoDB manual [here](https://docs.mongodb.com/manual)  
+* MongoDB in Compose [here](https://dev.to/sonyarianto/how-to-spin-mongodb-server-with-docker-and-docker-compose-2lef)
+* MongoDB in Dockerhub [here](https://hub.docker.com/_/mongo)
+* Use `cheatsheet mongo+find`
+* aggregation-pipeline docs [here](https://docs.mongodb.com/manual/core/aggregation-pipeline/)  
+* MongoDB groupby [here](https://stackoverflow.com/questions/21509045/mongodb-group-by-array-inner-elements)
+* aggregation-at-each-document-level-mongodb [here](https://stackoverflow.com/questions/59017042/aggregation-at-each-document-level-mongodb)  

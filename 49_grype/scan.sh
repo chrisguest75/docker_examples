@@ -41,11 +41,11 @@ do
 done <<< "$IMAGES"
 
 
-echo "Process the results './scans/out/images_docker.json'"
+echo "Process the results './scans/out/images_grype.json'"
 if [[ ! -d ./scans/out ]]; then
   mkdir -p ./scans/out
 fi 
-./aggregate.sh | jq -s '{images: (.)}' > ./scans/out/images_docker.json  
+./aggregate.sh | jq -s '{images: (.)}' > ./scans/out/images_grype.json  
 
 
 

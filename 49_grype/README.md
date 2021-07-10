@@ -15,14 +15,17 @@ brew tap anchore/grype
 brew install grype
 ```
 
-## Scanning
+## Script to scan many and create report
+```sh
+# scan images listed in `images_to_scan.json`
+./scan.sh
 
-
-
+# open index.html in vscode and open live server
+```
 
 ## Liveserver in vscode
 Use the live share extension.  
-The example uses a `./out/images.json` file that has to be served up from a webserver.
+The example uses a `./scans/out/images_docker.json` file that has to be served up from a webserver.
 
 ```sh 
 # use a live server to server up pages that have resources
