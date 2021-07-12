@@ -17,7 +17,7 @@ do
     EXITCODE=0
     if [[ ! -f "$SCAN_FOLDER/$OUTPUT.json" ]]; then 
       # ************************************************
-      # Grype Scan
+      # Trivy Scan
       # ************************************************
       echo -e "Performing the scan: $IMAGE"
       TRIVYOUT=$(trivy -f json -o "$SCAN_FOLDER/$OUTPUT.json" $IMAGE)
