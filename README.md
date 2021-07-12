@@ -88,6 +88,9 @@ Steps [README.md](./19_apt_locking/README.md)
 Demonstrates building a root image  
 Steps [README.md](./20_build_root/README.md)  
 
+## Example 21 - Nice prompts
+Demonstrates configuring a nice prompt for `bash` and `zsh` inside a container  
+Steps [README.md](./21_nice_prompts/README.md)   
 ## Example 22 - Example of using dockle
 Demonstrates using dockle to find issues with images.  
 Steps [README.md](./22_dockle/README.md)  
