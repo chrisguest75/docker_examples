@@ -8,8 +8,7 @@ if [[ ! -d $SCAN_FOLDER ]]; then
   mkdir -p $SCAN_FOLDER
 fi 
 
-IMAGES=$(jq -r '.images[].imagepath' ./images_to_scan.json)
-while IFS=' ', read -r IMAGE
+while read -r IMAGE
 do
 
     OUTPUT=$(basename $IMAGE)
@@ -26,7 +25,7 @@ do
       echo "$TRIVYOUT" | grep "vulnerability detection may be insufficient because security updates"
       if [[ $? == 0 ]]; then
           TMPFILE=$(mktemp)
-          jq --arg imagepath "$IMAGE" --arg error "The vulnerability detection may be insufficient because security updates are not provided" '.[] + {imagepath: $imagepath, error: $error, Vulnerabilities: []}' "$SCAN_FOLDER/$OUTPUT.json" > "$TMPFILE"
+          jq --arg imagepath "$IMAGE" --arg error "The vulnerability detection may be insufficient because security updates are not provided" '[ .[] + {imagepath: $imagepath, error: $error, Vulnerabilities: []} ]' "$SCAN_FOLDER/$OUTPUT.json" > "$TMPFILE"
           cp "$TMPFILE" "$SCAN_FOLDER/$OUTPUT.json"
           EXITCODE=1
       else
@@ -50,7 +49,7 @@ do
     # if we had an error scanning work out what it was.
     if [[ $EXITCODE != 0 ]]; then
       if [[ -f "$SCAN_FOLDER/$OUTPUT.json" ]]; then
-        ERROR=$(jq .error "$SCAN_FOLDER/$OUTPUT.json")
+        ERROR=$(jq .[].error "$SCAN_FOLDER/$OUTPUT.json")
         if [[ $ERROR != "null" ]]; then
           echo -e "Error scanning image: '$IMAGE' - '$ERROR'"
           #exit 2
@@ -59,7 +58,7 @@ do
           echo -e "Error scanning image: '$IMAGE' - no generated '$SCAN_FOLDER/$OUTPUT.json'"
       fi
     fi
-done <<< "$IMAGES"
+done < <(jq -r '.images[].imagepath' ./images_to_scan.json)
 
 echo "Process the results './scans/out/images_trivy.json'"
 if [[ ! -d ./scans/out ]]; then
