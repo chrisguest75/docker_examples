@@ -5,7 +5,8 @@
         { "imagepath": "alpine:3.14"},
         { "imagepath": "mongo:latest"},
         { "imagepath": "node:lts-alpine3.13"},
-        { "imagepath": "docker:20.10.7-dind"},
-        { "imagepath": "postgres:latest"}
+        { "imagepath": "postgres:latest"},
+        { "imagepath": "gcr.io/distroless/nodejs:14"},
+        { "imagepath": "docker:20.10.7-dind"}
     ]
 }
