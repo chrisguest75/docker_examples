@@ -1,5 +1,7 @@
 # README
-Demonstrate some examples of using `grype`.
+Demonstrate some examples of using `grype`.  
+NOTE: This merges `negligible` into `low` and `unknown` into `high` classifications  
+
 
 For reducing number of vulnerabilities refer to:
 * Distroless [README.md](../28_distroless/README.md)  
@@ -11,7 +13,6 @@ Other scanning examples:
 
 TODO:
 * docker:20.10.7-dind is broken
-* We have different categories - merge negliable into low. unknown into high? 
 * When using grype in a loop it quits for some reason....... Not sure what this is or how to work out what is wrong..
 
 ## Prerequisites
