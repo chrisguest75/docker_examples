@@ -10,5 +10,14 @@ fi
 FILES="$SCAN_FOLDER/*"
 for f in $FILES
 do
-  jq --arg cluster "$CLUSTER" -c '{ "cluster": $cluster, "issues":(.matches | group_by(.vulnerability.severity) | map({"severity":.[0].vulnerability.severity, "count":length})), "image":.source.target.userInput, "namespace":.namespace, "inputfile":input_filename, "error": (if .error == null then "" else .error end)}' $f
+  TMP_FRAGMENT_FILE=$(mktemp)
+  #echo $TMP_FRAGMENT_FILE
+  jq '[ .matches[].vulnerability | {"key":.severity | ascii_downcase, "value":.id} ] | map([.] | from_entries) | reduce .[] as $o ({}; reduce ($o|keys)[] as $key (.; .[$key] += [$o[$key]] )) | {low:(.negligible + .low + []) | sort | unique, high:(.high + .unknown + []) | sort | unique, critical:(.critical + []) | sort | unique, medium:(.medium + []) | sort | unique } | {CVE:.}' $f > "$TMP_FRAGMENT_FILE"
+  TMP_IMAGE_FILE=$(mktemp)
+  #echo $TMP_IMAGE_FILE
+  jq --arg cluster "$CLUSTER" -c '{ "cluster": $cluster, "issues":(.matches | group_by(.vulnerability.severity) | map({"severity":.[0].vulnerability.severity, "count":length})), "image":.source.target.userInput, "namespace":.namespace, "inputfile":input_filename, "error": (if .error == null then "" else .error end)}' $f > "$TMP_IMAGE_FILE"
+  jq -c -s '.[0] + { "CVE":.[1].CVE}' "$TMP_IMAGE_FILE" "$TMP_FRAGMENT_FILE" 
 done
+
+
+

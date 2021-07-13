@@ -1,5 +1,7 @@
 # README
-Demonstrate some examples of using `grype`.
+Demonstrate some examples of using `grype`.  
+NOTE: This merges `negligible` into `low` and `unknown` into `high` classifications  
+
 
 For reducing number of vulnerabilities refer to:
 * Distroless [README.md](../28_distroless/README.md)  
@@ -8,6 +10,10 @@ For reducing number of vulnerabilities refer to:
 Other scanning examples:
 * Docker Scan [README.md](../45_docker_scan_process_mongo/README.md)  
 * Trivy [README.md](../48_trivy/README.md)  
+
+TODO:
+* docker:20.10.7-dind is broken
+* When using grype in a loop it quits for some reason....... Not sure what this is or how to work out what is wrong..
 
 ## Prerequisites
 ```sh
