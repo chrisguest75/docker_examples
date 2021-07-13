@@ -9,6 +9,11 @@ Other scanning examples:
 * Docker Scan [README.md](../45_docker_scan_process_mongo/README.md)  
 * Trivy [README.md](../48_trivy/README.md)  
 
+TODO:
+* docker:20.10.7-dind is broken
+* We have different categories - merge negliable into low.
+* When using grype in a loop it quits for some reason....... Not sure what this is or how to work out what is wrong..
+
 ## Prerequisites
 ```sh
 # install grype
