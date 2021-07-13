@@ -11,7 +11,7 @@ Other scanning examples:
 
 TODO:
 * docker:20.10.7-dind is broken
-* We have different categories - merge negliable into low.
+* We have different categories - merge negliable into low. unknown into high? 
 * When using grype in a loop it quits for some reason....... Not sure what this is or how to work out what is wrong..
 
 ## Prerequisites
