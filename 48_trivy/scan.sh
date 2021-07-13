@@ -24,15 +24,19 @@ do
 
       echo "$TRIVYOUT" | grep "vulnerability detection may be insufficient because security updates"
       if [[ $? == 0 ]]; then
+          # we have detected a known error - merge in extra fields. 
           TMPFILE=$(mktemp)
           jq --arg imagepath "$IMAGE" --arg error "The vulnerability detection may be insufficient because security updates are not provided" '[ .[] + {imagepath: $imagepath, error: $error, Vulnerabilities: []} ]' "$SCAN_FOLDER/$OUTPUT.json" > "$TMPFILE"
           cp "$TMPFILE" "$SCAN_FOLDER/$OUTPUT.json"
           EXITCODE=1
       else
+          # NO ERROR DETECTED in output 
+          # add imagepath field 
           TMPFILE=$(mktemp)
           jq --arg imagepath "$IMAGE" '[ .[] + {imagepath: $imagepath} ]' "$SCAN_FOLDER/$OUTPUT.json" > "$TMPFILE"
           cp "$TMPFILE" "$SCAN_FOLDER/$OUTPUT.json"
 
+          # adding Vulnerabilities field if it doesn't exist
           ERROR=$(jq '.[].Vulnerabilities' "$SCAN_FOLDER/$OUTPUT.json")
           if [[ $ERROR == "null" ]]; then
             TMPFILE=$(mktemp)
