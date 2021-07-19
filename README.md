@@ -194,6 +194,9 @@ Steps [README.md](./48_trivy/README.md)
 Demonstrate some examples of using `grype`.  
 Steps [README.md](./49_grype/README.md)  
 
+## Example 51 - Signals
+Demonstrate how signals work in containers   
+Steps [README.md](./51_signals/README.md) 
 
 ## TODO
 1. Add a basic setup and tooling  00_starting 
