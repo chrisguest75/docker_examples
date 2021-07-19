@@ -7,4 +7,5 @@ RUN addgroup --system --gid $GROUPID nodeuser
 RUN adduser --system --uid $USERID --gid $GROUPID nodeuser
 
 RUN apt-get update && apt-get install htop --no-install-recommends -y 
-RUN apt install lsof strace nano tcpdump dnsutils -y
+RUN apt install lsof strace nano tcpdump dnsutils iproute2 apt-file -y
+RUN apt-file update
