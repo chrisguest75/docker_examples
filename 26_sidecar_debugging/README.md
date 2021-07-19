@@ -16,7 +16,7 @@ docker exec -it  $(docker ps --filter name=code_sidecar -q) /bin/bash
 Inject the container with some extra debugging tools
 ```sh
 docker build -f debug.Dockerfile -t debug_sidecar . 
-docker run --privileged -it --rm --pid=container:$(docker ps --filter name=code_sidecar -q) --name debug_sidecar --entrypoint /bin/bash debug_sidecar  
+docker run --privileged -it --rm --pid=container:$(docker ps --filter name=code_sidecar -q) --network=container:$(docker ps --filter name=code_sidecar -q) --name debug_sidecar --entrypoint /bin/bash debug_sidecar  
 ```
 
 Show all processes in the namespace
@@ -43,7 +43,7 @@ docker exec -it  $(docker ps --filter name=nginx_sidecar -q) /bin/sh
 Inject the container with some extra debugging tools
 ```sh
 docker build -f debug.Dockerfile -t debug_sidecar . 
-docker run --privileged -it --rm --pid=container:$(docker ps --filter name=nginx_sidecar -q) --name debug_sidecar --entrypoint /bin/bash debug_sidecar  
+docker run --privileged -it --rm --pid=container:$(docker ps --filter name=nginx_sidecar -q) --network=container:$(docker ps --filter name=nginx_sidecar -q) --name debug_sidecar --entrypoint /bin/bash debug_sidecar  
 ```
 
 Show all processes in the namespace
