@@ -1,0 +1,39 @@
+services:
+    code:
+        build:
+            context: .
+            dockerfile: code.Dockerfile
+        networks:
+            - service_bridge    
+        profiles: [code]
+        
+    debug_code:
+        build: 
+            context: .
+            dockerfile: debug.Dockerfile
+        command: [ "/bin/sh", "-c", "sleep infinity" ]  
+        pid: "container:26_sidecar_debugging_code_1" 
+        depends_on:
+            - code       
+        networks:
+            - service_bridge    
+        profiles: [code]        
+
+    nginx:
+        image: "nginx:1.20.1"       
+        profiles: [nginx]        
+
+    debug_nginx:
+        build: 
+            context: .
+            dockerfile: debug.Dockerfile
+        command: [ "/bin/sh", "-c", "sleep infinity" ]  
+        pid: "container:26_sidecar_debugging_nginx_1" 
+        network_mode: service:nginx
+        depends_on:
+            - nginx    
+        profiles: [nginx]                 
+            
+networks:
+    service_bridge:
+        driver: bridge  
