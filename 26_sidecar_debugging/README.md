@@ -103,9 +103,14 @@ docker stop $(docker ps --filter name=nginx_sidecar -q)
 ```
 ## docker-compose
 
+```sh
+docker compose config --profiles  
+docker compose --profile nginx --profile code build --no-cache  
+```
 ### Sharing pid namespace        
 ```sh
 docker compose config --profiles  
+docker compose --profile code build --no-cache  
 docker compose --profile code up -d  
 #docker compose up -d                
 ```
@@ -131,6 +136,7 @@ docker compose --profile code down
 ### Sharing network namespace
 ```sh
 docker compose config --profiles  
+docker compose --profile nginx build --no-cache  
 docker compose --profile nginx up -d  
 #docker compose up -d                
 ```
