@@ -3,6 +3,11 @@ Use remote-containers vscode extension to create a nodejs and mongodb container
 
 Hosting a basic webserver using nodejs and mongo inside a devcontainer
 
+TODO:
+* Killing the volumes
+* Packaging the containers up for production.  
+* Sharing the devcontainer between machines.
+
 ## Preparation
 ```sh
 # install the extension
@@ -36,7 +41,12 @@ npm install
 ```sh
 # run the express app
 DEBUG=mongo_demo:* npm start
+
+# on the host
 open http://localhost:3000
+
+# in the dev container.
+mongo -u root -p rootpassword
 ```
 
 
@@ -44,6 +54,17 @@ add mongo
 create an endpoint that inserts data
 create an endpoint that reads data
 
+
+## Troubleshooting
+
+```sh
+docker exec -it $(docker ps --filter name=nodejs_remote_devcontainer_devcontainer_db_1 -q) /bin/sh
+mongosh -u root -p rootpassword
+show dbs
+db.getCollection('test').find()
+
+# if the db is failing to create correctly you might need to remove the containers and volume
+```
 
 # Resources 
 * remote-overview docs [here](https://code.visualstudio.com/docs/remote/remote-overview)  
