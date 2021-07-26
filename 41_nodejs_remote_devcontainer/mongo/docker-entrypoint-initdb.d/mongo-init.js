@@ -9,7 +9,7 @@ let res = [
       roles: [ { role: "readWrite", db: "test" } ]
     }
   ),  
-  db.test.createIndex({ id: 1 }, { unique: true }),
+  //db.test.createIndex({ id: 1 }, { unique: true }),
   db.test.insert({ id: 1, value: 'hello' }),
 ]
 

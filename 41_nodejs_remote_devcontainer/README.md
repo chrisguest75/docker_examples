@@ -49,10 +49,23 @@ open http://localhost:3000
 mongo -u root -p rootpassword
 ```
 
+```sh
+# add mongo and dotenv
+npm install mongo dotenv
+npm install -g nodemon
 
-add mongo 
-create an endpoint that inserts data
-create an endpoint that reads data
+nodemon npm start
+```
+
+```sh
+# create an endpoint that inserts data
+curl -X GET localhost:3000/api/test    
+```
+
+```sh
+# create an endpoint that reads data
+curl -X POST localhost:3000/api/test    
+```
 
 
 ## Troubleshooting
@@ -62,7 +75,9 @@ docker exec -it $(docker ps --filter name=nodejs_remote_devcontainer_devcontaine
 mongosh -u root -p rootpassword
 show dbs
 db.getCollection('test').find()
-
+db.getCollection('test').remove({})
+db.getCollection('test').getIndexes()
+db.getCollection('test').dropIndexes(["id_1"])
 # if the db is failing to create correctly you might need to remove the containers and volume
 ```
 
