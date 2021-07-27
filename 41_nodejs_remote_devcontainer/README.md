@@ -60,15 +60,19 @@ nodemon npm start
 
 ## Test the endpoints
 ```sh
-# create an endpoint that inserts data
+# Post some data into DB
+curl -X POST localhost:3000/api/test    
+```
+
+```sh
+# Read the data
 curl -X GET localhost:3000/api/test    
 ```
 
 ```sh
-# create an endpoint that reads data
-curl -X POST localhost:3000/api/test    
+# render the page.
+open http://localhost:3000/api/test    
 ```
-
 
 ## Troubleshooting
 
