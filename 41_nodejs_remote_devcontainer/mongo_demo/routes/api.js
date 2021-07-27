@@ -1,3 +1,4 @@
+const os = require('os');
 var express = require('express');
 var router = express.Router();
 
@@ -20,8 +21,12 @@ router.route("/test").post(function (req, res) {
   let db_connect = dbo.getDb("test");
   let myobj = {
     path: req.path,
+    protocol: req.protocol,
+    method: req.method,
+    httpVersion: req.httpVersion,
     ip: req.ip,
     hostname: req.hostname,
+    startTime: req._startTime,
   };
   db_connect.collection("test").insertOne(myobj, function (err, res) {
     if (err) throw err;

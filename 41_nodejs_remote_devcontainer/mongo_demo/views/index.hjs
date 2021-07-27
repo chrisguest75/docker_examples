@@ -7,5 +7,35 @@
   <body>
     <h1>{{ title }}</h1>
     <p>Welcome to {{ title }}</p>
+
+                  <table class="table" >
+                    <thead >
+                      <tr class="row">
+                          <th scope="col" >path</th>
+                          <th scope="col" >ip</th>
+                          <th scope="col" >hostname</th>
+                          <th scope="col" >protocol</th>
+                          <th scope="col" >method</th>
+                          <th scope="col" >startTime</th>
+                      </tr>
+                    </thead>
+
+
+                    <tbody >
+            {{#result}}
+                      <tr class="row">
+                        <td >{{path}}</td>
+                        <td >{{ip}}</td>
+                        <td >{{hostname}}</td>
+                        <td >{{protocol}}</td>
+                        <td >{{method}}</td>
+                        <td >{{startTime}}</td>
+                      </tr>
+            {{/result}}    
+                    </tbody>
+                  </table>        
+
+
+
   </body>
 </html>
