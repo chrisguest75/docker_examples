@@ -39,7 +39,7 @@ npm install
 ```
 
 ```sh
-# run the express app
+# run the express app (inside `mongo_demo`)
 DEBUG=mongo_demo:* npm start
 
 # on the host
@@ -50,7 +50,7 @@ mongo -u root -p rootpassword
 ```
 
 ```sh
-# add mongo and dotenv
+# add mongo and dotenv (inside `mongo_demo`)
 npm install mongo dotenv
 npm install -g nodemon
 
@@ -75,19 +75,30 @@ open http://localhost:3000/api/test
 ```
 
 ## Troubleshooting
+Investigating MongoDB  
+NOTE: If the db is failing to create correctly you might need to remove the containers and volume 
 
 ```sh
+docker ps
+docker volume ls
+```
+
+```sh
+# exec into container
 docker exec -it $(docker ps --filter name=nodejs_remote_devcontainer_devcontainer_db_1 -q) /bin/sh
+# login to mongo
 mongosh -u root -p rootpassword
 show dbs
+```
 
+```js
+// removing items from the collection
 db.getCollection('test').find()
 db.getCollection('test').remove({})
 
+// if volume has indices 
 db.getCollection('test').getIndexes()
 db.getCollection('test').dropIndexes(["id_1"])
-
-# if the db is failing to create correctly you might need to remove the containers and volume
 ```
 
 # Resources 

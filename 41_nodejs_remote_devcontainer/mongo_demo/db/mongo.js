@@ -6,7 +6,7 @@ const client = new MongoClient(db_uri, {
   useUnifiedTopology: true,
 });
  
-var _db;
+var _db = null;
  
 module.exports = {
   connectToServer: function (callback) {
@@ -23,6 +23,9 @@ module.exports = {
   },
  
   getDb: function () {
+    if (_db == null) {
+      console.error("Not connected to MongoDB."); 
+    }
     return _db;
   },
 };
