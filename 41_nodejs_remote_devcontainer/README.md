@@ -3,6 +3,12 @@ Use remote-containers vscode extension to create a nodejs and mongodb container
 
 Hosting a basic webserver using nodejs and mongo inside a devcontainer
 
+Quick summary:
+* The devcontainer is the container we do dev work in - not what we ship. 
+* MongoDB will be in the same network namespace as the Node App - but also both ports are open on host.
+* You can use the node debugger using the launch.json. 
+
+
 TODO:
 * Killing the volumes
 * Packaging the containers up for production.  
@@ -73,6 +79,10 @@ curl -X GET localhost:3000/api/test
 # render the page.
 open http://localhost:3000/api/test    
 ```
+
+## Using node debugger in vscode
+You can use the node debugger using the launch.json. 
+
 
 ## Troubleshooting
 Investigating MongoDB  
