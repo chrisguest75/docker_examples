@@ -10,6 +10,7 @@ Quick summary:
 
 
 TODO:
+* parameterise passwords
 * Killing the volumes
 * Packaging the containers up for production.  
 * Sharing the devcontainer between machines.
