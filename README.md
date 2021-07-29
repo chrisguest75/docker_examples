@@ -166,6 +166,9 @@ Steps [README.md](./40_ssl_nginx/README.md)
 Use remote-containers vscode extension  
 Steps [README.md](./41_remote_containers/README.md) 
 
+## Example 41 - NodeJS DevContainers
+Use remote-containers vscode extension to create a nodejs and mongodb container   
+Steps [README.md](./41_nodejs_remote_devcontainer/README.md) 
 ## Example 42 - Docker systemd service
 Demonstrate how to use docker containers as systemd.  
 Steps [README.md](./42_docker_systemd_service/README.md)  
