@@ -1,3 +1,4 @@
+const { logger } = require('../logger')
 var express = require('express');
 var router = express.Router();
 
@@ -10,8 +11,11 @@ router.get('/', function(req, res, next) {
     .collection("test")
     .find({})
     .toArray(function (err, result) {
-      if (err) throw err;
-      console.log(result)
+      if (err) {
+        logger.error(err);
+        throw err;
+      }
+      logger.info(result)
       res.render('index', { title: 'Express', result: result });
     });
 });
