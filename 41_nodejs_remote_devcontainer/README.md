@@ -8,8 +8,11 @@ Quick summary:
 * MongoDB will be in the same network namespace as the Node App - but also both ports are open on host.
 * You can use the node debugger using the launch.json. 
 
+Warning:
+* I have had the container disconnect and I lost unsaved work.
 
 TODO:
+* Add an dataloading test
 * parameterise passwords
 * Killing the volumes
 * Packaging the containers up for production.  
@@ -84,6 +87,10 @@ open http://localhost:3000/api/test
 ## Using node debugger in vscode
 You can use the node debugger using the launch.json. 
 
+## Packaging up for release
+```sh
+docker compose --profile backend up -d
+```
 
 ## Troubleshooting
 Investigating MongoDB  

@@ -1,3 +1,4 @@
+const { logger } = require('../logger')
 const os = require('os');
 var express = require('express');
 var router = express.Router();
@@ -11,7 +12,10 @@ router.route("/test").get(function (req, res) {
     .collection("test")
     .find({})
     .toArray(function (err, result) {
-      if (err) throw err;
+      if (err) {
+        logger.error(err);
+        throw err;
+      }
       res.json(result);
     });
 });
@@ -29,8 +33,11 @@ router.route("/test").post(function (req, res) {
     startTime: req._startTime,
   };
   db_connect.collection("test").insertOne(myobj, function (err, res) {
-    if (err) throw err;
-    console.log("1 document added");
+    if (err) {
+      logger.error(err);
+      throw err;
+    }
+    logger.info("1 document added");
   });
   res.json({status:"added"})
 });

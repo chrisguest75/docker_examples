@@ -1,8 +1,9 @@
+const { logger, expresslogger } = require('./logger')
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
-var logger = require('morgan');
 var stylus = require('stylus');
 require("dotenv").config({ path: "./config.env" });
 const dbo = require("./db/mongo");
@@ -14,12 +15,11 @@ var rootRouter = require('./routes/root');
 var apiRouter = require('./routes/api');
 
 var app = express();
-
+app.use(expresslogger)
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hjs');
 
-app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -44,5 +44,13 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+let applogger = logger.child({attached_object:"Attaching objects to all child logs"})
+applogger.trace("TRACE - level message")
+applogger.debug("DEBUG - level message")
+applogger.info("INFO - level message")
+applogger.warn("WARN - level message")
+applogger.error("ERROR - level message")
+applogger.fatal("FATAL - level message")
 
 module.exports = app;

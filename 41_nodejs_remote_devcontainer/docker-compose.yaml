@@ -1,0 +1,42 @@
+services:
+    mongodb:
+        image: mongo:latest
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: rootpassword
+            MONGO_INITDB_DATABASE: test
+        ports:
+            - 27017:27017
+        volumes:
+            - 41_nodejs_remote_devcontainer:/data/db
+            - ./mongo/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+        networks:
+            - service_bridge    
+        profiles: [backend]            
+
+    backend:
+        build: ./mongo_demo
+        environment:
+            PORT: 3000
+            MONGO_URI: mongodb://user:userpassword@0.0.0.0:27017/test?retryWrites=true&w=majority
+            MONGO_DB_NAME: test
+        healthcheck:
+            test: ["CMD", "curl", "-f", "http://0.0.0.0:3000/ping"]
+            interval: 10s
+            timeout: 5s
+            retries: 5     
+            start_period: 5s 
+        ports:
+            - 3000:3000
+        networks:
+            - service_bridge
+        depends_on:
+            - mongodb                                      
+        profiles: [backend]            
+    
+volumes:
+    41_nodejs_remote_devcontainer:
+
+networks:
+    service_bridge:
+        driver: bridge        
