@@ -91,6 +91,8 @@ open http://localhost:3000
 You can use the node debugger using the launch.json. 
 
 ## Packaging up for release
+Once you have used the devcontainer to develop the code.  You now use a different set of containers to package up the final code.  These are the images you would push.
+
 ```sh
 # start the packaged version
 docker compose --profile backend up -d
