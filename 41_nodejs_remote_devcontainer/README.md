@@ -81,7 +81,10 @@ curl -X GET localhost:3000/api/test
 
 ```sh
 # render the page.
-open http://localhost:3000/api/test    
+open http://localhost:3000/api/test  
+
+# render the root page
+open http://localhost:3000
 ```
 
 ## Using node debugger in vscode
@@ -89,7 +92,14 @@ You can use the node debugger using the launch.json.
 
 ## Packaging up for release
 ```sh
+# start the packaged version
 docker compose --profile backend up -d
+
+# rebuild it
+docker compose --profile backend build 
+
+# clean it up
+docker compose --profile backend down --volumes  
 ```
 
 ## Troubleshooting

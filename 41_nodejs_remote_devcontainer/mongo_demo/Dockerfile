@@ -8,7 +8,7 @@ RUN adduser --system --uid $USERID --gid $GROUPID nodeuser
 WORKDIR /scratch
 COPY package.json package-lock.json ./
 COPY app.js logger.js ./
-COPY handlers handlers
+COPY db db 
 COPY views views 
 COPY routes routes 
 COPY public public 

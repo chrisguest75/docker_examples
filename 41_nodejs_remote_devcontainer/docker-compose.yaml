@@ -18,7 +18,7 @@ services:
         build: ./mongo_demo
         environment:
             PORT: 3000
-            MONGO_URI: mongodb://user:userpassword@0.0.0.0:27017/test?retryWrites=true&w=majority
+            MONGO_URI: mongodb://user:userpassword@mongodb:27017/test?retryWrites=true&w=majority
             MONGO_DB_NAME: test
         healthcheck:
             test: ["CMD", "curl", "-f", "http://0.0.0.0:3000/ping"]
