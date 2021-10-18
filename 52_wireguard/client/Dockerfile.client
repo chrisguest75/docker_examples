@@ -1,0 +1,13 @@
+FROM ubuntu:20.04
+
+RUN apt-get update && apt-get install wireguard nano -y 
+RUN apt-get install curl lsof iproute2 nmap iputils-ping -y
+
+WORKDIR /etc/wireguard
+COPY wg0.conf ./wg0.conf
+RUN umask 077; wg genkey | tee privatekey | wg pubkey > publickey
+
+WORKDIR /scratch
+COPY hold.sh .
+
+CMD [ "/bin/bash", "-c", "/scratch/hold.sh" ]
