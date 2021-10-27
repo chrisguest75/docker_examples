@@ -21,7 +21,9 @@ docker build --no-cache -t faildivetest -f fail.Dockerfile .
 ## Analyse 
 Analyse docker image in registry
 ```sh
+# ubuntu 18.04 will pass
 dive passdivetest --ci
+# ubuntu 16.04 will pass
 dive faildivetest --ci
 ```
 
@@ -35,4 +37,6 @@ docker save faildivetest > faildivetest.tar
 dive --source docker-archive faildivetest
 ```
 
+# Resources
+* Dive website [here]](https://github.com/wagoodman/dive)   
 
