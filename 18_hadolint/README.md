@@ -8,8 +8,10 @@ code --install-extension exiasr.hadolint
 ```
 
 ## Run linting on repo
+Scanning the repo for all Dockerfiles
 ```sh
 # scan the whole repo
 find $(git root)/* -iname Dockerfile -type f -exec hadolint {} \;
 ```
-
+# Resources
+* hadolint [here](https://github.com/hadolint/hadolint)

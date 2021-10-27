@@ -17,7 +17,10 @@ brew install goodwithtech/r/dockle
 
 ## Test
 ```sh
+# build image
 docker build -t dockletest .
+
+# scan the local image
 dockle dockletest
 ```
 
@@ -48,3 +51,5 @@ INFO    - CIS-DI-0008: Confirm safety of setuid/setgid files
         * setuid file: usr/bin/newgrp urwxr-xr-x
         * setgid file: usr/bin/wall grwxr-xr-x
 ```
+# Resources 
+* Goto [Dockle](https://github.com/goodwithtech/dockle)  
