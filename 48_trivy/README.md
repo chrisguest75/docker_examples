@@ -1,6 +1,8 @@
 # README
 Demonstrate some examples of using `trivy`.
 
+NOTE: The schema version seems to have changed and this is broken now. 
+
 For reducing number of vulnerabilities refer to:
 * Distroless [README.md](../28_distroless/README.md)  
 * Nix [README.md](https://github.com/chrisguest75/nix-examples/blob/master/README.md)  

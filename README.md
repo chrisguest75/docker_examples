@@ -186,7 +186,7 @@ Demonstrate some examples of using `docker scan`.
 Steps [README.md](./45_docker_scan/README.md)  
 
 ## Example 46 - Docker in Docker (DinD)
-Demonstrate how to use Docker in Docker 
+Demonstrate how to use Docker in Docker  
 Steps [README.md](./46_dind/README.md)  
 
 ## Example 48 - trivy

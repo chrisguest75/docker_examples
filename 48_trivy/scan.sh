@@ -1,6 +1,20 @@
 #!/usr/bin/env bash
 
+function check_prerequisites() {
+    for i in "$@"
+    do
+        local dependency=$i
+
+        if [[ ! $(command -v "$dependency") ]]; then
+            echo "$dependency is not-installed"
+            exit 0
+        fi
+    done
+}
+
 SCANTYPE=trivy
+echo "Checking $SCANTYPE"
+check_prerequisites $SCANTYPE
 
 # create folder to store the json outputs
 SCAN_FOLDER=./scans/$SCANTYPE
