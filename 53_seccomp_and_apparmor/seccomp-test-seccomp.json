@@ -6,6 +6,7 @@
   "syscalls": [
     {
       "names": [
+        "fstatfs",
         "getuid",
         "set_robust_list",
         "fstat",

@@ -54,6 +54,7 @@ cmd=build info=results artifacts.location='/home/linuxbrew/.linuxbrew/Cellar/doc
 
 ```sh
 # Running non-slim with profiles
+# NOTE: Had to add fstatfs
 docker run -it -d -p 8080:80 --security-opt seccomp:./seccomp-test-seccomp.json --name seccomptest seccomp-test
 
 docker logs seccomptest 
