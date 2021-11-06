@@ -42,7 +42,7 @@ docker-slim profile seccomp-test
 docker-slim build --include-path /usr/share/nginx/html --expose 80 --http-probe-cmd / seccomp-test
 ```
 
-## Seccomp & Apparmor
+## Seccomp
 When using docker-slim look out for the artifacts location in the logs.  This is where the profiles are output. 
 
 ```text
@@ -80,14 +80,58 @@ docker stop seccomptest && docker rm seccomptest
 ```
 
 ## Audit 
+It is possible to log out syscalls into the syslog.  
 ```sh
-
+# setup an audit seccomp profile
 docker run -it -d -p 8080:80 --security-opt seccomp=./audit-seccomp.json --name seccomptest seccomp-test
+
+docker logs seccomptest
+
+open http://localhost:8080/
+
+docker stop seccomptest && docker rm seccomptest
+
+# find the audit events.
 cat /var/log/syslog | grep audit  
 ```
+
+## Apparmor 
+```sh
+# Running non-slim with profiles
+sudo apparmor_parser -r -W ./seccomp-test-apparmor-profile
+
+docker run -it -d -p 8080:80 --security-opt apparmor=seccomp-test-apparmor-profile --name apparmortest seccomp-test
+
+docker logs apparmortest
+
+open http://localhost:8080/
+
+docker stop apparmortest && docker rm apparmortest
+sudo apparmor_parser -R ./seccomp-test-apparmor-profile
+
+```
+
+## Troubleshooting Apparmor
+```sh
+# install the aa-* tools
+sudo apt install apparmor-utils  
+
+# check the loaded profiles
+sudo apparmor_status  
+
+sudo aa-logprof
+cat /var/log/syslog | grep audit     
+```
+
 
 
 # Resources 
 * Docker seccomp docs [here](https://docs.docker.com/engine/security/seccomp/)  
+https://docs.docker.com/engine/security/apparmor/
 * https://martinheinz.dev/blog/41
 * Issue with dockerslim fstatfs https://githubmemory.com/repo/docker-slim/docker-slim/issues/182
+https://sysdig.com/blog/selinux-seccomp-falco-technical-discussion/
+
+https://askubuntu.com/questions/486150/evince-error-while-loading-shared-libraries-permission-denied
+
+https://wiki.ubuntu.com/DebuggingApparmor
