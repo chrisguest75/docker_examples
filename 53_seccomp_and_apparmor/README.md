@@ -90,4 +90,4 @@ cat /var/log/syslog | grep audit
 # Resources 
 * Docker seccomp docs [here](https://docs.docker.com/engine/security/seccomp/)  
 * https://martinheinz.dev/blog/41
-
+* Issue with dockerslim fstatfs https://githubmemory.com/repo/docker-slim/docker-slim/issues/182
