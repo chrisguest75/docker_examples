@@ -2,19 +2,20 @@
 Demonstrate seccomp and apparmor and how to use them.
 
 Based on [../52_dockerslim/README.md](../52_dockerslim/README.md_)  
-
-## Start
-```sh
-# look for seccomp profile
-docker info 
-```
-
 ## Prereqs
 ```sh
 https://brew.sh/
 
 # use docker-slim to generate them 
 brew install docker-slim
+```
+## Start
+```sh
+# look for seccomp profile
+docker info 
+
+# on linux
+grep SECCOMP /boot/config-$(uname -r)
 ```
 
 ## Build 
