@@ -91,7 +91,7 @@ open http://localhost:8080/
 
 docker stop seccomptest && docker rm seccomptest
 
-# find the audit events.
+# find the audit events - syscall table https://filippo.io/linux-syscall-table/
 cat /var/log/syslog | grep audit  
 ```
 
@@ -121,6 +121,13 @@ sudo apparmor_status
 
 sudo aa-logprof
 cat /var/log/syslog | grep audit     
+
+
+
+sudo apparmor_parser -r -W ./seccomp-test-apparmor-profile
+docker stop apparmortest && docker rm apparmortest
+docker run -it -d -p 8080:80 --security-opt apparmor=seccomp-test-apparmor-profile --name apparmortest seccomp-test
+cat /var/log/syslog | grep audit     
 ```
 
 
@@ -135,3 +142,11 @@ https://sysdig.com/blog/selinux-seccomp-falco-technical-discussion/
 https://askubuntu.com/questions/486150/evince-error-while-loading-shared-libraries-permission-denied
 
 https://wiki.ubuntu.com/DebuggingApparmor
+
+https://blog.jessfraz.com/post/how-to-use-new-docker-seccomp-profiles/
+
+https://raw.githubusercontent.com/torvalds/linux/master/arch/x86/entry/syscalls/syscall_64.tbl
+
+https://filippo.io/linux-syscall-table/
+
+https://doc.opensuse.org/documentation/leap/security/html/book-security/cha-apparmor-commandline.html
