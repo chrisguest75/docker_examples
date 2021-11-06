@@ -79,6 +79,12 @@ open http://localhost:8080/
 docker stop seccomptest && docker rm seccomptest
 ```
 
+## Audit 
+```sh
+
+docker run -it -d -p 8080:80 --security-opt seccomp=./audit-seccomp.json --name seccomptest seccomp-test
+cat /var/log/syslog | grep audit  
+```
 
 
 # Resources 
