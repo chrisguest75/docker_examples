@@ -122,6 +122,9 @@ sudo apparmor_status
 sudo aa-logprof
 cat /var/log/syslog | grep audit     
 
+# look at journalctl audit logs
+sudo journalctl _TRANSPORT=audit
+
 
  /tmp/*   - all files directly in /tmp
  /tmp/*/  - all directories directly in /tmp
