@@ -210,10 +210,11 @@ Demonstrate seccomp and apparmor and how to use them.
 Steps [README.md](./53_seccomp_and_apparmor/README.md)  
 
 ## TODO
+1. skopeo
+1. botb - break out the box image https://github.com/brompwnie/botb
 1. Add a basic setup and tooling  00_starting 
 1. Show how multistage builds work for testing
 1. Demo using cache-from.....  Use a timed layer.
-1. Demonstrate how apparmor works with docker.
 1. Use different CAPS_SYS parameters. 
 1. Build a apt-mirror https://www.tecmint.com/setup-local-repositories-in-ubuntu/
 1. Content trust

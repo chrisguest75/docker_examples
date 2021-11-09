@@ -123,7 +123,21 @@ sudo aa-logprof
 cat /var/log/syslog | grep audit     
 
 
+ /tmp/*   - all files directly in /tmp
+ /tmp/*/  - all directories directly in /tmp
+ /tmp/**  - all files and directories underneath /tmp
+ /tmp/**/ - all directories underneath /tmp
+```
 
+You can use a test & edit loop like this. 
+```sh
+# docker-default
+sudo apparmor_parser -r -W ./seccomp-test-apparmor-profile
+docker stop apparmortest && docker rm apparmortest
+docker run -it -d -p 8080:80 --security-opt apparmor=docker-default --name apparmortest seccomp-test
+cat /var/log/syslog | grep audit     
+
+# seccomp-test-apparmor-profile
 sudo apparmor_parser -r -W ./seccomp-test-apparmor-profile
 docker stop apparmortest && docker rm apparmortest
 docker run -it -d -p 8080:80 --security-opt apparmor=seccomp-test-apparmor-profile --name apparmortest seccomp-test
@@ -132,21 +146,29 @@ cat /var/log/syslog | grep audit
 
 
 
+
+
 # Resources 
+## Seccomp
 * Docker seccomp docs [here](https://docs.docker.com/engine/security/seccomp/)  
 https://docs.docker.com/engine/security/apparmor/
 * https://martinheinz.dev/blog/41
 * Issue with dockerslim fstatfs https://githubmemory.com/repo/docker-slim/docker-slim/issues/182
 https://sysdig.com/blog/selinux-seccomp-falco-technical-discussion/
+https://raw.githubusercontent.com/torvalds/linux/master/arch/x86/entry/syscalls/syscall_64.tbl
+https://filippo.io/linux-syscall-table/
+https://www.redhat.com/sysadmin/container-security-seccomp
 
+
+## Apparmor
 https://askubuntu.com/questions/486150/evince-error-while-loading-shared-libraries-permission-denied
+
+https://en.opensuse.org/SDB:AppArmor_geeks
 
 https://wiki.ubuntu.com/DebuggingApparmor
 
 https://blog.jessfraz.com/post/how-to-use-new-docker-seccomp-profiles/
 
-https://raw.githubusercontent.com/torvalds/linux/master/arch/x86/entry/syscalls/syscall_64.tbl
-
-https://filippo.io/linux-syscall-table/
-
 https://doc.opensuse.org/documentation/leap/security/html/book-security/cha-apparmor-commandline.html
+
+https://github.com/moby/moby/blob/master/contrib/apparmor/template.go

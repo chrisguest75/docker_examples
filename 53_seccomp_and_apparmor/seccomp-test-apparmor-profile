@@ -11,6 +11,18 @@ profile seccomp-test-apparmor-profile flags=(attach_disconnected,mediate_deleted
 
   /run/nginx.pid w,
 
+  # start our custom (these are too loose)
+  /proc/** r,
+  /sys/** r,
+  /dev/** r,
+  /dev/pts/0 rw,
+  /etc/nginx/conf.d/ r,
+  /etc/nginx/conf.d/** r,
+
+  /var/log/nginx/error.log rw,
+  /work/bootstrap.sh rix,
+  # end of custom
+
   /bin/sed r,
   /bin/sh r,
   /docker-entrypoint.sh r,
@@ -66,8 +78,5 @@ profile seccomp-test-apparmor-profile flags=(attach_disconnected,mediate_deleted
   /usr/share/zoneinfo/posix/UTC r,
   /usr/share/zoneinfo/posix/Universal r,
   /usr/share/zoneinfo/posix/Zulu r,
-  /var/run r,
-  /var/log/nginx/error.log rw,
-  /work/bootstrap.sh rix,
-
+  /var/run r
 }
