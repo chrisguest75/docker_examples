@@ -132,16 +132,27 @@ cat /var/log/syslog | grep audit
 You can use a test & edit loop like this. 
 ```sh
 # docker-default
+sudo dmesg --clear
 sudo apparmor_parser -r -W ./seccomp-test-apparmor-profile
 docker stop apparmortest && docker rm apparmortest
 docker run -it -d -p 8080:80 --security-opt apparmor=docker-default --name apparmortest seccomp-test
-cat /var/log/syslog | grep audit     
+dmesg
+
 
 # seccomp-test-apparmor-profile
+sudo dmesg --clear
 sudo apparmor_parser -r -W ./seccomp-test-apparmor-profile
 docker stop apparmortest && docker rm apparmortest
 docker run -it -d -p 8080:80 --security-opt apparmor=seccomp-test-apparmor-profile --name apparmortest seccomp-test
-cat /var/log/syslog | grep audit     
+dmesg
+```
+
+Checking capabilities
+https://github.com/genuinetools/amicontained/
+https://hub.docker.com/r/nodyd/bsidesmuc2020
+```sh
+docker run --rm -it r.j3ss.co/amicontained -d bash
+
 ```
 
 
