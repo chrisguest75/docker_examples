@@ -97,16 +97,21 @@ cat /var/log/syslog | grep audit
 
 ## Apparmor 
 ```sh
+# build the container
+docker build --no-cache -f Dockerfile -t apparmor-test .
+
 # Running non-slim with profiles
 sudo apparmor_parser -r -W ./seccomp-test-apparmor-profile
 
-docker run -it -d -p 8080:80 --security-opt apparmor=seccomp-test-apparmor-profile --name apparmortest seccomp-test
+docker run -it -d -p 8080:80 --security-opt apparmor=seccomp-test-apparmor-profile --name apparmortest apparmor-test
 
 docker logs apparmortest
 
 open http://localhost:8080/
 
 docker stop apparmortest && docker rm apparmortest
+
+# remove profile
 sudo apparmor_parser -R ./seccomp-test-apparmor-profile
 
 ```
@@ -124,7 +129,7 @@ cat /var/log/syslog | grep audit
 
 # look at journalctl audit logs
 sudo journalctl _TRANSPORT=audit
-
+sudo journalctl _TRANSPORT=audit --since today --no-pager
 
  /tmp/*   - all files directly in /tmp
  /tmp/*/  - all directories directly in /tmp
@@ -136,18 +141,21 @@ You can use a test & edit loop like this.
 ```sh
 # docker-default
 sudo dmesg --clear
-sudo apparmor_parser -r -W ./seccomp-test-apparmor-profile
 docker stop apparmortest && docker rm apparmortest
-docker run -it -d -p 8080:80 --security-opt apparmor=docker-default --name apparmortest seccomp-test
+docker run -it -d -p 8080:80 --security-opt apparmor=docker-default --name apparmortest apparmor-test
 dmesg
 
+open http://localhost:8080/
 
 # seccomp-test-apparmor-profile
 sudo dmesg --clear
 sudo apparmor_parser -r -W ./seccomp-test-apparmor-profile
 docker stop apparmortest && docker rm apparmortest
-docker run -it -d -p 8080:80 --security-opt apparmor=seccomp-test-apparmor-profile --name apparmortest seccomp-test
+docker run -it -d -p 8080:80 --security-opt apparmor=seccomp-test-apparmor-profile --name apparmortest apparmor-test
 dmesg
+
+open http://localhost:8080/
+
 ```
 
 Checking capabilities
@@ -186,3 +194,8 @@ https://blog.jessfraz.com/post/how-to-use-new-docker-seccomp-profiles/
 https://doc.opensuse.org/documentation/leap/security/html/book-security/cha-apparmor-commandline.html
 
 https://github.com/moby/moby/blob/master/contrib/apparmor/template.go
+
+https://danwalsh.livejournal.com/80232.html
+
+
+https://stackoverflow.com/questions/43467670/which-capabilities-can-i-drop-in-a-docker-nginx-container
