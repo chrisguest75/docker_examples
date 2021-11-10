@@ -1,6 +1,9 @@
 # README
 Demonstrate seccomp and apparmor and how to use them.
 
+TODO:
+* The container doesn't seem to be listening to signals so you have to remove the profile to kill it. 
+
 Based on [../52_dockerslim/README.md](../52_dockerslim/README.md_)  
 ## Prereqs
 ```sh
@@ -135,6 +138,11 @@ sudo journalctl _TRANSPORT=audit --since today --no-pager
  /tmp/*/  - all directories directly in /tmp
  /tmp/**  - all files and directories underneath /tmp
  /tmp/**/ - all directories underneath /tmp
+
+sudo aa-status
+
+# if the docker container cannot be deleted you can remove the troublesome profiles
+sudo aa-remove-unknown   
 ```
 
 You can use a test & edit loop like this. 
@@ -167,10 +175,6 @@ docker run --rm -it r.j3ss.co/amicontained -d bash
 
 ```
 
-
-
-
-
 # Resources 
 ## Seccomp
 * Docker seccomp docs [here](https://docs.docker.com/engine/security/seccomp/)  
@@ -200,3 +204,9 @@ https://danwalsh.livejournal.com/80232.html
 
 
 https://stackoverflow.com/questions/43467670/which-capabilities-can-i-drop-in-a-docker-nginx-container
+
+https://blog.strandboge.com/2014/06/06/application-isolation-with-apparmor-part-iv/
+
+https://presentations.nordisch.org/apparmor/#/
+
+https://nordisch.org/posts/nicer-apparmor-profile-names/

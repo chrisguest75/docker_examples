@@ -18,7 +18,7 @@ profile seccomp-test-apparmor-profile flags=(attach_disconnected,mediate_deleted
   /run/nginx.pid rw,
   /var/run/nginx.pid rw,
   /var/log/nginx/access.log w,
-
+  /var/log/nginx/error.log w,
 
   /dev/pts/[0-9]* rw,
   /sys/devices/system/cpu/online r,
