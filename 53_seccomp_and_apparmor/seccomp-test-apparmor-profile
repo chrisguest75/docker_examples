@@ -14,7 +14,11 @@ profile seccomp-test-apparmor-profile flags=(attach_disconnected,mediate_deleted
   /proc/[0-9]*/fd/[0-9]* w,
 
   /usr/sbin/nginx rix,
-  /run/nginx.pid w,
+  /var/run/* r,
+  /run/nginx.pid rw,
+  /var/run/nginx.pid rw,
+  /var/log/nginx/access.log w,
+
 
   /dev/pts/[0-9]* rw,
   /sys/devices/system/cpu/online r,
@@ -77,5 +81,4 @@ profile seccomp-test-apparmor-profile flags=(attach_disconnected,mediate_deleted
   /usr/share/zoneinfo/posix/UTC r,
   /usr/share/zoneinfo/posix/Universal r,
   /usr/share/zoneinfo/posix/Zulu r,
-  /var/run r,
 }

@@ -144,6 +144,7 @@ sudo dmesg --clear
 docker stop apparmortest && docker rm apparmortest
 docker run -it -d -p 8080:80 --security-opt apparmor=docker-default --name apparmortest apparmor-test
 dmesg
+docker logs apparmortest
 
 open http://localhost:8080/
 
@@ -153,9 +154,9 @@ sudo apparmor_parser -r -W ./seccomp-test-apparmor-profile
 docker stop apparmortest && docker rm apparmortest
 docker run -it -d -p 8080:80 --security-opt apparmor=seccomp-test-apparmor-profile --name apparmortest apparmor-test
 dmesg
+docker logs apparmortest
 
 open http://localhost:8080/
-
 ```
 
 Checking capabilities
