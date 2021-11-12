@@ -1,0 +1,11 @@
+FROM nginx:1.21.3 as PRODUCTION
+LABEL dockerfile.baseimage="nginx:1.21.3" dockerfile.description="nginx-test" dockerfile.stage="PRODUCTION"
+
+ENV PORT=80
+WORKDIR /work
+COPY bootstrap.sh /work/bootstrap.sh
+
+WORKDIR /usr/share/nginx/html
+COPY index.html ./
+
+CMD ["/bin/sh", "-c", "/work/bootstrap.sh"]
