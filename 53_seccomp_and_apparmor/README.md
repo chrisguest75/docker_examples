@@ -4,7 +4,9 @@ Demonstrate seccomp and apparmor and how to use them.
 TODO:
 * The container doesn't seem to be listening to signals so you have to remove the profile to kill it. 
 
-Profiles were based on [../52_dockerslim/README.md](../52_dockerslim/README.md_)  
+Profiles were based on [../52_dockerslim/README.md](../52_dockerslim/README.md)  
+
+There is another apparmour example [../25_apparmour/README.md](../25_apparmour/README.md)  
 
 ## Prereqs
 
