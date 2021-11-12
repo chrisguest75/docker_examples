@@ -209,6 +209,10 @@ Steps [README.md](./52_dockerslim/README.md)
 Demonstrate seccomp and apparmor and how to use them.    
 Steps [README.md](./53_seccomp_and_apparmor/README.md)  
 
+## Example 54 - semgrep
+Demonstrate semgrep on dockerfile and other standard container resources  
+Steps [README.md](./54_semgrep/README.md)  
+
 ## TODO
 1. skopeo
 1. botb - break out the box image https://github.com/brompwnie/botb

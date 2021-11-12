@@ -1,5 +1,5 @@
 # README
-Demonstrate semgrep on dockerfile 
+Demonstrate semgrep on dockerfile and other standard container resources
 
 ## Prereqs
 
