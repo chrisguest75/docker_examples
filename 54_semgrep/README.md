@@ -53,7 +53,8 @@ semgrep --config="r/generic"
 
 # Resources 
 * Semgrep website [here](https://semgrep.dev/)  
-* Semgrep rules repository [here](https://github.com/returntocorp/semgrep-rules)
+* Semgrep rules repository [here](https://github.com/returntocorp/semgrep-rules)  
+* Semgrep registry [here](https://semgrep.dev/r)  
 * CLI usage [here](https://semgrep.dev/docs/cli-usage/)  
 
 
