@@ -1,16 +1,20 @@
-# Example 5 - Root user 
-Demonstrate root user and privilege inside the container. 
+# Example 5 - Root user
+
+Demonstrate root user and privilege inside the container.  
 
 TODO:
+
 * try and nsenter into the host
 * try and list all the host processes from inside the container.
 
 Refer to [../13_users_and_permissions/README.md](../13_users_and_permissions/README.md) for more examples.  
 
 ## Script to follow
-Demonstrate internal users and privilege 
+
+Demonstrate internal users and privilege  
 
 ### Build the image (root and user)
+
 ```sh
 # build root
 docker build --no-cache -t roottest -f root.Dockerfile .
@@ -19,6 +23,7 @@ docker build --no-cache -t usertest -f user.Dockerfile .
 ```
 
 ### Run as privileged (root)
+
 ```sh
 # roottest
 docker run -it --rm --privileged --entrypoint "/bin/bash" --name roottest roottest
@@ -35,6 +40,7 @@ docker inspect $(docker ps --filter name=roottest -q)
 ```
 
 ### Run as privileged (user)
+
 ```sh
 # usertest
 docker run -it --rm --privileged --entrypoint "/bin/bash" --name usertest usertest
@@ -52,6 +58,7 @@ docker inspect $(docker ps --filter name=usertest -q)
 ```
 
 ### Run as non-privileged and inspect (root)
+
 ```sh
 # roottest
 docker run -it --rm --entrypoint "/bin/bash" --name roottest roottest
@@ -85,6 +92,7 @@ docker inspect $(docker ps --filter name=roottest -q)
     "/proc/sysrq-trigger"
 ]
 ```
+
 ### Run as non-privileged and inspect (myuser)
 
 ```sh
@@ -102,7 +110,9 @@ docker inspect $(docker ps --filter name=usertest -q)
 ```
 
 ## Modify another container using sidecar rootuser
+
 Start an nginx container
+
 ```sh
 # start nginx
 docker run --rm --name mynginx -p 8080:80 -d nginx 
@@ -138,15 +148,15 @@ docker run -it --rm --privileged --entrypoint "/bin/bash" roottest
 # try and list all the containers from inside.
 ```
 
-
-
 ## Get onto the docker desktop alpine host
+
 ```sh
 # nsenter into the host docker alpine 
 docker run -it --privileged --pid=host debian nsenter -t 1 -m -u -n -i sh
 ```
 
-Changing and reloading config
+Changing and reloading config  
+
 ```sh
 # We should also be able to change config and reload 
 docker exec -it $(docker ps --filter name=mynginx -q) nginx -s reload  
@@ -154,6 +164,7 @@ docker stop mynginx
 ```
 
 ## Escape the container
+
 This will only work on Linux.  It doesn't work on Docker for Desktop.
 
 **TODO** Can I use this to get access to another container filesystem without being in same namespace?  
