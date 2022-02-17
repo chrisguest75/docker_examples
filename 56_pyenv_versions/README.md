@@ -27,14 +27,10 @@ source ./.venv/bin/activate
 docker build --no-cache -t pyenvpy .
 
 # run
-docker run -d --name pyenvpy --rm pyenvpy   
+docker run -it --name pyenvpy --rm pyenvpy   
 
 # debug
 docker run -it --rm --name pyenvpy --entrypoint "/bin/bash" pyenvpy
-
-docker run --rm -d --name pyenvpy --entrypoint "/bin/bash" --rm pyenvpy -c 'sleep 10000'
-docker exec -u root -it pyenvpy /bin/bash   
-docker stop pyenvpy   
 ```
 
 ## Resources 

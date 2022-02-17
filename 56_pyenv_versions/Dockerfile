@@ -10,16 +10,14 @@ RUN apt-get update && apt-get install -y bash curl git nano locales apt-transpor
 
 RUN locale-gen en_US.UTF-8  
 
-# libffi-dev liblzma-dev tk-dev 
-# RUN apt-get install -y mecab-ipadic-utf8 
-
 # pyenv
-ARG USERID=1000
-ARG GROUPID=1000
-RUN addgroup --system --gid $GROUPID appuser
-RUN adduser --system --uid $USERID --gid $GROUPID appuser
+# ARG USERID=1000
+# ARG GROUPID=1000
+# RUN addgroup --system --gid $GROUPID appuser
+# RUN adduser --system --uid $USERID --gid $GROUPID appuser
 
-ENV HOME /home/appuser
+# ENV HOME /home/appuser
+ENV HOME /home/root
 WORKDIR $HOME
 RUN git clone --depth=1 https://github.com/pyenv/pyenv.git .pyenv
 
@@ -31,19 +29,16 @@ COPY ./Pipfile.lock /workbench/Pipfile.lock
 COPY [".python-version", "/workbench/.python-version"]
 COPY ["./main.py", "/workbench/main.py"]
 
-USER appuser
+#USER appuser
 
 ENV PYENV_ROOT="$HOME/.pyenv" 
 ENV PATH="$PYENV_ROOT/bin:$PATH"
-RUN pyenv install 3.9.7
-RUN pyenv global 3.9.7
+RUN pyenv install $(cat /workbench/.python-version)
+RUN pyenv global $(cat /workbench/.python-version)
 
-RUN pip3 install pipenv
+RUN pyenv exec pip3 install pipenv
 
+RUN set -ex && pyenv exec pipenv install --deploy --system
+RUN pyenv exec pipenv install --deploy --system --dev
 
-RUN set -ex && pipenv install --deploy --system
-RUN pipenv install --deploy --system --dev
-
-
-# EXPOSE 8888
-# CMD ["python", "main.py"]
+CMD ["pyenv", "exec", "python", "main.py"]
