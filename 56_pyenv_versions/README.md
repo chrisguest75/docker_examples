@@ -22,6 +22,8 @@ source ./.venv/bin/activate
 
 ## Build
 
+You can change the python version by setting it in the `.python-version` file  
+
 ```sh
 # build
 docker build --no-cache -t pyenvpy .
@@ -33,6 +35,6 @@ docker run -it --name pyenvpy --rm pyenvpy
 docker run -it --rm --name pyenvpy --entrypoint "/bin/bash" pyenvpy
 ```
 
-## Resources 
+## Resources
 
-https://realpython.com/python-requests/
+* Python’s Requests Library (Guide) [here](https://realpython.com/python-requests/)  
