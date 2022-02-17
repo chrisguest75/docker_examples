@@ -30,6 +30,8 @@ docker build --no-cache -t pyenvpy .
 docker run -d --name pyenvpy --rm pyenvpy   
 
 # debug
+docker run -it --rm --name pyenvpy --entrypoint "/bin/bash" pyenvpy
+
 docker run --rm -d --name pyenvpy --entrypoint "/bin/bash" --rm pyenvpy -c 'sleep 10000'
 docker exec -u root -it pyenvpy /bin/bash   
 docker stop pyenvpy   
