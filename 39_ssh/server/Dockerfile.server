@@ -1,0 +1,18 @@
+FROM ubuntu:20.04
+
+RUN apt-get update && apt-get install rsyslog openssh-server nano curl lsof iproute2 nmap iputils-ping -y \ 
+        && apt-get clean \
+        && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /scratch
+COPY hold.sh .
+
+RUN mkdir -p /root/.ssh
+
+#COPY keys/id_ed25519.pub /root/.ssh/authorized_keys
+COPY keys/id_rsa.pub /root/.ssh/authorized_keys
+
+RUN chown -R root /root/.ssh/authorized_keys
+RUN chmod 644  /root/.ssh/authorized_keys
+
+CMD [ "/bin/bash", "-c", "/scratch/hold.sh" ]

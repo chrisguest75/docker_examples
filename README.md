@@ -198,6 +198,11 @@ Steps [README.md](./37_registry_proxy/README.md)
 Demonstrate how to install a custom package in Alpine.  
 Steps [README.md](./38_alpine_apk/README.md)  
 
+## Example 39 - SSH
+
+Demonstrate how to use `ssh` inside a docker container  
+Steps [README.md](./39_ssh/README.md)  
+
 ## Example 40 - SSL nginx
 
 Create a self-signed ssl nginx endpoint for a container.  
