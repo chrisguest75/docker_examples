@@ -2,7 +2,36 @@
 
 Demonstrate how to use `ssh` inside a docker container  
 
+Creates a container running `sshd` that allows access to the nginx container on the same network.  
+
 NOTE: This is root only login  
+
+## Docker Compose App
+
+```sh
+docker compose up -d 
+
+# quick test
+docker logs $(docker ps --filter name=39_ssh-internalnginx-1 -q)
+docker logs $(docker ps --filter name=39_ssh-sshserver-1 -q)
+
+ssh -vvvv -i ./server/keys/id_rsa -p 2822 root@0.0.0.0
+curl 172.16.238.64:80
+```
+
+## Cleanup
+
+```sh
+# bring it down and delete the volume
+docker compose down 
+```
+
+### Rebuild backend and run
+
+```sh
+# if changes are made to backend rerun
+docker compose  up -d --build
+```
 
 ## Debugging
 
@@ -38,32 +67,11 @@ ssh -vvvv -i ./keys/id_ed25519 -p 2822 root@0.0.0.0
 ssh -vvvv -i ./keys/id_rsa -p 2822 root@0.0.0.0
 ```
 
-## Docker Compose
-
-```sh
-docker compose up -d --build
-
-# quick test
-docker logs $(docker ps --filter name=ssh_sshserver_1 -q)
-```
-
-### Cleanup
-
-```sh
-# bring it down and delete the volume
-docker compose down --volumes
-```
-
-### Rebuild backend and run
-
-```sh
-# if changes are made to backend rerun
-docker compose up -d --build
-```
-
 ## Resources
 
 https://github.com/marcelloromani/dockerfiles/tree/main/ubuntu-ssh-server
 
 https://serverfault.com/questions/1015547/what-causes-ssh-error-kex-exchange-identification-connection-closed-by-remote
+
+https://rubysash.com/operating-system/linux/enable-ed25519-ssh-keys-auth-on-ubuntu-18-04/
 
