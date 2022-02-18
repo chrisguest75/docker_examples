@@ -1,0 +1,23 @@
+services:
+    internalnginx:
+        image: nginx:1.21.1
+        networks:
+            app_private_network:
+                ipv4_address: 172.16.238.64
+
+    sshserver:
+        build: 
+            context: .
+            dockerfile: ./Dockerfile.server
+        networks:
+            app_private_network:
+                ipv4_address: 172.16.238.3
+            host:
+                
+networks:
+    app_private_network:
+        ipam:
+        driver: default
+        config:
+            - subnet: "172.16.238.0/24"
+
