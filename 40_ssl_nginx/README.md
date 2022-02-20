@@ -1,13 +1,17 @@
 # README
+
 Create a self-signed ssl nginx endpoint for a container.  
 Host the page from Docker on `testsite.local`
 
 TODO:
+
 * test ssl - tlsv1, tlsv1.2
 * unaccept certificate
 
 ## Create Certificate Authority
-Create a Certificate Authority 
+
+Create a Certificate Authority  
+
 ```sh
 # output directory for ca key and cert
 mkdir -p ./ca    
@@ -21,7 +25,9 @@ openssl req -x509 -new -nodes -key ./ca/chrisguestCA.key -sha256 -days 365 -out 
 ```
 
 ## Create Self-Signed Certificates
-Create the self-sgned certificates
+
+Create the self-sgned certificates  
+
 ```sh
 # output directory
 mkdir -p ./certs    
@@ -37,6 +43,7 @@ openssl req -new -key ./certs/testsite.local.key -out ./certs/testsite.local.csr
 openssl x509 -req -in ./certs/testsite.local.csr -CA ./ca/chrisguestCA.pem -CAkey ./ca/chrisguestCA.key -CAcreateserial \
 -out ./certs/testsite.local.crt -days 825 -sha256 -extfile ./certs/testsite.local.ext
 ```
+
 ## Modify hosts
 
 ```sh
@@ -48,7 +55,9 @@ sudo nano /etc/hosts
 ```
 
 ## Run the site
-Build the example and host on localhost
+
+Build the example and host on localhost  
+
 ```sh
 # docker build 
 docker build -t nginx_ssl -f Dockerfile.nginx_ssl .             
@@ -68,9 +77,12 @@ curl -k https://localhost:8080
 curl -k https://testsite.local:8080     
 ```
 
-## Setup trust 
-The CA will need to be added to local CA list
-### Debian/Ubuntu 
+## Setup trust
+
+The CA will need to be added to local CA list  
+
+### Debian/Ubuntu
+
 ```sh
 #openssl x509 -outform der -in ./ca/chrisguestCA.pem -out ./ca/chrisguestCA.crt
 #sudo cp ./ca/chrisguestCA.crt /usr/local/share/ca-certificates
@@ -87,7 +99,8 @@ xdg-open https://testsite.local:8080
 curl -vvvv https://testsite.local:8080     
 ```
 
-### Debian/Ubuntu (chromium) 
+### Debian/Ubuntu (chromium)
+
 ```sh
 # debian only
 apt-get install libnss3-tools
@@ -97,6 +110,7 @@ chrome://settings/certificates
 ```
 
 ### MacOSX (keychain trust)
+
 ```sh
 # manual import (macosx manage certificates)
 open chrome://settings/certificates
@@ -108,6 +122,7 @@ Find common name and select 'get info', select always trust
 ```
 
 ## Rotate certificate
+
 ```sh
 # new certificate signing request (fill in defaults and challenge password as "challenge")
 openssl req -new -key ./certs/testsite.local.key -out ./certs/testsite.local.csr
@@ -128,7 +143,8 @@ curl -vvvv -k https://testsite.local:8080
 open https://testsite.local:8080  
 ```
 
-## Cleanup 
+## Cleanup
+
 ```sh
 # kill container
 docker stop web
@@ -140,6 +156,7 @@ sudo nano /etc/hosts
 ```
 
 ## Troubleshooting
+
 ```sh
 # Get into container
 docker exec -it web /bin/sh 
@@ -155,7 +172,8 @@ openssl x509 -in ./certs/testsite.local.crt -text
 https://github.com/drwetter/testssl.sh
 ```
 
-# Resources 
+## Resources
+
 * https://deliciousbrains.com/ssl-certificate-authority-for-local-https-development/
 * https://jamielinux.com/docs/openssl-certificate-authority/
 * https://certificatetools.com/
