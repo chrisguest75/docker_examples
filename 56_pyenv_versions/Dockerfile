@@ -21,8 +21,6 @@ ENV HOME /home/root
 WORKDIR $HOME
 RUN git clone --depth=1 https://github.com/pyenv/pyenv.git .pyenv
 
-RUN mkdir /workbench
-
 WORKDIR /workbench
 COPY ./Pipfile /workbench/Pipfile
 COPY ./Pipfile.lock /workbench/Pipfile.lock 
