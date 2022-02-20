@@ -25,8 +25,9 @@ source ./.venv/bin/activate
 You can change the python version by setting it in the `.python-version` file  
 
 ```sh
-# build
-docker build --no-cache -t pyenvpy .
+# build (add --progress=plain to debug)
+docker build --progress=plain --no-cache -t pyenvpy .
+docker build --progress=plain -t pyenvpy .
 
 # run
 docker run -it --name pyenvpy --rm pyenvpy   

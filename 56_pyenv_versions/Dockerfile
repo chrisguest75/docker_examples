@@ -24,7 +24,7 @@ RUN git clone --depth=1 https://github.com/pyenv/pyenv.git .pyenv
 WORKDIR /workbench
 COPY ./Pipfile /workbench/Pipfile
 COPY ./Pipfile.lock /workbench/Pipfile.lock 
-COPY [".python-version", "/workbench/.python-version"]
+COPY ./.python-version /workbench/.python-version
 COPY ["./main.py", "/workbench/main.py"]
 
 #USER appuser
@@ -35,7 +35,6 @@ RUN pyenv install $(cat /workbench/.python-version)
 RUN pyenv global $(cat /workbench/.python-version)
 
 RUN pyenv exec pip3 install pipenv
-
 RUN set -ex && pyenv exec pipenv install --deploy --system
 RUN pyenv exec pipenv install --deploy --system --dev
 
