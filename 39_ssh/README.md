@@ -6,6 +6,20 @@ Creates a container running `sshd` that allows access to the nginx container on 
 
 NOTE: This is root only login  
 
+## Architecture
+
+```mermaid
+graph LR
+    subgraph host
+        A(client)
+    end
+    subgraph docker
+        A(client) -->|ssh| B(sshserver)
+        B -->|curl| C(internalnginx)
+    end
+
+```
+
 ## Run example
 
 ```sh
@@ -79,3 +93,4 @@ ssh -vvvv -i ./keys/id_rsa -p 2822 root@0.0.0.0
 * marcelloromani/dockerfiles [repo](https://github.com/marcelloromani/dockerfiles/tree/main/ubuntu-ssh-server)
 * What causes SSH error: kex_exchange_identification: Connection closed by remote host? [here](https://serverfault.com/questions/1015547/what-causes-ssh-error-kex-exchange-identification-connection-closed-by-remote)
 * Enable ed25519 SSH Keys Auth on Ubuntu 18.04 [here](https://rubysash.com/operating-system/linux/enable-ed25519-ssh-keys-auth-on-ubuntu-18-04/)
+* Mermaid docs [here](https://unpkg.com/mermaid@7.0.3/dist/www/all.html#mermaid)
