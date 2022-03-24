@@ -283,6 +283,10 @@ Steps [README.md](./55_multiarch/README.md)
 Demonstrate how to get `pyenv` installing a particular version in a container  
 Steps [README.md](./56_pyenv_versions/README.md)  
 
+## Example 60 - heredocs
+
+Demonstrate how to use HEREDOC in a Dockerfile.  
+Steps [README.md](./60_heredocs/README.md)  
 
 ## TODO
 
@@ -325,7 +329,6 @@ https://www.andreafortuna.org/2019/11/26/cve-2019-14271-a-docker-cp-container-es
 1. Can I use a cgroup command inside a container?
 1. Docker users.
 1. Binding to different networks localhost vs 127.0.0.1 or 0.0.0.0
-1. Here docs and string during building images.. https://gist.github.com/abn/a16e9d799312fb492861
 1. docker info
 1. docker context
 1. docker plugins.
