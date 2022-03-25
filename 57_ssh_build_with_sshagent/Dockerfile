@@ -7,13 +7,18 @@ RUN apt-get update \
     && apt-get clean 
 
 WORKDIR /scratch
+
+# show the ssh-agent keys are available
 RUN --mount=type=ssh ssh-add -l
 RUN --mount=type=ssh ssh-add -L
 
-RUN --mount=type=ssh ssh -vvv github.com
+# add to known hosts 
+RUN mkdir -p -m 0600 ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
+RUN cat ~/.ssh/known_hosts
+
 # test connection
-RUN --mount=type=ssh ssh -T git@github.com
+RUN --mount=type=ssh ssh -vvv github.com || true
+RUN --mount=type=ssh ssh -T git@github.com || true
 
 RUN --mount=type=ssh git clone git@github.com:chrisguest75/docker_build_examples.git
 
-#RUN git clone git@github.com:chrisguest75/docker_build_examples.git

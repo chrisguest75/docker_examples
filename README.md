@@ -278,6 +278,11 @@ Steps [README.md](./54_semgrep/README.md)
 Demonstrate building and running multi-arch images  
 Steps [README.md](./55_multiarch/README.md)  
 
+## Example 57 - ssh builds using ssh-agent
+
+Demonstrate how to use an ssh mount during build.  
+Steps [README.md](./57_ssh_build_with_sshagent/README.md)  
+
 ## Example 56 - pyenv versions
 
 Demonstrate how to get `pyenv` installing a particular version in a container  
