@@ -8,6 +8,11 @@ RUN apt-get update \
 
 WORKDIR /scratch
 RUN --mount=type=ssh ssh-add -l
+RUN --mount=type=ssh ssh-add -L
+
+RUN --mount=type=ssh ssh -vvv github.com
+# test connection
+RUN --mount=type=ssh ssh -T git@github.com
 
 RUN --mount=type=ssh git clone git@github.com:chrisguest75/docker_build_examples.git
 
