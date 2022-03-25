@@ -1,10 +1,13 @@
 # README
-Demonstrates how to configure an image that can be mounted as a volume into a container. 
+
+Demonstrates how to configure an image that can be mounted as a volume into a container.  
 
 This is useful in CI pipelines where you need to share a file into a prebuilt container but don't have permissions to mount a volume.  
 
 ## Example
-Docker volume mounting using a docker volume
+
+Docker volume mounting using a docker volume  
+
 ```sh
 docker create -v /usr/share/nginx/html --name content alpine:3.4 /bin/true
 docker cp index.html content:/usr/share/nginx/html
@@ -15,6 +18,7 @@ open http://localhost:8080
 ```
 
 ## Edit and reload
+
 ```sh
 # edit index.html and copy it again. 
 docker cp index.html content:/usr/share/nginx/html
@@ -24,6 +28,7 @@ open http://localhost:8080
 ```
 
 ## Inspect
+
 ```sh
 # list volumes
 docker volume ls    
@@ -44,3 +49,4 @@ ls "/var/lib/docker/volumes/67e772ddc94278d6560894b79e9b6c070197f1a3f826510de4cc
 # kill all
 docker system prune --all 
 ```
+
