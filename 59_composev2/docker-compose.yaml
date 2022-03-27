@@ -1,0 +1,29 @@
+services:
+    nginx:
+        image: "nginx:1.20.1"
+        environment:
+            - VERSION=nginx:1.20.1
+        ports:
+            - "8080:80"
+        networks:
+            - service_bridge
+        profiles: [backend]
+
+    ubuntu:
+        build: 
+            context: .
+            dockerfile: Dockerfile.client
+        volumes:
+            - 59_composev2_container:/data/db
+            
+        networks:
+            - service_bridge
+        profiles: [frontend]
+
+volumes:
+    59_composev2_container:
+
+networks:
+    service_bridge:
+        driver: bridge
+

@@ -12,6 +12,19 @@ https://github.com/chrisguest75/sysadmin_examples/blob/master/07_coredns_tcpdump
 ## Build
 
 ```sh
+docker compose up  
+
+docker-compose --profile backend up -d --build
+
+docker compose config --profiles  
+
+# quick test
+docker logs $(docker ps --filter name=03_ffprobe-mongodb-1 -q)
+
+
+# bring it down and delete the volume
+docker-compose --profile backend down --volumes
+
 nginx with a heredoc config and a curl container dockerfile that gets built.  
 
 docker logs

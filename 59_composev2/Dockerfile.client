@@ -1,0 +1,20 @@
+# syntax=docker/dockerfile:1.4
+FROM ubuntu:20.04
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update \
+    && apt-get install -fy -qq --no-install-recommends ca-certificates curl \
+    && apt-get clean 
+
+COPY <<EOF /bin/ping.sh
+#!/usr/bin/env bash
+while true; do 
+    curl -L --connect-timeout 5 --max-time 20 --retry 5 --retry-delay 0 --retry-max-time 40 -v http://nginx
+    sleep 5;
+done
+EOF
+
+RUN chmod +x /bin/ping.sh
+
+CMD ["/bin/ping.sh"]
