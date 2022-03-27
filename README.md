@@ -324,7 +324,6 @@ https://www.andreafortuna.org/2019/11/26/cve-2019-14271-a-docker-cp-container-es
 1. onbuild
 1. Signing builds
 1. Build software using qemu and copy it in.
-1. Build something for arm and for x86 and support both inside a single container.
 1. Unpack the filesystem flattened.  Filesystem view in a single container.
 1. Start a cgroup manually using an unpacked container.
 1. Snaps??
@@ -341,4 +340,6 @@ https://www.andreafortuna.org/2019/11/26/cve-2019-14271-a-docker-cp-container-es
 1. service profiles.  `docker compose --profile name up -d`
 1. nginx letsencrypt
 1. docker manifests
+1. CRFS: Container Registry Filesystem https://github.com/google/crfs
+
 

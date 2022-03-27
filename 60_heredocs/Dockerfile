@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1.3-labs
+# syntax=docker/dockerfile:1.4
 FROM ubuntu:20.04
 
 ARG DEBIAN_FRONTEND=noninteractive
