@@ -18,6 +18,8 @@ services:
             
         networks:
             - service_bridge
+        depends_on:
+            - nginx            
         profiles: [frontend]
 
 volumes:
