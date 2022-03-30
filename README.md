@@ -4,6 +4,11 @@ A repository for showing examples of how Docker builds containers and how tools 
 
 The aim is to use examples to show how Docker behaves when building containers and to highlight incorrect assumptions about behaviour.  
 
+## Example 0 - Cheatsheet
+
+Cheatsheet style helpers for common tasks.  
+Steps [README.md](./00_cheatsheet/README.md)  
+
 ## Example 1 - Layers, Hiding and Squashing
 
 Demonstrates how layers are stored, files are hidden and can be squashed.  

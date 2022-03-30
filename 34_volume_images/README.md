@@ -27,7 +27,7 @@ docker cp index.html content:/usr/share/nginx/html
 docker cp ../ content:/code 
 
 # run the container
-docker run -d --rm --volumes-from content -p 8080:80 -it --name nginxvolumetest nginx:1.19.9 
+docker run -d --rm --volumes-from content -p 8080:80 -it --name nginxvolumetest nginx:1.21.1 
 
 # show logs 
 docker logs nginxvolumetest
@@ -48,8 +48,43 @@ docker exec -it nginxvolumetest ls /usr/share/nginx/html
 
 # shutdown container
 docker stop nginxvolumetest
+
 # shutdown volume container
 docker stop content 
+```
+
+## Use compose
+
+```sh
+# start up 
+docker compose up -d
+
+CODECONTAINER=$(docker ps -aq --format '{{.Names}}' --filter "id=$(docker compose ps code -q)")  
+TESTCOMPOSECONTAINER=$(docker ps -aq --format '{{.Names}}' --filter "id=$(docker compose ps testcompose -q)")  
+echo $CODECONTAINER
+echo $TESTCOMPOSECONTAINER
+docker cp index.html $CODECONTAINER:/usr/share/nginx/html
+docker cp ../ $CODECONTAINER:/code 
+
+
+# show logs 
+docker logs $TESTCOMPOSECONTAINER
+
+# get page
+curl http://localhost:8080
+open http://localhost:8080
+
+# show files in volume
+docker exec -it $TESTCOMPOSECONTAINER ls /usr/share/nginx/html
+docker exec -it $TESTCOMPOSECONTAINER ls -lR /code
+
+# in another shell (copy file into live volume)
+docker cp helloworld.txt $CODECONTAINER:/usr/share/nginx/html
+
+# see file is copied into live volume
+docker exec -it $TESTCOMPOSECONTAINER ls /usr/share/nginx/html
+
+docker compose down     
 ```
 
 ## Inspect
@@ -78,3 +113,4 @@ docker system prune --all
 ## Resources
 
 * docker volume create [here](https://docs.docker.com/engine/reference/commandline/volume_create/)
+* https://earthly.dev/blog/docker-volumes/#mount-a-volume-to-a-container

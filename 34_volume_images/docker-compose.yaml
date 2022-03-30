@@ -1,0 +1,18 @@
+services:
+    
+  code:
+    image: alpine:3.4
+
+    volumes:
+      - /usr/share/nginx/html
+      - /code
+
+  testcompose:
+    image: nginx:1.21.1 
+
+    ports:
+      - 8080:80
+
+    volumes_from:
+      - code:/usr/share/nginx/html
+      - code:/code
