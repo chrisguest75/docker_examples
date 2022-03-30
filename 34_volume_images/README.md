@@ -2,7 +2,7 @@
 
 Demonstrates how to configure an `image` that can be mounted as a volume into a container.  
 
-This is useful in CI pipelines where you need to share a file into a prebuilt container but don't have permissions to mount a volume.  
+This is useful in CI pipelines where you need to share a file into a prebuilt container but don't have permissions to mount a volume.  Or the docker socket has been shared in and the internal containers paths cannot be seen by the host.  
 
 TODO:
 
