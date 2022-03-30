@@ -58,14 +58,42 @@ docker stop content
 ```sh
 # start up 
 docker compose up -d
+```
 
+### Use compose commands
+
+```sh
+# copy content
+docker compose cp index.html code:/usr/share/nginx/html
+docker compose cp ../ code:/code 
+
+# show logs
+docker compose logs testcompose
+
+# get page
+curl http://localhost:8080
+open http://localhost:8080
+
+# show files in volume
+docker compose exec -it testcompose ls /usr/share/nginx/html
+docker compose exec -it testcompose ls -lR /code
+
+# in another shell (copy file into live volume)
+docker compose cp helloworld.txt code:/usr/share/nginx/html
+
+# see file is copied into live volume
+docker compose exec -it testcompose ls /usr/share/nginx/html
+```
+
+### Use docker commands
+
+```sh
 CODECONTAINER=$(docker ps -aq --format '{{.Names}}' --filter "id=$(docker compose ps code -q)")  
 TESTCOMPOSECONTAINER=$(docker ps -aq --format '{{.Names}}' --filter "id=$(docker compose ps testcompose -q)")  
 echo $CODECONTAINER
 echo $TESTCOMPOSECONTAINER
 docker cp index.html $CODECONTAINER:/usr/share/nginx/html
 docker cp ../ $CODECONTAINER:/code 
-
 
 # show logs 
 docker logs $TESTCOMPOSECONTAINER
@@ -83,7 +111,11 @@ docker cp helloworld.txt $CODECONTAINER:/usr/share/nginx/html
 
 # see file is copied into live volume
 docker exec -it $TESTCOMPOSECONTAINER ls /usr/share/nginx/html
+```
 
+### Docker down
+
+```sh
 docker compose down     
 ```
 
