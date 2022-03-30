@@ -14,7 +14,7 @@ Docker volume mounting using a docker volume
 
 ```sh
 # creates a container that can be used as a volume
-docker create -v /usr/share/nginx/html --name content alpine:3.4 /bin/true
+docker create -v /usr/share/nginx/html -v /code --name content alpine:3.4 /bin/true
 
 # not possible to exec into the container as it is not running
 docker exec -it content /bin/sh  
@@ -22,8 +22,9 @@ docker exec -it content /bin/sh
 # inspect the container
 docker inspect content              
 
-# copy a single file into the volume
+# copy a single file and directory into the volume
 docker cp index.html content:/usr/share/nginx/html
+docker cp ../ content:/code 
 
 # run the container
 docker run -d --rm --volumes-from content -p 8080:80 -it --name nginxvolumetest nginx:1.19.9 
@@ -37,30 +38,24 @@ open http://localhost:8080
 
 # show files in volume
 docker exec -it nginxvolumetest ls /usr/share/nginx/html
+docker exec -it nginxvolumetest ls -lR /code
 
 # in another shell (copy file into live volume)
 docker cp helloworld.txt content:/usr/share/nginx/html
 
+# see file is copied into live volume
 docker exec -it nginxvolumetest ls /usr/share/nginx/html
 
 # shutdown container
 docker stop nginxvolumetest
-```
-
-## Edit and reload
-
-```sh
-# edit index.html and copy it again. 
-docker cp index.html content:/usr/share/nginx/html
-docker run --rm --volumes-from content -p 8080:80 -it --name nginxvolume nginx:1.19.9 
-
-open http://localhost:8080
+# shutdown volume container
+docker stop content 
 ```
 
 ## Inspect
 
 ```sh
-# list volumes (it's listed as a volume)
+# list volumes (it's not listed as a volume)
 docker volume ls    
 
 # inspect and find mountpoint
