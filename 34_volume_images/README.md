@@ -58,6 +58,11 @@ docker stop content
 ```sh
 # start up 
 docker compose --profile all up -d code nginx
+
+# bring up code only
+docker compose --profile all up -d code  
+# NOTE: This does not seem to work (meaning you cannot bring up a container later)
+docker compose --profile all up -d code nginx
 ```
 
 ### Use compose commands

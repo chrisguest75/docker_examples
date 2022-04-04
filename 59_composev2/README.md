@@ -16,6 +16,7 @@ TODO:
 
 * Env `--env-file ./compose.env` 
 * Build `docker compose --env-file ./compose.env -f ./docker-compose-tests.yaml --profile backend build --force-rm --no-cache`
+* https://docs.docker.com/compose/extends/
 
 NOTES:
 
