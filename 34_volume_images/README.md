@@ -145,4 +145,5 @@ docker system prune --all
 ## Resources
 
 * docker volume create [here](https://docs.docker.com/engine/reference/commandline/volume_create/)
-* https://earthly.dev/blog/docker-volumes/#mount-a-volume-to-a-container
+* Mount a Volume to a Container [here](https://earthly.dev/blog/docker-volumes/#mount-a-volume-to-a-container)
+* How to Compose Projects Using Docker-Compose [here](https://www.freecodecamp.org/news/the-docker-handbook/#how-to-compose-projects-using-docker-compose)
