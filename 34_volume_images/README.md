@@ -57,7 +57,7 @@ docker stop content
 
 ```sh
 # start up 
-docker compose up -d
+docker compose --profile all up -d code nginx
 ```
 
 ### Use compose commands
@@ -67,56 +67,62 @@ docker compose up -d
 docker compose cp index.html code:/usr/share/nginx/html
 docker compose cp ../ code:/code 
 
+#docker compose --profile frontend up -d nginx
+
 # show logs
-docker compose logs testcompose
+ docker compose --profile all logs nginx  
 
 # get page
 curl http://localhost:8080
 open http://localhost:8080
 
 # show files in volume
-docker compose exec -it testcompose ls /usr/share/nginx/html
-docker compose exec -it testcompose ls -lR /code
+docker compose --profile all exec -it nginx ls /usr/share/nginx/html
+docker compose --profile all exec -it nginx ls -lR /code
 
 # in another shell (copy file into live volume)
-docker compose cp helloworld.txt code:/usr/share/nginx/html
+docker compose --profile all cp helloworld.txt code:/usr/share/nginx/html
 
 # see file is copied into live volume
-docker compose exec -it testcompose ls /usr/share/nginx/html
+docker compose --profile all exec -it nginx ls /usr/share/nginx/html
+
+
+
+
 ```
 
-### Use docker commands
+### Use docker commands against compose started containers
 
 ```sh
-CODECONTAINER=$(docker ps -aq --format '{{.Names}}' --filter "id=$(docker compose ps code -q)")  
-TESTCOMPOSECONTAINER=$(docker ps -aq --format '{{.Names}}' --filter "id=$(docker compose ps testcompose -q)")  
+CODECONTAINER=$(docker ps -aq --format '{{.Names}}' --filter "id=$(docker compose --profile all ps code -q)")  
+NGINXCONTAINER=$(docker ps -aq --format '{{.Names}}' --filter "id=$(docker compose --profile all ps nginx -q)")  
 echo $CODECONTAINER
-echo $TESTCOMPOSECONTAINER
+echo $NGINXCONTAINER
 docker cp index.html $CODECONTAINER:/usr/share/nginx/html
 docker cp ../ $CODECONTAINER:/code 
 
 # show logs 
-docker logs $TESTCOMPOSECONTAINER
+docker logs $NGINXCONTAINER
 
 # get page
 curl http://localhost:8080
 open http://localhost:8080
 
 # show files in volume
-docker exec -it $TESTCOMPOSECONTAINER ls /usr/share/nginx/html
-docker exec -it $TESTCOMPOSECONTAINER ls -lR /code
+docker exec -it $NGINXCONTAINER ls /usr/share/nginx/html
+docker exec -it $NGINXCONTAINER ls -lR /code
 
 # in another shell (copy file into live volume)
 docker cp helloworld.txt $CODECONTAINER:/usr/share/nginx/html
 
 # see file is copied into live volume
-docker exec -it $TESTCOMPOSECONTAINER ls /usr/share/nginx/html
+docker exec -it $NGINXCONTAINER ls /usr/share/nginx/html
 ```
 
 ### Docker down
 
 ```sh
-docker compose down     
+docker compose --profile all down     
 ```
 
 ## Inspect

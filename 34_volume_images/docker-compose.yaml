@@ -1,13 +1,14 @@
 services:
     
   code:
-    image: alpine:3.4
+    image: alpine:3.13
 
     volumes:
       - /usr/share/nginx/html
       - /code
+    profiles: [all, code]
 
-  testcompose:
+  nginx:
     image: nginx:1.21.1 
 
     ports:
@@ -16,3 +17,5 @@ services:
     volumes_from:
       - code:/usr/share/nginx/html
       - code:/code
+
+    profiles: [all, frontend]
