@@ -1,0 +1,44 @@
+services:
+    nginx:
+        image: "nginx:1.20.1"
+        environment:
+            - VERSION=nginx:1.20.1
+        ports:
+            - "8080:80"
+        networks:
+            - service_bridge
+        profiles: [all, backend]
+
+    ubuntu:
+        build: 
+            context: .
+            dockerfile: Dockerfile.client
+        image: 59_composev2_ubuntu
+        volumes:
+            - 59_composev2_container:/data/db
+            
+        networks:
+            - service_bridge
+        depends_on:
+            - nginx            
+        profiles: [all, frontend]
+
+    timeout:
+        build: 
+            context: .
+            dockerfile: Dockerfile.timeout
+        image: 59_composev2_timeout            
+        command: "20"
+        networks:
+            - service_bridge
+        depends_on:
+            - nginx            
+        profiles: [all, timeout]
+
+volumes:
+    59_composev2_container:
+
+networks:
+    service_bridge:
+        driver: bridge
+
