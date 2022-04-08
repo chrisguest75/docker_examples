@@ -10,7 +10,7 @@ TODO:
 
 ## Example
 
-Docker volume mounting using a docker volume  
+Docker volume mounting using a docker `volume_from`
 
 ```sh
 # creates a container that can be used as a volume
@@ -55,11 +55,13 @@ docker stop content
 
 ## Use compose
 
-```sh
-# start up 
-docker compose --profile all up -d code nginx
+Docker compose volume mounting using a docker `volume_from`  
 
-# bring up code only
+```sh
+# start up (this works)
+docker compose --profile all up -d 
+
+# bring up code only (can do this but next step doesn't work)
 docker compose --profile all up -d code  
 # NOTE: This does not seem to work (meaning you cannot bring up a container later)
 docker compose --profile all up -d code nginx
@@ -67,7 +69,12 @@ docker compose --profile all up -d code nginx
 
 ### Use compose commands
 
+Depends on step above to start services.  
+
 ```sh
+# show no page exists
+open http://localhost:8080
+
 # copy content
 docker compose cp index.html code:/usr/share/nginx/html
 docker compose cp ../ code:/code 
@@ -75,7 +82,7 @@ docker compose cp ../ code:/code
 #docker compose --profile frontend up -d nginx
 
 # show logs
- docker compose --profile all logs nginx  
+docker compose --profile all logs nginx  
 
 # get page
 curl http://localhost:8080
@@ -90,9 +97,6 @@ docker compose --profile all cp helloworld.txt code:/usr/share/nginx/html
 
 # see file is copied into live volume
 docker compose --profile all exec -it nginx ls /usr/share/nginx/html
-
-
-
 
 ```
 
@@ -125,6 +129,8 @@ docker exec -it $NGINXCONTAINER ls /usr/share/nginx/html
 ```
 
 ### Docker down
+
+Cleanup all the compose containers.  
 
 ```sh
 docker compose --profile all down     

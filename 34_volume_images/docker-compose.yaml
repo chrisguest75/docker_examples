@@ -6,6 +6,7 @@ services:
     volumes:
       - /usr/share/nginx/html
       - /code
+      
     profiles: [all, code]
 
   nginx:
@@ -13,6 +14,9 @@ services:
 
     ports:
       - 8080:80
+
+    depends_on:
+      - code
 
     volumes_from:
       - code:/usr/share/nginx/html
