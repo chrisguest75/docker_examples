@@ -119,6 +119,19 @@ docker compose logs nginx
 docker compose logs timeout
 ```
 
+## Docker Compose Helper
+
+```sh
+# check status ubuntu
+./docker-compose-helper.sh --action=check --service=ubuntu --file=./docker-compose.yaml --envfile=./compose.env
+
+# check name timeout
+./docker-compose-helper.sh --action=name --service=timeout --file=./docker-compose.yaml --envfile=./compose.env
+
+# wait for nginx
+/docker-compose-helper.sh --action=wait --service=nginx --file=./docker-compose.yaml --envfile=./compose.env
+```
+
 ## Cleanup
 
 ```sh
