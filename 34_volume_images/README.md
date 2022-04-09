@@ -4,6 +4,8 @@ Demonstrates how to configure an `image` that can be mounted as a volume into a 
 
 This is useful in CI pipelines where you need to share a file into a prebuilt container but don't have permissions to mount a volume.  Or the docker socket has been shared in and the internal containers paths cannot be seen by the host.  
 
+Other compose examples [59_composev2/README.md](59_composev2/README.md)  
+
 TODO:
 
 * Test volume container with multiple volumes.
