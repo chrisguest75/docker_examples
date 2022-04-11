@@ -355,8 +355,6 @@ https://www.andreafortuna.org/2019/11/26/cve-2019-14271-a-docker-cp-container-es
 1. docker info
 1. docker context
 1. docker plugins.
-1. docker compose v2 - https://github.com/compose-spec/compose-spec/blob/master/spec.md
-1. service profiles.  `docker compose --profile name up -d`
 1. nginx letsencrypt
 1. docker manifests
 1. CRFS: Container Registry Filesystem https://github.com/google/crfs
