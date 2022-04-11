@@ -26,6 +26,7 @@ docker run -it --mount type=tmpfs,destination=/tempdisk,tmpfs-mode=770,tmpfs-siz
 docker run -it --tmpfs /tempdisk alpine:latest /bin/sh
 ```
 
+NOTE: Use `df -h` on the host to see allocations 
 ## Resources
 
 https://fabianlee.org/2020/01/24/docker-working-with-local-volumes-and-tmpfs-mounts/
