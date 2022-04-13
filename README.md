@@ -20,10 +20,10 @@ Steps [README.md](./01_layers_hiding/README.md)
 Building a simple container with mv, rm, sh.  Probably missing libs.  
 Steps [README.md](./01b_mv_cp_rm/README.md)  
 
-## Example 2 - Kernel versions
+## Example 2 - Host and Kernel details
 
 Demonstrates how kernel versions are different for build and execution.  
-Steps [README.md](./02_kernel_versions/README.md)  
+Steps [README.md](./02_host_and_kernel/README.md)  
 
 ## Example 3 - Buildargs
 
