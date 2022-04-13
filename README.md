@@ -293,6 +293,21 @@ Steps [README.md](./57_ssh_build_with_sshagent/README.md)
 Demonstrate how to get `pyenv` installing a particular version in a container  
 Steps [README.md](./56_pyenv_versions/README.md)  
 
+## Example 57 - Using SSH during build
+
+Demonstrate how to use an ssh mount during build.  
+Steps [README.md](./57_ssh_build_with_sshagent/README.md)  
+
+## Example 58 - Secrets API key
+
+Demonstrate how to use a secrets mount during build (requires buildkit).  
+Steps [README.md](./58_secrets_apikey/README.md)  
+
+## Example 59 - Compose V2 examples
+
+Demonstrate how to use docker compose v2.  
+Steps [README.md](./59_composev2/README.md)  
+
 ## Example 60 - heredocs
 
 Demonstrate how to use HEREDOC in a Dockerfile.  
@@ -325,7 +340,6 @@ https://www.andreafortuna.org/2019/11/26/cve-2019-14271-a-docker-cp-container-es
 1. Show patching a container to fix an issue reported by GCR
 1. Cache invalidation - package managers
 1. Ordering of layers
-1. Secrets
 1. onbuild
 1. Signing builds
 1. Build software using qemu and copy it in.
@@ -346,5 +360,6 @@ https://www.andreafortuna.org/2019/11/26/cve-2019-14271-a-docker-cp-container-es
 1. nginx letsencrypt
 1. docker manifests
 1. CRFS: Container Registry Filesystem https://github.com/google/crfs
+1. docker image history
 
 
