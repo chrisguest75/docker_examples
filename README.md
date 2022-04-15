@@ -313,6 +313,11 @@ Steps [README.md](./59_composev2/README.md)
 Demonstrate how to use HEREDOC in a Dockerfile.  
 Steps [README.md](./60_heredocs/README.md)  
 
+## Example 61 - Using tmpfs
+
+Demonstrate how to use `tmpfs` with Docker.  
+Steps [README.md](./61_tmpfs/README.md) 
+
 ## TODO
 
 1. skopeo
