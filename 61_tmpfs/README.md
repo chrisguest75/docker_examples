@@ -41,9 +41,30 @@ free
 
 # in the container allocate some tmpfs space 
 /usr/bin/fallocate -l 100M /tempdisk/my.test
+ls -la /tempdisk/my.test 
 
 # on host use free again 
 free
+```
+
+## Create Container (--mount & --tmpfs) memory limits
+
+`tmpfs` also honours the configured max memory limits
+
+```sh
+# allocate and show size inside container
+docker run -it --rm --memory=100m --mount type=tmpfs,destination=/tempdisk,tmpfs-size=600m alpine:latest /bin/sh
+
+# in the container allocate some tmpfs space (it will fail) 
+/usr/bin/fallocate -l 150M /tempdisk/my.test
+```
+
+```sh
+# size seems to be max available
+docker run --rm -it --memory=100m --tmpfs /tempdisk alpine:latest /bin/sh
+
+# in the container allocate some tmpfs space (it will fail) 
+/usr/bin/fallocate -l 150M /tempdisk/my.test
 ```
 
 ## Resources
