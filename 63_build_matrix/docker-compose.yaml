@@ -1,0 +1,15 @@
+services:
+    nginx:
+        build: 
+            context: .
+            dockerfile: Dockerfile
+        ports:
+            - "8080:80"
+        networks:
+            - service_bridge
+        profiles: [all, backend]
+
+networks:
+    service_bridge:
+        driver: bridge
+
