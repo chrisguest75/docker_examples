@@ -2,10 +2,6 @@
 
 Demonstrate creating a build matrix from a single container.
 
-TODO:
-
-* Render nginx version into the page.
-
 ## Run a build matrix on a Dockerfile
 
 ```sh
@@ -16,10 +12,8 @@ do
     docker build --progress=plain --build-arg IMAGE=nginx:$NGINXVERSION --no-cache -t matrix$NGINXVERSIONSAFE .
 
     docker run -p 8080:80 --rm --name matrix$NGINXVERSIONSAFE -d matrix$NGINXVERSIONSAFE 
-    # remove this and add retry to curl
-    sleep 1       
-    curl -Is http://0.0.0.0:8080 | grep Server: 
-    #curl http://0.0.0.0:8080    
+    curl --connect-timeout 5 --max-time 20 --retry 5 --retry-delay 0 --retry-max-time 40 -Is http://0.0.0.0:8080 | grep Server: 
+
     docker stop matrix$NGINXVERSIONSAFE
 done
 ```
@@ -41,14 +35,10 @@ do
 
     # bring up profiles individually
     docker compose --profile backend up -d 
-
-    # remove this and add retry to curl
-    sleep 1       
-    curl -Is http://0.0.0.0:8080 | grep Server: 
-    #curl http://0.0.0.0:8080    
+    sleep 1
+    curl --connect-timeout 5 --max-time 20 --retry 5 --retry-delay 0 --retry-max-time 40 -I http://0.0.0.0:8080 | grep Server: 
     docker compose --profile backend down 
 done
-
 ```
 
 
