@@ -41,7 +41,4 @@ do
 done
 ```
 
-
-
-
 ## Resources
