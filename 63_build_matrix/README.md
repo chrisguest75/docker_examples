@@ -1,6 +1,6 @@
 # README
 
-Demonstrate creating a build matrix from a single container.
+Demonstrate creating a build matrix from a single container.  
 
 ## Run a build matrix on a Dockerfile
 
