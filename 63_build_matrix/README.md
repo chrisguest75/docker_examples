@@ -15,6 +15,7 @@ do
     docker build --progress=plain --build-arg IMAGE=nginx:$NGINXVERSION --no-cache -t matrix$NGINXVERSIONSAFE .
 
     docker run -p 8080:80 --rm --name matrix$NGINXVERSIONSAFE -d matrix$NGINXVERSIONSAFE 
+    sleep 1
     curl --connect-timeout 5 --max-time 20 --retry 5 --retry-delay 0 --retry-max-time 40 -Is http://0.0.0.0:8080 | grep Server: 
 
     docker stop matrix$NGINXVERSIONSAFE
