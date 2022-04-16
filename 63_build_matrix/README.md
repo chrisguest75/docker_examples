@@ -4,7 +4,10 @@ Demonstrate creating a build matrix from a single container.
 
 ## Run a build matrix on a Dockerfile
 
+Use docker to run through a list of nginx versions and build them.  
+
 ```sh
+# loop over versions of nginx
 for NGINXVERSION in 1.21.1 1.21.6 1.19.0; 
 do
     NGINXVERSIONSAFE=$(echo $NGINXVERSION | sed "s/\./_/g")  
@@ -20,13 +23,15 @@ done
 
 ## Run a build matrix using compose
 
-Docker Compose V2 is a plugin.  This can be installed on `apt` using 
-    `apt-get install -qq -y docker-compose-plugin`
+Docker Compose V2 is a plugin.  This can be installed on `apt` using `apt-get install -qq -y docker-compose-plugin`  
+
+Same as above but using `compose`  
 
 ```sh
 # show the profiles
 docker compose config --profiles  
 
+# loop over versions of nginx
 for NGINXVERSION in 1.21.1 1.21.6 1.19.0; 
 do
     NGINXVERSIONSAFE=$(echo $NGINXVERSION | sed "s/\./_/g")  
