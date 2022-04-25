@@ -364,6 +364,4 @@ https://www.andreafortuna.org/2019/11/26/cve-2019-14271-a-docker-cp-container-es
 1. docker manifests
 1. CRFS: Container Registry Filesystem https://github.com/google/crfs
 1. docker image history and using it to rebuild a container
-1. docker sbom - https://docs.docker.com/engine/sbom/
-
-
+1. init handling https://github.com/krallin/tini
