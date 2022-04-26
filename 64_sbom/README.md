@@ -9,7 +9,7 @@ Refer to [trivy example](../48_trivy/README.md) for installation.
 TODO:
 
 * Find free searchable DB for CycloneDX SBOMs
-* Build a custom deb package and find it in SBOM  
+* Build a custom deb package and find it in SBOM [here](https://github.com/chrisguest75/shell_examples/tree/master/09_deb_pkg)
 
 ## Examples
 

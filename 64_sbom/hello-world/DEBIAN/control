@@ -1,0 +1,9 @@
+Package: hello-world
+Version: 1.0
+Section: custom
+Priority: optional
+Architecture: all
+Essential: no
+Installed-Size: 1024
+Maintainer: chris.guest
+Description: Print hello-world on the screen
