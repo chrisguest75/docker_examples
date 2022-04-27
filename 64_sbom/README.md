@@ -49,9 +49,28 @@ docker sbom $(basename $(pwd))
 docker sbom --format cyclonedx-json $(basename $(pwd)) > ./out/docker/$(basename $(pwd)).json
 ```
 
+## Custom Package Scanning (docker sbom)
+
+Docker SBOM will detect custom packages.  
+
+```sh
+# build debian package in baae stage 
+docker build --no-cache --progress=plain -f Dockerfile.custompkg --target builder -t $(basename $(pwd))_custompkg .
+
+# install debian package
+docker build --progress=plain -f Dockerfile.custompkg --target production -t $(basename $(pwd))_custompkg .
+
+# check contents
+docker sbom --format cyclonedx-json $(basename $(pwd))_custompkg > ./out/docker/$(basename $(pwd))_custompkg.json
+
+# simple output from sbom showing SBOM detects go exes as well as custom packages
+docker sbom $(basename $(pwd))_custompkg | grep "hello-world\|helm"
+```
+
 ## Resources
 
 * Trivy cyclonedx [here](https://aquasecurity.github.io/trivy/v0.24.2/advanced/sbom/cyclonedx/)
 * Announcing Docker SBOM: A step towards more visibility into Docker images [here](https://www.docker.com/blog/announcing-docker-sbom-a-step-towards-more-visibility-into-docker-images/)
 * CycloneDX v1.4 JSON Reference [here](https://cyclonedx.org/docs/1.4/json/)
 * Generate the SBOM for Docker images [here](https://docs.docker.com/engine/sbom/)  
+* Docker Error - debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) [here](https://linuxamination.blogspot.com/2021/05/docker-error-debconf-cant-locate.html)

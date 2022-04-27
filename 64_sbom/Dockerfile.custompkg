@@ -1,11 +1,34 @@
-FROM ubuntu:16.04
+FROM ubuntu:22.04 as BUILDER
 
-RUN apt-get update && apt-get install bash build-essential -y \
+ARG DEBIAN_FRONTEND=noninteractive
+RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
+RUN apt-get update && apt-get install apt-utils build-essential -y \
         && apt-get clean \
         && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /packages
-COPY ./build.sh /usr/bin/build
-#CMD ["build"]
-ENTRYPOINT ["build"]
+COPY ./hello-world ./hello-world
+
+RUN mkdir -p ./out && dpkg-deb --build hello-world ./out/   
+
+RUN ls -Rla
+
+FROM ubuntu:22.04 as PRODUCTION
+
+RUN apt update && apt install -y curl gzip tar
+
+WORKDIR /scratch
+
+# install a non packaged exe
+RUN curl -o ./helm-v3.8.2-linux-amd64.tar.gz https://get.helm.sh/helm-v3.8.2-linux-amd64.tar.gz
+RUN tar -zxvf ./helm-v3.8.2-linux-amd64.tar.gz
+RUN ls -Rla 
+
+# install a built package
+COPY --from=BUILDER /packages/out/*.deb /scratch
+RUN dpkg -i /scratch/*.deb
+
+RUN which hello-world.sh
+RUN hello-world.sh
+
 
