@@ -316,7 +316,17 @@ Steps [README.md](./60_heredocs/README.md)
 ## Example 61 - Using tmpfs
 
 Demonstrate how to use `tmpfs` with Docker.  
-Steps [README.md](./61_tmpfs/README.md) 
+Steps [README.md](./61_tmpfs/README.md)  
+
+## Example 63 - Build matrix using build args
+
+Demonstrate creating a build matrix from a single container.  
+Steps [README.md](./63_build_matrix/README.md)  
+
+## Example 64 - SBOM
+
+Demonstrates SBOM generation for docker images.  
+Steps [README.md](./64_sbom/README.md)  
 
 ## TODO
 
