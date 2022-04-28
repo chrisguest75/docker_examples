@@ -361,7 +361,7 @@ https://www.andreafortuna.org/2019/11/26/cve-2019-14271-a-docker-cp-container-es
 1. Unpack the filesystem flattened.  Filesystem view in a single container.
 1. Start a cgroup manually using an unpacked container.
 1. Snaps??
-1. Showing the process tree for docker
+1. Showing the process tree for docker (linux is easier)
 1. Cron in a container.
 1. memory restrictions and how they manifest.
 1. Can I use a cgroup command inside a container?

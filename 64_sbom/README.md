@@ -8,8 +8,8 @@ Refer to [trivy example](../48_trivy/README.md) for installation.
 
 TODO:
 
-* Find free searchable DB for CycloneDX SBOMs
-* Build a custom deb package and find it in SBOM [here](https://github.com/chrisguest75/shell_examples/tree/master/09_deb_pkg)
+* Find free searchable DB for CycloneDX SBOMs - grafeas?  
+* Add a nodejs example - does it audit packages?  
 
 ## Examples
 
@@ -52,6 +52,8 @@ docker sbom --format cyclonedx-json $(basename $(pwd)) > ./out/docker/$(basename
 ## Custom Package Scanning (docker sbom)
 
 Docker SBOM will detect custom packages.  
+Builds a custom deb package and finds it in SBOM Ref:[09_deb_pkg](https://github.com/chrisguest75/shell_examples/tree/master/09_deb_pkg)  
+
 
 ```sh
 # build debian package in baae stage 
