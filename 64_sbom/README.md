@@ -6,10 +6,15 @@ NOTE: `docker sbom` is an experimental feature.
 
 Refer to [trivy example](../48_trivy/README.md) for installation.  
 
+Demonstrates:
+
+* Detection of custom debian package
+* Detection of custom go binaries
+* Detection of nodejs packages
+
 TODO:
 
 * Find free searchable DB for CycloneDX SBOMs - grafeas?  
-* Add a nodejs example - does it audit packages?  
 
 ## Examples
 
@@ -67,6 +72,29 @@ docker sbom --format cyclonedx-json $(basename $(pwd))_custompkg > ./out/docker/
 
 # simple output from sbom showing SBOM detects go exes as well as custom packages
 docker sbom $(basename $(pwd))_custompkg | grep "hello-world\|helm"
+```
+
+## NodeJs Package Scanning (docker sbom)
+
+```sh
+pushd ./ts_sbom_test
+nvm use
+npm install
+
+# run targets
+npm run start:dev
+npm run test
+npm run lint
+
+# docker build
+npm run docker:build
+npm run docker:run
+
+# create the sbom (cyclonedx)
+docker sbom --format cyclonedx-json ts_sbom_test > ./out/docker/ts_sbom_test.json
+
+# simple sbom
+docker sbom ts_sbom_test
 ```
 
 ## Resources
