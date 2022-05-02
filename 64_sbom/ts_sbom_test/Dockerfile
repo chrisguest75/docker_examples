@@ -13,12 +13,15 @@ RUN npm run lint
 RUN npm run test:coverage
 RUN npm run build
 RUN npm audit
+RUN npm ci --only=production && npm cache clean --force
 
-FROM node:16.13.2-bullseye AS PRODUCTION
-LABEL dockerfile.baseimage="node:16.13.2-bullseye" dockerfile.description="ts_sbom_test" dockerfile.stage="PRODUCTION"
+FROM gcr.io/distroless/nodejs:16 AS PRODUCTION
+LABEL dockerfile.baseimage="gcr.io/distroless/nodejs:16" dockerfile.description="ts_sbom_test" dockerfile.stage="PRODUCTION"
+
+ENV NODE_ENV production
 
 WORKDIR /work
 COPY --from=BUILDER /scratch/node_modules ./node_modules
 COPY --from=BUILDER /scratch/build ./
 
-CMD ["/usr/local/bin/node", "/work/src/index.js"]
+CMD ["/work/src/index.js"]
