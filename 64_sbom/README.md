@@ -14,7 +14,7 @@ Demonstrates:
 
 TODO:
 
-* Find free searchable DB for CycloneDX SBOMs - grafeas? - dependency-track  
+* How do I upload to dependency check through API.
 
 ## Examples
 
@@ -108,19 +108,21 @@ NOTES:
 * Default username:password is admin:admin
 
 ```sh
+# create the envfile
 LOCALIP=$(ip -4 addr | grep -oP '(?<=inet\s)\d+(\.\d+){3}' | grep --color=never 192.168)
 cat <<- EOF > ./compose.env
 API_BASE_URL=http://${LOCALIP}:8081
 EOF
 
-
+# bring up the dependency check service
 docker-compose --env-file ./compose.env up -d  
 
+# login
 open http://${LOCALIP}:8080/
 
+# show logs (if required)
 docker-compose logs dtrack-apiserver   
 ```
-
 
 ## Resources
 
