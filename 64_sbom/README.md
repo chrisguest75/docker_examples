@@ -15,6 +15,7 @@ Demonstrates:
 TODO:
 
 * How do I upload to dependency check through API.
+    http://192.168.x.x:8081/api/swagger.json
 
 ## Examples
 
@@ -131,6 +132,6 @@ docker-compose logs dtrack-apiserver
 * CycloneDX v1.4 JSON Reference [here](https://cyclonedx.org/docs/1.4/json/)
 * Generate the SBOM for Docker images [here](https://docs.docker.com/engine/sbom/)  
 * Docker Error - debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) [here](https://linuxamination.blogspot.com/2021/05/docker-error-debconf-cant-locate.html)
+* Continuous SBOM Analysis Platform [here](https://dependencytrack.org/)  
+* DependencyTrack/dependency-track repo [here](https://github.com/DependencyTrack/dependency-track)
 
-
-https://github.com/DependencyTrack/dependency-track
