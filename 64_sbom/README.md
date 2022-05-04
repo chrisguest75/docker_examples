@@ -14,7 +14,8 @@ Demonstrates:
 
 TODO:
 
-* Find free searchable DB for CycloneDX SBOMs - grafeas?  
+* How do I upload to dependency check through API.
+    http://192.168.x.x:8081/api/swagger.json
 
 ## Examples
 
@@ -97,6 +98,33 @@ docker sbom --format cyclonedx-json ts_sbom_test > ./out/docker/ts_sbom_test.jso
 docker sbom ts_sbom_test
 ```
 
+## Using Dependency Track
+
+Reference [here](https://docs.dependencytrack.org/)
+
+NOTES:
+
+* It requires a lot of memory
+* It takes a while to download the datasets at the start
+* Default username:password is admin:admin
+
+```sh
+# create the envfile
+LOCALIP=$(ip -4 addr | grep -oP '(?<=inet\s)\d+(\.\d+){3}' | grep --color=never 192.168)
+cat <<- EOF > ./compose.env
+API_BASE_URL=http://${LOCALIP}:8081
+EOF
+
+# bring up the dependency check service
+docker-compose --env-file ./compose.env up -d  
+
+# login
+open http://${LOCALIP}:8080/
+
+# show logs (if required)
+docker-compose logs dtrack-apiserver   
+```
+
 ## Resources
 
 * Trivy cyclonedx [here](https://aquasecurity.github.io/trivy/v0.24.2/advanced/sbom/cyclonedx/)
@@ -104,3 +132,6 @@ docker sbom ts_sbom_test
 * CycloneDX v1.4 JSON Reference [here](https://cyclonedx.org/docs/1.4/json/)
 * Generate the SBOM for Docker images [here](https://docs.docker.com/engine/sbom/)  
 * Docker Error - debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) [here](https://linuxamination.blogspot.com/2021/05/docker-error-debconf-cant-locate.html)
+* Continuous SBOM Analysis Platform [here](https://dependencytrack.org/)  
+* DependencyTrack/dependency-track repo [here](https://github.com/DependencyTrack/dependency-track)
+
