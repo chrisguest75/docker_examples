@@ -108,9 +108,15 @@ NOTES:
 * Default username:password is admin:admin
 
 ```sh
-docker-compose up -d  
+LOCALIP=$(ip -4 addr | grep -oP '(?<=inet\s)\d+(\.\d+){3}' | grep --color=never 192.168)
+cat <<- EOF > ./compose.env
+API_BASE_URL=http://${LOCALIP}:8081
+EOF
 
-open http://0.0.0.0:8080/
+
+docker-compose --env-file ./compose.env up -d  
+
+open http://${LOCALIP}:8080/
 
 docker-compose logs dtrack-apiserver   
 ```
