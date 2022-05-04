@@ -14,7 +14,7 @@ Demonstrates:
 
 TODO:
 
-* Find free searchable DB for CycloneDX SBOMs - grafeas?  
+* Find free searchable DB for CycloneDX SBOMs - grafeas? - dependency-track  
 
 ## Examples
 
@@ -97,6 +97,25 @@ docker sbom --format cyclonedx-json ts_sbom_test > ./out/docker/ts_sbom_test.jso
 docker sbom ts_sbom_test
 ```
 
+## Using Dependency Track
+
+Reference [here](https://docs.dependencytrack.org/)
+
+NOTES:
+
+* It requires a lot of memory
+* It takes a while to download the datasets at the start
+* Default username:password is admin:admin
+
+```sh
+docker-compose up -d  
+
+open http://0.0.0.0:8080/
+
+docker-compose logs dtrack-apiserver   
+```
+
+
 ## Resources
 
 * Trivy cyclonedx [here](https://aquasecurity.github.io/trivy/v0.24.2/advanced/sbom/cyclonedx/)
@@ -104,3 +123,6 @@ docker sbom ts_sbom_test
 * CycloneDX v1.4 JSON Reference [here](https://cyclonedx.org/docs/1.4/json/)
 * Generate the SBOM for Docker images [here](https://docs.docker.com/engine/sbom/)  
 * Docker Error - debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) [here](https://linuxamination.blogspot.com/2021/05/docker-error-debconf-cant-locate.html)
+
+
+https://github.com/DependencyTrack/dependency-track
