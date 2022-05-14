@@ -5,6 +5,3 @@ export function main(): number {
 }
 
 main()
-
-
-

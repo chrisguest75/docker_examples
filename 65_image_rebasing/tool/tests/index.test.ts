@@ -6,9 +6,5 @@ test('empty test', () => {
   // ACT
 
   // ASSERT
-  expect(main()).toBe(0)
+  expect(a).toBe(0)
 })
-
-
-
-

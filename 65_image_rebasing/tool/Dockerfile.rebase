@@ -4,7 +4,7 @@ FROM $IMAGE AS BUILDER
 LABEL dockerfile.baseimage="$IMAGE" dockerfile.description="tool" dockerfile.stage="BUILDER"
 
 WORKDIR /scratch
-COPY package.json package-lock.json ./
+COPY --link=true package.json package-lock.json ./
 # https://docs.npmjs.com/cli/v7/commands/npm-ci
 RUN npm ci
 
@@ -22,7 +22,7 @@ ARG DESCRIPTION="Test rebasing"
 LABEL dockerfile.baseimage="$IMAGE" dockerfile.description="" dockerfile.stage="PRODUCTION"
 
 WORKDIR /work
-COPY --from=BUILDER /scratch/node_modules ./node_modules
+COPY --link=true --from=BUILDER /scratch/node_modules ./node_modules
 COPY --from=BUILDER /scratch/build ./
 
 CMD ["/usr/local/bin/node", "/work/src/index.js"]
