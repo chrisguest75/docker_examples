@@ -2,9 +2,7 @@
 
 Demonstrate a simple reverse proxy to manage build deployments
 
-TODO:
-
-* TLS on nginx from letsencrypt
+nginx ssl example [here](https://github.com/chrisguest75/sysadmin_examples/tree/master/19_letsencrypt)  
 
 Demonstrates:
 
