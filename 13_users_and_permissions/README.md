@@ -1,17 +1,17 @@
-# Example 13 - Users and Permissions
+# 13 - Users and Permissions
 
 Demonstrates how users work within a container.  
 
 Refer to [../05_root_user/README.md](../05_root_user/README.md) for more examples.  
 
-## Script to follow
+## 🏠 Script to follow
 
 ```sh
 # build imagees
 docker build -t usertest .
 ```
 
-## Default user  
+## 👨‍💻 Default user  
 
 ```sh
 # enter container as default user
@@ -21,7 +21,7 @@ docker run --name usertest --rm -it --entrypoint /bin/bash usertest
 ./test_permissions.sh 
 ```
 
-## Root user  
+## 👨‍💻 Root user  
 
 ```sh
 # enter container as user root

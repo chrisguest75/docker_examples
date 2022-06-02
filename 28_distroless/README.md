@@ -2,11 +2,11 @@
 
 Demonstrate Distroless containers where the shell is removed.  
 
-TODO:
+📝 TODO:
 
 * debugging - `docker run -it --rm  gcr.io/distroless/nodejs --inspect=9229`
 
-## Build example
+## 🏠 Build example
 
 ```sh
 # node10
@@ -22,7 +22,7 @@ docker build --no-cache -f v16.Dockerfile -t v16_distroless .
 docker run -it --rm v16_distroless  
 ```
 
-## Build debug example
+## 🏠 Build debug example
 
 ```sh
 docker build --no-cache -f v14-debug.Dockerfile -t v14_distroless-debug .
@@ -32,7 +32,7 @@ docker run -it --rm v14_distroless-debug
 docker run -it --rm --entrypoint /busybox/sh v14_distroless-debug
 ```
 
-## Upgrade to Node12
+## 🏠 Upgrade to Node12
 
 ```sh
 docker build --no-cache -f distroless_node12.Dockerfile -t distroless-build .
@@ -49,7 +49,7 @@ docker run -v /var/run/docker.sock:/var/run/docker.sock -it --rm --entrypoint /b
 bazel run //experimental/nodejs --verbose_failures --sandbox_debug  
 ```
 
-## Docker Scan (vulnerability scanning)
+## 🔍 Docker Scan (vulnerability scanning)
 
 ```sh
 # scan v10
@@ -65,7 +65,7 @@ docker scan v16_distroless
 docker scan v14_distroless-debug  
 ```
 
-## Resources
+## 👀 Resources
 
 * Distroless repo [here](https://github.com/GoogleContainerTools/distroless)  
 * Node build tags [here](https://github.com/GoogleContainerTools/distroless/blob/main/nodejs/README.md)  

@@ -1,9 +1,11 @@
 # README
+
 Demonstrate how signals work in containers
 
-## Bash
+## 🏠 Bash
 
-### Docker Stop (SIGTERM)
+### ⚡️Docker Stop (SIGTERM)
+
 ```sh
 # build the bash container
 docker build -t signal_bash -f ./bash/Dockerfile ./bash
@@ -27,7 +29,8 @@ docker inspect -f '{{.State.ExitCode}}' $(docker ps -a --filter name=signal_bash
 docker rm $(docker ps -a --filter name=signal_bash -q) 
 ```
 
-### Docker Kill (SIGINT)
+### ⚡️ Docker Kill (SIGINT)
+
 ```sh
 # build the bash container
 docker build -t signal_bash -f ./bash/Dockerfile ./bash
@@ -52,5 +55,6 @@ docker rm $(docker ps -a --filter name=signal_bash -q)
 
 ```
 
-# Resources
+## 👀 Resources
+
 * gracefully-stopping-docker-containers blog [here](https://www.ctl.io/developers/blog/post/gracefully-stopping-docker-containers/)

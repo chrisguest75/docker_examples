@@ -1,30 +1,39 @@
 # README
+
 Demonstrates using dockle to find issues with images.  
 
 ## What is dockle?
+
 Container Image Linter for Security, Helping build the Best-Practice Docker Image
 
-Goto [Dockle](https://github.com/goodwithtech/dockle)  
+📝 TODO:
 
-## TODO  
-!. Show how to fix the issues raised
+* Show how to fix the issues raised
 
-## Installation
-Install 
+## 1️⃣ Prereqs
+
+Install `dockle`
+
 ```sh
 brew install goodwithtech/r/dockle
 ```
 
-## Test
+## 🏠 Build
+
 ```sh
 # build image
 docker build -t dockletest .
+```
 
+## 🧪 Test
+
+```sh
 # scan the local image
 dockle dockletest
 ```
 
 Example output
+
 ```log
 FATAL   - DKL-DI-0005: Clear apt-get caches
         * Use 'rm -rf /var/lib/apt/lists' after 'apt-get install' : /bin/sh -c apt-get update && apt-get install curl -y
@@ -51,5 +60,7 @@ INFO    - CIS-DI-0008: Confirm safety of setuid/setgid files
         * setuid file: usr/bin/newgrp urwxr-xr-x
         * setgid file: usr/bin/wall grwxr-xr-x
 ```
-# Resources 
+
+## 👀 Resources
+
 * Goto [Dockle](https://github.com/goodwithtech/dockle)  
