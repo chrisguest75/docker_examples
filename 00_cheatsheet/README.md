@@ -1,8 +1,10 @@
 # README
 
-Cheatsheet style helpers for common tasks.
+Cheatsheet style helpers for common tasks.  
 
 ## Quick run
+
+When you require a quick container to enter to perform some tests.  
 
 ```sh
 # quick run a container to test something.

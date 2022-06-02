@@ -1,12 +1,14 @@
 # Example 1 - Layers, Hiding and Squashing
+
 Demonstrates how layers are stored, files are hidden and can be squashed.  
 
 We create a scratch container and copy some files in layers overwriting previous layers.
 
 ## Script to follow
-Demonstrate adding a file to a scratch base.    
-Unpack the image tar and see how the file is stored in a layer. 
-Also demonstrates how the overwritten files still exist in the earlier layers. 
+
+Demonstrate adding a file to a scratch base.  
+Unpack the image tar and see how the file is stored in a layer.  
+Also demonstrates how the overwritten files still exist in the earlier layers.  
 
 ```sh
 # Build the image
@@ -16,6 +18,7 @@ docker image save -o ./$(basename $(pwd)).tar $(basename $(pwd))
 ```
 
 Now examine the layers  
+
 ```sh
 # Unpack the image
 mkdir -p ./hidingtest && tar -xvf $(basename $(pwd)).tar -C $_
@@ -24,6 +27,7 @@ ls -l ./hidingtest
 ```
 
 The directory structure should look something like this.  
+
 ```sh
 ./hidingtest
 ├── [        160]  2febfdaf2bda9c61d12f88721c1e599496e5d7688f6fea1387038118f97b1868
@@ -54,6 +58,7 @@ The directory structure should look something like this.
 ```
 
 Look at the contents  
+
 ```sh
 # extract layer tars
 find ./hidingtest/* -iname "layer.tar*" -execdir mkdir layer \;                         
@@ -63,7 +68,8 @@ find ./hidingtest/* -iname "layer.tar*" -execdir tar -xvf {} -C ./layer \;
 code ./hidingtest
 ```
 
-Clean up   
+Clean up  
+
 ```sh
 # Remove files
 rm -rf ./hidingtest
@@ -72,6 +78,7 @@ docker rmi $(basename $(pwd))
 ```
 
 ## Squashing
+
 Squashing relies on experimental features being enabled. 
 On MacOSX you can do this through the daemon preferences in the GUI 
 
@@ -85,3 +92,4 @@ mkdir ./squashtest
 tar -xvf squashtest.tar -C ./squashtest
 
 ```
+
