@@ -2,7 +2,7 @@
 
 Demonstrate some examples of using `trivy`.  
 
-NOTE: The schema version seems to have changed and this is broken now.  
+ℹ NOTE: The schema version seems to have changed and this is broken now.  
 
 For reducing number of vulnerabilities refer to:
 

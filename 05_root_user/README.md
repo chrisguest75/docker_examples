@@ -1,4 +1,4 @@
-# Example 5 - Root user
+# 05 - Root user
 
 Demonstrate root user and privilege inside the container.  
 
@@ -9,7 +9,7 @@ TODO:
 
 Refer to [../13_users_and_permissions/README.md](../13_users_and_permissions/README.md) for more examples.  
 
-## Script to follow
+## 📋 Script to follow
 
 Demonstrate internal users and privilege  
 

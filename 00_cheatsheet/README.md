@@ -14,9 +14,9 @@ docker run -it --rm --name quicktest --entrypoint "/bin/bash" ubuntu:20.04
 ## Compose
 
 ```sh
-# get the name of a container from a compose 
+# get the name of the docker container after being run through compose.    
 SERVICENAME=redis
 docker ps -aq --format '{{.Names}}' --filter "id=$(docker compose ps $SERVICENAME -q)"
 ```
 
-## Resources
+## 👀 Resources

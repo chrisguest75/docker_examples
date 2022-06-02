@@ -332,7 +332,7 @@ Steps [README.md](./63_build_matrix/README.md)
 Demonstrates SBOM generation for docker images.  
 Steps [README.md](./64_sbom/README.md)  
 
-## TODO
+## 📝 TODO
 
 1. skopeo
 1. botb - break out the box image https://github.com/brompwnie/botb

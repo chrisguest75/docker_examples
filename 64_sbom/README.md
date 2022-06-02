@@ -2,7 +2,7 @@
 
 Demonstrates SBOM generation for docker images.  
 
-NOTE: `docker sbom` is an experimental feature.  
+ℹ NOTE: `docker sbom` is an experimental feature.  
 
 Refer to [trivy example](../48_trivy/README.md) for installation.  
 
@@ -12,12 +12,11 @@ Demonstrates:
 * Detection of custom go binaries
 * Detection of nodejs packages
 
-TODO:
+📝 TODO:
 
-* How do I upload to dependency check through API.
-    http://192.168.x.x:8081/api/swagger.json
+* How do I upload to dependency check through API. http://192.168.x.x:8081/api/swagger.json
 
-## Examples
+## SBOM Example
 
 ```sh
 # simple output from sbom
@@ -60,7 +59,6 @@ docker sbom --format cyclonedx-json $(basename $(pwd)) > ./out/docker/$(basename
 Docker SBOM will detect custom packages.  
 Builds a custom deb package and finds it in SBOM Ref:[09_deb_pkg](https://github.com/chrisguest75/shell_examples/tree/master/09_deb_pkg)  
 
-
 ```sh
 # build debian package in baae stage 
 docker build --no-cache --progress=plain -f Dockerfile.custompkg --target builder -t $(basename $(pwd))_custompkg .
@@ -100,9 +98,9 @@ docker sbom ts_sbom_test
 
 ## Using Dependency Track
 
-Reference [here](https://docs.dependencytrack.org/)
+Dependency Track docs are [here](https://docs.dependencytrack.org/)
 
-NOTES:
+ℹ NOTES:
 
 * It requires a lot of memory
 * It takes a while to download the datasets at the start
@@ -125,7 +123,7 @@ open http://${LOCALIP}:8080/
 docker-compose logs dtrack-apiserver   
 ```
 
-## Resources
+## 👀 Resources
 
 * Trivy cyclonedx [here](https://aquasecurity.github.io/trivy/v0.24.2/advanced/sbom/cyclonedx/)
 * Announcing Docker SBOM: A step towards more visibility into Docker images [here](https://www.docker.com/blog/announcing-docker-sbom-a-step-towards-more-visibility-into-docker-images/)

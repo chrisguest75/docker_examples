@@ -1,12 +1,15 @@
 # README
+
 Demonstrates timing differences with layers building and running
 
 Build some image with ten layers.  Then extend to 50 layers to see if timing is linear.
 
-NOTE: So far it doesn't seem that much slower to have lots of layers during execution. 
+ℹ NOTE: So far it doesn't seem that much slower to have lots of layers during execution. 
 
 ## Test building layers
+
 ### Test Functions
+
 ```sh
 function build_normal() {
     docker build --no-cache -f $1.Dockerfile -t $1 .
@@ -17,6 +20,7 @@ function build_buildkit() {
 ```
 
 ### Normal builds (10 layers)
+
 ```sh
 # Use normal docker build
 . ./time-it.sh build_normal 10 10layers  
@@ -27,6 +31,7 @@ SUM:101.992 COUNT:10 AVG:10.1992 MEDIAN:10.3247 MIN:9.4263720512 MAX:10.76016616
 ```
 
 ### Use buildkit (10 layers)
+
 ```sh
 . ./time-it.sh build_buildkit 10 10layers  
 
@@ -36,6 +41,7 @@ SUM:39.9735 COUNT:10 AVG:3.99735 MEDIAN:3.90452 MIN:3.6023778915 MAX:4.842616081
 ```
 
 ### Normal builds (50 layers)
+
 ```sh
 # Use normal docker build
 . ./time-it.sh build_normal 3 50layers  
@@ -45,6 +51,7 @@ SUM:104.369 COUNT:3 AVG:34.7898 MEDIAN:32.6690368653 MIN:32.0666589736 MAX:39.63
 ```
 
 ### Use buildkit (50 layers)
+
 ```sh
 . ./time-it.sh build_buildkit 3 50layers  
 
@@ -52,8 +59,8 @@ SUM:104.369 COUNT:3 AVG:34.7898 MEDIAN:32.6690368653 MIN:32.0666589736 MAX:39.63
 SUM:55.5448 COUNT:3 AVG:18.5149 MEDIAN:18.7924640178 MIN:17.9259240627 MAX:18.8263990879
 ```
 
+## Many layers and finding files
 
-## Many layers and finding files 
 Attempt to work out if using lots of layers slows down file access.
 
 ```sh

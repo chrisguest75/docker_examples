@@ -2,9 +2,9 @@
 
 Demonstrate how to use `tmpfs` with Docker.  
 
-`tmpfs` is a ramdisk that only works on Docker linux.     
+`tmpfs` is a ramdisk that only works on Docker linux.  
 
-## Create Container (--mount)
+## 🏠 Create Container (--mount)
 
 ```sh
 # allocate and show size inside container
@@ -24,7 +24,7 @@ docker run -it --rm --mount type=tmpfs,destination=/tempdisk,tmpfs-mode=770,tmpf
 df -h
 ```
 
-## Create Container (--tmpfs)
+## 🏠 Create Container (--tmpfs)
 
 Mount using `--tmpfs`
 
@@ -47,7 +47,7 @@ ls -la /tempdisk/my.test
 free
 ```
 
-## Create Container (--mount & --tmpfs) memory limits
+## 🏠 Create Container (--mount & --tmpfs) memory limits
 
 `tmpfs` also honours the configured max memory limits
 
@@ -67,7 +67,7 @@ docker run --rm -it --memory=100m --tmpfs /tempdisk alpine:latest /bin/sh
 /usr/bin/fallocate -l 150M /tempdisk/my.test
 ```
 
-## Resources
+## 👀 Resources
 
 * Docker: Working with local volumes and tmpfs mounts [here](https://fabianlee.org/2020/01/24/docker-working-with-local-volumes-and-tmpfs-mounts/)
 * Use tmpfs mounts [here](https://docs.docker.com/storage/tmpfs/)

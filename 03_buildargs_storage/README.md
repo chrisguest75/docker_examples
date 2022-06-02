@@ -1,10 +1,10 @@
-# Example 3 - Buildargs
+# 03 - Buildargs
 
 Demonstrate how buildargs are stored in the image.  Meaning anyone with access to the image will have access to the credentials.  With an example of new buildkit build time volume mounts to workaround this.  
 
 Other examples to look at [58_secrets_apikey/README.md](58_secrets_apikey/README.md)  
 
-## Script to follow
+## 📋 Script to follow
 
 Build args are not part of the run time environment
 
@@ -16,7 +16,7 @@ docker build --progress=plain --no-cache --build-arg mygithubcreds=creds -t $(ba
 docker run --rm $(basename $(pwd))
 ```
 
-## Analyse
+## 🤔 Analyse
 
 We can see the secret in the history
 
@@ -24,6 +24,8 @@ We can see the secret in the history
 # You will see the creds in the image history
 docker history --no-trunc $(basename $(pwd)) | grep creds   
 ```
+
+> Output
 
 ```log
 48137c61225e        5 minutes ago       |1 mygithubcreds=creds /bin/sh -c echo ${myg…   0B                  
@@ -53,12 +55,13 @@ Find the "mygithubcreds" in the layer json files
 code ./buildargstest
 ```
 
-## Clean up
+## 🧼 Clean up
 
 ```sh
 # Remove files
 rm -rf ./buildargstest
 rm $(basename $(pwd)).tar
+# remove image
 docker rmi $(basename $(pwd))
 ```
 
@@ -83,6 +86,6 @@ The build output from buildkit should contain the exported creds
 
 If you repeat the analysis and cleanup sections above you'll see the secret is not contained in the metadata.  
 
-## Resources
+## 👀 Resources
 
 * Automatic platform ARGs in the global scope [here](https://docs.docker.com/engine/reference/builder/#automatic-platform-args-in-the-global-scope)

@@ -83,5 +83,4 @@ sudo sysdig container.id=$(docker ps -aqf "name=oom")
 docker run -d -v $(pwd):/captures -p8080:3000 sysdig/sysdig-inspect:latest
 ```
 
-
-## Resources
+## 👀 Resources

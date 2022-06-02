@@ -4,7 +4,7 @@ Demonstrate how to use `ssh` inside a docker container
 
 Creates a container running `sshd` that allows access to the nginx container on the same network.  
 
-NOTE: This is root only login  
+ℹ NOTE: This is root only login  
 
 ## Architecture
 
@@ -22,6 +22,8 @@ graph LR
 
 ## Run example
 
+The `nginx` container is not available on the network. We use the `ssh` server to allow access.  
+
 ```sh
 # create keys
 cd ./server
@@ -30,6 +32,8 @@ ssh-keygen -o -a 100 -t ed25519 -f ./keys/id_ed25519
 ssh-keygen -o -a 100 -t rsa -f ./keys/id_rsa 
 ```
 
+Start the containers.
+
 ```sh
 # start server
 docker compose up -d 
@@ -37,7 +41,11 @@ docker compose up -d
 # quick test
 docker logs $(docker ps --filter name=39_ssh-internalnginx-1 -q)
 docker logs $(docker ps --filter name=39_ssh-sshserver-1 -q)
+```
 
+SSH to get access to `nginx`.  
+
+```sh
 # ssh onto server 
 ssh -vvvv -i ./server/keys/id_rsa -p 2822 root@0.0.0.0
 # curl against the nginx container
@@ -49,13 +57,6 @@ curl 172.16.238.64:80
 ```sh
 # bring it down and delete the volume
 docker compose down 
-```
-
-### Rebuild backend and run
-
-```sh
-# if changes are made to backend rerun
-docker compose up -d --build
 ```
 
 ## Debugging and troubleshooting
@@ -88,7 +89,18 @@ ssh -vvvv -i ./keys/id_ed25519 -p 2822 root@0.0.0.0
 ssh -vvvv -i ./keys/id_rsa -p 2822 root@0.0.0.0
 ```
 
-## Resources
+### Rebuild backend and run
+
+If you're making changes you can get compose to rebuild.  
+
+ℹ NOTE: You cannot rebuild a disable the cache.  
+
+```sh
+# if changes are made to backend rerun
+docker compose up -d --build
+```
+
+## 👀 Resources
 
 * marcelloromani/dockerfiles [repo](https://github.com/marcelloromani/dockerfiles/tree/main/ubuntu-ssh-server)
 * What causes SSH error: kex_exchange_identification: Connection closed by remote host? [here](https://serverfault.com/questions/1015547/what-causes-ssh-error-kex-exchange-identification-connection-closed-by-remote)

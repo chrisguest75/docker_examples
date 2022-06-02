@@ -1,10 +1,10 @@
-# Example 1 - Layers, Hiding and Squashing
+# 01 Layers, Hiding and Squashing
 
 Demonstrates how layers are stored, files are hidden and can be squashed.  
 
 We create a scratch container and copy some files in layers overwriting previous layers.
 
-## Script to follow
+## 📋 Script to follow
 
 Demonstrate adding a file to a scratch base.  
 Unpack the image tar and see how the file is stored in a layer.  
@@ -79,17 +79,19 @@ docker rmi $(basename $(pwd))
 
 ## Squashing
 
-Squashing relies on experimental features being enabled. 
-On MacOSX you can do this through the daemon preferences in the GUI 
+Squashing relies on experimental features being enabled.  
+On MacOSX you can do this through the daemon preferences in the GUI  
 
-NOTE: Squashing provides no layer caching benefits.
+ℹ NOTE: Squashing provides no layer caching benefits.
 
 ```sh
-docker build --squash -t squashtest .      
+# build the squashed container
+docker build --squash -t squashtest .
+# save it as an image      
 docker image save -o ./squashtest.tar squashtest 
 
+# extract to a folder
 mkdir ./squashtest 
 tar -xvf squashtest.tar -C ./squashtest
-
 ```
 
