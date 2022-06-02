@@ -1,7 +1,9 @@
 # README
+
 Demonstrate different ways to find distro versions inside a container
 
-# Ubuntu
+## Ubuntu
+
 ```sh
 # oci image labels
 docker pull ubuntu:20.04  
@@ -23,8 +25,8 @@ apt update
 apt list --upgradable
 ```
 
+## Alpine
 
-# Alpine
 ```sh
 # oci image labels
 docker pull alpine:3.14.0  
@@ -45,7 +47,8 @@ apk list --installed
 apk list -u
 ```
 
-# NixOS
+## NixOS
+
 ```sh
 # oci image labels
 docker pull nixos/nix:2.3.12
@@ -66,7 +69,8 @@ apk list --installed
 apk list -u
 ```
 
-# Debian
+## Debian
+
 ```sh
 # oci image labels
 docker pull debian:bullseye
@@ -88,7 +92,8 @@ apt update
 apt list --upgradable
 ```
 
-# Fedora
+## Fedora
+
 ```sh
 # oci image labels
 docker pull fedora:34

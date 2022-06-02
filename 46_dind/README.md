@@ -1,19 +1,24 @@
-# README.md
-Demonstrate how to use Docker in Docker
+# README
 
-TODO:
+Demonstrate how to use Docker in Docker.  
+
+📝 TODO:
+
 * Work out if I can use CAP_SYS rather than privilege
 --cap-add=SYS_ADMIN /dev and /sys RO or RW
 * Mapping ports https://github.com/alekslitvinenk/dind
 
 ## Start container
+
 It requires privilege to start Docker in Docker
+
 ```sh
 # on the host create a dind  container
 docker run -it --rm --privileged --entrypoint /bin/sh docker:20.10.7-dind
 ```
 
 ## Start daemon
+
 ```sh
 # inside the container start docker daemon
 docker-entrypoint.sh dockerd&
@@ -26,6 +31,7 @@ docker info
 ```
 
 ## Run DinD image
+
 ```sh
 # this will be a new docker process with no processes
 docker ps 
@@ -46,7 +52,8 @@ docker run --name testdind -it --entrypoint /bin/bash ubuntu:20.04
 docker ps -a
 ```
 
-# Resources
+# 👀 Resources
+
 * Repo for DinD [here](https://github.com/docker-library/docker)  
 * https://github.com/alekslitvinenk/dind
 * https://github.com/cruizba/ubuntu-dind

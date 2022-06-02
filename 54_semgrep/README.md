@@ -1,7 +1,8 @@
 # README
+
 Demonstrate semgrep on dockerfile and other standard container resources
 
-## Prereqs
+## 1️⃣ Prereqs
 
 ```sh
 # install semgrep 
@@ -11,8 +12,12 @@ brew install semgrep
 semgrep --version 
 ```
 
-## Scan dockerfile
-Scan docker file
+## 🔍 Scanning
+
+Use `semgrep` to scan files.  
+
+### Scan dockerfile
+
 ```sh
 # seems this ruleset is not up-to-date
 semgrep -vvv --config "p/dockerfile" --error
@@ -20,13 +25,14 @@ semgrep -vvv --config "p/dockerfile" --error
 semgrep -vvv --config="r/generic.dockerfile" --error
 ```
 
-## Scan bash
+### Scan Bash
+
 ```sh
 semgrep -vvv --config="r/bash"
 ```
 
-## Scan nginx.conf
-Scan nginx.conf
+### Scan nginx.conf
+
 ```sh
 docker build --no-cache -f Dockerfile.nginx_root -t nginx_test .
 docker run --rm -it -d -p 8080:80 --name nginx_test nginx_test
@@ -37,24 +43,26 @@ semgrep --config "p/nginx"
 semgrep -vvv --config "r/generic.nginx"        
 ```
 
-## Scan HTML
-Scan html file
+### Scan HTML
+
 ```sh
 semgrep -vvv --config="r/html"
 ```
 
-## Other rules
-There are other rules that can be applied. 
+### Other rules
+
+There are other rules that can be applied.  
+
 ```sh
 cd ../
 semgrep -vvv --config "p/github-actions"      
 semgrep --config="r/generic"
 ```
 
-# Resources 
+## 👀 Resources
+
 * Semgrep website [here](https://semgrep.dev/)  
 * Semgrep rules repository [here](https://github.com/returntocorp/semgrep-rules)  
 * Semgrep registry [here](https://semgrep.dev/r)  
 * CLI usage [here](https://semgrep.dev/docs/cli-usage/)  
-
 

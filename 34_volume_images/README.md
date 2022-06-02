@@ -6,11 +6,11 @@ This is useful in CI pipelines where you need to share a file into a prebuilt co
 
 Other compose examples [59_composev2/README.md](59_composev2/README.md)  
 
-TODO:
+📝 TODO:
 
 * Test volume container with multiple volumes.
 
-## Example
+## 🏠 Build
 
 Docker volume mounting using a docker `volume_from`
 
@@ -138,7 +138,7 @@ Cleanup all the compose containers.
 docker compose --profile all down     
 ```
 
-## Inspect
+## 🔍 Inspect
 
 ```sh
 # list volumes (it's not listed as a volume)
@@ -154,14 +154,14 @@ docker run -it --privileged --pid=host debian nsenter -t 1 -m -u -n -i sh
 ls "/var/lib/docker/volumes/67e772ddc94278d6560894b79e9b6c070197f1a3f826510de4cc749644b6b497/_data"
 ```
 
-## Cleanup
+## 🧼 Cleanup
 
 ```sh
 # kill all
 docker system prune --all 
 ```
 
-## Resources
+## 👀 Resources
 
 * docker volume create [here](https://docs.docker.com/engine/reference/commandline/volume_create/)
 * Mount a Volume to a Container [here](https://earthly.dev/blog/docker-volumes/#mount-a-volume-to-a-container)

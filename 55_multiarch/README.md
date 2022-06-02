@@ -4,7 +4,7 @@ Demonstrate building and running multi-arch images
 
 QEMU example [here](https://github.com/chrisguest75/sysadmin_examples/tree/master/16_qemu)  
 
-## TODO
+📝 TODO:
 
 * buildx builders
 * build for graviton?
@@ -16,7 +16,7 @@ Supported architectures
 docker buildx ls   
 ```
 
-## Build
+## 🏠 Build
 
 ```sh
 # build using docker defaults
@@ -38,7 +38,7 @@ docker buildx build --platform linux/arm64,linux/amd64 --target BASE -t ubuntu_a
 docker run -it --rm ubuntu_allarch
 ```
 
-## Resources
+## 👀 Resources
 
 * Docker Buildx [here](https://docs.docker.com/buildx/working-with-buildx/)
 * Building Multi-Arch Images for Arm and x86 with Docker Desktop [here](https://www.docker.com/blog/multi-arch-images/)

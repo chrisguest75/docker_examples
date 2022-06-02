@@ -4,7 +4,7 @@ Demonstrate a simple reverse proxy to manage build deployments
 
 nginx ssl example [here](https://github.com/chrisguest75/sysadmin_examples/tree/master/19_letsencrypt)  
 
-Demonstrates:
+ℹ️ Demonstrates:
 
 * Setting headers from environment variables.
 * Using the built in template processing.
@@ -14,7 +14,7 @@ Demonstrates:
 * Return a generated /info page
 * Header based routing to different backends
 
-## Architecture
+## 🏢 Architecture
 
 ```mermaid
 graph LR
@@ -28,14 +28,14 @@ graph LR
     end
 ```
 
-## Start
+## 🏠 Start
 
 ```sh
 # start 
 docker compose up -d
 ```
 
-## Testing
+## 🧪 Testing
 
 ```sh
 # services without proxy (to enable this you need to comment back in the port mappings in the docker compose)
@@ -63,7 +63,7 @@ curl -i -H "group: unknown" http://0.0.0.0:8080/group/env
 curl -i -H "group: new" http://0.0.0.0:8080/group/env     
 ```
 
-## Add header testing
+## 🧪 Add header testing
 
 add_header is completely overridden by the lowest level block 
 `http` -> `server` -> `location`
@@ -74,7 +74,7 @@ Specifiying any add_header at a lower level will mean higher level add_headers d
 curl -i http://0.0.0.0:8080/a/env
 ```
 
-## Debugging
+## 🕷 Debugging
 
 ```sh
 # nginx
@@ -93,13 +93,13 @@ docker stop $(docker ps --filter name=44_reverse_proxy-nginx-1 -q)
 docker compose up -d
 ```
 
-## Clean up
+## 🧼 Clean up
 
 ```sh
 docker compose down
 ```
 
-## Resources
+## 👀 Resources
 
 * stefanprodan/podinfo [repo](https://github.com/stefanprodan/podinfo)  
 * The Compose Specification [compose-spec](https://github.com/compose-spec/compose-spec/blob/master/spec.md)  

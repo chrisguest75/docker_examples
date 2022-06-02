@@ -1,12 +1,15 @@
 # README
+
 Demonstrate how to use a build pack to build a simple Python container
 
-TODO: 
+📝 TODO:
+
 * Why are the images so big?
 * How quickly can they be rebuilt?
 * Can we run tests inside them?
 
-## Install 
+## 1️⃣ Prereqs
+
 Installing pack cli tool [instructions](https://buildpacks.io/docs/tools/pack/)
 
 ```sh
@@ -14,7 +17,8 @@ Installing pack cli tool [instructions](https://buildpacks.io/docs/tools/pack/)
 brew install buildpacks/tap/pack
 ```
 
-## Inspecting Buildpacks
+## 🔍 Inspecting Buildpacks
+
 ```sh
 # what build pack builders exist?
 pack builder suggest
@@ -23,7 +27,8 @@ pack builder suggest
 pack builder inspect heroku/buildpacks:20  
 ```
 
-## Building and running
+## 🏠 Building and running
+
 ```sh
 # build the container
 pack build buildpackexample --builder gcr.io/buildpacks/builder:v1 --env GOOGLE_ENTRYPOINT="python main.py" 
@@ -31,13 +36,16 @@ pack build buildpackexample --builder gcr.io/buildpacks/builder:v1 --env GOOGLE_
 docker run buildpackexample    
 ```
 
-## Looking inside
-Use dive tool [README.md](../30_dive_ci/README.md) 
+## 🔍 Looking inside image
+
+Use dive tool [README.md](../30_dive_ci/README.md)  
+
 ```sh
 dive buildpackexample    
 ```
 
-# Resources 
+## 👀 Resources
+
 * [buildpacks](https://buildpacks.io/)  
 * [samples](https://github.com/buildpacks/samples)  
 * [google samples](https://github.com/GoogleCloudPlatform/buildpack-samples)  

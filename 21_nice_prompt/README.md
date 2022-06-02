@@ -1,7 +1,9 @@
-# README.md
-Demonstrates configuring a nice prompt for `bash` and `zsh` inside a container
+# README
 
-## Installation
+Demonstrates configuring a nice prompt for `bash` and `zsh` inside a container.  
+
+## 🏠 Build
+
 ```sh
 # build and run
 docker build -f Dockerfile -t nice_prompt . 
@@ -24,26 +26,29 @@ nano ~/.bashrc
 exit
 ```
 
-## Zsh
+## 💻 Zsh
+
 ```sh
 # run zsh
 docker exec -it nice_prompt /bin/zsh  
 ```
 
-## Bash
+## 💻 Bash
+
 ```sh
 # run bash
 docker exec -it nice_prompt /bin/bash
 ```
 
-## Cleanup
+## 🧼 Cleanup
+
 ```sh
 # cleanup the container
 docker stop nice_prompt 
 ```
 
+## 👀 Resources
 
-# Resources 
 * oh-my-zsh [here](https://ohmyz.sh/#install)  
 * oh-my-bash [here](https://github.com/ohmybash/oh-my-bash)  
 * locales [here](http://jaredmarkell.com/docker-and-locales/)
