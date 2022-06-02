@@ -4,7 +4,7 @@ Try copying files in a scratch container.
 
 ℹ NOTE: Probably easier to build a rootfs and copy the files into the tar.  
 
-# TODO
+TODO:
 
 1. ** Not working!! ** Building a simple container with mv, rm, sh.  Probably missing libs. 
 1. How do I debug what is missing? 
@@ -14,7 +14,8 @@ Try copying files in a scratch container.
 Demonstrate removing files
 
 ```sh
+# build image
 docker build -t scratchtest .
+# run image
 docker run -it --entrypoint=/bin/sh scratchtest
 ```
-
