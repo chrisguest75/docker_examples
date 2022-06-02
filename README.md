@@ -334,9 +334,8 @@ Steps [README.md](./64_sbom/README.md)
 
 ## 📝 TODO
 
-1. skopeo
+1. skopeo - inspecting registries https://github.com/containers/skopeo
 1. botb - break out the box image https://github.com/brompwnie/botb
-1. Add a basic setup and tooling  00_starting
 1. Show how multistage builds work for testing
 1. Demo using cache-from.....  Use a timed layer.
 1. Use different CAPS_SYS parameters.
@@ -361,20 +360,17 @@ https://www.andreafortuna.org/2019/11/26/cve-2019-14271-a-docker-cp-container-es
 1. Ordering of layers
 1. onbuild
 1. Signing builds
-1. Build software using qemu and copy it in.
 1. Unpack the filesystem flattened.  Filesystem view in a single container.
 1. Start a cgroup manually using an unpacked container.
 1. Snaps??
 1. Showing the process tree for docker (linux is easier)
 1. Cron in a container.
-1. memory restrictions and how they manifest.
 1. Can I use a cgroup command inside a container?
 1. Docker users.
 1. Binding to different networks localhost vs 127.0.0.1 or 0.0.0.0
 1. docker info
 1. docker context
 1. docker plugins.
-1. nginx letsencrypt
 1. docker manifests
 1. CRFS: Container Registry Filesystem https://github.com/google/crfs
 1. docker image history and using it to rebuild a container
