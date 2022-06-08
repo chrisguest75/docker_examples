@@ -1,0 +1,19 @@
+services:
+    nginx3:
+        image: "nginx:1.21.1"
+        environment:
+            - VERSION=nginx:1.21.1
+        ports:
+            - "8082:80"
+        networks:
+            - service_bridge
+        profiles: [all]
+
+
+# volumes:
+#     68_composing_services:
+
+# networks:
+#     service_bridge:
+#         driver: bridge
+

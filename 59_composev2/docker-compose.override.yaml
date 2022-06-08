@@ -1,0 +1,6 @@
+services:
+    nginx:
+        image: "nginx:1.21.6"
+        environment:
+            - VERSION=nginx:1.21.6
+

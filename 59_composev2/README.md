@@ -48,6 +48,9 @@ docker compose --profile backend --profile frontend down
 
 # bring up both profiles with --build
 docker compose --profile backend --profile frontend --profile timeout up -d --build --force-recreate 
+
+# test the nginx service
+curl -vv 0.0.0.0:8080         
 ```
 
 ## Running Containers
@@ -136,7 +139,7 @@ docker compose logs timeout
 
 ```sh
 # bring it down and delete the volume
-docker-compose --profile all down --volumes
+docker compose --profile all down --volumes
 ```
 
 ## Resources

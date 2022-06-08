@@ -332,6 +332,11 @@ Steps [README.md](./63_build_matrix/README.md)
 Demonstrates SBOM generation for docker images.  
 Steps [README.md](./64_sbom/README.md)  
 
+## 68 - Composing Services
+
+Demonstrate how to use docker compose to compose multiple services  
+Steps [README.md](./68_composing_services/README.md)  
+
 ## 📝 TODO
 
 1. skopeo - inspecting registries https://github.com/containers/skopeo

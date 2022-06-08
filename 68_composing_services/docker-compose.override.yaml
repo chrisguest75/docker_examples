@@ -1,0 +1,15 @@
+services:
+    nginx:
+        image: "nginx:1.21.6"
+        environment:
+            - VERSION=nginx:1.21.6
+
+    nginx2:
+        image: "nginx:1.20.1"
+        environment:
+            - VERSION=nginx:1.20.1
+        ports:
+            - "8081:80"
+        networks:
+            - service_bridge
+        profiles: [all]
