@@ -337,9 +337,13 @@ Steps [README.md](./64_sbom/README.md)
 Demonstrate how to use docker compose to compose multiple services  
 Steps [README.md](./68_composing_services/README.md)  
 
+## 69 - Skopeo Inspecting Registries
+
+Demonstrate using `Skopeo` to interrogate registries.  
+Steps [README.md](./69_skopeo/README.md)  
+
 ## 📝 TODO
 
-1. skopeo - inspecting registries https://github.com/containers/skopeo
 1. botb - break out the box image https://github.com/brompwnie/botb
 1. Show how multistage builds work for testing
 1. Demo using cache-from.....  Use a timed layer.
