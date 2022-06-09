@@ -3,6 +3,7 @@ services:
         image: "nginx:1.21.6"
         environment:
             - VERSION=nginx:1.21.6
+            - ANOTHER_VALUE3=OVERRIDDEN_ANOTHER_VALUE3
 
     nginx2:
         image: "nginx:1.20.1"

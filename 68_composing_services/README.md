@@ -27,6 +27,9 @@ curl -vvv 0.0.0.0:8081
 docker compose logs nginx
 docker compose logs nginx2
 
+# inspect how the environment variables were overridden
+docker inspect $(docker ps -aq --format '{{.Names}}' --filter "id=$(docker compose ps nginx -q)")
+
 # cleanup
 docker compose --profile all down             
 ```
