@@ -2,6 +2,10 @@
 
 Demonstrate using `Skopeo` to interrogate registries.  
 
+TODO:  
+
+* Image signing https://cloud.ibm.com/docs/Registry?topic=Registry-registry_trustedcontent
+
 ## 📋 Prereqs
 
 ```sh
@@ -52,3 +56,4 @@ skopeo delete --creds=$DESTUSER:$DESTPASS docker://quay.io/guestchris75/turn:lat
 ## 👀 Resources
 
 * containers/skopeo repo [here](https://github.com/containers/skopeo)  
+* containers/image repo [here](https://github.com/containers/image)  
