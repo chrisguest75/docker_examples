@@ -3,6 +3,7 @@ services:
         image: "nginx:1.20.1"
         environment:
             - VERSION=nginx:1.20.1
+            - EXAMPLE=${EXAMPLE}
         ports:
             - "8080:80"
         networks:
@@ -13,6 +14,9 @@ services:
         build: 
             context: .
             dockerfile: Dockerfile.client
+        environment:
+            - EXAMPLE=${EXAMPLE}
+            - MORE_VALUES=${MORE_VALUES}
         image: 59_composev2_ubuntu
         volumes:
             - 59_composev2_container:/data/db
@@ -27,6 +31,8 @@ services:
         build: 
             context: .
             dockerfile: Dockerfile.timeout
+        environment:
+            - EXAMPLE=${EXAMPLE}
         image: 59_composev2_timeout            
         command: "20"
         networks:

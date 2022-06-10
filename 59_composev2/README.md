@@ -15,7 +15,6 @@ Demonstrates:
 
 TODO:
 
-* Env `--env-file ./compose.env` 
 * Build `docker compose --env-file ./compose.env -f ./docker-compose-tests.yaml --profile backend build --force-rm --no-cache`
 * https://docs.docker.com/compose/extends/
 
@@ -36,7 +35,8 @@ docker builder prune
 docker system prune --all --force 
 
 # bring up all profiles
-docker compose --profile all ps  
+docker compose --env-file ./compose.env --profile all up -d --build --force-recreate
+docker compose ps 
 
 # bring up profiles individually
 docker compose --profile backend up -d --build --force-recreate
@@ -96,6 +96,9 @@ has_container_exited "doesnotexist"; echo $?
 ### Exec into running containers
 
 ```sh
+# see the environment variables passed in
+docker compose exec -it ubuntu env  
+
 # exec into container and run a process
 docker compose exec ubuntu ls -la /
 docker compose exec -it ubuntu ls -la /   
