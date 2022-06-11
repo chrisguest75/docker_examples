@@ -1,0 +1,22 @@
+services:
+    podinfo:
+        image: "stefanprodan/podinfo:5.2.1"
+        environment:
+            - VERSION=0.0.1   
+            - PODNAME=info                    
+        # ports:
+        #     - "9001:9898"
+        command: [ "./podinfo", "--level=debug" ]            
+        networks:
+            - service_bridge
+
+    ubuntu:
+        image: "ubuntu:22.04"
+        command: [ "/bin/sh", "-c", "sleep infinity" ]  
+        networks:
+            - service_bridge
+
+networks:
+    service_bridge:
+        driver: bridge
+

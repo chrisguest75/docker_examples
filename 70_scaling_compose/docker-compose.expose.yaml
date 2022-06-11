@@ -1,0 +1,5 @@
+services:
+    podinfo:
+        expose:
+            - "9898"
+            

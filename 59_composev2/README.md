@@ -142,7 +142,7 @@ docker compose logs timeout
 
 ```sh
 # bring it down and delete the volume
-docker compose --profile all down --volumes
+docker compose --env-file ./compose.env --profile all down --volumes
 ```
 
 ## Resources

@@ -1,0 +1,5 @@
+services:
+    podinfo:
+        ports:
+            - "9001:9898"
+            
