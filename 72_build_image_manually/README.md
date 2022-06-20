@@ -73,6 +73,12 @@ docker inspect $(basename $(pwd)) | jq '.[].Config.Labels'
 
 Insert layer and rebuild it  
 
+* Copy `./fakelayers/67e2d23c25adb990e3fbddfe03e69be1b45d67f4f19b2b6abf77db9d9125fac4` directory into the unpacked folder
+* Change `json` parentid in `67e2d23c25adb990e3fbddfe03e69be1b45d67f4f19b2b6abf77db9d9125fac4` layer folder to last id.
+* Change the repositories file to contain `67e2d23c25adb990e3fbddfe03e69be1b45d67f4f19b2b6abf77db9d9125fac4`
+* Add `,"67e2d23c25adb990e3fbddfe03e69be1b45d67f4f19b2b6abf77db9d9125fac4/layer.tar"` to manifest.json
+* ```sha256sum ./output/buildtest/67e2d23c25adb990e3fbddfe03e69be1b45d67f4f19b2b6abf77db9d9125fac4/layer.tar``` into the list of diff_ids in the sha.json 
+
 ```sh
 tar -C ./output/buildtest -czf ./output/newimage.tar ./
 mkdir -p ./output/buildtest2 && tar -xvf ./output/newimage.tar -C $_
@@ -81,17 +87,14 @@ docker rmi $(basename $(pwd)):latest
 docker image load -i ./output/newimage.tar  
 docker run --name $(basename $(pwd)) -it $(basename $(pwd)) 
 docker inspect $(basename $(pwd)) | jq '.[].Config.Labels'
+
+docker stop $(basename $(pwd)) && docker rm $(basename $(pwd))
+docker run --name $(basename $(pwd)) --entrypoint bash -it $(basename $(pwd))
+
+ls -l
 ```
 
-
-
-
-
-
-
-
-
-Look at the contents  
+Look at the layer contents  
 
 ```sh
 # extract layer tars
@@ -106,7 +109,12 @@ Clean up
 
 ```sh
 # Remove files
-rm -rf ./hidingtest
+docker stop $(basename $(pwd)) && docker rm $(basename $(pwd))
+rm -rf ./output
 rm $(basename $(pwd)).tar
 docker rmi $(basename $(pwd))
 ```
+
+## Resources
+
+* https://stackoverflow.com/questions/47249028/how-to-generate-docker-image-layer-diffid
