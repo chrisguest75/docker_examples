@@ -1,0 +1,14 @@
+# syntax=docker/dockerfile:1.4
+FROM bash:5.1.16
+
+# NOTE: Escape the \$ otherwise they are rendered at buildtime
+COPY <<EOF /bin/helloworld.sh
+#!/usr/bin/env bash
+while true; do 
+    echo "HelloWorld"
+    sleep 5;
+done
+EOF
+RUN chmod +x /bin/helloworld.sh
+
+ENTRYPOINT [ "/bin/helloworld.sh" ]

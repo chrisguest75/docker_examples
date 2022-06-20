@@ -344,6 +344,7 @@ Steps [README.md](./69_skopeo/README.md)
 
 ## 📝 TODO
 
+1. multiple build contexts https://www.docker.com/blog/dockerfiles-now-support-multiple-build-contexts/ 
 1. botb - break out the box image https://github.com/brompwnie/botb
 1. Show how multistage builds work for testing
 1. Demo using cache-from.....  Use a timed layer.
