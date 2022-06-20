@@ -37,7 +37,7 @@ mkdir -p ./output/buildtest && tar -xvf ./output/$(basename $(pwd)).tar -C $_
 ls -l ./output/buildtest
 ```
 
-Build and reimport
+Repack and reimport  
 
 ```sh
 # rebuild image
@@ -47,11 +47,41 @@ docker stop $(basename $(pwd)) && docker rm $(basename $(pwd))
 docker rmi $(basename $(pwd)):latest    
 docker image load -i ./output/newimage.tar  
 docker run --name $(basename $(pwd)) -it $(basename $(pwd))
-
 ```
 
+Modify and reimport  
 
+Go modify the label value in the manifest file in root of ` ./output/buildtest`  
 
+```json
+    "Labels": {
+      "mylabel": "modifiedvalue"
+    },
+```
+
+Rebuild it  
+
+```sh
+tar -C ./output/buildtest -czf ./output/newimage.tar ./
+mkdir -p ./output/buildtest2 && tar -xvf ./output/newimage.tar -C $_
+docker stop $(basename $(pwd)) && docker rm $(basename $(pwd))
+docker rmi $(basename $(pwd)):latest    
+docker image load -i ./output/newimage.tar  
+docker run --name $(basename $(pwd)) -it $(basename $(pwd)) 
+docker inspect $(basename $(pwd)) | jq '.[].Config.Labels'
+```
+
+Insert layer and rebuild it  
+
+```sh
+tar -C ./output/buildtest -czf ./output/newimage.tar ./
+mkdir -p ./output/buildtest2 && tar -xvf ./output/newimage.tar -C $_
+docker stop $(basename $(pwd)) && docker rm $(basename $(pwd))
+docker rmi $(basename $(pwd)):latest    
+docker image load -i ./output/newimage.tar  
+docker run --name $(basename $(pwd)) -it $(basename $(pwd)) 
+docker inspect $(basename $(pwd)) | jq '.[].Config.Labels'
+```
 
 
 
@@ -65,11 +95,11 @@ Look at the contents
 
 ```sh
 # extract layer tars
-find ./hidingtest/* -iname "layer.tar*" -execdir mkdir layer \;                         
-find ./hidingtest/* -iname "layer.tar*" -execdir tar -xvf {} -C ./layer \;    
+find ./output/buildtest/* -iname "layer.tar*" -execdir mkdir layer \;                         
+find ./output/buildtest/* -iname "layer.tar*" -execdir tar -xvf {} -C ./layer \;    
 
 # Use editor to examine contents of the json files and untared layers.
-code ./hidingtest
+code ./output/buildtest
 ```
 
 Clean up  
