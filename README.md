@@ -342,6 +342,16 @@ Steps [README.md](./68_composing_services/README.md)
 Demonstrate using `Skopeo` to interrogate registries.  
 Steps [README.md](./69_skopeo/README.md)  
 
+## 70 - Scaling Compose
+
+Demonstrate how to use docker compose scale.  
+Steps [README.md](./70_scaling_compose/README.md)  
+
+## 72 - Building images manually  
+
+Demonstrates how to build images manually.  
+Steps [README.md](./72_build_image_manually/README.md)  
+
 ## 📝 TODO
 
 1. multiple build contexts https://www.docker.com/blog/dockerfiles-now-support-multiple-build-contexts/ 
@@ -370,7 +380,6 @@ https://www.andreafortuna.org/2019/11/26/cve-2019-14271-a-docker-cp-container-es
 1. Ordering of layers
 1. onbuild
 1. Signing builds
-1. Unpack the filesystem flattened.  Filesystem view in a single container.
 1. Start a cgroup manually using an unpacked container.
 1. Snaps??
 1. Showing the process tree for docker (linux is easier)

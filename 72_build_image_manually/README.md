@@ -1,13 +1,10 @@
-
 # 72 Building images manually
 
 Demonstrates how to build images manually.  
 
-TODO:
+TODO:  
 
-* retar up the image and import
-* copy a new layer and retar and import
-* change a label
+* Try with tar.gz  
 
 ## 📋 Script to follow
 
@@ -44,6 +41,8 @@ Repack and reimport
 tar -C ./output/buildtest -czf ./output/newimage.tar ./
 mkdir -p ./output/buildtest2 && tar -xvf ./output/newimage.tar -C $_
 docker stop $(basename $(pwd)) && docker rm $(basename $(pwd))
+
+# load the new image
 docker rmi $(basename $(pwd)):latest    
 docker image load -i ./output/newimage.tar  
 docker run --name $(basename $(pwd)) -it $(basename $(pwd))
@@ -65,8 +64,11 @@ Rebuild it
 tar -C ./output/buildtest -czf ./output/newimage.tar ./
 mkdir -p ./output/buildtest2 && tar -xvf ./output/newimage.tar -C $_
 docker stop $(basename $(pwd)) && docker rm $(basename $(pwd))
+
+# load the new image
 docker rmi $(basename $(pwd)):latest    
 docker image load -i ./output/newimage.tar  
+
 docker run --name $(basename $(pwd)) -it $(basename $(pwd)) 
 docker inspect $(basename $(pwd)) | jq '.[].Config.Labels'
 ```
@@ -77,17 +79,25 @@ Insert layer and rebuild it
 * Change `json` parentid in `67e2d23c25adb990e3fbddfe03e69be1b45d67f4f19b2b6abf77db9d9125fac4` layer folder to last id.
 * Change the repositories file to contain `67e2d23c25adb990e3fbddfe03e69be1b45d67f4f19b2b6abf77db9d9125fac4`
 * Add `,"67e2d23c25adb990e3fbddfe03e69be1b45d67f4f19b2b6abf77db9d9125fac4/layer.tar"` to manifest.json
-* ```sha256sum ./output/buildtest/67e2d23c25adb990e3fbddfe03e69be1b45d67f4f19b2b6abf77db9d9125fac4/layer.tar``` into the list of diff_ids in the sha.json 
+* ```sha256sum ./output/buildtest/67e2d23c25adb990e3fbddfe03e69be1b45d67f4f19b2b6abf77db9d9125fac4/layer.tar``` into the list of diff_ids in the sha.json
 
 ```sh
+# retar 
 tar -C ./output/buildtest -czf ./output/newimage.tar ./
 mkdir -p ./output/buildtest2 && tar -xvf ./output/newimage.tar -C $_
+
+# stop old containers
 docker stop $(basename $(pwd)) && docker rm $(basename $(pwd))
+
+# load the new image
 docker rmi $(basename $(pwd)):latest    
 docker image load -i ./output/newimage.tar  
+
+# run it
 docker run --name $(basename $(pwd)) -it $(basename $(pwd)) 
 docker inspect $(basename $(pwd)) | jq '.[].Config.Labels'
 
+# stop it and run bash to see new file1.txt in root folder
 docker stop $(basename $(pwd)) && docker rm $(basename $(pwd))
 docker run --name $(basename $(pwd)) --entrypoint bash -it $(basename $(pwd))
 
@@ -117,4 +127,4 @@ docker rmi $(basename $(pwd))
 
 ## Resources
 
-* https://stackoverflow.com/questions/47249028/how-to-generate-docker-image-layer-diffid
+* how-to-generate-docker-image-layer-diffid [here](https://stackoverflow.com/questions/47249028/how-to-generate-docker-image-layer-diffid)
