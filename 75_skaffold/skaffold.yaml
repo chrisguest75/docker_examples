@@ -1,0 +1,14 @@
+apiVersion: skaffold/v2beta29 
+kind: Config
+metadata:
+  name: -skaffold
+
+build:
+  artifacts:
+  - image: skaffoldtest
+    context: ./shellscript
+
+deploy:
+  docker:
+    images: [skaffoldtest]
+
