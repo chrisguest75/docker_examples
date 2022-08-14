@@ -357,6 +357,11 @@ Steps [README.md](./72_build_image_manually/README.md)
 Demonstrate how to use buildah (linux only).  
 Steps [README.md](./73_buildah/README.md)  
 
+## 74 - onbuild
+
+Demonstrate using `ONBUILD` to control build steps.  
+Steps [README.md](./74_onbuild/README.md)  
+
 ## 📝 TODO
 
 1. multiple build contexts https://www.docker.com/blog/dockerfiles-now-support-multiple-build-contexts/ 
