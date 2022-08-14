@@ -1,7 +1,7 @@
-FROM ubuntu:16.04
+FROM ubuntu:22.04
 
 #ARG CURL_VERSION=7.47.0-1ubuntu2.14
-ARG CURL_VERSION=7.47.0-1ubuntu2.19
+ARG CURL_VERSION=7.81.0-1ubuntu1.3 
 
 RUN apt-get update && apt-cache madison curl \
         && apt-get --no-install-recommends install curl=${CURL_VERSION} -y \ 

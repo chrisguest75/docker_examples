@@ -362,9 +362,15 @@ Steps [README.md](./73_buildah/README.md)
 Demonstrate using `ONBUILD` to control build steps.  
 Steps [README.md](./74_onbuild/README.md)  
 
+## 75 - skaffold
+
+Demonstrate how to use `skaffold` for local development.  
+Steps [README.md](./75_skaffold/README.md)  
+
 ## 📝 TODO
 
 1. You can use --output path to output the image to a folder
+https://docs.docker.com/engine/reference/commandline/build/#custom-build-outputs
 1. multiple build contexts https://www.docker.com/blog/dockerfiles-now-support-multiple-build-contexts/ 
 1. botb - break out the box image https://github.com/brompwnie/botb
 1. Show how multistage builds work for testing

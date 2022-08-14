@@ -2,20 +2,25 @@
 
 Demonstrates locking apt to specific versions of packages.  
 
-## 🏠 Build (ubuntu:16.04)
+## 🏠 Build
 
 ```sh
+UBUNTU_VERSION=1604
+UBUNTU_VERSION=1804
+UBUNTU_VERSION=2004
+UBUNTU_VERSION=2204
+
 # build
-docker build --no-cache -t 1604.apt_locking -f 1604.Dockerfile .  
-# run
-docker run -it --entrypoint /bin/bash 1604.apt_locking 
+docker build --no-cache -t ${UBUNTU_VERSION}.apt_locking -f ${UBUNTU_VERSION}.Dockerfile .  
 ```
 
-## 🏠 Build (ubuntu:18.04)
+## ⚡️ Run
 
 ```sh
-# build
-docker run -it --entrypoint /bin/bash 1804.apt_locking 
 # run
-docker build --no-cache -t 1804.apt_locking -f 1804.Dockerfile .  
+docker run -it --rm ${UBUNTU_VERSION}.apt_locking 
+docker run -it --rm --entrypoint /bin/bash ${UBUNTU_VERSION}.apt_locking 
 ```
+
+## Resources
+
