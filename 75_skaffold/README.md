@@ -32,11 +32,14 @@ skaffold init
 ```
 
 ```sh
+# run skaffold
 skaffold dev 
 ```
 
+Once you have `skaffold` running you can go and make edits and see the rebuild and deploy.  
+
 ## Resources
 
-[skaffold.dev](https://skaffold.dev/) 
-Working with [local-cluster](https://skaffold.dev/docs/environment/local-cluster/)  
-https://skaffold.dev/docs/references/yaml/
+* [skaffold.dev](https://skaffold.dev/)  
+* Working with [local-cluster](https://skaffold.dev/docs/environment/local-cluster/)  
+* skaffold.yaml [here](https://skaffold.dev/docs/references/yaml/)  

@@ -6,6 +6,6 @@ CID=$(basename "$(cat /proc/1/cpuset)")
 env
 
 while true; do 
-    echo "$(date) '${CID}'"
+    echo "$(date) '${CID}' hello"
     sleep 10
 done
