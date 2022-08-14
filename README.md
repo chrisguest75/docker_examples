@@ -364,6 +364,7 @@ Steps [README.md](./74_onbuild/README.md)
 
 ## 📝 TODO
 
+1. You can use --output path to output the image to a folder
 1. multiple build contexts https://www.docker.com/blog/dockerfiles-now-support-multiple-build-contexts/ 
 1. botb - break out the box image https://github.com/brompwnie/botb
 1. Show how multistage builds work for testing
