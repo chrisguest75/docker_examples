@@ -1,0 +1,30 @@
+services:
+    nginx:
+        #image: "nginx:1.23.1"
+        image: "openresty/openresty:1.21.4.1-buster-fat"
+        volumes:
+            - type: bind
+              source: ./nginx.conf
+              target: /usr/local/openresty/nginx/conf/nginx.conf  
+              #target: /etc/nginx/nginx.conf            
+            - type: bind
+              source: ./default.conf
+              target: /etc/nginx/conf.d/default.conf
+              #target: /etc/nginx/templates/default.conf.template
+        environment:
+            - VERSION=openresty:1.21.4.1-buster-fat
+            - EXAMPLE="${EXAMPLE}"
+        healthcheck:
+            test: ["CMD-SHELL", "curl", "--connect-timeout", "2", "-o", "/dev/null", "-w", "'%{http_code}'", "http://0.0.0.0:8080/healthz"]
+            interval: 10s
+            timeout: 5s
+            retries: 5            
+        ports:
+            - "8080:80"
+        networks:
+            - service_bridge
+          
+networks:
+    service_bridge:
+        driver: bridge
+
