@@ -372,6 +372,11 @@ Steps [README.md](./74_onbuild/README.md)
 Demonstrate how to use `skaffold` for local development.  
 Steps [README.md](./75_skaffold/README.md)  
 
+## 77 - healthchecks
+
+Demonstrate how to use `docker compose` healthchecks.  
+Steps [README.md](./77_healthchecks/README.md)  
+
 ## 📝 TODO
 
 1. You can use --output path to output the image to a folder
