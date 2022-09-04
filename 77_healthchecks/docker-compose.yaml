@@ -14,11 +14,12 @@ services:
         environment:
             - VERSION=openresty:1.21.4.1-buster-fat
             - EXAMPLE="${EXAMPLE}"
-        healthcheck:
-            test: ["CMD-SHELL", "curl", "--connect-timeout", "2", "-o", "/dev/null", "-w", "'%{http_code}'", "http://0.0.0.0:8080/healthz"]
-            interval: 10s
-            timeout: 5s
-            retries: 5            
+            - ERROR_RATE=10
+        # healthcheck:
+        #     test: ["CMD-SHELL", "curl", "--connect-timeout", "2", "-o", "/dev/null", "-w", "'%{http_code}'", "http://0.0.0.0:8080/healthz"]
+        #     interval: 10s
+        #     timeout: 5s
+        #     retries: 5            
         ports:
             - "8080:80"
         networks:
