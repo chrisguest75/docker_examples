@@ -2,7 +2,7 @@
 
 Demonstrates SBOM generation for docker images.  
 
-ℹ NOTE: `docker sbom` is an experimental feature.  
+ℹ️ NOTE: `docker sbom` is an experimental feature.  
 
 Refer to [trivy example](../48_trivy/README.md) for installation.  
 
@@ -100,7 +100,7 @@ docker sbom ts_sbom_test
 
 Dependency Track docs are [here](https://docs.dependencytrack.org/)
 
-ℹ NOTES:
+ℹ️ NOTES:
 
 * It requires a lot of memory
 * It takes a while to download the datasets at the start

@@ -1,10 +1,11 @@
 # README
 
-Demonstrates locking apt to specific versions of packages.  
+Demonstrates locking `apt` to specific versions of packages.  
 
 ## 🏠 Build
 
 ```sh
+# select a version to build
 UBUNTU_VERSION=1604
 UBUNTU_VERSION=1804
 UBUNTU_VERSION=2004
@@ -19,8 +20,10 @@ docker build --no-cache -t ${UBUNTU_VERSION}.apt_locking -f ${UBUNTU_VERSION}.Do
 ```sh
 # run
 docker run -it --rm ${UBUNTU_VERSION}.apt_locking 
+
+# step inside container
 docker run -it --rm --entrypoint /bin/bash ${UBUNTU_VERSION}.apt_locking 
 ```
 
-## Resources
+## 👀 Resources
 

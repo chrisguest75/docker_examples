@@ -1,9 +1,6 @@
 # Troubleshooting
 
-TODO:
-
-* zfs issues
-* installations
+Basic troubleshooting tips for installation and fixing issues.  
 
 ## Installs
 
@@ -47,15 +44,19 @@ docker compose version
 
 ## Raspbian
 
-Following: https://www.simplilearn.com/tutorials/docker-tutorial/raspberry-pi-docker
+Following: https://www.simplilearn.com/tutorials/docker-tutorial/raspberry-pi-docker  
 
-Check https://get.docker.com/
+Check https://get.docker.com/  
 
 ```sh
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 ```
 
-## Resources
+## ZFS Issues
 
-https://github.com/chrisguest75/rpi_examples
+Goto [sysadmin_examples](https://github.com/chrisguest75/sysadmin_examples/tree/master/25_zfs) for some examples on how to clear up ZFS issues on Ubuntu.
+
+## 👀 Resources
+
+* My rpi_examples [here](https://github.com/chrisguest75/rpi_examples)  

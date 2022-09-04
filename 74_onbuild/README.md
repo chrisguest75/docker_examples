@@ -29,7 +29,7 @@ docker run --volume $(pwd)/helloworld:/scratch -it --entrypoint /bin/bash gcc-on
 make -B
 ```
 
-## Resources
+## 👀 Resources
 
 * Using ONBUILD instruction [here](https://dockerlabs.collabnix.com/beginners/using-onbuild-images/#:~:text=The%20ONBUILD%20instruction%20adds%20to,instruction%20in%20the%20downstream%20Dockerfile.)  
 * Error "undefined reference to 'std::cout'" [here](https://stackoverflow.com/questions/28236870/error-undefined-reference-to-stdcout)  

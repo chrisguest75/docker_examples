@@ -2,7 +2,7 @@
 
 Demonstrate some examples of using `trivy`.  
 
-ℹ NOTE: The schema version seems to have changed and this is broken now.  
+ℹ️ NOTE: The schema version seems to have changed and this is broken now.  
 
 For reducing number of vulnerabilities refer to:
 
@@ -14,7 +14,7 @@ Other scanning examples:
 * Docker Scan [README.md](../45_docker_scan_process_mongo/README.md)  
 * Grype [README.md](../49_grype/README.md)  
 
-## Prerequisites
+## 📋 Prerequisites
 
 ```sh
 # install trivy
@@ -40,7 +40,7 @@ The example uses a `./scans/out/images_trivy.json` file that has to be served up
 code --install-extension ritwickdey.LiveServer
 ```
 
-## Resources
+## 👀 Resources
 
 * trivy docs [here](https://aquasecurity.github.io/trivy/v0.18.3/installation/)  
-* container-vulnerability-scanning-with-trivy [here](https://www.bluetab.net/en/container-vulnerability-scanning-with-trivy/)  
+* container-vulnerability-scanning-with-trivy blog [here](https://www.bluetab.net/en/container-vulnerability-scanning-with-trivy/)  

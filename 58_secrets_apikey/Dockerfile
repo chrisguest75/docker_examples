@@ -5,7 +5,7 @@ WORKDIR /scratch
 
 RUN --mount=type=secret,id=secretkey cat /run/secrets/secretkey
 
-# DO NOT DO THIS (IT ADDS IT TO THE IMAGE)
+# DO NOT DO THIS (OBVIOUSLY USING CP ADDS IT TO THE IMAGE)
 RUN --mount=type=secret,id=secretkey cp /run/secrets/secretkey .
 
 CMD ["/bin/bash", "ls /run/secrets/secretkey"]

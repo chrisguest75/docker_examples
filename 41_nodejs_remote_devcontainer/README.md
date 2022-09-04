@@ -118,7 +118,7 @@ docker compose --profile backend down --volumes
 
 Investigating MongoDB  
 
-ℹ NOTE: If the db is failing to create correctly you might need to remove the containers and volume  
+ℹ️ NOTE: If the db is failing to create correctly you might need to remove the containers and volume  
 
 ```sh
 docker ps

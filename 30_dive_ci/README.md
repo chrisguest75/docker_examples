@@ -2,7 +2,7 @@
 
 Demonstrates using dive tool to analyse images.
 
-## 1️⃣ Prereqs
+## 📋 Prerequisites
 
 Dive repo [here](https://github.com/wagoodman/dive)  
 

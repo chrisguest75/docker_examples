@@ -4,7 +4,7 @@ Demonstrates timing differences with layers building and running
 
 Build some image with ten layers.  Then extend to 50 layers to see if timing is linear.
 
-ℹ NOTE: So far it doesn't seem that much slower to have lots of layers during execution. 
+ℹ️ NOTE: So far it doesn't seem that much slower to have lots of layers during execution. 
 
 ## Test building layers
 

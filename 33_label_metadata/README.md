@@ -39,9 +39,7 @@ docker inspect -f "{{ .Config.Labels }}" labels
 docker inspect --format '{{ index .Config.Labels "chrisguest75/baseimage"}}' labels
 docker inspect --format '{{ index .Config.Labels "dockerfile.baseimage"}}' labels
 docker inspect --format '{{ index .Config.Labels "org.opencontainers.image.created"}}' labels
-
 ```
-
 
 Filter out images with a label  
 
@@ -112,7 +110,7 @@ When running `docker inspect` the output in ContainerConfig will be different.
 *ContainerConfig* This data again is referring to the temporary container created when the Docker build command was executed.
 [REF](https://www.ctl.io/developers/blog/post/what-to-inspect-when-youre-inspecting)  
 
-## Resources
+## 👀 Resources
 
 * docker-registry-v2 slides [here](https://www.slideshare.net/Docker/docker-registry-v2)  
 * docker image docs [here](https://docs.docker.com/engine/reference/commandline/images/)  

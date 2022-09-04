@@ -2,7 +2,7 @@
 
 Demonstrate some examples of using `grype`.  
 
-ℹ NOTE: This merges `negligible` into `low` and `unknown` into `high` classifications  
+ℹ️ NOTE: This merges `negligible` into `low` and `unknown` into `high` classifications  
 
 
 For reducing number of vulnerabilities refer to:
@@ -20,7 +20,7 @@ TODO:
 * docker:20.10.7-dind is broken
 * When using grype in a loop it quits for some reason....... Not sure what this is or how to work out what is wrong..
 
-## Prerequisites
+## 📋 Prerequisites
 
 ```sh
 # install grype
@@ -47,6 +47,6 @@ The example uses a `./scans/out/images_docker.json` file that has to be served u
 code --install-extension ritwickdey.LiveServer
 ```
 
-## Resources
+## 👀 Resources
 
 * grype docs [here](https://github.com/anchore/grype)  

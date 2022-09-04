@@ -2,7 +2,7 @@
 
 Demonstrate semgrep on dockerfile and other standard container resources
 
-## 1️⃣ Prereqs
+## 📋 Prerequisites
 
 ```sh
 # install semgrep 
@@ -16,7 +16,7 @@ semgrep --version
 
 Use `semgrep` to scan files.  
 
-### Scan dockerfile
+### 🔍 Scan dockerfile
 
 ```sh
 # seems this ruleset is not up-to-date
@@ -25,13 +25,13 @@ semgrep -vvv --config "p/dockerfile" --error
 semgrep -vvv --config="r/generic.dockerfile" --error
 ```
 
-### Scan Bash
+### 🔍 Scan Bash
 
 ```sh
 semgrep -vvv --config="r/bash"
 ```
 
-### Scan nginx.conf
+### 🔍 Scan nginx.conf
 
 ```sh
 docker build --no-cache -f Dockerfile.nginx_root -t nginx_test .
@@ -43,7 +43,7 @@ semgrep --config "p/nginx"
 semgrep -vvv --config "r/generic.nginx"        
 ```
 
-### Scan HTML
+### 🔍 Scan HTML
 
 ```sh
 semgrep -vvv --config="r/html"

@@ -8,7 +8,7 @@ Demonstrate how to use a build pack to build a simple Python container
 * How quickly can they be rebuilt?
 * Can we run tests inside them?
 
-## 1️⃣ Prereqs
+## 📋 Prerequisites
 
 Installing pack cli tool [instructions](https://buildpacks.io/docs/tools/pack/)
 

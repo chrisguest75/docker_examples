@@ -1,4 +1,5 @@
-# Example 8 - Layer caching with arguments
+# Layer caching with arguments
+
 Demonstrate layer caching and how different build arguments values will not be cached until built.  
 
 TODO:
@@ -9,8 +10,9 @@ TODO:
         ---> 9b92fcacc779
         ```
 
-## Script to follow
-Caching behaviour with build arguments
+## 📋 Script to follow
+
+Caching behaviour with build arguments  
 
 ```sh
 # Before starting remove the cached image (this leaves behind intermediate layers though)
@@ -35,8 +37,10 @@ docker build --build-arg sleeptime=11 -t $(basename $(pwd)) .
 docker build --build-arg sleeptime=12 -t $(basename $(pwd)) .
 ```
 
-## Clean up   
+## 🧼 Cleanup
+
 ```sh
 # Remove image
 docker rmi $(basename $(pwd))
 ```
+

@@ -2,7 +2,7 @@
 
 Demonstrate creating a build matrix from a single `dockerfile`.
 
-Use a buildarg to pass in a baseimage that can be used to test multiple versions of code.  
+Use a buildarg to pass in a baseimage that can be used to test multiple versions of code.  Or as in this example use different version of `nginx` base images  
 
 ## 🏠 Run a build matrix on a Dockerfile
 
@@ -21,7 +21,7 @@ do
     # run image
     docker run -p 8080:80 --rm --name matrix$NGINXVERSIONSAFE -d matrix$NGINXVERSIONSAFE 
 
-    # test
+    # test (show version header)
     curl -vvvv --retry-all-errors --connect-timeout 5 --max-time 20 --retry 5 --retry-delay 0 --retry-max-time 40 -Is http://0.0.0.0:8080 | grep Server: 
 
     # stop container

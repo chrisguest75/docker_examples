@@ -1,11 +1,13 @@
-# 04 - Docker Context
+# Docker Context
 
 Show a docker context issue (large files)  
 
 ## 📋 Script to follow
 
-Show a docker context issue (large files)
+Show a docker context issue (large files)  
 Using .dockerignore to prevent bloating the docker context and increasing build times.  
+
+ℹ️ NOTE: If you're building an image and installing `node_modules` inside the container you should using a `.dockerignore` file.    
 
 ```sh
 # build the image  
@@ -22,12 +24,8 @@ mkfile 200m ./large_file.bin
 docker build --no-cache -t scratchtest .
 ```
 
-> Output
-
-```log
-Sending build context to Docker daemon  3.072kB
-Step 1/3 : FROM bash:5.0.7 as bash
-```
+> Sending build context to Docker daemon  3.072kB  
+> Step 1/3 : FROM bash:5.0.7 as bash
 
 ### Ignore
 
@@ -39,9 +37,6 @@ echo large_file.bin > ./.dockerignore
 docker build --no-cache -t scratchtest .
 ```
 
-> Output
+> Sending build context to Docker daemon  209.7MB  
+> Step 1/3 : FROM bash:5.0.7 as bash
 
-```log
-Sending build context to Docker daemon  209.7MB
-Step 1/3 : FROM bash:5.0.7 as bash
-```

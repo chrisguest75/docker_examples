@@ -1,14 +1,16 @@
 # README
+
 Demonstrate seccomp and apparmor and how to use them.
 
 TODO:
+
 * The container doesn't seem to be listening to signals so you have to remove the profile to kill it. 
 
 Profiles were based on [../52_dockerslim/README.md](../52_dockerslim/README.md)  
 
 There is another apparmour example [../25_apparmour/README.md](../25_apparmour/README.md)  
 
-## Prereqs
+## 📋 Prerequisites
 
 ```sh
 # use brew on linux
@@ -19,6 +21,7 @@ brew install docker-slim
 ```
 
 ## Start
+
 ```sh
 # look for seccomp profile (usually: default)
 docker info 
@@ -28,9 +31,11 @@ grep SECCOMP /boot/config-$(uname -r)
 ```
 
 # Seccomp 
+
 Identify allowd syscalls and whitelist them.
 
 ## Build 
+
 ```sh
 # build the seccomp test container
 docker build --no-cache -f Dockerfile -t seccomp-test .
@@ -48,6 +53,7 @@ docker stop seccomptest && docker rm seccomptest
 ```
 
 ## Generate Seccomp Base Profile (using docker-slim)
+
 ```sh
 # it generates a .slim file and seccomp policies.  
 docker-slim profile seccomp-test
@@ -55,9 +61,11 @@ docker-slim build --include-path /usr/share/nginx/html --expose 80 --http-probe-
 ```
 
 ## Seccomp
+
 When using docker-slim look out for the `artifacts.location=` in the logs.  Profiles are created in this loction. 
 
 An example logline is below:
+
 ```text
 # macosx
 cmd=build info=results artifacts.location='/tmp/docker-slim-state/.docker-slim-state/images/fe5d470d3508236b027288e7ed6792fd51c299dac595870f1a170a877b9ff52a/artifacts' 
@@ -67,7 +75,9 @@ cmd=build info=results artifacts.location='/home/linuxbrew/.linuxbrew/Cellar/doc
 ```
 
 ## Audit 
+
 It is possible to log out the denied syscalls into the syslog.  
+
 ```sh
 # setup an audit seccomp profile
 docker run -it -d -p 8080:80 --security-opt seccomp=./audit-seccomp.json --name seccomptest seccomp-test
@@ -84,7 +94,9 @@ cat /var/log/syslog | grep audit
 ```
 
 ## Run with profile
+
 Run with the original non-slim container with seccomp profile.
+
 ```sh
 # Running non-slim with profiles
 # NOTE: Had to add fstatfs
@@ -99,6 +111,7 @@ docker stop seccomptest && docker rm seccomptest
 ```
 
 Now run with the slim container with seccomp profile.
+
 ```sh
 # Running slim with profiles (with non-root usr this is failing)
 docker run -it -d -p 8080:80 --security-opt seccomp:./seccomp-test-seccomp.json --name seccomptest seccomp-test.slim
@@ -112,6 +125,7 @@ docker stop seccomptest && docker rm seccomptest
 ```
 
 # Apparmor 
+
 ```sh
 # build the container
 docker build --no-cache -f Dockerfile -t apparmor-test .
@@ -132,6 +146,7 @@ sudo apparmor_parser -R ./seccomp-test-apparmor-profile
 ```
 
 ## Troubleshooting Apparmor
+
 ```sh
 # install the aa-* tools
 sudo apt install apparmor-utils  
@@ -158,6 +173,7 @@ sudo aa-remove-unknown
 ```
 
 You can use a test & edit loop like this. 
+
 ```sh
 # docker-default
 sudo dmesg --clear
@@ -196,6 +212,7 @@ docker logs apparmortest
 
 
 # Checking capabilities
+
 https://github.com/genuinetools/amicontained/
 https://hub.docker.com/r/nodyd/bsidesmuc2020
 ```sh
@@ -203,8 +220,10 @@ docker run --rm -it r.j3ss.co/amicontained -d bash
 
 ```
 
-# Resources 
-## Seccomp
+## 👀 Resources
+
+### Seccomp
+
 * Docker seccomp docs [here](https://docs.docker.com/engine/security/seccomp/)  
 https://docs.docker.com/engine/security/apparmor/
 * https://martinheinz.dev/blog/41
@@ -215,7 +234,8 @@ https://docs.docker.com/engine/security/apparmor/
 * https://www.redhat.com/sysadmin/container-security-seccomp
 
 
-## Apparmor
+### Apparmor
+
 * https://askubuntu.com/questions/486150/evince-error-while-loading-shared-libraries-permission-denied
 * https://en.opensuse.org/SDB:AppArmor_geeks
 * https://wiki.ubuntu.com/DebuggingApparmor

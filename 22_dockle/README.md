@@ -10,7 +10,7 @@ Container Image Linter for Security, Helping build the Best-Practice Docker Imag
 
 * Show how to fix the issues raised
 
-## 1️⃣ Prereqs
+## 📋 Prerequisites
 
 Install `dockle`
 

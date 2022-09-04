@@ -1,11 +1,10 @@
-# 02 Host and Kernel details
+# Host and Kernel details
 
 Demonstrates how the host kernel versions are different for build and execution.  
 
 ## 📋 Script to follow
 
-Shows the kernel version during build.  
-When run on a different system it shows the kernel version will be different.  
+When run on a different system it shows the kernel version will be different. Shows the kernel version during build.    
 
 ## 🏠 Build
 
@@ -16,11 +15,7 @@ Building will output version
 docker build --no-cache --progress=plain -t $(basename $(pwd)) .
 ```
 
-> Output
-
-```log
-Linux 83fe3d9188f8 4.15.0-55-generic #60-Ubuntu SMP Tue Jul 2 18:22:20 UTC 2019 x86_64 Linux
-```
+> \> Linux 83fe3d9188f8 4.15.0-55-generic #60-Ubuntu SMP Tue Jul 2 18:22:20 UTC 2019 x86_64 Linux
 
 ## ⚡️ Execute (different machine)
 
@@ -31,11 +26,7 @@ Running on a **different machine (vm)** will return different value.
 docker run $(basename $(pwd))
 ```
 
-> Output
-
-```log
-Linux 3659e36111ba 4.9.184-linuxkit #1 SMP Tue Jul 2 22:58:16 UTC 2019 x86_64 Linux
-```
+> \> Linux 3659e36111ba 4.9.184-linuxkit #1 SMP Tue Jul 2 22:58:16 UTC 2019 x86_64 Linux
 
 ## 👀 Resources
 

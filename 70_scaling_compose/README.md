@@ -2,7 +2,7 @@
 
 Demonstrate how to use docker compose scale.  
 
-NOTES:
+ℹ️ NOTES:
 
 * When scaling out the pods docker seems to round robin for each of the pods.  
 

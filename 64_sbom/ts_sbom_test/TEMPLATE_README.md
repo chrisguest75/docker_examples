@@ -5,7 +5,10 @@ Demonstrates ts_sbom_test
 ## How to run
 
 ```sh
+# set node version
 nvm use
+
+# install modules
 npm install
 
 # run targets
@@ -44,6 +47,6 @@ code .
 
 The code should break on the breakpoint.  
 
-## Resources
+## 👀 Resources
 
 * My basic typecript cmdline [01_basic_cmdline](https://github.com/chrisguest75/typescript_examples/tree/master/01_basic_cmdline)

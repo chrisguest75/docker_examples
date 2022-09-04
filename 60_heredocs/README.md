@@ -1,8 +1,8 @@
 # README
 
-Demonstrate how to use HEREDOC in a Dockerfile.
+Demonstrate how to use HEREDOC in a Dockerfile.  
 
-ℹ NOTE: Top of dockerfile to tell docker which syntax to use `# syntax=docker/dockerfile:1.4`  
+ℹ️ NOTE: Top of dockerfile to tell docker which syntax to use `# syntax=docker/dockerfile:1.4`  
 
 ## 🏠 Build
 
@@ -13,18 +13,24 @@ Build the image containing the `heredoc`.
 docker build --progress=plain --no-cache -t heredoc .
 ```
 
-Run with the parameterised heredoc  
+Run with the parameterised `heredoc` created script.   
 
 ```sh
-# run
+# run ping (default google)
 docker run -it --rm --name heredoc --rm heredoc
 
-docker run -it --rm --name heredoc --rm heredoc https://www.google.com
-
+# run ping duckduckgo
 docker run -it --rm --name heredoc --rm heredoc https://duckduckgo.com
+```
 
-# debug
+Step into the container  
+
+```sh
+# debug 
 docker run -it --rm --name heredoc --entrypoint "/bin/bash" heredoc
+
+# show heredoc created script
+cat /bin/ping.sh
 ```
 
 ## 👀 Resources

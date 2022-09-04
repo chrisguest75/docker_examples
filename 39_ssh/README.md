@@ -4,7 +4,7 @@ Demonstrate how to use `ssh` inside a docker container
 
 Creates a container running `sshd` that allows access to the nginx container on the same network.  
 
-ℹ NOTE: This is root only login  
+ℹ️ NOTE: This is root only login  
 
 ## Architecture
 
@@ -52,7 +52,7 @@ ssh -vvvv -i ./server/keys/id_rsa -p 2822 root@0.0.0.0
 curl 172.16.238.64:80
 ```
 
-## Cleanup
+## 🧼 Cleanup
 
 ```sh
 # bring it down and delete the volume

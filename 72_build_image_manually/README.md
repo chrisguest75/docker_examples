@@ -1,4 +1,4 @@
-# 72 Building images manually
+# Building images manually
 
 Demonstrates how to build images manually.  
 
@@ -115,16 +115,16 @@ find ./output/buildtest/* -iname "layer.tar*" -execdir tar -xvf {} -C ./layer \;
 code ./output/buildtest
 ```
 
-Clean up  
+## 🧼 Cleanup
 
 ```sh
-# Remove files
+# Remove files, folders and images
 docker stop $(basename $(pwd)) && docker rm $(basename $(pwd))
 rm -rf ./output
 rm $(basename $(pwd)).tar
 docker rmi $(basename $(pwd))
 ```
 
-## Resources
+## 👀 Resources
 
 * how-to-generate-docker-image-layer-diffid [here](https://stackoverflow.com/questions/47249028/how-to-generate-docker-image-layer-diffid)

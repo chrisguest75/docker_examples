@@ -9,7 +9,7 @@ Docs are [here](https://dockersl.im/)
 * it does not seem to work with nginx non-privileged user.  
 * Docs has some information on this.
 
-## 1️⃣ Prereqs
+## 📋 Prerequisites
 
 [homebrew](https://brew.sh/) install of docker-slim.  
 

@@ -2,8 +2,8 @@
 
 Demonstrates how to use container structure testing.  
 
-[Container-Structure-Tests](https://github.com/GoogleContainerTools/container-structure-test)  Docs  
-[Container-diff](https://github.com/GoogleContainerTools/container-diff) Docs  
+* [Container-Structure-Tests](https://github.com/GoogleContainerTools/container-structure-test)  Docs  
+* [Container-diff](https://github.com/GoogleContainerTools/container-diff) Docs  
 
 TODO:
 
@@ -12,7 +12,7 @@ TODO:
 1. Log removal
 1. Why is container-diff not returning differences for two containers?
 
-## 1️⃣ Prereqs
+## 📋 Prerequisites
 
 Install the container-structure-test tool. We also use container-diff to see the differences in the outputs of the containers.  
 
@@ -54,8 +54,10 @@ We can use container-diff to analyse files that have been added to the base.
 ```sh
 # Save the base image as tar
 docker save ubuntu:16.04 > ubuntu1604.tar
+
 # Save the image as tar
 docker save structure1604:latest > structure1604.tar 
+
 # Compare them
 container-diff diff -t file structure1604.tar ubuntu1604.tar
 ```
@@ -65,10 +67,13 @@ container-diff diff -t file structure1604.tar ubuntu1604.tar
 ```sh
 # Build the cleaner iumage
 docker build --no-cache -t cleanerstructure1604 -f 1604_cleaner.Dockerfile .
+
 # Retest the container
 container-structure-test test --image cleanerstructure1604 --config structure_1604.yaml
+
 # Save the image as tar
 docker save cleanerstructure1604:latest > cleanerstructure1604.tar 
+
 # Diff against original
 container-diff diff -t file structure1604.tar cleanerstructure1604.tar
 container-diff diff -t file cleanerstructure1604.tar ubuntu1604.tar

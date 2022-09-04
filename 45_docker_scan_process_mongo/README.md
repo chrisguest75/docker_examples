@@ -172,8 +172,7 @@ The example uses a `./scans/out/images_docker.json` file that has to be served u
 code --install-extension ritwickdey.LiveServer
 ```
 
-
-# Resources 
+## 👀 Resources
 
 * MongoDB manual [here](https://docs.mongodb.com/manual)  
 * MongoDB in Compose [here](https://dev.to/sonyarianto/how-to-spin-mongodb-server-with-docker-and-docker-compose-2lef)

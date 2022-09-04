@@ -11,6 +11,11 @@ The aim is to use examples to show how Docker behaves when building containers a
 Cheatsheet style helpers for common tasks.  
 Steps [README.md](./00_cheatsheet/README.md)  
 
+## 00 - Troubleshooting
+
+Basic troubleshooting tips for installation and fixing issues.  
+Steps [README.md](./00_troubleshooting/README.md)  
+
 ## 01 - Layers, Hiding and Squashing
 
 Demonstrates how layers are stored, files are hidden and can be squashed.  
@@ -395,10 +400,8 @@ https://www.andreafortuna.org/2019/11/26/cve-2019-14271-a-docker-cp-container-es
 1. Show patching a container to fix an issue reported by GCR
 1. Cache invalidation - package managers
 1. Ordering of layers
-1. onbuild
 1. Signing builds
 1. Start a cgroup manually using an unpacked container.
-1. Snaps??
 1. Showing the process tree for docker (linux is easier)
 1. Cron in a container.
 1. Can I use a cgroup command inside a container?
