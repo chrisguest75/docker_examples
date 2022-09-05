@@ -1,4 +1,3 @@
-  
 FROM node:14.17.1 AS build-env
 WORKDIR /scratch
 COPY package-lock.json package.json ./

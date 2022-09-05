@@ -419,3 +419,4 @@ https://www.andreafortuna.org/2019/11/26/cve-2019-14271-a-docker-cp-container-es
 1. CRFS: Container Registry Filesystem https://github.com/google/crfs
 1. docker image history and using it to rebuild a container
 1. init handling https://github.com/krallin/tini
+1. https://adamo.wordpress.com/2022/05/05/removing-all-containers-via-ssh/ ssh remote_user@remote_host "docker ps -a -q|xargs -n 1 docker rm -f "
