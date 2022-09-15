@@ -1,0 +1,14 @@
+# syntax=docker/dockerfile:1.4
+FROM ubuntu:22.04 as BASE
+
+RUN apt update && apt install -y cowsay \
+    && apt clean \
+    && rm -rf /var/lib/apt/lists/* 
+
+WORKDIR /scratch
+COPY hello1.txt ./hello1.txt    
+COPY --from=context2 hello2.txt ./hello2.txt
+COPY --from=packages . ./
+
+CMD ["/usr/games/cowsay", "Hello from context1"]
+

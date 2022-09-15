@@ -4,6 +4,9 @@ Demonstrate how to use `skaffold` for local development.
   
 Based on [kind_examples/08_skaffold](https://github.com/chrisguest75/kind_examples/tree/master/08_skaffold)  
 
+NOTE: It doesn't seem like it's possible to open a port on a container.  
+NOTE: `docker compose` is not supported only `docker-compose`  
+
 ## Install
 
 Ensure that skaffold is installed  
