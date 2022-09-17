@@ -25,4 +25,15 @@ SERVICENAME=nginx
 docker inspect $(docker ps -aq --format '{{.Names}}' --filter "id=$(docker compose ps $SERVICENAME -q)")
 ```
 
+## Looking at image structure
+
+You can either use [`dive`](../30_dive_ci/README.md) or use the ```--out``` parameter.
+
+```bash
+# write image to an ./out folder
+docker build -f ./Dockerfile -t test -o out .
+```
+
 ## 👀 Resources
+
+* docker build [here](https://docs.docker.com/engine/reference/commandline/build/)  

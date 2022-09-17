@@ -7,6 +7,10 @@ Based on [kind_examples/08_skaffold](https://github.com/chrisguest75/kind_exampl
 NOTE: `docker compose` is not supported  
 NOTE: There seems to be an issue with the docker deployer where it will pick a new port each time.  
 
+TODO:
+
+* Work out how volume shares are done.
+
 ## Install
 
 Ensure that skaffold is installed  
