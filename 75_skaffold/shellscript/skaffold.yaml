@@ -6,7 +6,7 @@ metadata:
 build:
   artifacts:
   - image: skaffoldtest
-    context: ./shellscript
+    context: .
 
 deploy:
   docker:

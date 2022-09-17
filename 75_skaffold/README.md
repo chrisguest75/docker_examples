@@ -4,8 +4,8 @@ Demonstrate how to use `skaffold` for local development.
   
 Based on [kind_examples/08_skaffold](https://github.com/chrisguest75/kind_examples/tree/master/08_skaffold)  
 
-NOTE: It doesn't seem like it's possible to open a port on a container.  
-NOTE: `docker compose` is not supported only `docker-compose`  
+NOTE: `docker compose` is not supported  
+NOTE: There seems to be an issue with the docker deployer where it will pick a new port each time.  
 
 ## Install
 
@@ -15,19 +15,27 @@ Ensure that skaffold is installed
 brew install skaffold
 ```
 
-## Build and Test Locally
+Once you have `skaffold` running you can go and make edits and see the rebuild and deploy.  
+
+## Shellscript
+
+Build a simple shell script container continuously.
+
+### Shellscript - Build and Test Locally
 
 Build and test the image
 
 ```sh
+cd ./shellscript
+
 # build the image manually
-docker build -f ./shellscript/Dockerfile -t skaffoldtest ./shellscript
+docker build -f ./Dockerfile -t skaffoldtest .
 
 # run the image to test it
 docker run -it --rm --name skaffoldtest skaffoldtest 
 ```
 
-## Skaffold
+### Shellscript - Skaffold
 
 ```sh
 # Create a deployment then call init
@@ -39,7 +47,38 @@ skaffold init
 skaffold dev 
 ```
 
-Once you have `skaffold` running you can go and make edits and see the rebuild and deploy.  
+## NGINX
+
+Build a simple nginx container continuously.
+
+### NGINX - Build and Test Locally
+
+Build and test the image.
+
+```sh
+cd ./nginx
+
+# build the image manually
+docker build -f ./Dockerfile -t skaffoldtest .
+
+# run the image to test it
+docker run -it -p 8080:80 --rm --name skaffoldtest skaffoldtest 
+
+open http://0.0.0.0:8080
+```
+
+### NGINX - Skaffold
+
+```sh
+# Create a deployment then call init
+skaffold init        
+```
+
+```sh
+# run skaffold
+skaffold dev 
+```
+
 
 ## 👀 Resources
 

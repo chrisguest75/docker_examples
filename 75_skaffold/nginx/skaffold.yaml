@@ -1,0 +1,23 @@
+apiVersion: skaffold/v2beta29 
+kind: Config
+metadata:
+  name: -skaffold
+
+build:
+  artifacts:
+  - image: nginxskaffold
+    context: .
+    docker:
+      dockerfile: Dockerfile
+
+deploy:
+  docker:
+    # docker compose not supported yet
+    useCompose: false
+    images: [nginxskaffold]
+
+portForward:
+  - resourceType: container
+    resourceName: nginxskaffold
+    port: 80
+    localPort: 8080
