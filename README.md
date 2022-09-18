@@ -377,11 +377,15 @@ Steps [README.md](./75_skaffold/README.md)
 Demonstrate how to use `docker compose` healthchecks.  
 Steps [README.md](./77_healthchecks/README.md)  
 
+## 78 - multiple contexts
+
+Demonstrate how to use `docker buildx` with multiple contexts.  
+Steps [README.md](./78_multi_context/README.md)  
+
 ## 📝 TODO
 
 1. You can use --output path to output the image to a folder
 https://docs.docker.com/engine/reference/commandline/build/#custom-build-outputs
-1. multiple build contexts https://www.docker.com/blog/dockerfiles-now-support-multiple-build-contexts/ 
 1. botb - break out the box image https://github.com/brompwnie/botb
 1. Show how multistage builds work for testing
 1. Demo using cache-from.....  Use a timed layer.
@@ -400,7 +404,6 @@ https://www.andreafortuna.org/2019/11/26/cve-2019-14271-a-docker-cp-container-es
 1. PID1 - init-system https://cloud.google.com/solutions/best-practices-for-building-containers
 1. mounting volumes and permissions.
 1. Build a busybox image.  https://github.com/ukanth/afwall/wiki/HOWTO-Compiling-busybox
-1. Create a layer and add it manually to the image
 1. Docker content trust https://docs.docker.com/engine/security/trust/content_trust/
 1. Show patching a container to fix an issue reported by GCR
 1. Cache invalidation - package managers
@@ -413,7 +416,6 @@ https://www.andreafortuna.org/2019/11/26/cve-2019-14271-a-docker-cp-container-es
 1. Docker users.
 1. Binding to different networks localhost vs 127.0.0.1 or 0.0.0.0
 1. docker info
-1. docker context
 1. docker plugins.
 1. docker manifests
 1. CRFS: Container Registry Filesystem https://github.com/google/crfs
