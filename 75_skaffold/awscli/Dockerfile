@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1.4
-FROM ubuntu:22.04
+FROM ubuntu:22.04 AS base
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG AWS_PROFILE=myprofile
@@ -23,5 +23,9 @@ RUN unzip -q awscliv2.zip
 RUN aws/install
 RUN /usr/local/bin/aws --version
 
+ENTRYPOINT ["/usr/local/bin/aws", "s3", "ls"]
+
+FROM base AS withprofile
 COPY --from=profile . /root/.aws
+
 ENTRYPOINT ["/usr/local/bin/aws", "s3", "ls"]
