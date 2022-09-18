@@ -24,72 +24,19 @@ Once you have `skaffold` running you can go and make edits and see the rebuild a
 
 ## Shellscript
 
-Build a simple shell script container continuously.
-
-### Shellscript - Build and Test Locally
-
-Build and test the image
-
-```sh
-cd ./shellscript
-
-# build the image manually
-docker build -f ./Dockerfile -t skaffoldtest .
-
-# run the image to test it
-docker run -it --rm --name skaffoldtest skaffoldtest 
-```
-
-### Shellscript - Skaffold
-
-```sh
-# Create a deployment then call init
-skaffold init        
-```
-
-```sh
-# run skaffold
-skaffold dev 
-```
+[A shellscript example here](./shellscript/README.md) is most basic example.  
 
 ## NGINX
 
-Build a simple nginx container continuously.
+[An NGINX example here](./nginx/README.md) shows how to use ports.  
 
-### NGINX - Build and Test Locally
+## AWSCLI
 
-Build and test the image.
-
-```sh
-cd ./nginx
-
-# build the image manually
-docker build -f ./Dockerfile -t skaffoldtest .
-
-# run the image to test it
-docker run -it -p 8080:80 --rm --name skaffoldtest skaffoldtest 
-
-open http://0.0.0.0:8080
-```
-
-### NGINX - Skaffold
-
-```sh
-# Create a deployment then call init
-skaffold init        
-```
-
-```sh
-# run skaffold
-skaffold dev 
-```
-
+[An awscli example here](./awscli/README.md) shows how to use fake sharing in a volume with multiple contexts and using hardcoded ENVs from build args.  
 
 ## 👀 Resources
 
 * [skaffold.dev](https://skaffold.dev/)  
 * Working with [local-cluster](https://skaffold.dev/docs/environment/local-cluster/)  
 * skaffold.yaml [here](https://skaffold.dev/docs/references/yaml/)  
-
-
-https://github.com/GoogleContainerTools/skaffold/blob/995742df68c1725c9800b18c18d16f5a3fd6ffe3/pkg/skaffold/deploy/docker/deploy.go#L291-L314
+* Docker Deploy code [here](https://github.com/GoogleContainerTools/skaffold/blob/995742df68c1725c9800b18c18d16f5a3fd6ffe3/pkg/skaffold/deploy/docker/deploy.go#L291-L314)  

@@ -2,6 +2,8 @@
 
 Create a container containing AWS CLI and build credentials into it.  
 
+It use multiple build contexts to allow a profile copy.  We also use build-args to create hardcoded environment strings.  As I don't see a way of passing environment variables or volumes into the container.  
+
 NOTE: We build the credentials into it so we can use with Skaffold docker support.  
 
 ## Build
