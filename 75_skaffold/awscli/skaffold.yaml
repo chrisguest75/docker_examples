@@ -1,0 +1,16 @@
+apiVersion: skaffold/v2beta29 
+kind: Config
+metadata:
+  name: -skaffold
+
+build:
+  artifacts:
+  - image: skaffoldtest
+    custom:
+      buildCommand: |
+        docker buildx build --progress=plain --build-arg AWS_PROFILE=$AWS_PROFILE --build-arg AWS_REGION=$AWS_REGION --build-context profile=/Users/${USER}/.aws -t $IMAGE . 
+
+deploy:
+  docker:
+    images: [skaffoldtest]
+

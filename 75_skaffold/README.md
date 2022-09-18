@@ -10,6 +10,7 @@ NOTE: There seems to be an issue with the docker deployer where it will pick a n
 TODO:
 
 * Work out how volume shares are done.
+* Passing environment variables in.
 
 ## Install
 
@@ -89,3 +90,6 @@ skaffold dev
 * [skaffold.dev](https://skaffold.dev/)  
 * Working with [local-cluster](https://skaffold.dev/docs/environment/local-cluster/)  
 * skaffold.yaml [here](https://skaffold.dev/docs/references/yaml/)  
+
+
+https://github.com/GoogleContainerTools/skaffold/blob/995742df68c1725c9800b18c18d16f5a3fd6ffe3/pkg/skaffold/deploy/docker/deploy.go#L291-L314
