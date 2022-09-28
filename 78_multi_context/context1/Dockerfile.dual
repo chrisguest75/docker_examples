@@ -10,5 +10,13 @@ COPY hello1.txt ./hello1.txt
 
 COPY --from=context2 hello2.txt ./hello2.txt
 
-CMD ["/usr/games/cowsay", "Hello from context1"]
+# NOTE: Escape the \$ otherwise they are rendered at buildtime
+COPY <<EOF /scratch/run.sh
+#!/usr/bin/env bash
+/usr/games/cowsay "$(cat \$1)"
+EOF
+RUN chmod +x /scratch/run.sh
+
+CMD ["/scratch/run.sh", "/scratch/hello2.txt"]
+
 

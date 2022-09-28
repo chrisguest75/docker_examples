@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1.4
-FROM ubuntu:22.04 as BASE
+FROM ubuntu:22.04 as base
 
 RUN apt update && apt install -y cowsay \
     && apt clean \
@@ -8,18 +8,26 @@ RUN apt update && apt install -y cowsay \
 WORKDIR /scratch
 COPY hello1.txt ./hello1.txt
 
-CMD ["/usr/games/cowsay", "Hello from context1"]
+# NOTE: Escape the \$ otherwise they are rendered at buildtime
+COPY <<EOF /scratch/run.sh
+#!/usr/bin/env bash
+/usr/games/cowsay "$(cat \$1)"
+EOF
+RUN chmod +x /scratch/run.sh
 
-FROM ubuntu:22.04 as PACKAGES
+CMD ["/scratch/run.sh", "/scratch/hello1.txt"]
+
+FROM ubuntu:22.04 as packagesstage
 
 RUN apt update && apt install -y cowsay \
     && apt clean \
     && rm -rf /var/lib/apt/lists/*
     
 WORKDIR /scratch
-#COPY --from=BASE /scratch/hello1.txt ./hello1.txt
-#COPY --from=context2 hello2.txt ./hello2.txt
-#COPY --from=packages . ./
+COPY --from=base /scratch/run.sh ./run.sh
+COPY --from=base /scratch/hello1.txt ./hello1.txt
+COPY --from=context2 hello2.txt ./hello2.txt
+COPY --from=packages . ./
 
-CMD ["/usr/games/cowsay", "Hello from context1"]
+CMD ["/scratch/run.sh", "/scratch/hello2.txt"]
 

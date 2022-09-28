@@ -6,9 +6,10 @@ RUN apt update && apt install -y cowsay \
     && rm -rf /var/lib/apt/lists/* 
 
 WORKDIR /scratch
-COPY hello1.txt ./hello1.txt    
+COPY hello1.txt ./hello1.txt
+
 COPY --from=context2 hello2.txt ./hello2.txt
-COPY --from=packages . ./
+COPY --from=context2 hello3.txt ./hello3.txt
 
 # NOTE: Escape the \$ otherwise they are rendered at buildtime
 COPY <<EOF /scratch/run.sh
@@ -17,5 +18,6 @@ COPY <<EOF /scratch/run.sh
 EOF
 RUN chmod +x /scratch/run.sh
 
-CMD ["/scratch/run.sh", "/scratch/hello1.txt"]
+CMD ["/scratch/run.sh", "/scratch/hello2.txt"]
+
 
