@@ -39,7 +39,7 @@ Steps [README.md](./03_buildargs_storage/README.md)
 
 ## 04 - Docker Context
 
-Show a docker context issue (large files)  
+Demonstrate how to work with Docker context.  
 Steps [README.md](./04_docker_context/README.md)  
 
 ## 05 - Root user

@@ -1,0 +1,7 @@
+FROM bash:5.0.7 as bash
+RUN uname -a 
+
+WORKDIR /scratch
+COPY 04_docker_context/large_file.bin large_file.bin
+COPY 00_cheatsheet .
+CMD ["uname", "-a"]
