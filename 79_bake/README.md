@@ -38,3 +38,6 @@ https://blog.kubesimplify.com/bake-your-container-images-with-bake
 
 https://github.com/developer-guy/hello-world-buildx
 
+https://docs.docker.com/build/customize/bake/hcl-funcs/
+
+https://docs.docker.com/build/customize/bake/
