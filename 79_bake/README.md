@@ -1,43 +1,28 @@
 # README
 
-Demonstrate how to use `bake`  
+Demonstrate how to use `bake` to build multiple images.  
 
-TODO:
+REF: Nix 09_distroless [here](https://github.com/chrisguest75/nix-examples/blob/master/09_distroless/README.md)  
 
-* Build multiple nix images and merge them into one.  
-* Build with multiple contexts.  
+## Bake
 
-## jq build
+```bash
+# use bake to build all the images
+docker buildx bake --metadata-file ./bake-metadata.json  
+docker buildx bake --metadata-file ./bake-metadata.json --no-cache 
 
-```sh
-# build the packages 
-docker build --no-cache --progress=plain -f Dockerfile.jq --target BUILDER -t nix-jq .  
-docker build --no-cache --progress=plain -f Dockerfile.jq --target PRODUCTION -t nix-jq .    
-
-# run to prove jq works
-docker run --rm -it nix-jq
-
-docker run --rm -it --entrypoint /busybox/sh nix-jq 
-
-dive nix-jq
-
+while IFS=, read -r imagesha
+do
+    echo "IMAGE:$imagesha"
+    docker run --rm -t "$imagesha" --version
+done < <(jq -r '. | keys[] as $key | .[$key]."containerimage.digest"' ./bake-metadata.json)
 ```
 
-```sh
-docker buildx bake --print
-```
+## Resources
 
-## Resource
-
-https://docs.docker.com/engine/reference/commandline/buildx_bake/
-
-https://github.com/docker/buildx
-
-Docker Bake example
-https://blog.kubesimplify.com/bake-your-container-images-with-bake
-
-https://github.com/developer-guy/hello-world-buildx
-
-https://docs.docker.com/build/customize/bake/hcl-funcs/
-
-https://docs.docker.com/build/customize/bake/
+* docker buildx bake [here](https://docs.docker.com/engine/reference/commandline/buildx_bake/)
+* User defined HCL functions [here](https://docs.docker.com/build/customize/bake/hcl-funcs/)
+* High-level build options with Bake [here](https://docs.docker.com/build/customize/bake/)
+* buildx repo [here](https://github.com/docker/buildx)
+* Bake your Container Images with Bake [here](https://blog.kubesimplify.com/bake-your-container-images-with-bake)
+* developer-guy/hello-world-buildx repo [here](https://github.com/developer-guy/hello-world-buildx)

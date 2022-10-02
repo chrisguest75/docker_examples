@@ -2,8 +2,8 @@
 ARG baseimage="scratch"
 FROM nixos/nix:latest AS BUILDER
 
-ARG NIX_FILE=./jq.nix 
-ARG PROGRAM_FILE=jq 
+ARG NIX_FILE=./sox.nix 
+ARG PROGRAM_FILE=sox 
 
 WORKDIR /scratch
 COPY $NIX_FILE .
@@ -26,11 +26,9 @@ RUN chmod +x /scratch/exportldd.sh && /scratch/exportldd.sh
 CMD ["./output/bin/$PROGRAM_FILE", "--version"]
 
 FROM $baseimage AS PRODUCTION
-#FROM scratch AS PRODUCTION
-#FROM gcr.io/distroless/nodejs:16 AS PRODUCTION
 
 COPY --from=BUILDER /output/bin/$PROGRAM_FILE /usr/bin/$PROGRAM_FILE
 COPY --from=BUILDER /output/libs /
 
-ENTRYPOINT [ "/usr/bin/jq" ]
-CMD ["/usr/bin/jq", "--version"]
+ENTRYPOINT [ "/usr/bin/sox" ]
+CMD ["/usr/bin/sox", "--version"]
