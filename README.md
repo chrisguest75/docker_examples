@@ -382,6 +382,11 @@ Steps [README.md](./77_healthchecks/README.md)
 Demonstrate how to use `docker buildx` with multiple contexts.  
 Steps [README.md](./78_multi_context/README.md)  
 
+## 79 - bake
+
+Demonstrate how to use `bake` to build multiple images.  
+Steps [README.md](./79_bake/README.md)  
+
 ## 📝 TODO
 
 1. You can use --output path to output the image to a folder
