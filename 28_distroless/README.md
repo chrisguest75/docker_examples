@@ -83,3 +83,4 @@ docker scan v14_distroless-debug
 * Node build tags [here](https://github.com/GoogleContainerTools/distroless/blob/main/nodejs/README.md)  
 * NodeJS bestpractices [here](https://snyk.io/wp-content/uploads/10-best-practices-to-containerize-Node.js-web-applications-with-Docker.pdf)  
 * Debugging Guide[here](https://nodejs.org/en/docs/guides/debugging-getting-started/)  
+* Node.js debugging in VS Code [here](https://code.visualstudio.com/docs/nodejs/nodejs-debugging)
