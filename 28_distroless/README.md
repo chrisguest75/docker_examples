@@ -2,9 +2,10 @@
 
 Demonstrate Distroless containers where the shell is removed.  
 
-📝 TODO:
+Other examples:  
 
-* debugging - `docker run -it --rm  gcr.io/distroless/nodejs --inspect=9229`
+* nix-examples/09_distroless [here](https://github.com/chrisguest75/nix-examples/tree/master/09_distroless)  
+* typescript_examples/26_jobserver [here](https://github.com/chrisguest75/typescript_examples/blob/master/26_jobserver/Dockerfile)  
 
 ## 🏠 Build example
 
