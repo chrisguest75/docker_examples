@@ -8,6 +8,8 @@ Demonstrate Distroless containers where the shell is removed.
 
 ## 🏠 Build example
 
+We have different versions of nodejs available to us.  
+
 ```sh
 # node10
 docker build --no-cache -f v10.Dockerfile -t v10_distroless .
@@ -22,7 +24,9 @@ docker build --no-cache -f v16.Dockerfile -t v16_distroless .
 docker run -it --rm v16_distroless  
 ```
 
-## 🏠 Build debug example
+## 🏠 Build debug example for shell
+
+If you need access to a shell to enter the container then add `-debug`  
 
 ```sh
 docker build --no-cache -f v14-debug.Dockerfile -t v14_distroless-debug .
@@ -30,6 +34,14 @@ docker run -it --rm v14_distroless-debug
 
 # Get onto the container
 docker run -it --rm --entrypoint /busybox/sh v14_distroless-debug
+```
+
+## 🏠 Single step debugging (vscode)
+
+```sh
+# enter the directory for the vscode settings.  
+cd ./28_distroless
+docker run -it --rm -p 9229:9229 v16_distroless --inspect-brk=0.0.0.0:9229 index.js
 ```
 
 ## 🏠 Upgrade to Node12
