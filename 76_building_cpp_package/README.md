@@ -6,7 +6,9 @@ INSTALL instructions [here](sox/sox-14.4.2/INSTALL)
 
 TODO:
 
-* Build and transfer to a scratch container
+* Build and transfer to a scratch container.
+* libgomp does not show up in ldd
+* Understand how to configure options in configure and automake
 
 ## Get code
 
@@ -40,28 +42,31 @@ verify_md5 "$URL" "$MD5"
 # build image with build tools (add --no-cache if reqd)
 docker build --progress plain -f ./sox/Dockerfile --target PRODUCTION -t sox ./sox  
 
+# run sox tool
 docker run --rm -it sox   
 ```
 
 ## Troubleshooting
 
-
+If things are breaking here are some helpful pointers.  
 
 ### Scratch container
 
 ```sh
+# build just the builder stage
 docker build --progress plain -f ./sox/Dockerfile --target BUILDER -t soxbuild ./sox 
 
+# step into it. 
 docker run --rm -it --entrypoint /bin/bash soxbuild   
 
-ldd ./sox
+# list binary dependencies
+ldd /scratch/out/bin/sox
 
-
+# inspect container
+dive soxbuild
 ```
 
-linux-vdso.so.1 - https://man7.org/linux/man-pages/man7/vdso.7.html
-
-### Failing to build
+### Manual build
 
 ```sh
 # unpack source
@@ -88,6 +93,9 @@ du -h /scratch/out
 * brianc118/sox_local_install gist [here](https://gist.github.com/brianc118/a71f6d41c4d105835f91d173f2f1cd5c)  
 
 Where is linux-vdso.so.1 present on the file system https://stackoverflow.com/questions/58657036/where-is-linux-vdso-so-1-present-on-the-file-system
+
+linux-vdso.so.1 - https://man7.org/linux/man-pages/man7/vdso.7.html
+
 
 https://medium.com/@mfcollins3/shipping-c-programs-in-docker-1d79568f6f52
 

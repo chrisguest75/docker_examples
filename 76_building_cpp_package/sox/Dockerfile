@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:1.4
 FROM ubuntu:20.04 AS BUILDER
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -43,21 +44,35 @@ RUN /scratch/out/bin/sox || true
 
 RUN ls -laR /scratch/out
 
-#FROM scratch AS PRODUCTION
+# # NOTE: Escape the \$ otherwise they are rendered at buildtime
+# COPY <<EOF /scratch/exportldd.sh
+# #!/usr/bin/env bash
+# ldd "/scratch/out/bin/sox" >  /scratch/libs.txt
+# cat /scratch/libs.txt | awk 'NF == 4 { {print \$3} }' > /scratch/libs_extracted.txt    
+# cat /scratch/libs_extracted.txt | awk -F/ -vOFS=/ '{ print \$1,\$2,\$3,\$4; }' | sort -u > /scratch/libs_paths.txt
+# tar -cvf /scratch/libraries.tar -T /scratch/libs_paths.txt
+# mkdir -p /output/libs /output/bin
+# tar xf /scratch/libraries.tar --directory=/output/libs
+# cp "/scratch/out/bin/sox" /output/bin
+# EOF
+# RUN chmod +x /scratch/exportldd.sh && /scratch/exportldd.sh
+# CMD ["./output/bin/sox", "--version"]
+
+
 FROM ubuntu:20.04 AS PRODUCTION
 
 COPY --from=BUILDER /scratch/out /usr
-# THIS NEEDS TO BE FILTERED
-# root@1da61e4b533c:/scratch/out/bin# ldd sox
-#         linux-vdso.so.1 (0x00007fffe8df2000)
-#         libsox.so.3 => /scratch/out/lib/libsox.so.3 (0x00007f329d77f000)
-#         libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007f329d62c000)
-#         libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007f329d609000)
-#         libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f329d417000)
-#         libgomp.so.1 => /lib/x86_64-linux-gnu/libgomp.so.1 (0x00007f329d3d5000)
-#         /lib64/ld-linux-x86-64.so.2 (0x00007f329d821000)
-#         libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007f329d3cf000)
 COPY --from=BUILDER /lib /lib 
 COPY --from=BUILDER /lib64 /lib64 
 
 CMD ["/usr/bin/sox"]
+
+
+# # FROM scratch AS PRODUCTION
+# FROM ubuntu:20.04 AS PRODUCTION
+
+# COPY --from=BUILDER /output/bin/sox /usr/bin/sox
+# COPY --from=BUILDER /output/libs/scratch/out /scratch/out
+
+# ENTRYPOINT [ "/usr/bin/sox" ]
+# CMD ["/usr/bin/sox", "--version"]
