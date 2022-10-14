@@ -372,6 +372,11 @@ Steps [README.md](./74_onbuild/README.md)
 Demonstrate how to use `skaffold` for local development.  
 Steps [README.md](./75_skaffold/README.md)  
 
+## 76 - Building CPP tools in containers  
+
+Building example CPP package (SOX) inside a docker container.  
+Steps [README.md](./76_building_cpp_package/README.md)  
+
 ## 77 - healthchecks
 
 Demonstrate how to use `docker compose` healthchecks.  
