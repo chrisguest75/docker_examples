@@ -6,9 +6,7 @@ INSTALL instructions [here](sox/sox-14.4.2/INSTALL)
 
 TODO:
 
-* Build and transfer to a scratch container.
-* libgomp does not show up in ldd
-* Understand how to configure options in configure and automake
+* Improve the build and copy.
 
 ## Get code
 
@@ -44,6 +42,12 @@ docker build --progress plain -f ./sox/Dockerfile --target production -t sox ./s
 
 # run sox tool
 docker run --rm -it sox   
+
+# share in a file and trim it
+docker run --rm -it --volume $(pwd)/output:/output sox /output/english_thelittlegraylamb_sullivan_csm_64kb_16bit-22khz.wav /output/trim.wav trim 0 10 
+
+# check output
+vlc ./output/trim.wav
 ```
 
 ## Troubleshooting
@@ -64,9 +68,6 @@ ldd /scratch/out/bin/sox
 
 # inspect container
 dive soxbuild
-
-
-
 ```
 
 ### Manual build
@@ -109,22 +110,11 @@ du -h /scratch/out
 * dockerhub vanb777/ffmpeg-sox [here](https://hub.docker.com/r/vanb777/ffmpeg-sox/dockerfile)  
 * Understanding Shared Libraries in Linux [here](https://www.tecmint.com/understanding-shared-libraries-in-linux/#:~:text=By%20default%2C%20libraries%20are%20located,so.)  
 * brianc118/sox_local_install gist [here](https://gist.github.com/brianc118/a71f6d41c4d105835f91d173f2f1cd5c)  
-
-Where is linux-vdso.so.1 present on the file system https://stackoverflow.com/questions/58657036/where-is-linux-vdso-so-1-present-on-the-file-system
-
-linux-vdso.so.1 - https://man7.org/linux/man-pages/man7/vdso.7.html
-
-
-https://medium.com/@mfcollins3/shipping-c-programs-in-docker-1d79568f6f52
-
-https://blog.conan.io/2021/08/09/Modern-docker-images.html
-
-https://0xax.gitbooks.io/linux-insides/content/
-
-https://0xax.gitbooks.io/linux-insides/content/SysCall/linux-syscall-4.html
-
-https://maelvls.dev/static-libraries-and-autoconf-hell/
-
-
-https://www.gnu.org/savannah-checkouts/gnu/autoconf/manual/autoconf-2.71/index.html
-
+* Where is linux-vdso.so.1 present on the file system [here](https://stackoverflow.com/questions/58657036/where-is-linux-vdso-so-1-present-on-the-file-system)
+* manpage for linux-vdso.so.1 [here](https://man7.org/linux/man-pages/man7/vdso.7.html)
+* Shipping C++ Programs in Docker: A Journey Begins [here](https://medium.com/@mfcollins3/shipping-c-programs-in-docker-1d79568f6f52)
+* Modern Docker Images to build C/C++ projects for ConanCenter: How I Learned to Stop Worrying and Love the Old images [here](https://blog.conan.io/2021/08/09/Modern-docker-images.html)
+* linux-insides gitbook [here](https://0xax.gitbooks.io/linux-insides/content/)
+* System calls in the Linux kernel. Part 4. [here](https://0xax.gitbooks.io/linux-insides/content/SysCall/linux-syscall-4.html)
+* Epic journey with statically and dynamically-linked libraries (.a, .so) [here](https://maelvls.dev/static-libraries-and-autoconf-hell/)
+* GNU Autoconf - Creating Automatic Configuration Scripts [here](https://www.gnu.org/savannah-checkouts/gnu/autoconf/manual/autoconf-2.71/index.html)
