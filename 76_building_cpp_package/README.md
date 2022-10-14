@@ -40,7 +40,7 @@ verify_md5 "$URL" "$MD5"
 
 ```sh
 # build image with build tools (add --no-cache if reqd)
-docker build --progress plain -f ./sox/Dockerfile --target PRODUCTION -t sox ./sox  
+docker build --progress plain -f ./sox/Dockerfile --target production -t sox ./sox  
 
 # run sox tool
 docker run --rm -it sox   
@@ -54,7 +54,7 @@ If things are breaking here are some helpful pointers.
 
 ```sh
 # build just the builder stage
-docker build --progress plain -f ./sox/Dockerfile --target BUILDER -t soxbuild ./sox 
+docker build --progress plain -f ./sox/Dockerfile --target builder -t soxbuild ./sox 
 
 # step into it. 
 docker run --rm -it --entrypoint /bin/bash soxbuild   
@@ -64,9 +64,27 @@ ldd /scratch/out/bin/sox
 
 # inspect container
 dive soxbuild
+
+
+
 ```
 
 ### Manual build
+
+```sh
+# build the container to prebuild stage
+docker build --progress plain -f ./sox/Dockerfile --target prebuild -t soxbuild ./sox 
+# enter 
+docker run --rm -it --entrypoint /bin/bash soxbuild  
+
+./configure --help 
+
+./configure --prefix=/scratch/out --with-pic --enable-static --disable-shared 
+make -s && make install
+
+ls -la -R /scratch/out
+ldd "/scratch/out/bin/sox"
+```
 
 ```sh
 # unpack source
@@ -104,4 +122,9 @@ https://blog.conan.io/2021/08/09/Modern-docker-images.html
 https://0xax.gitbooks.io/linux-insides/content/
 
 https://0xax.gitbooks.io/linux-insides/content/SysCall/linux-syscall-4.html
+
+https://maelvls.dev/static-libraries-and-autoconf-hell/
+
+
+https://www.gnu.org/savannah-checkouts/gnu/autoconf/manual/autoconf-2.71/index.html
 
