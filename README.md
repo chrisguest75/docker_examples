@@ -352,6 +352,11 @@ Steps [README.md](./69_skopeo/README.md)
 Demonstrate how to use docker compose scale.  
 Steps [README.md](./70_scaling_compose/README.md)  
 
+## 71 - cosign
+
+Demonstrate `cosign` for signing OCI images.  
+Steps [README.md](./71_cosign/README.md)  
+
 ## 72 - Building images manually  
 
 Demonstrates how to build images manually.  

@@ -26,11 +26,11 @@ docker build -t signed_image -f ./Dockerfile .
 docker run --rm -it --name signed_image signed_image
 ```
 
-
+```sh
 cosign generate-key-pair   
 export COSIGN_PASSWORD=
 cosign sign --key cosign.key signed_image
-
+```
 
 ## 👀 Resources
 
