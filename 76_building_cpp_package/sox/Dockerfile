@@ -46,7 +46,7 @@ RUN /scratch/out/bin/sox || true
 RUN ls -laR /scratch/out
 
 # NOTE: Escape the \$ otherwise they are rendered at buildtime
-COPY <<EOF /scratch/exportldd.sh
+COPY --chmod=755 <<EOF /scratch/exportldd.sh
 #!/usr/bin/env bash
 ldd "/scratch/out/bin/sox" >  /scratch/libs.txt
 cat /scratch/libs.txt | awk 'NF == 4 { {print \$3} }' > /scratch/libs_extracted.txt    
@@ -58,7 +58,10 @@ cp "/scratch/out/bin/sox" /output/bin
 mkdir -p /output/libs/lib64
 cp /lib64/ld-linux-x86-64.so.2 /output/libs/lib64/ld-linux-x86-64.so.2
 EOF
-RUN chmod +x /scratch/exportldd.sh && /scratch/exportldd.sh
+# NOTE: This is not required as there is an undocumented flag --chmod
+# RUN chmod +x /scratch/exportldd.sh && /scratch/exportldd.sh
+RUN /scratch/exportldd.sh
+
 CMD ["./output/bin/sox", "--version"]
 
 

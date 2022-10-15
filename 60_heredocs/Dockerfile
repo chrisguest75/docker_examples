@@ -8,7 +8,7 @@ RUN apt-get update \
     && apt-get clean 
 
 # NOTE: Escape the \$ otherwise they are rendered at buildtime
-COPY <<EOF /bin/ping.sh
+COPY --chmod=755 <<EOF /bin/ping.sh
 #!/usr/bin/env bash
 URL=\${1:-https://google.com} 
 if [ -z "\${URL}" ];then 
@@ -21,7 +21,9 @@ while true; do
 done
 EOF
 
-RUN chmod +x /bin/ping.sh
+# NOTE: This is not required as there is an undocumented flag --chmod
+#RUN chmod +x /bin/ping.sh
+
 ENTRYPOINT ["/bin/ping.sh"]
 CMD [""]
 
