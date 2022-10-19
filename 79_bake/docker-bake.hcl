@@ -93,6 +93,34 @@ target "ffmpeg-image-scratch" {
   tags = ["nix-ffmpeg-scratch:${TAG}"]
 }
 
+#***********************************************
+# ffmpeg images
+#***********************************************
+
+target "ffmpeg5-image" {
+  args = {"NIX_FILE":"ffmpeg_5.nix", "PROGRAM_FILE":"ffmpeg"}
+  context = "."
+  dockerfile = "Dockerfile.ffmpeg5"
+}
+
+target "ffmpeg5-image-distroless" {
+  inherits = ["ffmpeg5-image"]
+  args = {"baseimage":"${DISTROLESS}"}
+  labels = {
+    "org.opencontainers.image.title"= "nix-ffmpeg5-distroless:${TAG}"
+  }
+  tags = ["nix-ffmpeg5-distroless:${TAG}"]
+}
+
+target "ffmpeg5-image-scratch" {
+  inherits = ["ffmpeg5-image"]
+  args = {"baseimage":"${SCRATCH}"}
+  labels = {
+    "org.opencontainers.image.title"= "nix-ffmpeg5-scratch:${TAG}"
+  }
+  tags = ["nix-ffmpeg5-scratch:${TAG}"]
+}
+
 group "default" {
   targets = [
     "jq-image-distroless", 
@@ -100,6 +128,8 @@ group "default" {
     "sox-image-distroless", 
     "sox-image-scratch",
     "ffmpeg-image-distroless", 
-    "ffmpeg-image-scratch"
+    "ffmpeg-image-scratch",
+    "ffmpeg5-image-distroless", 
+    "ffmpeg5-image-scratch"
     ]
 }

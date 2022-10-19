@@ -26,3 +26,4 @@ done < <(jq -r '. | keys[] as $key | .[$key]."containerimage.digest"' ./bake-met
 * buildx repo [here](https://github.com/docker/buildx)
 * Bake your Container Images with Bake [here](https://blog.kubesimplify.com/bake-your-container-images-with-bake)
 * developer-guy/hello-world-buildx repo [here](https://github.com/developer-guy/hello-world-buildx)
+* ffmpeg nix file [here](https://github.com/NixOS/nixpkgs/blob/nixos-22.05/pkgs/development/libraries/ffmpeg/generic.nix#L230)

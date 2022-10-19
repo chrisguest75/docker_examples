@@ -3,7 +3,7 @@ with import <nixpkgs> {};
 buildEnv {
   name = "buildffmpeg";
   paths = [ 
-    ffmpeg-full 
+    ffmpeg_5 
     gawk 
   ];
 }
