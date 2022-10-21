@@ -1,0 +1,13 @@
+# syntax=docker/dockerfile:1.4
+FROM scratch as BASE
+
+WORKDIR /scratch
+
+# NOTE: Escape the \$ otherwise they are rendered at buildtime
+COPY --chmod=755 <<EOF /scratch/run.sh
+#!/usr/bin/env bash
+/usr/games/cowsay "from imagecontext"
+EOF
+
+
+
