@@ -1,0 +1,13 @@
+# syntax=docker/dockerfile:1.4
+FROM ubuntu:22.04 as BASE
+
+#RUN apt update && apt install -y cowsay \
+#    && apt clean \
+#    && rm -rf /var/lib/apt/lists/* 
+
+WORKDIR /
+
+# NOTE: Escape the \$ otherwise they are rendered at buildtime
+COPY --from=imagecontext / /
+
+CMD ["/usr/bin/jq", "--version"]

@@ -4,18 +4,33 @@ Demonstrate how to use `bake` to build multiple images.
 
 REF: Nix 09_distroless [here](https://github.com/chrisguest75/nix-examples/blob/master/09_distroless/README.md)  
 
+## Reason
+
+Bake gives us the ability to create images and their dependencies. This allows us to build for multiple target architectures or build an intermediate image and copy the results into a final image.  
+
 ## Bake
 
 ```bash
 # use bake to build all the images
-docker buildx bake --metadata-file ./bake-metadata.json  
-docker buildx bake --metadata-file ./bake-metadata.json --no-cache 
+docker buildx bake -f docker-bake.hcl --metadata-file ./bake-metadata.json  
+docker buildx bake -f docker-bake.hcl --metadata-file ./bake-metadata.json --no-cache 
 
 while IFS=, read -r imagesha
 do
     echo "IMAGE:$imagesha"
     docker run --rm -t "$imagesha" --version
 done < <(jq -r '. | keys[] as $key | .[$key]."containerimage.digest"' ./bake-metadata.json)
+```
+
+## Chained Bake
+
+```sh
+docker buildx bake -f ./docker-bake-chained.hcl --print final
+
+docker buildx bake -f docker-bake-chained.hcl --metadata-file ./bake-metadata.json  
+
+# set it up to use docker image context. 
+docker run --rm -t jq-ubuntu-final
 ```
 
 ## Resources
