@@ -14,6 +14,8 @@ Bake gives us the ability to create images and their dependencies. This allows u
 # use bake to build all the images
 docker buildx bake -f docker-bake.hcl --metadata-file ./bake-metadata.json  
 docker buildx bake -f docker-bake.hcl --metadata-file ./bake-metadata.json --no-cache 
+# override image name
+DISTROLESS="gcr.io/distroless/nodejs:16-debug" docker buildx bake -f docker-bake.hcl --metadata-file ./bake-metadata.json
 
 while IFS=, read -r imagesha
 do
