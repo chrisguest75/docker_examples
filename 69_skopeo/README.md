@@ -40,10 +40,10 @@ skopeo list-tags docker://chrisguest/turn | jq .
 
 ```sh
 # NOTE: Ensure robot has write permissions
-export DESTUSER=<robot account>
-export DESTPASS=<robot password>
+export QUAYUSER=<robot account>
+export QUAYPASS=<robot password>
 
-skopeo copy --dest-creds=$DESTUSER:$DESTPASS docker://chrisguest/turn:latest docker://quay.io/guestchris75/turn:latest
+skopeo copy --dest-creds=$QUAYUSER:$QUAYPASS docker://chrisguest/turn:latest docker://quay.io/guestchris75/turn:latest
 ```
 
 ## Delete images
