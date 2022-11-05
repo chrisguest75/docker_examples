@@ -352,6 +352,11 @@ Steps [README.md](./69_skopeo/README.md)
 Demonstrate how to use docker compose scale.  
 Steps [README.md](./70_scaling_compose/README.md)  
 
+## 71 - cosign
+
+Demonstrate `cosign` for signing OCI images.  
+Steps [README.md](./71_cosign/README.md)  
+
 ## 72 - Building images manually  
 
 Demonstrates how to build images manually.  
@@ -392,10 +397,21 @@ Steps [README.md](./78_multi_context/README.md)
 Demonstrate how to use `bake` to build multiple images.  
 Steps [README.md](./79_bake/README.md)  
 
+## 80 - crane
+
+Demonstrate how to use `crane`  
+Steps [README.md](./80_crane/README.md)  
+
+## 81 - oras
+
+Demonstrate how to use OCI Registry-as-Storage (ORAS)  
+Steps [README.md](./81_oras/README.md)  
+
 ## 📝 TODO
 
 1. You can use --output path to output the image to a folder
 https://docs.docker.com/engine/reference/commandline/build/#custom-build-outputs
+1. quay.io and special labels  
 1. botb - break out the box image https://github.com/brompwnie/botb
 1. Show how multistage builds work for testing
 1. Demo using cache-from.....  Use a timed layer.
