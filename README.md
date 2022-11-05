@@ -397,6 +397,16 @@ Steps [README.md](./78_multi_context/README.md)
 Demonstrate how to use `bake` to build multiple images.  
 Steps [README.md](./79_bake/README.md)  
 
+## 80 - crane
+
+Demonstrate how to use `crane`  
+Steps [README.md](./80_crane/README.md)  
+
+## 81 - oras
+
+Demonstrate how to use OCI Registry-as-Storage (ORAS)  
+Steps [README.md](./81_oras/README.md)  
+
 ## 📝 TODO
 
 1. You can use --output path to output the image to a folder
