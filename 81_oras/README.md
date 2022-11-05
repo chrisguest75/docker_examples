@@ -15,6 +15,7 @@ TODO:
 ## Install
 
 ```sh
+# install oras package
 brew install oras
 ```
 
@@ -33,6 +34,9 @@ oras repository list xxxxxxxxxxx.dkr.ecr.us-east-1.amazonaws.com
 
 # show tags
 oras repository show-tags xxxxxxxxxxx.dkr.ecr.us-east-1.amazonaws.com/ocitest
+
+# manifest for an image/artifact
+oras manifest fetch xxxxxxxxxxx.dkr.ecr.us-east-1.amazonaws.com/ocitest:0.0.1 | jq .
 ```
 
 ## Docker (works)
@@ -84,6 +88,13 @@ echo "{\"name\":\"foo\",\"value\":\"bar\"}" > ./build/config.json
 
 IMAGE_VERSION=0.0.1
 oras push quay.io/guestchris75/ocitest:${IMAGE_VERSION} --username "$QUAYUSER" --password "$QUAYPASS" --config ./build/config.json:application/vnd.docker.volume.v1+tar.gz ./build/foo.txt:text/plain
+
+IMAGE_VERSION=0.0.1
+oras push quay.io/guestchris75/ocitest:${IMAGE_VERSION} --config ./build/config.json:application/vnd.docker.volume.v1+tar.gz ./build/foo.txt:text/plain
+
+docker login quay.io
+oras push quay.io/guestchris75/ocitest:${IMAGE_VERSION} --config ./build/config.json:application/vnd.docker.volume.v1+tar.gz ./build/foo.txt:text/plain
+
 ```
 
 ## Resources
