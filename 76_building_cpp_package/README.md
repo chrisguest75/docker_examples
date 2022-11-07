@@ -7,6 +7,8 @@ INSTALL instructions [here](sox/sox-14.4.2/INSTALL)
 TODO:
 
 * Improve the build and copy.
+* Make the core build more abstract - to be able to build any source code gz.  
+* Add ref to cpp_examples sc68
 
 ## Get code
 
