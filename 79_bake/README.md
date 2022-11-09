@@ -26,13 +26,23 @@ done < <(jq -r '. | keys[] as $key | .[$key]."containerimage.digest"' ./bake-met
 
 ## Chained Bake
 
+A chained bake uses a built image to build another image.  
+Here I build a `jq` scratch image and share it into ubuntu to copy the contents.  
+
 ```sh
 docker buildx bake -f ./docker-bake-chained.hcl --print final
 
+# build the image
 docker buildx bake -f docker-bake-chained.hcl --metadata-file ./bake-metadata.json  
 
 # set it up to use docker image context. 
 docker run --rm -t jq-ubuntu-final
+
+# look at the base container
+dive jq-base-scratch
+
+# look at the base container
+dive jq-ubuntu-final
 ```
 
 ## Resources

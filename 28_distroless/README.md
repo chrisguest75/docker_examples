@@ -78,6 +78,27 @@ docker scan v16_distroless
 docker scan v14_distroless-debug  
 ```
 
+## Demo
+
+```sh
+# build it
+docker build --no-cache -f v16.Dockerfile -t v16_distroless .
+docker run -it --rm v16_distroless  
+
+# pull slim
+docker pull node:16-bullseye-slim
+
+# size 
+docker images node:16-bullseye-slim 
+docker images v16_distroless  
+
+# dive into it
+dive v16_distroless 
+
+# compare layers and sizes
+dive node:16-bullseye-slim
+```
+
 ## 👀 Resources
 
 * Distroless repo [here](https://github.com/GoogleContainerTools/distroless)  

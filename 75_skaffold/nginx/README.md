@@ -26,6 +26,9 @@ skaffold init
 ```
 
 ```sh
-# run skaffold
+# run skaffold inside a folder
+cd ./nginx
 skaffold dev 
 ```
+
+Once started look for the port.  Change index.html nginx string then save and refresh browser  
