@@ -2,7 +2,7 @@
 
 Demonstrates how layers are stored, files are hidden and can be squashed.  
 
-We create a scratch container and copy some files in layers overwriting previous layers.
+We create a scratch container and copy some files in layers overwriting previous layers.  
 
 ## 📋 Script to follow
 
@@ -65,8 +65,8 @@ Look at the contents
 
 ```sh
 # extract layer tars
-find ./hidingtest/* -iname "layer.tar*" -execdir mkdir layer \;                         
-find ./hidingtest/* -iname "layer.tar*" -execdir tar -xvf {} -C ./layer \;    
+find ./hidingtest/* -iname "layer.tar*" -execdir mkdir layer \; 
+find ./hidingtest/* -iname "layer.tar*" -execdir tar -xvf {} -C ./layer \;
 
 # Use editor to examine contents of the json files and untared layers.
 code ./hidingtest
