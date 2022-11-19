@@ -1,0 +1,65 @@
+# syntax=docker/dockerfile:1.4
+FROM ubuntu:20.04
+
+RUN apt-get update && apt-get install --no-install-recommends \
+        rsyslog \
+        openssh-server \
+        nano \
+        curl \
+        lsof \
+        iproute2 nmap \
+        iputils-ping -y \ 
+        && apt-get clean \
+        && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /scratch
+
+# NOTE: Escape the \$ otherwise they are rendered at buildtime
+COPY --chmod=755 <<EOF /bin/hold.sh
+#!/usr/bin/env bash
+
+echo "Holding..."
+
+function trap_hup_handler() {
+    echo "SIGHUP handler exiting"
+    exit $(( 128 + 1 ))
+}
+function trap_int_handler() {
+    echo "SIGINT handler exiting"
+    exit $(( 128 + 2 ))
+}
+function trap_quit_handler() {
+    echo "SIGQUIT handler exiting"
+    exit $(( 128 + 3 ))
+}
+function trap_term_handler() {
+    echo "SIGTERM handler exiting"
+    exit $(( 128 + 15 ))
+}
+
+trap trap_hup_handler SIGHUP
+trap trap_int_handler SIGINT
+trap trap_quit_handler SIGQUIT
+trap trap_term_handler SIGTERM
+
+rsyslogd
+service ssh start
+echo "Start sleep infinity"
+sleep infinity
+EOF
+
+COPY keys/id_ed25519.pub /scratch/id_ed25519.pub 
+COPY keys/id_rsa.pub /scratch/id_rsa.pub 
+
+COPY --chmod=755 <<EOF /bin/preparekeys.sh
+mkdir -p /root/.ssh
+cat /scratch/id_ed25519.pub > /root/.ssh/authorized_keys
+cat /scratch/id_rsa.pub >> /root/.ssh/authorized_keys
+EOF
+
+RUN /bin/preparekeys.sh
+
+RUN chown -R root /root/.ssh/authorized_keys
+RUN chmod 644  /root/.ssh/authorized_keys
+
+CMD [ "/bin/bash", "-c", "/bin/hold.sh" ]

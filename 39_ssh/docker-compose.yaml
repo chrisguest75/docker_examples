@@ -7,7 +7,7 @@ services:
 
     sshserver:
         build: 
-            context: ./server
+            context: ./ssh_server
             dockerfile: ./Dockerfile.server
         ports:
             - 2822:22

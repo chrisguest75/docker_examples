@@ -26,28 +26,27 @@ The `nginx` container is not available on the network. We use the `ssh` server t
 
 ```sh
 # create keys
-cd ./server
-mkdir -p ./keys
-ssh-keygen -o -a 100 -t ed25519 -f ./keys/id_ed25519 
-ssh-keygen -o -a 100 -t rsa -f ./keys/id_rsa 
+mkdir -p ./ssh_server/keys
+ssh-keygen -o -a 100 -t ed25519 -f ./ssh_server/keys/id_ed25519 
+ssh-keygen -o -a 100 -t rsa -f ./ssh_server/keys/id_rsa 
 ```
 
 Start the containers.
 
 ```sh
 # start server
-docker compose up -d 
+docker compose up -d --build --force-recreate
 
 # quick test
-docker logs $(docker ps --filter name=39_ssh-internalnginx-1 -q)
-docker logs $(docker ps --filter name=39_ssh-sshserver-1 -q)
+docker compose logs internalnginx  
+docker compose logs sshserver        
 ```
 
 SSH to get access to `nginx`.  
 
 ```sh
 # ssh onto server 
-ssh -vvvv -i ./server/keys/id_rsa -p 2822 root@0.0.0.0
+ssh -vvvv -o StrictHostKeyChecking=no -i ./ssh_server/keys/id_rsa -p 2822 root@0.0.0.0
 # curl against the nginx container
 curl 172.16.238.64:80
 ```
@@ -62,13 +61,7 @@ docker compose down
 ## Debugging and troubleshooting
 
 ```sh
-# create image
-docker build -f Dockerfile.server -t sshserver .
-# run 
-docker run --name sshserver --rm -it -p 2822:22 sshserver
-
-# run and open shell
-docker run --name sshserver --rm -it -p 2822:22 --entrypoint /bin/bash sshserver
+docker compose exec -it sshserver /bin/bash
 
 # start ssh
 rsyslogd
@@ -85,19 +78,8 @@ cat /var/log/auth.log
 #PermitRootLogin without-password
 
 # open connections (only rsa seems to work)
-ssh -vvvv -i ./keys/id_ed25519 -p 2822 root@0.0.0.0
-ssh -vvvv -i ./keys/id_rsa -p 2822 root@0.0.0.0
-```
-
-### Rebuild backend and run
-
-If you're making changes you can get compose to rebuild.  
-
-ℹ NOTE: You cannot rebuild a disable the cache.  
-
-```sh
-# if changes are made to backend rerun
-docker compose up -d --build
+ssh -vvvv -o StrictHostKeyChecking=no -i ./ssh_server/keys/id_ed25519 -p 2822 root@0.0.0.0
+ssh -vvvv -o StrictHostKeyChecking=no -i ./ssh_server/keys/id_rsa -p 2822 root@0.0.0.0
 ```
 
 ## 👀 Resources
