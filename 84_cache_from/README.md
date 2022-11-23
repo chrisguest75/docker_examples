@@ -13,9 +13,9 @@ docker build -f Dockerfile.jq --target BUILDER -t cachefrom:BUILDER_$CURRENT_TAG
 
 docker build -f Dockerfile.jq --target PRODUCTION -t cachefrom:PRODUCTION_$CURRENT_TAG .
 
-docker run --rm -t cachefrom:$CURRENT_TAG
+docker run --rm -t cachefrom:PRODUCTION_$CURRENT_TAG
 
-docker run --rm -t cachefrom:$CURRENT_TAG . /data/1.json
+docker run --rm -t cachefrom:PRODUCTION_$CURRENT_TAG . /data/1.json
 ```
 
 ```sh
@@ -33,12 +33,12 @@ docker build -f Dockerfile.jq --cache-from cachefrom:$CURRENT_TAG --target BUILD
 
 docker build -f Dockerfile.jq --cache-from cachefrom:$CURRENT_TAG --target PRODUCTION -t cachefrom:PRODUCTION_$NEW_TAG .
 
-docker run --rm -t cachefrom:$NEW_TAG
+docker run --rm -t cachefrom:PRODUCTION_$NEW_TAG
 
-docker run --rm -t cachefrom:$NEW_TAG . /data/1.json
+docker run --rm -t cachefrom:PRODUCTION_$NEW_TAG . /data/1.json
 ```
 
 ## Resources
 
-* https://lipanski.com/posts/speed-up-your-docker-builds-with-cache-from
-* https://testdriven.io/blog/faster-ci-builds-with-docker-cache/
+* Speed up your Docker builds with –cache-from [here](https://lipanski.com/posts/speed-up-your-docker-builds-with-cache-from)  
+* Faster CI Builds with Docker Layer Caching and BuildKit [here](https://testdriven.io/blog/faster-ci-builds-with-docker-cache/)  
