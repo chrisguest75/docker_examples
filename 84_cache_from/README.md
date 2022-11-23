@@ -29,9 +29,9 @@ git commit -m "test"
 
 ```sh
 export NEW_TAG=$(git rev-parse HEAD^)
-docker build -f Dockerfile.jq --cache-from cachefrom:$CURRENT_TAG --target BUILDER -t cachefrom:BUILDER_$NEW_TAG .
+docker build -f Dockerfile.jq --cache-from cachefrom:BUILDER_$CURRENT_TAG --target BUILDER -t cachefrom:BUILDER_$NEW_TAG .
 
-docker build -f Dockerfile.jq --cache-from cachefrom:$CURRENT_TAG --target PRODUCTION -t cachefrom:PRODUCTION_$NEW_TAG .
+docker build -f Dockerfile.jq --cache-from cachefrom:PRODUCTION_$CURRENT_TAG --target PRODUCTION -t cachefrom:PRODUCTION_$NEW_TAG .
 
 docker run --rm -t cachefrom:PRODUCTION_$NEW_TAG
 
