@@ -9,7 +9,6 @@ The idea is that you use previous builds in the pipeline to cache from.  The ide
 
 TODO:
 
-- Push images to registry
 - merge-base
 
 NOTES:
@@ -52,6 +51,9 @@ docker buildx build -f Dockerfile.jq --target PRODUCTION -t "${REPOSITORY_URL}:P
 # test image
 docker run --rm -t "${REPOSITORY_URL}:PRODUCTION_${CURRENT_TAG}"
 docker run --rm -t "${REPOSITORY_URL}:PRODUCTION_${CURRENT_TAG}" . /data/1.json
+
+
+docker push "${REPOSITORY_URL}:PRODUCTION_${CURRENT_TAG}"
 ```
 
 ## Next commit
@@ -74,8 +76,9 @@ git commit -m "test"
 ## Remove images
 
 ```sh
-#TODO: REMOVE LOCAL IMAGES
-
+# remove images that could be used in local cache
+docker rmi "${REPOSITORY_URL}:BUILDER_${CURRENT_TAG}"
+docker rmi "${REPOSITORY_URL}:PRODUCTION_${CURRENT_TAG}"
 ```
 
 ## Cached build
@@ -86,17 +89,19 @@ export PREVIOUS_TAG=$(git rev-parse HEAD^1)
 echo "NEW_TAG=$NEW_TAG"
 echo "PREVIOUS_TAG=$PREVIOUS_TAG"
 # build first stage builder
-docker build -f Dockerfile.jq --cache-from "${REPOSITORY_URL}:BUILDER_${PREVIOUS_TAG}" --target BUILDER -t "${REPOSITORY_URL}:BUILDER_${NEW_TAG}" .
+docker buildx build -f Dockerfile.jq --cache-from "${REPOSITORY_URL}:BUILDER_${PREVIOUS_TAG}" --target BUILDER -t "${REPOSITORY_URL}:BUILDER_${NEW_TAG}" .
 
 # would push here
 docker push "${REPOSITORY_URL}:BUILDER_${NEW_TAG}"
 
 # build production
-docker build -f Dockerfile.jq --cache-from "${REPOSITORY_URL}:BUILDER_${NEW_TAG}" --target PRODUCTION -t "${REPOSITORY_URL}:PRODUCTION_${NEW_TAG}" .
+docker buildx build -f Dockerfile.jq --cache-from "${REPOSITORY_URL}:BUILDER_${NEW_TAG}" --cache-from "${REPOSITORY_URL}:PRODUCTION_${PREVIOUS_TAG}" --target PRODUCTION -t "${REPOSITORY_URL}:PRODUCTION_${NEW_TAG}" .
 
 # test image
 docker run --rm -t "${REPOSITORY_URL}:PRODUCTION_${NEW_TAG}"
 docker run --rm -t "${REPOSITORY_URL}:PRODUCTION_${NEW_TAG}" . /data/1.json
+
+docker push "${REPOSITORY_URL}:PRODUCTION_${NEW_TAG}"
 ```
 
 ## Cleanup
