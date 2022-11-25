@@ -58,7 +58,13 @@ docker run --rm -t "${REPOSITORY_URL}:PRODUCTION_${CURRENT_TAG}" . /data/1.json
 ```sh
 git checkout -b newbranch 
 
-cp ./data/1.json ./data/5.json 
+cat <<- EOF > "./data/1.json"
+{
+    "file": "4.json",
+    "version": 2
+}
+EOF
+cat ./data/1.json
 
 git add ./data/5.json 
 git commit -m "test"
@@ -67,18 +73,22 @@ git commit -m "test"
 ## Cached build
 
 ```sh
-export NEW_TAG=$(git rev-parse HEAD^)
+export NEW_TAG=$(git rev-parse HEAD)
+export PREVIOUS_TAG=$(git rev-parse HEAD^1)
+echo "NEW_TAG=$NEW_TAG"
+echo "PREVIOUS_TAG=$PREVIOUS_TAG"
 # build first stage builder
-docker build -f Dockerfile.jq --cache-from "${REPOSITORY_URL}:BUILDER_${CURRENT_TAG}" --target BUILDER -t "${REPOSITORY_URL}:BUILDER_${NEW_TAG}" .
+docker build -f Dockerfile.jq --cache-from "${REPOSITORY_URL}:BUILDER_${PREVIOUS_TAG}" --target BUILDER -t "${REPOSITORY_URL}:BUILDER_${NEW_TAG}" .
 
 # would push here
+docker push "${REPOSITORY_URL}:BUILDER_${NEW_TAG}"
 
 # build production
-docker build -f Dockerfile.jq --cache-from cachefrom:PRODUCTION_$CURRENT_TAG --target PRODUCTION -t "${REPOSITORY_URL}:PRODUCTION_${NEW_TAG}" .
+docker build -f Dockerfile.jq --cache-from "${REPOSITORY_URL}:BUILDER_${NEW_TAG}" --target PRODUCTION -t "${REPOSITORY_URL}:PRODUCTION_${NEW_TAG}" .
 
 # test image
-docker run --rm -t cachefrom:PRODUCTION_$NEW_TAG
-docker run --rm -t cachefrom:PRODUCTION_$NEW_TAG . /data/1.json
+docker run --rm -t "${REPOSITORY_URL}:PRODUCTION_${NEW_TAG}"
+docker run --rm -t "${REPOSITORY_URL}:PRODUCTION_${NEW_TAG}" . /data/1.json
 ```
 
 ## Cleanup
