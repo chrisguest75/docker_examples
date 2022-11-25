@@ -10,6 +10,7 @@ COPY $NIX_FILE .
 RUN nix-build $NIX_FILE
 
 RUN find /nix/store -name "ldd" 
+COPY /data /data
 
 # NOTE: Escape the \$ otherwise they are rendered at buildtime
 COPY <<EOF /scratch/exportldd.sh
@@ -31,7 +32,7 @@ FROM $baseimage AS PRODUCTION
 
 COPY --from=BUILDER /output/bin/$PROGRAM_FILE /usr/bin/$PROGRAM_FILE
 COPY --from=BUILDER /output/libs /
-COPY /data /data
+COPY --from=BUILDER /data /data
 
 ENTRYPOINT [ "/usr/bin/jq" ]
 CMD ["/usr/bin/jq", "--version"]

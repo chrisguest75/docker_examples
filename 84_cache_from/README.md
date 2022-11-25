@@ -20,6 +20,7 @@ NOTES:
 ## Build
 
 ```sh
+export PAGER=
 AWS_PROFILE=myprofile
 
 REPOSITORY_URL=$(aws --profile $AWS_PROFILE ecr create-repository --repository-name cachefromtest --region eu-west-1 | jq -r .repository.repositoryUri)
@@ -66,8 +67,15 @@ cat <<- EOF > "./data/1.json"
 EOF
 cat ./data/1.json
 
-git add ./data/5.json 
+git add ./data/1.json 
 git commit -m "test"
+```
+
+## Remove images
+
+```sh
+#TODO: REMOVE LOCAL IMAGES
+
 ```
 
 ## Cached build
