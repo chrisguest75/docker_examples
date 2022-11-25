@@ -20,17 +20,17 @@ Docker volume mounting using a docker `volume_from`
 # creates a container that can be used as a volume
 docker create -v /usr/share/nginx/html -v /code --name content alpine:3.4 /bin/true
 
-# not possible to exec into the container as it is not running
+# ERROR: not possible to exec into the container as it is not running
 docker exec -it content /bin/sh  
 
 # inspect the container
-docker inspect content              
+docker inspect content
 
 # copy a single file and directory into the volume
 docker cp index.html content:/usr/share/nginx/html
 docker cp ../ content:/code 
 
-# run the container
+# run the container using volume
 docker run -d --rm --volumes-from content -p 8080:80 -it --name nginxvolumetest nginx:1.21.1 
 
 # show logs 
