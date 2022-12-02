@@ -21,7 +21,7 @@ Build the bash based container.
 
 ```sh
 # build bash example
-docker build -f  ./bash/Dockerfile.bash -t bashtinitest ./bash
+docker build -f ./bash/Dockerfile.bash -t bashtinitest ./bash
 ```
 
 Test with no `--init` flag  
@@ -59,13 +59,35 @@ exit
 docker stop bashtinitest
 ```
 
+## Testing bash with handlers
+
+If caught in the sleep subprocess it will take longer - otherwise still quicker than without `tini`  
+
+```sh
+docker build -f ./bash/Dockerfile.handlers -t bashtinitest ./bash  
+
+# show it running (ctrl+c) to exit (no init, no tty)
+# in terminal 1 
+docker run --rm -i --name bashtinitest bashtinitest
+
+# in terminal 2 ()
+docker exec -it bashtinitest /bin/bash 
+# see bash is pid 1
+ps -ax 
+# exit 
+exit
+
+# take note of time to quit docker. <4secs
+docker stop bashtinitest
+```
+
 ## Test with Python
 
 Build the python based container.  
 
 ```sh
 # build python example
-docker build -f  ./python/Dockerfile.python -t pytinitest ./python
+docker build -f ./python/Dockerfile.python -t pytinitest ./python
 ```
 
 Test with no `--init` flag  
@@ -109,7 +131,7 @@ Build the custom `tini` based container.
 
 ```sh
 # build custom tini example
-docker build -f  ./customtini/Dockerfile.tini -t customtinitest ./customtini
+docker build -f ./customtini/Dockerfile.tini -t customtinitest ./customtini
 ```
 
 Test with no `--init` flag  
@@ -166,6 +188,7 @@ curl http://0.0.0.0:8000
 
 docker stop nodetini
 ```
+
 
 ## Resources
 
