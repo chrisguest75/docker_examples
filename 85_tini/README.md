@@ -8,7 +8,6 @@ TODO:
 
 * Test with ContainerD.
 * Test with fargate
-* Test with node with signal handlers
 * Test on linux for zombie processes.
 
 ## Reason
@@ -148,19 +147,31 @@ exit
 docker stop customtinitest
 ```
 
+## Test with Node
+
+Build the node based container.  
+
+```sh
+pushd ./node
+
+nvm use
+npm install
+npm run docker:build
+
+# using the node handlers correctly handles SIGTERM & SIGHALT, etc.
+docker run -p 8000:8000 --rm -i --name nodetini nodetini         
+
+# in terminal 2 
+curl http://0.0.0.0:8000
+
+docker stop nodetini
+```
 
 ## Resources
 
-* How To Use Tini Init system in Docker Containers [here](https://computingforgeeks.com/use-tini-init-system-in-docker-containers/)  
-* https://github.com/krallin/tini
-
 * What is advantage of Tini? [here](https://github.com/krallin/tini/issues/)  
-
-https://www.alibabacloud.com/blog/zombie-processes-how-to-hunt-kill-and-remove-a-zombie-process-on-linux_597383
-
-https://stackpointer.io/unix/unix-linux-create-zombie-process/625/
-
-https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html
-
-https://github.com/cloudposse/terraform-aws-ecs-container-definition/issues/143
-
+* How To Use Tini Init system in Docker Containers [here](https://computingforgeeks.com/use-tini-init-system-in-docker-containers/)  
+* krallin/tini repo [here](https://github.com/krallin/tini)
+* Zombie Processes: How To Hunt, Kill and Remove a Zombie Process on Linux [here](https://www.alibabacloud.com/blog/zombie-processes-how-to-hunt-kill-and-remove-a-zombie-process-on-linux_597383)* Unix / Linux: How to Create Zombie Process [here](https://stackpointer.io/unix/unix-linux-create-zombie-process/625/)
+Task definition parameters initProcessEnabled [here](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html)
+* Support initProcessEnabled on ECS Fargate [here](https://github.com/cloudposse/terraform-aws-ecs-container-definition/issues/143)
