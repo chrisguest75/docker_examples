@@ -1,6 +1,6 @@
 # TINI
 
-Demonstrate `tini` using Docker.  
+Demonstrate `tini` init-system in Docker to handle SIGTERM and SIGHALT correctly.  
 
 Docker has an inbuilt docker-init that is based on tini.  This can be activated using the --init flag.  
 
