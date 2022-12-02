@@ -106,3 +106,11 @@ dive node:16-bullseye-slim
 * NodeJS bestpractices [here](https://snyk.io/wp-content/uploads/10-best-practices-to-containerize-Node.js-web-applications-with-Docker.pdf)  
 * Debugging Guide[here](https://nodejs.org/en/docs/guides/debugging-getting-started/)  
 * Node.js debugging in VS Code [here](https://code.visualstudio.com/docs/nodejs/nodejs-debugging)
+
+
+Users?
+* Publish :nonroot versions of images https://github.com/GoogleContainerTools/distroless/issues/306
+* Using unprivileged users https://github.com/GoogleContainerTools/distroless/issues/277
+https://iximiuz.com/en/posts/containers-distroless-images/
+The /etc/passwd and /etc/group files are missing in "from scratch" containers.
+
