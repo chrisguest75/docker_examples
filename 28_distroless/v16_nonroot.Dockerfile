@@ -1,4 +1,4 @@
-ARG DISTROLESS_BASEIMAGE="gcr.io/distroless/nodejs:16"
+ARG DISTROLESS_BASEIMAGE="gcr.io/distroless/nodejs16-debian11:latest"
 FROM node:16.14.2 AS build-env
 WORKDIR /scratch
 COPY package-lock.json package.json ./
