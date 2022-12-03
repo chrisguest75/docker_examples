@@ -9,7 +9,7 @@ The idea is that you use previous builds in the pipeline to cache from.  The ide
 
 TODO:
 
-- merge-base
+- Find branch-base/merge-base commit for caching branches
 
 NOTES:
 
@@ -19,20 +19,23 @@ NOTES:
 ## Build
 
 ```sh
+# use AWS for intermediate caching builds
 export PAGER=
-AWS_PROFILE=myprofile
+export AWS_PROFILE=myprofile
+export AWS_REGION=eu-west-1
 
-REPOSITORY_URL=$(aws --profile $AWS_PROFILE ecr create-repository --repository-name cachefromtest --region eu-west-1 | jq -r .repository.repositoryUri)
+# create an ECR registry
+export REPOSITORY_URL=$(aws --profile $AWS_PROFILE --region $AWS_REGION ecr create-repository --repository-name cachefromtest  | jq -r .repository.repositoryUri)
+export REPOSITORY_URL=$(aws --profile $AWS_PROFILE --region $AWS_REGION ecr describe-repositories --repository-name cachefromtest | jq -r '.repositories[0].repositoryUri')
 echo $REPOSITORY_URL
 
-aws --profile $AWS_PROFILE ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin "$REPOSITORY_URL"
+aws --profile $AWS_PROFILE ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin "$REPOSITORY_URL"
 
-
-# OPTIONAL to keep it local
+# OPTIONALLY keep it local without a remote registry
 REPOSITORY_URL=cachefrom
 
+# tip of tree current branch
 export CURRENT_TAG=$(git rev-parse HEAD)
-
 
 # THIS DOESN'T WORK
 docker buildx build -f Dockerfile.jq --cache: "enabled" --build-arg BUILDKIT_INLINE_CACHE=1 --push -t $REPOSITORY_URL:$CURRENT_TAG \

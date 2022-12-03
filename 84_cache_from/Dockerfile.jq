@@ -13,7 +13,7 @@ RUN find /nix/store -name "ldd"
 COPY /data /data
 
 # NOTE: Escape the \$ otherwise they are rendered at buildtime
-COPY <<EOF /scratch/exportldd.sh
+COPY --chmod=755 <<EOF /scratch/exportldd.sh
 #!/usr/bin/env bash
 /nix/store/h0cnbmfcn93xm5dg2x27ixhag1cwndga-glibc-2.34-210-bin/bin/ldd "./result/bin/$PROGRAM_FILE" >  /scratch/libs.txt
 cat /scratch/libs.txt | /nix/store/w3p77mkdy3pigg12iyha8y9dqakhjsxn-gawk-5.1.1/bin/awk 'NF == 4 { {print \$3} }' > /scratch/libs_extracted.txt    
@@ -23,7 +23,7 @@ mkdir -p /output/libs /output/bin
 tar xf /scratch/libraries.tar --directory=/output/libs
 cp "./result/bin/$PROGRAM_FILE" /output/bin
 EOF
-RUN chmod +x /scratch/exportldd.sh && /scratch/exportldd.sh
+RUN /scratch/exportldd.sh
 CMD ["./output/bin/$PROGRAM_FILE", "--version"]
 
 FROM $baseimage AS PRODUCTION
