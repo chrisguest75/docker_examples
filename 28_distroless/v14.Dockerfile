@@ -4,7 +4,7 @@ COPY package-lock.json package.json ./
 COPY index.js . 
 RUN npm ci --only=production && npm cache clean --force
 
-FROM gcr.io/distroless/nodejs:14
+FROM gcr.io/distroless/nodejs14-debian11:latest
 COPY --from=build-env /scratch /scratch
 WORKDIR /scratch
 ENV NODE_ENV production

@@ -12,15 +12,11 @@ Other examples:
 We have different versions of nodejs available to us.  
 
 ```sh
-# node10
-docker build --no-cache -f v10.Dockerfile -t v10_distroless .
-docker run -it --rm v10_distroless  
-
 # node14
 docker build --no-cache -f v14.Dockerfile -t v14_distroless .
 docker run -it --rm v14_distroless  
 
-# node16
+# node16 (override image)
 docker build --no-cache -f v16.Dockerfile -t v16_distroless .
 docker run -it --rm v16_distroless  
 ```
@@ -30,11 +26,26 @@ docker run -it --rm v16_distroless
 If you need access to a shell to enter the container then add `-debug`  
 
 ```sh
-docker build --no-cache -f v14-debug.Dockerfile -t v14_distroless-debug .
-docker run -it --rm v14_distroless-debug  
+docker build --no-cache -f v14-debug.Dockerfile -t v14_distroless_debug .
+docker run -it --rm v14_distroless_debug  
 
 # Get onto the container
-docker run -it --rm --entrypoint /busybox/sh v14_distroless-debug
+docker run -it --rm --entrypoint /busybox/sh v14_distroless_debug
+```
+
+Or override the base image that we're using to be the debug ones.  
+
+```sh
+# Pass in the image technique - node16 (override image)
+docker build --build-arg DISTROLESS_BASEIMAGE="gcr.io/distroless/nodejs16-debian11:debug" --no-cache -f v16.Dockerfile -t v16_distroless_debug .
+
+# use /busybox/sh
+docker run -it --entrypoint /busybox/sh --rm v16_distroless_debug   
+id 
+cat /etc/passwd
+
+docker run -it --user root --entrypoint /busybox/sh --rm v16_distroless-debug   
+id
 ```
 
 ## 🏠 Single step debugging (vscode)
@@ -65,9 +76,6 @@ bazel run //experimental/nodejs --verbose_failures --sandbox_debug
 ## 🔍 Docker Scan (vulnerability scanning)
 
 ```sh
-# scan v10
-docker scan v10_distroless  
-
 # scan v14
 docker scan v14_distroless  
 
@@ -75,7 +83,28 @@ docker scan v14_distroless
 docker scan v16_distroless  
 
 # scan debug
-docker scan v14_distroless-debug  
+docker scan v16_distroless-debug  
+```
+
+## Users
+
+```sh
+# Pass in the image technique - node16 (override image)
+docker build --build-arg DISTROLESS_BASEIMAGE="gcr.io/distroless/nodejs16-debian11:debug" --no-cache -f v16.Dockerfile -t v16_distroless-debug .
+# use /busybox/sh
+docker run -it --entrypoint /busybox/sh --rm v16_distroless-debug   
+id user
+
+docker run -it --user root --entrypoint /busybox/sh --rm v16_distroless   
+id user
+
+# nonroot user
+docker build --build-arg DISTROLESS_BASEIMAGE="gcr.io/distroless/nodejs16-debian11:debug-nonroot" --no-cache -f v16_nonroot.Dockerfile -t v16_debian_distroless_nonroot .
+docker run -it --rm v16_debian_distroless_nonroot   
+
+docker run -it --entrypoint /busybox/sh --rm v16_debian_distroless_nonroot   
+id user
+
 ```
 
 ## Demo
@@ -106,11 +135,6 @@ dive node:16-bullseye-slim
 * NodeJS bestpractices [here](https://snyk.io/wp-content/uploads/10-best-practices-to-containerize-Node.js-web-applications-with-Docker.pdf)  
 * Debugging Guide[here](https://nodejs.org/en/docs/guides/debugging-getting-started/)  
 * Node.js debugging in VS Code [here](https://code.visualstudio.com/docs/nodejs/nodejs-debugging)
-
-
-Users?
-* Publish :nonroot versions of images https://github.com/GoogleContainerTools/distroless/issues/306
-* Using unprivileged users https://github.com/GoogleContainerTools/distroless/issues/277
-https://iximiuz.com/en/posts/containers-distroless-images/
-The /etc/passwd and /etc/group files are missing in "from scratch" containers.
-
+* What's Inside Of a Distroless Container Image: Taking a Deeper Look [help](https://iximiuz.com/en/posts/containers-distroless-images/)
+* Publish :nonroot versions of images [here](https://github.com/GoogleContainerTools/distroless/issues/306)
+* Using unprivileged users [here](https://github.com/GoogleContainerTools/distroless/issues/277)

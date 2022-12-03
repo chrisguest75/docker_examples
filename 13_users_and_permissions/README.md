@@ -17,6 +17,9 @@ docker build -t usertest .
 # enter container as default user
 docker run --name usertest --rm -it --entrypoint /bin/bash usertest
 
+# show ids
+id usertest
+
 # run inside container
 ./test_permissions.sh 
 ```
@@ -26,6 +29,9 @@ docker run --name usertest --rm -it --entrypoint /bin/bash usertest
 ```sh
 # enter container as user root
 docker run --name usertest -u root --rm -it --entrypoint /bin/bash usertest
+
+# show ids
+id root
 
 # run inside container
 ./test_permissions.sh 
