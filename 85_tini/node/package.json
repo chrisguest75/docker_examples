@@ -1,0 +1,66 @@
+{
+  "name": "nodetini",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "tsc": "tsc",
+    "audit": "better-npm-audit audit",
+    "clean": "rimraf build",
+    "build": "tsc",
+    "rebuild": "npm run clean && npm run build",
+    "clean:build": "npm run rebuild",
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "npm run type-check -- --watch",
+    "start:dev": "npm run rebuild && nodemon",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "docker:build": "docker build --target PRODUCTION -f Dockerfile --label \"org.opencontainers.image.created=$(date '+%Y-%m-%dT%H:%M:%SZ')\" --label \"org.opencontainers.image.version=${githubsha}\" --label \"org.opencontainers.image.url=$(git remote get-url origin)\" -t nodetini .",
+    "docker:run": "npm run docker:build && docker run -p 8000:8000 --rm -it --name nodetini nodetini",
+    "docker:rebuild": "docker build --no-cache --target PRODUCTION -f Dockerfile --label \"org.opencontainers.image.created=$(date '+%Y-%m-%dT%H:%M:%SZ')\" --label \"org.opencontainers.image.version=${githubsha}\" --label \"org.opencontainers.image.url=$(git remote get-url origin)\" -t nodetini .",
+    "docker:stop": "docker stop nodetini"
+  },
+  "nodemonConfig": {
+    "watch": [
+      "routes",
+      "src",
+      "nodemon.json",
+      "tsconfig.json",
+      "package.json"
+    ],
+    "ext": "ts",
+    "ignore": [],
+    "exec": "ts-node ./src/index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/express-pino-logger": "^4.0.3",
+    "@types/jest": "^28.1.3",
+    "@types/node": "^18.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.30.0",
+    "@typescript-eslint/parser": "^5.30.0",
+    "concurrently": "^7.2.2",
+    "eslint": "^8.18.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.1.0",
+    "jest": "^28.1.1",
+    "jest-express": "^1.12.0",
+    "nodemon": "^2.0.18",
+    "prettier": "^2.7.1",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^28.0.5",
+    "ts-node": "^10.8.1",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "express-pino-logger": "^7.0.0",
+    "pino": "^8.1.0"
+  }
+}

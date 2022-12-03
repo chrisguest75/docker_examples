@@ -412,13 +412,16 @@ Steps [README.md](./80_crane/README.md)
 Demonstrate how to use OCI Registry-as-Storage (ORAS)  
 Steps [README.md](./81_oras/README.md)  
 
+## 85 - tini
+
+Demonstrate `tini` init-system in Docker to handle SIGTERM and SIGHALT correctly.  
+Steps [README.md](./85_tini/README.md)  
+
 ## 📝 TODO
 
 1. cgroups and namespaces
 1. Start a cgroup manually using an unpacked container.
 1. Can I use a cgroup command inside a container?
-1. You can use --output path to output the image to a folder (exploring images)
-https://docs.docker.com/engine/reference/commandline/build/#custom-build-outputs
 1. quay.io and special labels  
 1. botb - break out the box image https://github.com/brompwnie/botb
 1. Show how multistage builds work for testing
@@ -432,7 +435,6 @@ https://docs.docker.com/engine/reference/commandline/build/#custom-build-outputs
 1. Docker container escape with docker copy.
 https://www.andreafortuna.org/2019/11/26/cve-2019-14271-a-docker-cp-container-escape-vulnerability/
 1. Add procdump to the sidecar
-1. PID1 - init-system https://cloud.google.com/solutions/best-practices-for-building-containers
 1. mounting volumes and permissions.
 1. Build a busybox image.  https://github.com/ukanth/afwall/wiki/HOWTO-Compiling-busybox
 1. Show patching a container to fix an issue reported by GCR
@@ -447,6 +449,5 @@ https://www.andreafortuna.org/2019/11/26/cve-2019-14271-a-docker-cp-container-es
 1. docker manifests
 1. CRFS: Container Registry Filesystem https://github.com/google/crfs
 1. docker image history and using it to rebuild a container
-1. init handling https://github.com/krallin/tini
 1. https://adamo.wordpress.com/2022/05/05/removing-all-containers-via-ssh/ ssh remote_user@remote_host "docker ps -a -q|xargs -n 1 docker rm -f "
 1. https://github.com/google/gvisor
