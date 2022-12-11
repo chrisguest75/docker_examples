@@ -18,3 +18,8 @@ docker pull chrisguest/results2slack
 
 docker trust inspect ubuntu:18.04       
 ```
+
+## Resources
+
+https://dlorenc.medium.com/notary-v2-and-cosign-b816658f044d
+
