@@ -6,6 +6,7 @@ Demonstrate how to get `pyenv` installing a particular version in a container
 
 ```sh
 export PIPENV_VENV_IN_PROJECT=1
+pyenv versions  
 pyenv install --list
 pyenv install 3.9.7
 pyenv local 3.9.7

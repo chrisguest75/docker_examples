@@ -40,7 +40,7 @@ Select `Remote-Containers: Add Development Container Configuration File`
 code $(git root)
 ```
 
-Select `Remote-Containers: Open folder in container` and open the `41_nodejs_remote_devcontainer` folder.  
+Select `Dev Containers: Open folder in container` and open the `41_nodejs_remote_devcontainer` folder.  
 
 ## Create the service app
 
