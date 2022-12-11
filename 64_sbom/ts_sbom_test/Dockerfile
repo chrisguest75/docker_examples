@@ -15,8 +15,8 @@ RUN npm run build
 RUN npm audit
 RUN npm ci --only=production && npm cache clean --force
 
-FROM gcr.io/distroless/nodejs:16 AS PRODUCTION
-LABEL dockerfile.baseimage="gcr.io/distroless/nodejs:16" dockerfile.description="ts_sbom_test" dockerfile.stage="PRODUCTION"
+FROM gcr.io/distroless/nodejs16-debian11:latest AS PRODUCTION
+LABEL dockerfile.baseimage="gcr.io/distroless/nodejs16-debian11:latest" dockerfile.description="ts_sbom_test" dockerfile.stage="PRODUCTION"
 
 ENV NODE_ENV production
 

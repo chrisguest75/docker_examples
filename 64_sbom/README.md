@@ -90,6 +90,7 @@ npm run docker:build
 npm run docker:run
 
 # create the sbom (cyclonedx)
+mkdir -p ./out/docker
 docker sbom --format cyclonedx-json ts_sbom_test > ./out/docker/ts_sbom_test.json
 
 # simple sbom
