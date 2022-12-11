@@ -1,0 +1,7 @@
+{
+    "sources":[
+        { "srcPath":"s3://mybucket/asset1", "dstPath":"/testdata/asset1" },
+        { "srcPath":"s3://mybucket/asset2", "dstPath":"/testdata/asset2" },
+        { "srcPath":"s3://mybucket/asset3", "dstPath":"/testdata/asset3" }
+    ]
+}

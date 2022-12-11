@@ -192,6 +192,11 @@ Steps [README.md](./32_file_extraction/README.md)
 Demonstrates adding label metadata to builds that helps us trace pipelines and build sources.  
 Steps [README.md](./33_label_metadata/README.md)  
 
+## 34 - Build Volume from S3
+
+Demonstrate how to build a data volume for use by other containers.  
+Steps [README.md](./34_build_volume_from_s3/README.md)  
+
 ## 34 - Volume Images
 
 Demonstrates how to configure an image that can be mounted as a volume into a container.  
