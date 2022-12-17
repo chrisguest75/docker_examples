@@ -1,29 +1,38 @@
 # README
 
-Demonstrate how to rebase a container image.
+Demonstrate building a simple nodejs app and changing the version without having to rebuild app.  
+
+## Reason
+
+If we can rebase containers we can address CVEs without having to rebuild the full container.  
+
 
 TODO:
 
-* THIS IS NOT WORKING HOW I EXPECT
-* Build a simple nodejs app and change the version without having to reinstall app
+* It doesn't seem to work how I'd expect.  I'd expect link=true to be recognised as a cached layer.  
 
 ## Ubuntu Example
 
 ## Normal Build
 
+NOTE: Would expect this to use the cache for `apt install`  
+
 ```sh
 # clean start
-cd ./tool/src
 docker rmi $(docker images -aq) --force  
 docker builder prune --all -f    
 
-docker build -f Dockerfile.ping . -t $(basename $(pwd)) --build-arg IMAGE=ubuntu:18.04
+# build an initial image
+docker buildx build -f Dockerfile.ping . -t $(basename $(pwd))_18_04 --build-arg IMAGE=ubuntu:18.04
+docker run -it --rm  $(basename $(pwd))_18_04
 
-docker run -it --rm  $(basename $(pwd)) 
+# switch ubuntu version (no caching)
+docker buildx build -f Dockerfile.ping . -t $(basename $(pwd))_20_04 --build-arg IMAGE=ubuntu:20.04
+docker run -it --rm  $(basename $(pwd))_20_04
 
-docker build -f Dockerfile.ping . -t $(basename $(pwd)) --build-arg IMAGE=ubuntu:20.04
-
-docker build -f Dockerfile.ping . -t $(basename $(pwd)) --build-arg IMAGE=ubuntu:21.04
+# switch ubuntu version (no caching)
+docker buildx build -f Dockerfile.ping . -t $(basename $(pwd))_22_04 --build-arg IMAGE=ubuntu:22.04
+docker run -it --rm  $(basename $(pwd))_22_04
 ```
 
 ### First build
@@ -31,11 +40,19 @@ docker build -f Dockerfile.ping . -t $(basename $(pwd)) --build-arg IMAGE=ubuntu
 From a clean start both images should perform a full build  
 
 ```sh
-# no caching
-docker build -f Dockerfile . -t $(basename $(pwd)) --build-arg IMAGE=node:16.13.2-bullseye
+cd ./tool
 
-# no caching.  Rebuilds everything as no shaed parents
-docker build -f Dockerfile . -t $(basename $(pwd)) --build-arg IMAGE=node:16.15-bullseye
+docker rmi $(docker images -aq) --force  
+docker builder prune --all -f   
+
+export DOCKERFILE=Dockerfile
+
+# no caching
+docker buildx build -f $DOCKERFILE . -t $(basename $(pwd))_16_13_2 --build-arg BUILDIMAGE=node:16.13.2-bullseye --build-arg PRODUCTIONIMAGE=node:16.13.2-bullseye
+docker run -it --rm  $(basename $(pwd))_16_13_2 
+
+docker buildx build -f $DOCKERFILE . -t $(basename $(pwd))_16_15 --build-arg BUILDIMAGE=node:16.15-bullseye --build-arg PRODUCTIONIMAGE=node:16.15-bullseye
+docker run -it --rm  $(basename $(pwd))_16_15 
 ```
 
 ### Cached build
@@ -43,28 +60,49 @@ docker build -f Dockerfile . -t $(basename $(pwd)) --build-arg IMAGE=node:16.15-
 Once built rebuilding will use the cache for both.  
 
 ```sh
-# rebuild and we see caching
-docker build -f Dockerfile . -t $(basename $(pwd)) --build-arg IMAGE=node:16.13.2-bullseye
+docker buildx build -f $DOCKERFILE . -t $(basename $(pwd))_16_13_2 --build-arg BUILDIMAGE=node:16.13.2-bullseye --build-arg PRODUCTIONIMAGE=node:16.13.2-bullseye
+docker run -it --rm  $(basename $(pwd))_16_13_2 
 
-# rebuild and we see caching
-docker build -f Dockerfile . -t $(basename $(pwd)) --build-arg IMAGE=node:16.15-bullseye
+docker buildx build -f $DOCKERFILE . -t $(basename $(pwd))_16_15 --build-arg BUILDIMAGE=node:16.15-bullseye --build-arg PRODUCTIONIMAGE=node:16.15-bullseye
+docker run -it --rm  $(basename $(pwd))_16_15 
+
+docker buildx build -f $DOCKERFILE . -t $(basename $(pwd)) --build-arg BUILDIMAGE=node:16.13.2-bullseye --build-arg PRODUCTIONIMAGE=node:16.15-bullseye
+docker run -it --rm  $(basename $(pwd)) 
+
+docker buildx build -f $DOCKERFILE . -t $(basename $(pwd)) --build-arg BUILDIMAGE=node:16.15-bullseye --build-arg PRODUCTIONIMAGE=node:16.13.2-bullseye
+docker run -it --rm  $(basename $(pwd)) 
 ```
 
-## Rebase Build
+### Rebase Build
 
 ```sh
-# clean start again
 docker rmi $(docker images -aq) --force  
-docker builder prune --all -f     
+docker builder prune --all -f   
+
+export DOCKERFILE=Dockerfile.rebase 
+
+docker buildx build -f $DOCKERFILE . -t $(basename $(pwd))_16_13_2 --build-arg BUILDIMAGE=node:16.13.2-bullseye --build-arg PRODUCTIONIMAGE=node:16.13.2-bullseye
+docker run -it --rm  $(basename $(pwd))_16_13_2 
+
+docker buildx build -f $DOCKERFILE . -t $(basename $(pwd))_16_15 --build-arg BUILDIMAGE=node:16.15-bullseye --build-arg PRODUCTIONIMAGE=node:16.15-bullseye
+docker run -it --rm  $(basename $(pwd))_16_15 
+
+docker buildx build -f $DOCKERFILE . -t $(basename $(pwd)) --build-arg BUILDIMAGE=node:16.13.2-bullseye --build-arg PRODUCTIONIMAGE=node:16.15-bullseye
+docker run -it --rm  $(basename $(pwd)) 
+
+docker buildx build -f $DOCKERFILE . -t $(basename $(pwd)) --build-arg BUILDIMAGE=node:16.15-bullseye --build-arg PRODUCTIONIMAGE=node:16.13.2-bullseye
+docker run -it --rm  $(basename $(pwd)) 
 ```
 
-### Build
+## Inspecting
 
 ```sh
-docker build -f Dockerfile.rebase . -t $(basename $(pwd)) --build-arg IMAGE=node:16.13.2-bullseye
+docker image save -o ./$(basename $(pwd))_16_13_2.tar $(basename $(pwd))_16_13_2
+mkdir -p ./out/$(basename $(pwd))_16_13_2 && tar -xvf ./$(basename $(pwd))_16_13_2.tar -C $_
 
-# rebase with new nodejs
-docker build -f Dockerfile.rebase . -t $(basename $(pwd)) --build-arg IMAGE=node:16.15-bullseye
+
+docker image save -o ./$(basename $(pwd))_16_15.tar $(basename $(pwd))_16_15
+mkdir -p ./out/$(basename $(pwd))_16_15 && tar -xvf ./$(basename $(pwd))_16_15.tar -C $_
 ```
 
 

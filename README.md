@@ -347,6 +347,11 @@ Steps [README.md](./63_build_matrix/README.md)
 Demonstrates SBOM generation for docker images.  
 Steps [README.md](./64_sbom/README.md)  
 
+## 65 - Reabsing images
+
+Demonstrate building a simple nodejs app and changing the version without having to rebuild app.  
+Steps [README.md](./65_image_rebasing/README.md)  
+
 ## 68 - Composing Services
 
 Demonstrate how to use docker compose to compose multiple services  
