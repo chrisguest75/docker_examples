@@ -1,6 +1,7 @@
 # syntax=docker/dockerfile:1.4
 ARG baseimage="scratch"
-FROM docker.io/nixos/nix@sha256:840bec8bcedf4858ddc525e1a9f41240c2c2a1380fd5315e756119ef66a0aed6 AS BUILDER
+#FROM docker.io/nixos/nix@sha256:840bec8bcedf4858ddc525e1a9f41240c2c2a1380fd5315e756119ef66a0aed6 AS BUILDER
+FROM docker.io/nixos/nix:latest AS BUILDER
 
 ARG SLEEPTIME=0
 ARG NIX_FILE=./jq.nix 
