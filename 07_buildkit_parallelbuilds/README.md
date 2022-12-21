@@ -2,6 +2,8 @@
 
 Demonstrate buildkit parallel building
 
+NOTE: This probably needs rewriting as buildkit is default now and we're not going back.  
+
 ## 📋 Script to follow
 
 Demonstrate docker buildkit parallel builds.  
