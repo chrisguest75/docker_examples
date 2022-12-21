@@ -417,6 +417,11 @@ Steps [README.md](./80_crane/README.md)
 Demonstrate how to use OCI Registry-as-Storage (ORAS)  
 Steps [README.md](./81_oras/README.md)  
 
+## 84 - cache-from
+
+Demonstrate how to use `--cache-from` to speed up builds.  
+Steps [README.md](./84_cache_from/README.md)  
+
 ## 85 - tini
 
 Demonstrate `tini` init-system in Docker to handle SIGTERM and SIGHALT correctly.  
