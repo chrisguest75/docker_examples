@@ -1,0 +1,22 @@
+# syntax=docker/dockerfile:1.4
+FROM ubuntu:22.04
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+# NOTE: Escape the \$ otherwise they are rendered at buildtime
+COPY --chmod=755 <<EOF /bin/folders.sh
+#!/usr/bin/env bash
+echo "> *************** /var/lib/apt"
+ls -lR /var/lib/apt
+
+echo "> *************** /var/cache/apt"
+ls -lR /var/cache/apt
+EOF
+
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    /bin/folders.sh 
+
+# NOTE: This is not required as there is an undocumented flag --chmod
+ENTRYPOINT ["/bin/folders.sh"]
+CMD [""]

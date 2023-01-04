@@ -1,7 +1,7 @@
 # CACHE FAILS
 
 Demonstrate layer caching behaviour with non-deterministic commands.
-We pull the time from a time service to demonstrate the non-determinism. This would be akin to any command requiring an updated file. 
+We pull the time from a time service to demonstrate the non-determinism. This would be akin to any command requiring an updated file.  
 
 ## Script to follow
 
@@ -57,7 +57,7 @@ Step 3/7 : RUN echo "Hello"
 ...
 ```
 
-Therefore, the image is not rebuilt and we have an old file.
+Therefore, the image is not rebuilt and we have an old file.  
 
 ```sh
 docker run -it --rm 16_cache_fails
