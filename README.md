@@ -519,6 +519,11 @@ Steps [README.md](./85_tini/README.md)
 Demonstrate how to setup a WASI based container.    
 Steps [README.md](./86_wasi/README.md)  
 
+## 87 - Lazy Pulling
+
+Demonstrate how to control buildkit to build images ordered for lazy pulls.  
+Steps [README.md](./87_lazy_pulling/README.md)  
+
 ## 📝 TODO
 
 1. cgroups and namespaces
