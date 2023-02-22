@@ -1,0 +1,8 @@
+FROM scratch AS PRODUCTION
+LABEL dockerfile.baseimage="scratch" dockerfile.description="86_wasi" dockerfile.stage="PRODUCTION"
+
+COPY --from=docker-wasm-builder:latest /scratch/build/debug.wasm /debug.wasm
+
+ENTRYPOINT [ "/debug.wasm" ]
+
+

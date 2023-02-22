@@ -514,6 +514,11 @@ Steps [README.md](./84_cache_from/README.md)
 Demonstrate `tini` init-system in Docker to handle SIGTERM and SIGHALT correctly.  
 Steps [README.md](./85_tini/README.md)  
 
+## 86 - WASM/WASI
+
+Demonstrate how to setup a WASI based container.    
+Steps [README.md](./86_wasi/README.md)  
+
 ## 📝 TODO
 
 1. cgroups and namespaces
@@ -541,10 +546,8 @@ https://www.andreafortuna.org/2019/11/26/cve-2019-14271-a-docker-cp-container-es
 1. Cron in a container.
 1. Docker users.
 1. Binding to different networks localhost vs 127.0.0.1 or 0.0.0.0
-1. docker info
 1. docker plugins.
 1. docker manifests
-1. CRFS: Container Registry Filesystem https://github.com/google/crfs
 1. docker image history and using it to rebuild a container
 1. https://adamo.wordpress.com/2022/05/05/removing-all-containers-via-ssh/ ssh remote_user@remote_host "docker ps -a -q|xargs -n 1 docker rm -f "
 1. https://github.com/google/gvisor

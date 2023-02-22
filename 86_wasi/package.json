@@ -1,0 +1,24 @@
+{
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./build/release.js",
+      "types": "./build/release.d.ts"
+    }
+  },
+  "scripts": {
+    "asbuild:debug": "asc assembly/index.ts --target debug",
+    "asbuild:release": "asc assembly/index.ts --target release",
+    "asbuild": "npm run asbuild:debug && npm run asbuild:release",
+    "start": "wasmtime --dir . ./build/debug.wasm",
+    "docker:build": "docker buildx build --load -f Dockerfile.scratch --platform wasi/wasm -t docker-wasm .",
+    "docker:buildwasm": "docker buildx build --load -f Dockerfile --target BUILDER -t docker-wasm-builder . && docker buildx build --load -f Dockerfile.final --platform wasi/wasm --target PRODUCTION -t docker-wasm .",
+    "docker:start": "docker run --runtime=io.containerd.wasmedge.v1 --platform wasi/wasm docker-wasm"
+  },
+  "devDependencies": {
+    "assemblyscript": "^0.27.0"
+  },
+  "dependencies": {
+    "as-wasi": "^0.5.1"
+  }
+}

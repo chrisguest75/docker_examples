@@ -6,6 +6,10 @@ TODO:
 
 * Rebasing an image using `crane rebase`
 
+## Reason
+
+`crane` is a tool for interacting with remote images and registries.  
+
 ## Install
 
 ```sh
