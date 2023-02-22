@@ -1,0 +1,6 @@
+# syntax=docker/dockerfile:1.4
+ARG BASEIMAGE="gcr.io/distroless/nodejs16-debian11:debug"
+
+FROM $BASEIMAGE AS PRODUCTION
+LABEL dockerfile.baseimage="$BASEIMAGE" dockerfile.description="test packing" dockerfile.stage="PRODUCTION"
+
