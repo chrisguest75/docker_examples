@@ -30,8 +30,22 @@ docker context ls
 
 # show the builders and sockets
 docker context ls
+```
 
-# in windows cmd prompt
+## Build IIS 
+
+```sh
+# in windows cmd prompt (build iis)
+docker --context desktop-windows build -f Dockerfile.iis -t iisexample:latest .
+
+docker run --rm -it -p 8000:80 --name iisexample iisexample:latest 
+
+
+```
+
+## .Net App
+
+```sh
 docker --context desktop-windows build -t myapp:latest .
 
 
@@ -48,3 +62,6 @@ docker run -it --entrypoint /bin/sh myapp:latest
 
 https://learn.microsoft.com/en-us/dotnet/architecture/modernize-with-azure-containers/modernize-existing-apps-to-cloud-optimized/deploy-existing-net-apps-as-windows-containers
 
+https://learn.microsoft.com/en-us/virtualization/windowscontainers/manage-docker/manage-windows-dockerfile
+
+https://github.com/MicrosoftDocs/Virtualization-Documentation/tree/main/windows-container-samples
