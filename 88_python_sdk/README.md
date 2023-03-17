@@ -4,6 +4,7 @@ Demonstrate using the Python Docker SDK.
 
 TODO:
 
+* Currently it is not working with buildkit.  
 * Start an nginx container and copy files into it.  
 * Template files  
 * Make some requests and check the logs.  

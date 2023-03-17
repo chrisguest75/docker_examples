@@ -14,10 +14,12 @@ def run_nginx_container(title):
     client = docker.from_env()
 
     logger.info('Building image')
+    dockerfile = "Dockerfile.nginx"
     dockerfile_path = "./"
     image_tag = "nginxpython:1.0.0"
     image, logs = client.images.build(
         path=dockerfile_path,
+        dockerfile=dockerfile,
         tag=image_tag,
         nocache=True,
         rm=True
