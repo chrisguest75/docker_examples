@@ -2,7 +2,10 @@
 
 Demonstrate how to use HEREDOC in a Dockerfile.  
 
-ℹ️ NOTE: Top of dockerfile to tell docker which syntax to use `# syntax=docker/dockerfile:1.4`  
+ℹ️ NOTES:
+
+* Top of dockerfile to tell docker which syntax to use `# syntax=docker/dockerfile:1.4`  
+* HEREDOCS can be placed inside Dockerfile HEREDOCS.
 
 ## 🏠 Build
 
@@ -31,6 +34,11 @@ docker run -it --rm --name heredoc --entrypoint "/bin/bash" heredoc
 
 # show heredoc created script
 cat /bin/ping.sh
+
+# run the script to generate the heredoc into a file.  
+cat /bin
+./heredoc.sh 
+cat ./subheredoc.sh 
 ```
 
 ## 👀 Resources
