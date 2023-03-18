@@ -36,8 +36,13 @@ docker system prune --all --force
 
 ## Troubleshooting
 
-If you're getting trouble running some of the commands to calculate disk space. Then I recommend pruning all of docker and shrinking the space allocated.  
+If you're getting trouble running some of the commands to calculate disk space. Then I recommend `system pruning` all of docker and shrinking the space allocated. You can shrink the available filesystem space in the preferences.   
 Once you've changed the filesize you can try again.  
+
+```sh
+# check Docker.raw filesize again.  
+ls -la ~/Library/Containers/com.docker.docker/Data/vms/0/data
+```
 
 ```log
 docker system df
