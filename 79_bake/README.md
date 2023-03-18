@@ -20,7 +20,7 @@ DISTROLESS="gcr.io/distroless/nodejs:16-debug" docker buildx bake -f docker-bake
 while IFS=, read -r imagesha
 do
     echo "IMAGE:$imagesha"
-    docker run --rm -t "$imagesha" --version
+    docker run --rm -t "$imagesha"
 done < <(jq -r '. | keys[] as $key | .[$key]."containerimage.digest"' ./bake-metadata.json)
 ```
 

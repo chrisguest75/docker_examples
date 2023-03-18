@@ -22,7 +22,17 @@ done
 EOF
 
 # NOTE: This is not required as there is an undocumented flag --chmod
+# Support for non-octal is coming soon - https://github.com/moby/buildkit/issues/1951
 #RUN chmod +x /bin/ping.sh
+
+# Show that we can use heredocs to within heredocs
+COPY --chmod=755 <<EOF /bin/heredoc.sh
+# another heredoc 
+cat <<- HEREDOC > /bin/subheredoc.sh
+This is a test
+HEREDOC
+
+EOF
 
 ENTRYPOINT ["/bin/ping.sh"]
 CMD [""]
