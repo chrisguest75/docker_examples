@@ -9,6 +9,8 @@ TODO:
 * Template files  
 * Make some requests and check the logs.  
 
+## Install
+
 ```sh
 export PIPENV_VENV_IN_PROJECT=1
 pipenv install
@@ -18,19 +20,30 @@ pipenv shell
 code . 
 ```
 
+## Run
 
+Uses pipenv scripts.  
 
 ```sh
-pipenv install --dev flake8  
-flake8 ./*.py
-flake8 ./*/*.py
+# lint code
+pipenv run lint
 
-pytest
+# run different examples
+pipenv run start:nginx
+pipenv run start:filecopy
+
+# run tests
+pipenv run test
+```
+
+## Created
+
+```sh
+# add lint to dev dependencies
+pipenv install --dev flake8  
 ```
 
 ## Resources
 
-
-https://github.com/chrisguest75/mongo_examples/tree/main/06_dash
-
-https://docker-py.readthedocs.io/en/stable/
+* Dash example [here](https://github.com/chrisguest75/mongo_examples/tree/main/06_dash)  
+* Docker SDK for Python [here](https://docker-py.readthedocs.io/en/stable/)  

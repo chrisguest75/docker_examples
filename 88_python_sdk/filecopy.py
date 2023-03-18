@@ -1,12 +1,9 @@
 import logging
 import time
-import requests
 import docker
-import re
-
-import logging
 
 logger = logging.getLogger('filecopy')
+
 
 def run_filecopy_container():
     imagename = "filecopypython"
@@ -30,7 +27,8 @@ def run_filecopy_container():
     logger.info('Running image')
     port = 8080
     containername = imagename
-    #client.images.pull('nginxpython:1.0.0')
+
+    # client.images.pull('nginxpython:1.0.0')
     client.containers.create(image_tag, detach=True, remove=False, ports={'80/tcp': port}, name=containername)
 
     internal_container_path = "/shared/README.md"
@@ -54,8 +52,6 @@ def run_filecopy_container():
     logger.info('Stop containers')
     # Stop the container
     container.stop()
-
-
 
     #container.remove()
     return passTest

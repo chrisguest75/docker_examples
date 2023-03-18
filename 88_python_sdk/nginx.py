@@ -4,8 +4,6 @@ import requests
 import docker
 import re
 
-import logging
-
 logger = logging.getLogger('nginx')
 
 def run_nginx_container(title):
@@ -28,7 +26,8 @@ def run_nginx_container(title):
     logger.info('Running image')
     port = 8080
     containername='nginxpython'
-    #client.images.pull('nginxpython:1.0.0')
+
+    # client.images.pull('nginxpython:1.0.0')
     client.containers.run(image_tag, detach=True, remove=False, ports={'80/tcp': port}, name=containername)
 
     logger.info('List containers')
@@ -42,7 +41,7 @@ def run_nginx_container(title):
         response = requests.get(f"{base_url}")
         if response.status_code != 200:
             logger.error(f"Response status code is {response.status_code}")
-            #raise Exception(f"Response status code is {response.status_code}")
+            # raise Exception(f"Response status code is {response.status_code}")
         else:
             logger.info(f"Response status code is {response.status_code}")
             html = response.text
@@ -70,4 +69,3 @@ def run_nginx_container(title):
     container.stop()
     container.remove()
     return passTest
-
