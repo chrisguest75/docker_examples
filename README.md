@@ -91,6 +91,9 @@ The aim is to use examples to show how Docker behaves when building containers a
   - [81 - oras](#81---oras)
   - [84 - cache-from](#84---cache-from)
   - [85 - tini](#85---tini)
+  - [86 - WASM/WASI](#86---wasmwasi)
+  - [87 - Lazy Pulling](#87---lazy-pulling)
+  - [89 - Managing Diskspace](#89---managing-diskspace)
   - [📝 TODO](#-todo)
 
 ## 00 - Cheatsheet
@@ -516,13 +519,18 @@ Steps [README.md](./85_tini/README.md)
 
 ## 86 - WASM/WASI
 
-Demonstrate how to setup a WASI based container.    
+Demonstrate how to setup a WASI based container.  
 Steps [README.md](./86_wasi/README.md)  
 
 ## 87 - Lazy Pulling
 
 Demonstrate how to control buildkit to build images ordered for lazy pulls.  
 Steps [README.md](./87_lazy_pulling/README.md)  
+
+## 89 - Managing Diskspace
+
+Give some examples and advice on how to manage disk space with docker.  
+Steps [README.md](./89_managing_diskspace/README.md)  
 
 ## 📝 TODO
 
