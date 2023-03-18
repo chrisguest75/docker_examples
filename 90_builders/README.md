@@ -7,7 +7,7 @@ NOTES:
 * Demonstrate building different architectures with different builders
 * Realise there is issue building ARM Nix packages.  
 * There is no caching between builders.  
-* If you're using a builder you'll need to use --push or --load.  
+* If you're using a builder you'll need to use --push or --load. The default docker builder does not need the extra parameters.  
 
 TODO:
 

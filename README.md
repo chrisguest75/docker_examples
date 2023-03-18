@@ -556,7 +556,7 @@ https://www.andreafortuna.org/2019/11/26/cve-2019-14271-a-docker-cp-container-es
 1. Cache invalidation - package managers
 1. Ordering of layers
 1. Showing the process tree for docker (linux is easier)
-1. Cron in a container.
+1. Cron in a container. https://www.airplane.dev/blog/docker-cron-jobs-how-to-run-cron-inside-containers  
 1. Docker users.
 1. Binding to different networks localhost vs 127.0.0.1 or 0.0.0.0
 1. docker plugins.
@@ -564,3 +564,4 @@ https://www.andreafortuna.org/2019/11/26/cve-2019-14271-a-docker-cp-container-es
 1. docker image history and using it to rebuild a container
 1. https://adamo.wordpress.com/2022/05/05/removing-all-containers-via-ssh/ ssh remote_user@remote_host "docker ps -a -q|xargs -n 1 docker rm -f "
 1. https://github.com/google/gvisor
+2. https://github.com/tonistiigi/binfmt - docker desktop supports it
