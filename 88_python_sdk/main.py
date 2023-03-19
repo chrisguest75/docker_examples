@@ -7,6 +7,7 @@ import traceback
 import yaml
 import nginx
 import filecopy
+import buildx
 
 def log_uncaught_exceptions(exc_type, exc_value, exc_traceback):
     if issubclass(exc_type, KeyboardInterrupt):
@@ -31,6 +32,11 @@ def run_filecopy():
     logger.info("Test result", {"result": result})
 
 
+def run_buildx():
+    result = buildx.run_buildx_container()
+    logger.info("Test result", {"result": result})
+
+
 if __name__ == "__main__":
     print(f"Enter {__name__}")
     with io.open("./logging_config.yaml") as f:
@@ -44,6 +50,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Docker tests')
     parser.add_argument('--nginx', dest='runnginx', action='store_true')
     parser.add_argument('--filecopy', dest='runfilecopy', action='store_true')
+    parser.add_argument('--buildx', dest='runbuildx', action='store_true')
     args = parser.parse_args()
 
     if args.runnginx:
@@ -51,5 +58,8 @@ if __name__ == "__main__":
 
     if args.runfilecopy:
         run_filecopy()
+
+    if args.runbuildx:
+        run_buildx()
 
     exit(0)

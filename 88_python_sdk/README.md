@@ -2,6 +2,10 @@
 
 Demonstrate using the Python Docker SDK.  
 
+NOTES:
+
+* Docker SDK only supports old docker client, it does not support buildkit.  
+
 TODO:
 
 * Currently it is not working with buildkit.  
@@ -47,3 +51,5 @@ pipenv install --dev flake8
 
 * Dash example [here](https://github.com/chrisguest75/mongo_examples/tree/main/06_dash)  
 * Docker SDK for Python [here](https://docker-py.readthedocs.io/en/stable/)  
+https://github.com/gabrieldemarmiesse/python-on-whales
+https://github.com/docker/docker-py/issues/2230

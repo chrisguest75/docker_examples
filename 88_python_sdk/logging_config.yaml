@@ -15,3 +15,7 @@ handlers:
 loggers:
   nginx:
     level: DEBUG    
+  filecopy:
+    level: DEBUG   
+  buildx:
+    level: DEBUG   

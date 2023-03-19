@@ -1,0 +1,16 @@
+# syntax=docker/dockerfile:1.4
+FROM ubuntu:20.04
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+# NOTE: Escape the \$ otherwise they are rendered at buildtime
+COPY --chmod=755 <<EOF /bin/buildx.sh
+#!/usr/bin/env bash
+echo "Hello World from buildx"
+EOF
+
+# NOTE: This is not required as there is an undocumented flag --chmod
+#RUN chmod +x /bin/ping.sh
+
+ENTRYPOINT ["/bin/buildx.sh"]
+CMD ["/bin/buildx.sh"]

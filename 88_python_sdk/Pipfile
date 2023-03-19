@@ -20,5 +20,6 @@ python_full_version = "3.10.9"
 [scripts]
 "start:nginx" = "python main.py --nginx"
 "start:filecopy" = "python main.py --filecopy"
+"start:buildx" = "python main.py --buildx"
 test = "pytest"
 lint = "flake8" 
