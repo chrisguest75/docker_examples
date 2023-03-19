@@ -2,6 +2,10 @@
 
 Demonstrate how to use `docker frontends`.  
 
+TODO:
+
+* Link to the buildpacks example.  
+
 ## Reason
 
 BuildKit is a toolkit for converting source code into build artifacts, such as executable files or Docker images, in an efficient, concurrent, and cache-friendly manner. It is primarily used as the backend for building Docker images, but it can also be used independently.  
@@ -59,6 +63,7 @@ docker run -d -p 8080:80 --read-only --name nginx-nix nginx-nix
 * Dockerfile frontend syntaxes [here](https://github.com/moby/buildkit/blob/dockerfile/1.4.0/frontend/dockerfile/docs/syntax.md#linked-copies-copy---link-add---link)  
 * Dockerhub BuildKit Dockerfile frontend [here](https://hub.docker.com/r/docker/dockerfile)
 * Custom Dockerfile syntax [here](https://docs.docker.com/build/buildkit/dockerfile-frontend/)
+* Demystifying the Buildpacks frontend for BuildKit [here](https://shemleong.medium.com/demystifying-the-buildpacks-buildkit-frontend-6e9378001c6c)  
 
 https://hub.docker.com/r/docker/dockerfile-upstream
 
