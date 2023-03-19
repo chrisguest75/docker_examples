@@ -13,6 +13,7 @@ Demonstrates:
 * Building and running both bulidkit and Dockerfile.v0 builds  
 * Tests running containers using requests and log scraping.  
 * Test copying files into containers.  
+* Use pytest to run tests against containers.  
 
 ## Install
 

@@ -4,7 +4,9 @@ import requests
 import docker
 import re
 
+
 logger = logging.getLogger('nginx')
+
 
 def run_nginx_container(title):
     passTest = False
@@ -25,7 +27,7 @@ def run_nginx_container(title):
 
     logger.info('Running image')
     port = 8080
-    containername='nginxpython'
+    containername = 'nginxpython'
 
     # client.images.pull('nginxpython:1.0.0')
     client.containers.run(image_tag, detach=True, remove=False, ports={'80/tcp': port}, name=containername)
@@ -59,7 +61,7 @@ def run_nginx_container(title):
 
     except Exception as e:
         logger.error(f"Exception {e}")
-        #raise e
+        # raise e
 
     logger.info('Stop containers')
     # Get the container by ID

@@ -39,7 +39,6 @@ def run_filecopy_container():
     container = whales_docker.container.create(image_tag, publish=[(port, 80)], name=containername)
 
     logger.info('Copy file to container')
-    #container = whales_docker.containers.from_running(containername)
     container.copy_to("./README.md", internal_container_path)
 
     # Get the container by ID
@@ -55,7 +54,7 @@ def run_filecopy_container():
     output = container.logs()
     logger.info(output)
 
-    pattern = f'# README'
+    pattern = '# README'
 
     # Use re.findall() to extract all matches of the pattern from the HTML
     matches = re.findall(pattern, output)
@@ -71,7 +70,6 @@ def run_filecopy_container():
     logger.info('Stop containers')
     # Stop the container
     container.stop()
+    container.remove()
 
-    #container.remove()
     return passTest
-

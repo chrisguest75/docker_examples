@@ -4,6 +4,7 @@ import re
 
 logger = logging.getLogger('buildx')
 
+
 def run_buildx_container():
     imagename = "buildxpython"
 
@@ -22,7 +23,7 @@ def run_buildx_container():
     returned_string = docker.run(image_tag)
     logger.info(returned_string)
 
-    pattern = f'Hello World from buildx'
+    pattern = 'Hello World from buildx'
 
     # Use re.findall() to extract all matches of the pattern from the HTML
     matches = re.findall(pattern, returned_string)
@@ -33,4 +34,3 @@ def run_buildx_container():
         passTest = True
 
     return passTest
-
