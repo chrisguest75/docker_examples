@@ -1,32 +1,36 @@
 import logging
-import docker
+from python_on_whales import docker
+import re
 
 logger = logging.getLogger('buildx')
-
 
 def run_buildx_container():
     imagename = "buildxpython"
 
-    passTest = False
-    logger.info('Getting docker client')
-    client = docker.from_env()
-
-    dockerfile = "Dockerfile.filecopy"
+    dockerfile = "Dockerfile.buildx"
     dockerfile_path = "./"
     image_tag = f"{imagename}:1.0.0"
 
-    # Create a Buildx builder
-    logger.info('Creating Buildx builder')
-    builder = client.api.buildx_create(name="88_python_sdk")
-
-    # Build a Docker image using the Buildx builder
+    passTest = False
     logger.info('Building image')
-    image, logs = client.images.build(
-        path=dockerfile_path,
-        dockerfile=dockerfile,
-        tag=image_tag,
-        builder=f"buildx://{builder.id}"
+    docker.buildx.build(
+        context_path=dockerfile_path,
+        file=dockerfile,
+        tags=[image_tag]
     )
+
+    returned_string = docker.run(image_tag)
+    logger.info(returned_string)
+
+    pattern = f'Hello World from buildx'
+
+    # Use re.findall() to extract all matches of the pattern from the HTML
+    matches = re.findall(pattern, returned_string)
+
+    # Print the matches
+    for match in matches:
+        logger.info(match)
+        passTest = True
 
     return passTest
 

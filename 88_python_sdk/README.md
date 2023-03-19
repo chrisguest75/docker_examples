@@ -35,9 +35,12 @@ pipenv run lint
 # run different examples
 pipenv run start:nginx
 pipenv run start:filecopy
+pipenv run start:buildx
 
 # run tests
 pipenv run test
+# filtering
+pipenv run test -k test_buildx 
 ```
 
 ## Created
@@ -51,5 +54,6 @@ pipenv install --dev flake8
 
 * Dash example [here](https://github.com/chrisguest75/mongo_examples/tree/main/06_dash)  
 * Docker SDK for Python [here](https://docker-py.readthedocs.io/en/stable/)  
-https://github.com/gabrieldemarmiesse/python-on-whales
-https://github.com/docker/docker-py/issues/2230
+* gabrieldemarmiesse/python-on-whales repo [here](https://github.com/gabrieldemarmiesse/python-on-whales)  
+* docker-py Support BuildKit #2230 [here](https://github.com/docker/docker-py/issues/2230)  
+https://gabrieldemarmiesse.github.io/python-on-whales/
