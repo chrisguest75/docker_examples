@@ -1,6 +1,8 @@
 import logging
 import time
 import docker
+from python_on_whales import docker as whales_docker
+import re
 
 logger = logging.getLogger('filecopy')
 
@@ -9,45 +11,62 @@ def run_filecopy_container():
     imagename = "filecopypython"
 
     passTest = False
-    logger.info('Getting docker client')
-    client = docker.from_env()
-
-    logger.info('Building image')
     dockerfile = "Dockerfile.filecopy"
     dockerfile_path = "./"
     image_tag = f"{imagename}:1.0.0"
-    image, logs = client.images.build(
-        path=dockerfile_path,
-        dockerfile=dockerfile,
-        tag=image_tag,
-        nocache=True,
-        rm=True
-    )
-
-    logger.info('Running image')
     port = 8080
     containername = imagename
+    internal_container_path = "/scratch/README.md"
 
-    # client.images.pull('nginxpython:1.0.0')
-    client.containers.create(image_tag, detach=True, remove=False, ports={'80/tcp': port}, name=containername)
+    logger.info('Building image')
+    whales_docker.buildx.build(
+        context_path=dockerfile_path,
+        file=dockerfile,
+        tags=[image_tag]
+    )
 
-    internal_container_path = "/shared/README.md"
-    # Open the file and create a tar archive
-    with open("./README.md", 'rb') as file:
-        data = file.read()
-    tar_data = docker.utils.tar.encode({container_path: data})
+    try:
+        logger.info('Getting docker client')
+        client = docker.from_env()
+        logger.info('Cleanup old containers')
+        container = client.containers.get(containername)
+        container.stop()
+        container.remove()
+    except:
+        logger.info('No old containers to cleanup')
 
-    # Copy the tar archive to the container
-    client.api.put_archive(containername, internal_container_path, tar_data)
+    logger.info('Creating image')
+    container = whales_docker.container.create(image_tag, publish=[(port, 80)], name=containername)
+
+    logger.info('Copy file to container')
+    #container = whales_docker.containers.from_running(containername)
+    container.copy_to("./README.md", internal_container_path)
 
     # Get the container by ID
-    container = client.containers.get(containername)
+    logger.info('Start containers')
     container.start()
 
     time.sleep(1)
 
+    logger.info('Wait for container to finish')
+    whales_docker.container.wait(container)
+
+    logger.info('Get logs from container')
+    output = container.logs()
+    logger.info(output)
+
+    pattern = f'# README'
+
+    # Use re.findall() to extract all matches of the pattern from the HTML
+    matches = re.findall(pattern, output)
+
+    # Print the matches
+    for match in matches:
+        logger.info(match)
+        passTest = True
+
     logger.info('List containers')
-    logger.info(client.containers.list())
+    logger.info(whales_docker.container.list())
 
     logger.info('Stop containers')
     # Stop the container

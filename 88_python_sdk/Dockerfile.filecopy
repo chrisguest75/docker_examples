@@ -3,10 +3,11 @@ FROM ubuntu:20.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 
+WORKDIR /scratch
 # NOTE: Escape the \$ otherwise they are rendered at buildtime
 COPY --chmod=755 <<EOF /bin/echoout.sh
 #!/usr/bin/env bash
-cat /shared/README.md
+cat /scratch/README.md
 EOF
 
 # NOTE: This is not required as there is an undocumented flag --chmod

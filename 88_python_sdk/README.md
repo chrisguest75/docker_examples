@@ -5,13 +5,14 @@ Demonstrate using the Python Docker SDK.
 NOTES:
 
 * Docker SDK only supports old docker client, it does not support buildkit.  
+* Docker on Whales interacts with the cmdline docker directly.  
+* Both packages can be installed side-by-side to cover the both scenarios.  
 
-TODO:
+Demonstrates:
 
-* Currently it is not working with buildkit.  
-* Start an nginx container and copy files into it.  
-* Template files  
-* Make some requests and check the logs.  
+* Building and running both bulidkit and Dockerfile.v0 builds  
+* Tests running containers using requests and log scraping.  
+* Test copying files into containers.  
 
 ## Install
 
@@ -54,6 +55,6 @@ pipenv install --dev flake8
 
 * Dash example [here](https://github.com/chrisguest75/mongo_examples/tree/main/06_dash)  
 * Docker SDK for Python [here](https://docker-py.readthedocs.io/en/stable/)  
-* gabrieldemarmiesse/python-on-whales repo [here](https://github.com/gabrieldemarmiesse/python-on-whales)  
 * docker-py Support BuildKit #2230 [here](https://github.com/docker/docker-py/issues/2230)  
-https://gabrieldemarmiesse.github.io/python-on-whales/
+* gabrieldemarmiesse/python-on-whales repo [here](https://github.com/gabrieldemarmiesse/python-on-whales)  
+* Python on whales documentation [here](https://gabrieldemarmiesse.github.io/python-on-whales/)  
