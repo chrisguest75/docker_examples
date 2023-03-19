@@ -1,4 +1,4 @@
-# README.md
+# HADOLINT
 
 Demonstrates using [hadolint](https://github.com/hadolint/hadolint) which is a linting tool for Dockerfiles.  
 

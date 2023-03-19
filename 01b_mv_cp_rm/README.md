@@ -6,8 +6,8 @@ Try copying files in a scratch container.
 
 TODO:
 
-1. ** Not working!! ** Building a simple container with mv, rm, sh.  Probably missing libs. 
-1. How do I debug what is missing? 
+1. ** Not working!! ** Building a simple container with mv, rm, sh.  Probably missing libs.  
+1. How do I debug what is missing?  
 
 ## 📋 Script to follow
 

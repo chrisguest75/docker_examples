@@ -14,7 +14,7 @@ It best to use docker desktop and keep it up-to-date.
 
 YMMV with Ubuntu standard package repositories. Official docs are [here] (https://docs.docker.com/engine/install/ubuntu/)  
 
-Following instructions [here](ttps://www.omgubuntu.co.uk/how-to-install-docker-on-ubuntu-20-04)  
+Following instructions [here](https://www.omgubuntu.co.uk/how-to-install-docker-on-ubuntu-20-04)  
 
 ```sh
 # install using docker.io

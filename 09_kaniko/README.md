@@ -8,7 +8,7 @@ TODO:
 
 1. Container-diff
 1. Does docker have an immutable option?
-1. Caching 
+1. Caching
 1. dive does not seem to work on kaniko builds
 1. oci format??
 1. remove timestamps for kaniko image
@@ -33,6 +33,7 @@ Create an output directory
 mkdir -p ./output
 mkdir -p ./cache
 ```
+
 ## Creating cache
 
 Create a cache folder to speed up rebuilds
@@ -64,7 +65,7 @@ docker save -o ./output/dockerbuild.tar dockerkanikocompare
 
 ## Compare
 
-Output the SHA1 for each image 
+Output the SHA1 for each image  
 
 ```sh
 find ./output/ -name "*.tar" -exec container-diff analyze {} \;
@@ -80,7 +81,7 @@ container-diff diff ./output/dockerbuild.tar ./output/${TAR_NAME}.tar --type fil
 
 ## Analyse
 
-We can also use the dive tool to look inside the container image 
+We can also use the dive tool to look inside the container image  
 
 ```sh
 dive ./output/dockerbuild.tar --source docker-archive

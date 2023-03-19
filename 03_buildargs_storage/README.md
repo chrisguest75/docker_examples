@@ -1,4 +1,4 @@
-# 03 - Buildargs
+# BUILDARGS
 
 Demonstrate how buildargs are stored in the image.  Meaning anyone with access to the image will have access to the credentials.  With an example of new buildkit build time volume mounts to workaround this.  
 

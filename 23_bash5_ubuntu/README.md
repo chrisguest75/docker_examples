@@ -1,6 +1,6 @@
 # README
 
-Demonstrates building bash 5 on an ubuntu image. 
+Demonstrates building bash 5 on an ubuntu image.  
 
 ## 🏠 Build
 

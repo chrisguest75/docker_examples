@@ -1,4 +1,4 @@
-# 12 - Background processes
+# BACKGROUND PROCESSES
 
 Demonstrate creating background processes.  
 

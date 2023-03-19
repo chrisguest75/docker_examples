@@ -1,4 +1,4 @@
-# 13 - Users and Permissions
+# Users and Permissions
 
 Demonstrates how users work within a container.  
 

@@ -1,4 +1,4 @@
-# 06 - Multistage small image size
+# MULTISTAGE BUILDS
 
 Demonstrate multistage build small image size using multistage
 

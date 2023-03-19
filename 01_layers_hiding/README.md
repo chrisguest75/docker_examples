@@ -98,4 +98,3 @@ docker image save -o ./squashtest.tar squashtest
 mkdir ./squashtest 
 tar -xvf squashtest.tar -C ./squashtest
 ```
-

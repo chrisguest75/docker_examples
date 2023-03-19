@@ -58,4 +58,3 @@ docker build --target=bash_cmd -t entrypointtest_bashcmd .
 
 docker run --rm -it entrypointtest_bashcmd                       
 ```
-

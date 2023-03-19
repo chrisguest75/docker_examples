@@ -3,6 +3,7 @@
 Demonstrate layer caching and how different build arguments values will not be cached until built.  
 
 TODO:
+
 1. Remove specific layers from cache
         ```log
         Step 2/5 : ARG sleeptime
@@ -29,7 +30,8 @@ docker build --build-arg sleeptime=11 -t $(basename $(pwd)) .
 docker build --build-arg sleeptime=12 -t $(basename $(pwd)) .
 ```
 
-After building first layers they should all be cached and retained. 
+After building first layers they should all be cached and retained.  
+
 ```sh
 # Once built with the args as values it should be fully cached
 docker build --build-arg sleeptime=10 -t $(basename $(pwd)) .
@@ -43,4 +45,3 @@ docker build --build-arg sleeptime=12 -t $(basename $(pwd)) .
 # Remove image
 docker rmi $(basename $(pwd))
 ```
-

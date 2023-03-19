@@ -124,7 +124,7 @@ curl localhost:8080
 Now go back to shell 2 running the callback and list the contents.  
 You will see a bash prompt that is connected to the container.  
 
-```sh 
+```sh
 # You're webuser now.
 whoami
 # Try and install something - but this time it FAILS.
@@ -149,4 +149,3 @@ curl localhost:8080
 tmuxinator
 tmuxinator stop reverseshell
 ```
-

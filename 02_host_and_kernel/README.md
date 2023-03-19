@@ -4,7 +4,7 @@ Demonstrates how the host kernel versions are different for build and execution.
 
 ## 📋 Script to follow
 
-When run on a different system it shows the kernel version will be different. Shows the kernel version during build.    
+When run on a different system it shows the kernel version will be different. Shows the kernel version during build.  
 
 ## 🏠 Build
 

@@ -2,7 +2,7 @@
 
 Demonstrate passing parameters and piping into docker run.
 
-This helps to create oneliner docker commands. 
+This helps to create oneliner docker commands.  
 
 ## 🏠 Build
 
@@ -57,4 +57,3 @@ EOF
 
 docker run --entrypoint=demo default_pipeable Overiding the entrypoint
 ```
-

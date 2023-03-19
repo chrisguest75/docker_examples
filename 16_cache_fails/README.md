@@ -1,11 +1,15 @@
-# README.md
+# CACHE FAILS
+
 Demonstrate layer caching behaviour with non-deterministic commands.
 We pull the time from a time service to demonstrate the non-determinism. This would be akin to any command requiring an updated file. 
 
 ## Script to follow
+
 ### Build Container
+
 Build the container without caching.  The output of the build will show a build with a time pulled from an echo service.  
-```
+
+```sh
 docker build -f makecurl.Dockerfile --no-cache -t 16_cache_fails . 
 ...
 
@@ -27,8 +31,9 @@ week_number: 3
 ...
 ```
 
-Running the image should print out the time the file was pulled. 
-```
+Running the image should print out the time the file was pulled.  
+
+```sh
 docker run -it --rm 16_cache_fails
 
 abbreviation: GMT
@@ -38,7 +43,8 @@ datetime: 2020-01-14T09:20:50.034710+00:00
 ```
 
 Now build again and the image should be fully cached.  
-```
+
+```sh
 docker build -f makecurl.Dockerfile -t 16_cache_fails .
 
 Sending build context to Docker daemon   5.12kB
@@ -52,13 +58,16 @@ Step 3/7 : RUN echo "Hello"
 ```
 
 Therefore, the image is not rebuilt and we have an old file.
-```
+
+```sh
 docker run -it --rm 16_cache_fails
 ```
 
-### Build Reordered Apt List.
-No caching will occur here as the order of the commands in the apt are different. 
+### Build Reordered Apt List
+
+No caching will occur here as the order of the commands in the apt are different.  
 This means the subsequent layers are also invalidated and everything is rebuilt.  
-```
+
+```sh
 docker build -f curlmake.Dockerfile -t 16_cache_fails .
 ```
