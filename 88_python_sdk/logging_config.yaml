@@ -1,0 +1,21 @@
+version: 1
+root:
+  level: DEBUG
+  handlers: ['console']
+formatters:
+  json:
+      format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+      class: pythonjsonlogger.jsonlogger.JsonFormatter
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: DEBUG
+    stream: ext://sys.stdout
+    formatter: json
+loggers:
+  nginx:
+    level: DEBUG    
+  filecopy:
+    level: DEBUG   
+  buildx:
+    level: DEBUG   
