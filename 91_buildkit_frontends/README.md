@@ -30,15 +30,24 @@ Frontends play a crucial role in BuildKit's architecture, as they allow it to be
 
 ### Add checksums
 
-```sh
-docker buildx build --progress=plain -f Dockerfile.addchecksum -t addchecksum .
+Based on buildkit frontend [1.5.0 release](https://github.com/moby/buildkit/releases/tag/dockerfile%2F1.5.0-labs).  `ADD` now supports a checksum.  
 
+```sh
+# download a file with a checksum
+docker buildx build --progress=plain -f Dockerfile.addchecksum -t addchecksum .
+# check it exists
 dive addchecksum
 ```
 
 ### FROM arch
 
+You can override the architecture in the docker file.  
+Using this technique you can use an AMD64 build to build some tooling or config for an ARM64 final image.  
+
 ```sh
+docker buildx build --progress=plain -f Dockerfile.mixedarch -t mixedarch .
+# examine output and see ARM64 and AMD64 strings coming from different architectures
+docker run -it mixedarch
 ```
 
 ## Build (flakes.nix)

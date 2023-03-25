@@ -1,3 +1,35 @@
 # syntax=docker.io/docker/dockerfile:1.4.3
-FROM --platform=arm64 ubuntu:20.04 as BASE
+
+FROM --platform=arm64 ubuntu:20.04 as basearm64
+FROM --platform=amd64 ubuntu:20.04 as baseamd64
+
+### 
+# NOTE: Use the following FROM to switch final imae architecture
+###
+
+#FROM --platform=arm64 ubuntu:20.04 as DIFFERENT
+FROM --platform=amd64 ubuntu:20.04 as DIFFERENT
+
+WORKDIR /scratch
+
+# NOTE: Escape the \$ otherwise they are rendered at buildtime
+COPY --chmod=755 <<EOF /bin/show_architecture.sh
+#!/usr/bin/env bash
+cat /proc/version
+lscpu
+uname -a    
+
+echo "*******************************"
+cat /scratch/arm64_available | grep "arm64"
+echo "*******************************"
+cat /scratch/amd64_available | grep "amd64"
+echo "*******************************"
+
+
+EOF
+
+COPY --from=basearm64 /var/lib/dpkg/available /scratch/arm64_available
+COPY --from=baseamd64 /var/lib/dpkg/available /scratch/amd64_available
+
+ENTRYPOINT ["/bin/bash", "-c", " /bin/show_architecture.sh"]
 
