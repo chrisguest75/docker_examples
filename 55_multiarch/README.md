@@ -9,11 +9,25 @@ QEMU example [here](https://github.com/chrisguest75/sysadmin_examples/tree/maste
 * buildx builders
 * build for graviton?
 
-Supported architectures
+Supported architectures  
 
 ```sh
 # list the supported platforms
 docker buildx ls   
+```
+
+## Pulling images architectures
+
+```sh
+# clean out all the images
+docker system prune --all --force
+
+docker pull --platform=linux/arm64 ubuntu:20.04 
+# this will pull but without a tag ubuntu:<none>
+docker pull --platform=linux/amd64 ubuntu:20.04 
+
+# architecture of each image
+docker images -q | xargs -L 1 docker inspect | jq -c '.[] | [.Id, .Architecture, .RepoTags[]]'
 ```
 
 ## 🏠 Build

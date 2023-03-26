@@ -1,0 +1,9 @@
+# syntax=docker.io/docker/dockerfile:1.5.0-labs
+FROM ubuntu:20.04 as BASE
+
+WORKDIR /scratch
+ADD --checksum=sha256:24454f830cdb571e2c4ad15481119c43b3cafd48dd869a9b2945d1036d1dc68d https://mirrors.edge.kernel.org/pub/linux/kernel/Historic/linux-0.01.tar.gz /scratch/pass
+
+# FAIL
+# ADD --checksum=sha256:24454f830cdb571e2c4ad15481119c43b3cafd48dd869a9b2945d1036d1dc68e https://mirrors.edge.kernel.org/pub/linux/kernel/Historic/linux-0.01.tar.gz /scratch/fail
+
