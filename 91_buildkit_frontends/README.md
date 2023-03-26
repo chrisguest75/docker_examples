@@ -2,10 +2,6 @@
 
 Demonstrate how to use `docker frontends`.  
 
-TODO:
-
-* Link to the buildpacks example.  
-
 ## Reason
 
 BuildKit is a toolkit for converting source code into build artifacts, such as executable files or Docker images, in an efficient, concurrent, and cache-friendly manner. It is primarily used as the backend for building Docker images, but it can also be used independently.  
@@ -25,6 +21,7 @@ Frontends play a crucial role in BuildKit's architecture, as they allow it to be
 ## Examples
 
 * HereDocs [here](../60_heredocs/README.md)  
+* Buildpacks [here](../43_python_buildpacks/README.md)  
 
 ## Build (dockerfile)
 
@@ -52,7 +49,7 @@ docker run -it mixedarch
 
 ## Build (flakes.nix)
 
-Using a frontend that builds `flakes.nix` directly into an image.  This creates 
+Using a frontend that builds `flakes.nix` directly into an image.  This creates an images that has a reproducible hash.  
 
 ```sh
 docker system prune --all --force
@@ -68,6 +65,27 @@ docker images --digests
 nginx-nix latest 94727237fecd 53 years ago 135MB
 ```
 
+Quick demo of non-reproducible builds with docker containers.  
+
+```sh
+docker buildx create --use --driver docker-container --driver-opt network=host --name test1 --platform linux/amd64
+docker buildx create --use --driver docker-container --driver-opt network=host --name test2 --platform linux/amd64
+
+export BASEIMAGE=scratch
+docker buildx build --builder test1 --platform linux/amd64 --load --build-arg=baseimage=$BASEIMAGE --progress=plain -f Dockerfile.ffmpeg --target PRODUCTION -t ffmpeg-test1 .
+docker buildx build --builder test2 --platform linux/amd64 --load --build-arg=baseimage=$BASEIMAGE --progress=plain -f Dockerfile.ffmpeg --target PRODUCTION -t ffmpeg-test2 .
+
+
+docker images --digests
+```
+
+The same build produces different SHA.  
+
+```log
+ffmpeg-test2 latest <none> 1646a702dff0 About a minute ago   153MB
+ffmpeg-test1 latest <none> 994057e9efdf 5 minutes ago        153MB
+```
+
 ## Resources
 
 * Dockerfile frontend syntaxes [here](https://github.com/moby/buildkit/blob/dockerfile/1.4.0/frontend/dockerfile/docs/syntax.md#linked-copies-copy---link-add---link)  
@@ -78,5 +96,3 @@ nginx-nix latest 94727237fecd 53 years ago 135MB
 * dockerhub docker/dockerfile-upstream [here](https://hub.docker.com/r/docker/dockerfile-upstream)
 * Exploring LLB [here](https://github.com/moby/buildkit#exploring-llb)
 * envd (ɪnˈvdɪ) is a command-line tool that helps you create the container-based development environment for AI/ML. [here](https://github.com/tensorchord/envd/)  
-
-https://github.com/reproducible-containers/buildkit-nix
