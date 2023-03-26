@@ -52,19 +52,20 @@ docker run -it mixedarch
 
 ## Build (flakes.nix)
 
-NOTE: This is not working yet.  
+Using a frontend that builds `flakes.nix` directly into an image.  This creates 
 
 ```sh
+docker system prune --all --force
 # looks like the file has to be called flake.nix
 docker buildx build -t nginx-nix -f ./flake.nix .
+docker run -it -p 8080:80 --rm --name nginx-nix nginx-nix
+curl http://localhost:8080 
+
+docker images --digests
 ```
 
 ```log
-nginx-nix                  latest            45caff172034   53 years ago     135MB
-```
-
-```sh
-docker run -d -p 8080:80 --read-only --name nginx-nix nginx-nix
+nginx-nix latest 94727237fecd 53 years ago 135MB
 ```
 
 ## Resources
@@ -73,15 +74,9 @@ docker run -d -p 8080:80 --read-only --name nginx-nix nginx-nix
 * Dockerhub BuildKit Dockerfile frontend [here](https://hub.docker.com/r/docker/dockerfile)
 * Custom Dockerfile syntax [here](https://docs.docker.com/build/buildkit/dockerfile-frontend/)
 * Demystifying the Buildpacks frontend for BuildKit [here](https://shemleong.medium.com/demystifying-the-buildpacks-buildkit-frontend-6e9378001c6c)  
+* nginx reproducible-containers/buildkit-nix [here](https://github.com/reproducible-containers/buildkit-nix/blob/master/examples/nginx-flake/flake.nix)  
+* dockerhub docker/dockerfile-upstream [here](https://hub.docker.com/r/docker/dockerfile-upstream)
+* Exploring LLB [here](https://github.com/moby/buildkit#exploring-llb)
+* envd (ɪnˈvdɪ) is a command-line tool that helps you create the container-based development environment for AI/ML. [here](https://github.com/tensorchord/envd/)  
 
-https://hub.docker.com/r/docker/dockerfile-upstream
-
-https://github.com/moby/buildkit#exploring-llb
 https://github.com/reproducible-containers/buildkit-nix
-
-https://github.com/tensorchord/envd/
-
-https://github.com/reproducible-containers/buildkit-nix/tree/master/examples/golang-httpserver-flake
-
-https://github.com/reproducible-containers/buildkit-nix/blob/master/examples/nginx-flake/flake.nix
-

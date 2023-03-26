@@ -19,6 +19,7 @@
           fi
           # Initialize /var
           mkdir -p /var/log/nginx /var/cache/nginx/client_body
+          mkdir -p /tmp
           exec nginx -g "daemon off; error_log /dev/stderr debug;"
         '';
       in with pkgs; rec {
