@@ -20,8 +20,12 @@ Frontends play a crucial role in BuildKit's architecture, as they allow it to be
 
 ## Examples
 
+Examples here are based on other examples.  
+
 * HereDocs [here](../60_heredocs/README.md)  
 * Buildpacks [here](../43_python_buildpacks/README.md)  
+* Multiarchitecture [here](../55_multiarch/README.md)  
+* Builders [here](../90_builders/README.md)  
 
 ## Build (dockerfile)
 
