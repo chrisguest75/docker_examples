@@ -6,6 +6,24 @@ Demonstrates SBOM generation for docker images.
 
 Refer to [trivy example](../48_trivy/README.md) for installation.  
 
+## Reason
+
+SBOMs, or Software Bill of Materials, have become a hot topic due to the increasing importance of cybersecurity and software supply chain transparency. An SBOM is essentially a list of all components, libraries, and dependencies used in a software application, along with information about their versions, licenses, and other relevant details.  
+
+There are several reasons why everyone is talking about SBOMs:  
+
+Security: SBOMs help identify known vulnerabilities in components and dependencies, enabling organizations to mitigate risks more effectively. By understanding which components are used in a software system, developers and users can ensure they are updated promptly when vulnerabilities are discovered.  
+
+Compliance: Regulatory bodies and industries are increasingly requiring organizations to have proper documentation and control over their software supply chain. SBOMs help organizations meet these compliance requirements by providing a clear view of all components used in their software products.  
+
+License Management: SBOMs provide a detailed list of the licenses associated with each software component, making it easier for organizations to ensure compliance with open-source and commercial licensing obligations.  
+
+Quality Assurance: By having a clear understanding of the software components and their associated risks, organizations can make better decisions about the software they use and develop. This can lead to improved software quality and fewer issues for end-users.  
+
+Incident Response: In the event of a security incident or vulnerability disclosure, SBOMs can help organizations quickly identify affected products and determine the appropriate remediation steps.  
+
+As more organizations recognize the benefits of SBOMs and adopt them as part of their software development and procurement processes, the buzz around them is likely to continue growing.  
+
 Demonstrates:
 
 * Detection of custom debian package
