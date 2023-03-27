@@ -75,19 +75,21 @@ Quick demo of non-reproducible builds with docker containers.
 docker buildx create --use --driver docker-container --driver-opt network=host --name test1 --platform linux/amd64
 docker buildx create --use --driver docker-container --driver-opt network=host --name test2 --platform linux/amd64
 
+docker buildx ls
+
 export BASEIMAGE=scratch
-docker buildx build --builder test1 --platform linux/amd64 --load --build-arg=baseimage=$BASEIMAGE --progress=plain -f Dockerfile.ffmpeg --target PRODUCTION -t ffmpeg-test1 .
-docker buildx build --builder test2 --platform linux/amd64 --load --build-arg=baseimage=$BASEIMAGE --progress=plain -f Dockerfile.ffmpeg --target PRODUCTION -t ffmpeg-test2 .
-
-
-docker images --digests
+# even with timestamp removal it still isn't same hash.  
+SOURCE_DATE_EPOCH=0 docker buildx build --builder test1 --platform linux/amd64 --load --build-arg=baseimage=$BASEIMAGE --progress=plain -f Dockerfile.ffmpeg --target PRODUCTION -t ffmpeg-test1 .
+SOURCE_DATE_EPOCH=0 docker buildx build --builder test2 --platform linux/amd64 --load --build-arg=baseimage=$BASEIMAGE --progress=plain -f Dockerfile.ffmpeg --target PRODUCTION -t ffmpeg-test2 .
 ```
 
 The same build produces different SHA.  
 
-```log
-ffmpeg-test2 latest <none> 1646a702dff0 About a minute ago   153MB
-ffmpeg-test1 latest <none> 994057e9efdf 5 minutes ago        153MB
+```sh
+docker images --digests
+
+> ffmpeg-test2 latest <none> 1646a702dff0 About a minute ago   153MB
+> ffmpeg-test1 latest <none> 994057e9efdf 5 minutes ago        153MB
 ```
 
 ## Resources

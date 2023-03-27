@@ -5,9 +5,10 @@ Demonstrate how to use docker builders.
 NOTES:
 
 * Demonstrate building different architectures with different builders
-* Realise there is issue building ARM Nix packages.  
+* Realise there is issue building ARM Nix packages (it's needs an override for ebpf).  
 * There is no caching between builders.  
-* If you're using a builder you'll need to use --push or --load. The default docker builder does not need the extra parameters.  
+* If you're using a builder you'll need to use --push or --load. The default docker builder does not need the extra parameters. But it does work with them.  
+* A default builder always pulls latest buildkit over the embedded docker desktop one.  
 
 TODO:
 
@@ -39,10 +40,11 @@ docker buildx ls
 # list version of plugin
 docker buildx version
 
-# create a new builder
-docker buildx create --use --driver docker-container --driver-opt network=host --name buildtest_arm64 --platform linux/arm64
+# create a new builder 
+# NOTE: You can check buildkit in cli https://github.com/docker/cli/blob/master/vendor.mod or vendor.conf depending on commitid in docker version
+docker buildx create --use --driver docker-container --driver-opt network=host --driver-opt image=moby/buildkit:v0.11.5 --name buildtest_arm64 --platform linux/arm64
 # create a second builder
-docker buildx create --use --driver docker-container --driver-opt network=host --name buildtest_amd64 --platform linux/amd64
+docker buildx create --use --driver docker-container --driver-opt network=host --driver-opt image=moby/buildkit:v0.11.5 --name buildtest_amd64 --platform linux/amd64
 
 # once created the build-kit containers are running 
 docker ps
@@ -130,3 +132,4 @@ docker buildx rm buildtest_amd64_2
 * BuildKit TOML configuration [here](https://docs.docker.com/build/buildkit/toml-configuration/)  
 * moby/buildkit repo [here](https://github.com/moby/buildkit)  
 * Cross Compilation failing with Nix and Docker on MacOS [here](https://discourse.nixos.org/t/cross-compilation-failing-with-nix-and-docker-on-macos/22169/4)  
+* How to check the default buildkit version? [here](https://stackoverflow.com/questions/71374671/how-to-check-the-default-buildkit-version)  

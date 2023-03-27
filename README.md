@@ -170,6 +170,8 @@ Popular container runtimes include Docker's containerd, Google's gVisor, and Red
   - [87 - Lazy Pulling](#87---lazy-pulling)
   - [89 - Managing Diskspace](#89---managing-diskspace)
   - [90 - Builders](#90---builders)
+  - [91 - Buildkit Frontends](#91---buildkit-frontends)
+  - [93 - Metadata](#93---metadata)
 
 ## 00 - Cheatsheet
 
@@ -611,3 +613,13 @@ Steps [README.md](./89_managing_diskspace/README.md)
 
 Demonstrate how to use docker builders.  
 Steps [README.md](./90_builders/README.md)  
+
+## 91 - Buildkit Frontends
+
+Demonstrate how to use `docker frontends`.  
+Steps [README.md](./91_buildkit_frontends/README.md)  
+
+## 93 - Metadata
+
+Demonstrate how the metadata output file works.  
+Steps [README.md](./93_metadata/README.md)  
