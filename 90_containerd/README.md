@@ -1,11 +1,15 @@
 # CONTAINERD
 
-Demonstrate how to use `dontainerd`  
+Demonstrate how to use `containerd`  
 
 TODO:
 
 * dive does not work with containerd.  Why is this?
-* 
+* Get Estargz compression working on linux 
+https://www.usenix.org/system/files/conference/fast16/fast16-papers-harter.pdf 
+https://link.medium.com/Jl8qGEQPGyb 
+https://github.com/containerd/stargz-snapshotter/issues/258 
+* https://github.com/containerd/stargz-snapshotter/blob/main/docs/ctr-remote.md 
 
 ## Install Docker Desktop
 
