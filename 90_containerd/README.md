@@ -83,6 +83,9 @@ https://github.com/containerd/stargz-snapshotter/blob/main/script/config/etc/con
 ```sh
 sudo nano /etc/docker/daemon.json
 sudo nano /etc/containerd/config.toml  
+
+# list plugins
+sudo ctr plugins ls  
 ```
 
 ```sh
