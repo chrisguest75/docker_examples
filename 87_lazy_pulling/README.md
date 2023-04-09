@@ -9,6 +9,7 @@ TODO:
 * does slim ai use it?
 * Test time to pull and run from registry.
 * NOTE: This does not work on linux - even using containerd.
+* Check how to get these examples working on ubuntu with containerd
 
 ## Reason
 

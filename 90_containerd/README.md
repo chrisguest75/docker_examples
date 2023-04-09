@@ -6,7 +6,7 @@ TODO:
 
 * firecracker can be containerd plugin
 * dive does not work with containerd.  Why is this?
-* Get Estargz compression working on linux 
+* Get Estargz compression working on linux.
 https://www.usenix.org/system/files/conference/fast16/fast16-papers-harter.pdf 
 https://link.medium.com/Jl8qGEQPGyb 
 https://github.com/containerd/stargz-snapshotter/issues/258 
@@ -34,6 +34,16 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 
 # check containerd is running
 sudo systemctl status containerd
+
+
+sudo groupadd containerd
+sudo usermod -a -G containerd $(whoami)
+sudo chown :containerd /var/run/containerd/containerd.sock
+sudo chmod 660 /var/run/containerd/containerd.sock
+sudo ls -l /var/run/containerd/containerd.sock
+id
+ctr version
+
 
 # ctr will be installed
 sudo ctr version     
