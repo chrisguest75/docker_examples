@@ -69,7 +69,7 @@ ps -aux | grep dockerd
 ```sh
 cat /etc/docker/daemon.json
 cat /etc/containerd/config.toml  
-
+cat /etc/containerd-stargz-grpc/config.toml 
 
 
 ```
@@ -147,6 +147,17 @@ version = 2
     type = "snapshot"
     address = "/run/containerd-stargz-grpc/containerd-stargz-grpc.sock"
 ```
+
+journalctl -xeu stargz-snapshotter.service   
+
+sudo /usr/local/bin/containerd-stargz-grpc                                                                                                                  0.06     07:52    1.44G 
+{"error":"failed to mount overlay: invalid argument","level":"fatal","msg":"snapshotter is not supported","time":"2023-04-08T19:53:06.916442927+01:00"}
+
+# it seems to create this folder.
+sudo ls -la /var/lib/containerd-stargz-grpc/snapshotter    
+
+sudo strace /usr/local/bin/containerd-stargz-grpc   
+
 
 ## nerdctl
 
