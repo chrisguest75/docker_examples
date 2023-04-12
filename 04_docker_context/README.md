@@ -2,13 +2,19 @@
 
 Demonstrate how to work with Docker context.  
 
+TODO:
+
+* Test if modifying the dockerignore causes a cache invalidation in the correct places.  
+
 ## 📋 Script to follow
 
 * Show a docker context issue (large files)  
 * Using .dockerignore to prevent bloating the docker context and increasing build times.  
 * Use a selective whitelist in the context.  
 
-ℹ️ NOTE: If you're building an image and installing `node_modules` inside the container you should using a `.dockerignore` file.  
+ℹ️ NOTES:
+
+* If you're building an image and installing `node_modules` inside the container you should using a `.dockerignore` file.  
 
 ## Large file and folders
 
