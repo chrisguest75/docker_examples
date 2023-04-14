@@ -10,17 +10,19 @@ NOTES:
 
 Demonstrates:
 
-* Building and running both bulidkit and Dockerfile.v0 builds  
+* Building and running both buildkit and Dockerfile.v0 builds  
 * Tests running containers using requests and log scraping.  
 * Test copying files into containers.  
 * Use pytest to run tests against containers.  
+* Buildkit has to use `python-on-whales` and not direct api through `docker` package.  
 
 ## Install
 
 ```sh
+# required if you're already in a virtualenv.
+export PIPENV_IGNORE_VIRTUALENVS=1 
 export PIPENV_VENV_IN_PROJECT=1
 pipenv install
-pipenv install docker
 
 pipenv shell
 code . 
@@ -50,6 +52,8 @@ pipenv run test -k test_buildx
 ```sh
 # add lint to dev dependencies
 pipenv install --dev flake8  
+pipenv install docker
+pipenv install python-on-whales
 ```
 
 ## Resources
