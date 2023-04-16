@@ -163,10 +163,39 @@ journalctl -xeu stargz-snapshotter.service
 sudo /usr/local/bin/containerd-stargz-grpc                                                                                                                  0.06     07:52    1.44G 
 {"error":"failed to mount overlay: invalid argument","level":"fatal","msg":"snapshotter is not supported","time":"2023-04-08T19:53:06.916442927+01:00"}
 
+overlayfs: upper fs does not support RENAME_WHITEOUT.
+overlayfs: upper fs is missing required features.
+
+# kernel 5.19 
+sudo apt-get install --install-recommends linux-generic-hwe-22.04 
+
+
+
+https://github.com/canonical/microk8s/issues/1378
+
+https://discuss.linuxcontainers.org/t/run-docker-on-lxd-container/11575/7
+
+https://discuss.linuxcontainers.org/t/docker-overlay2-on-btrfs-supported/16771
+
+
+
 # it seems to create this folder.
 sudo ls -la /var/lib/containerd-stargz-grpc/snapshotter    
 
 sudo strace /usr/local/bin/containerd-stargz-grpc   
+
+ZFS is sadly quite painful with Docker in Docker and similar scenarios. It might be best to avoid the problem by creating a volume in your ZFS pool, formatting that volume to ext4, and having docker use "overlay2" on top of that, instead of "zfs".
+
+zfs create -s -V 20GB zroot/docker
+mkfs.ext4 /dev/zvol/zroot/docker
+# add the mount to /etc/fstab
+mount /dev/zvol/zroot/docker /var/lib/docker
+The zfs create -s is for sparse volumes. Analogous to thin provisioning on LVM.
+
+I just finished setting this up and it nicely solves my problems with k3s and also kind. I use these for testing and development, and there the volume should be just fine.
+
+https://github.com/k3s-io/k3s/issues/66
+
 
 
 ## nerdctl
