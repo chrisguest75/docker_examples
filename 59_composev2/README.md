@@ -21,8 +21,7 @@ TODO:
 NOTES:
 
 * `--ssh` is not supported on compose.  You have to build image seperately.
-* Docker Compose V2 is a plugin.  This can be installed on `apt` using 
-    `apt-get install -qq -y docker-compose-plugin`
+* Docker Compose V2 is a plugin.  This can be installed on `apt` using `apt-get install -qq -y docker-compose-plugin` - follow guide [here](https://docs.docker.com/engine/install/ubuntu/#set-up-the-repository)  
 
 ## Build & Run
 
@@ -150,3 +149,4 @@ docker compose --env-file ./compose.env --profile all down --volumes
 * Compose Spec Site [here](https://www.compose-spec.io/)
 * The Compose Specification [here](https://github.com/compose-spec/compose-spec/blob/master/spec.md)
 * docker ps [here](https://docs.docker.com/engine/reference/commandline/ps/)
+* Awesome Compose [here](https://github.com/docker/awesome-compose)  

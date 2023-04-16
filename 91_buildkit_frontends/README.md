@@ -72,8 +72,11 @@ nginx-nix latest 94727237fecd 53 years ago 135MB
 Quick demo of non-reproducible builds with docker containers.  
 
 ```sh
-docker buildx create --use --driver docker-container --driver-opt network=host --name test1 --platform linux/amd64
-docker buildx create --use --driver docker-container --driver-opt network=host --name test2 --platform linux/amd64
+# create a new builder 
+# NOTE: You can check buildkit in cli https://github.com/docker/cli/blob/master/vendor.mod or vendor.conf depending on commitid in docker version
+docker buildx create --use --driver docker-container --driver-opt network=host --driver-opt image=moby/buildkit:v0.11.5 --name test1 --platform linux/amd64
+# create a second builder
+docker buildx create --use --driver docker-container --driver-opt network=host --driver-opt image=moby/buildkit:v0.11.5 --name test2 --platform linux/amd64
 
 docker buildx ls
 
@@ -102,3 +105,7 @@ docker images --digests
 * dockerhub docker/dockerfile-upstream [here](https://hub.docker.com/r/docker/dockerfile-upstream)
 * Exploring LLB [here](https://github.com/moby/buildkit#exploring-llb)
 * envd (ɪnˈvdɪ) is a command-line tool that helps you create the container-based development environment for AI/ML. [here](https://github.com/tensorchord/envd/)  
+* Concurrent, Cache-efficient, and Dockerfile-agnostic Builder toolkit [here](https://morioh.com/p/274c9a97e133)
+* Install Docker Buildx [here](https://docs.docker.com/build/install-buildx/)  
+* Capturing Build Information with BuildKit [here](https://www.docker.com/blog/capturing-build-information-buildkit/)  
+* 
