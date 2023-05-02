@@ -35,7 +35,7 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 # check containerd is running
 sudo systemctl status containerd
 
-
+# sort outaa group for using non-root containerd socket
 sudo groupadd containerd
 sudo usermod -a -G containerd $(whoami)
 sudo chown :containerd /var/run/containerd/containerd.sock
@@ -43,7 +43,6 @@ sudo chmod 660 /var/run/containerd/containerd.sock
 sudo ls -l /var/run/containerd/containerd.sock
 id
 ctr version
-
 
 # ctr will be installed
 sudo ctr version     
@@ -74,14 +73,18 @@ dockerd --help
 ps -aux | grep dockerd          
 ```
 
+## Upgrade to Kernel 5.19
+
+```sh
+sudo apt-get install --install-recommends linux-generic-hwe-22.04 
+```
+
 ## Configuration
 
 ```sh
 cat /etc/docker/daemon.json
 cat /etc/containerd/config.toml  
 cat /etc/containerd-stargz-grpc/config.toml 
-
-
 ```
 
 
@@ -98,6 +101,8 @@ sudo nano /etc/containerd/config.toml
 sudo ctr plugins ls  
 ```
 
+Goto stargz-snapshotter [releases](https://github.com/containerd/stargz-snapshotter/releases)  
+
 ```sh
 version=v0.14.3
 arch=amd64
@@ -111,9 +116,7 @@ wget -O /etc/systemd/system/stargz-snapshotter.service https://raw.githubusercon
 systemctl enable --now stargz-snapshotter
 systemctl restart containerd
 systemctl restart docker
-
 ```
-https://github.com/containerd/stargz-snapshotter/releases
 
 
 ```ini
@@ -160,14 +163,14 @@ version = 2
 
 journalctl -xeu stargz-snapshotter.service   
 
-sudo /usr/local/bin/containerd-stargz-grpc                                                                                                                  0.06     07:52    1.44G 
+sudo /usr/local/bin/containerd-stargz-grpc
+sudo dmesg
+
 {"error":"failed to mount overlay: invalid argument","level":"fatal","msg":"snapshotter is not supported","time":"2023-04-08T19:53:06.916442927+01:00"}
 
 overlayfs: upper fs does not support RENAME_WHITEOUT.
 overlayfs: upper fs is missing required features.
 
-# kernel 5.19 
-sudo apt-get install --install-recommends linux-generic-hwe-22.04 
 
 
 
@@ -186,8 +189,14 @@ sudo strace /usr/local/bin/containerd-stargz-grpc
 
 ZFS is sadly quite painful with Docker in Docker and similar scenarios. It might be best to avoid the problem by creating a volume in your ZFS pool, formatting that volume to ext4, and having docker use "overlay2" on top of that, instead of "zfs".
 
-zfs create -s -V 20GB zroot/docker
-mkfs.ext4 /dev/zvol/zroot/docker
+zfs create -s -V 20GB rpool/docker
+mkfs.ext4 /dev/zvol/rpool/docker
+
+mkdir -p /mnt/docker      
+
+sudo mount /dev/zvol/zroot/docker /mnt/docker   
+
+
 # add the mount to /etc/fstab
 mount /dev/zvol/zroot/docker /var/lib/docker
 The zfs create -s is for sparse volumes. Analogous to thin provisioning on LVM.
@@ -221,3 +230,8 @@ https://medium.com/nttlabs/startup-containers-in-lightning-speed-with-lazy-image
 https://www.tutorialworks.com/difference-docker-containerd-runc-crio-oci/?utm_content=cmp-true
 
 https://docs.docker.com/engine/install/linux-postinstall/
+
+
+https://github.com/containerd/nerdctl/blob/main/docs/stargz.md
+
+
