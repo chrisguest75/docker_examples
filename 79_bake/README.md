@@ -24,6 +24,14 @@ do
 done < <(jq -r '. | keys[] as $key | .[$key]."containerimage.digest"' ./bake-metadata.json)
 ```
 
+## Individual targets
+
+It is possible to target individual builds.  
+
+```sh
+docker buildx bake -f docker-bake.hcl --metadata-file ./bake-metadata.json ffmpeg5-image-scratch
+```
+
 ## Chained Bake
 
 A chained bake uses a built image to build another image.  
