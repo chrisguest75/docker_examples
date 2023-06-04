@@ -87,7 +87,6 @@ cat /etc/containerd/config.toml
 cat /etc/containerd-stargz-grpc/config.toml 
 ```
 
-
 ## Plugins
 
 Instructions for installing estargz snapshotter [here](https://github.com/containerd/stargz-snapshotter/blob/main/docs/INSTALL.md)  
@@ -104,20 +103,23 @@ sudo ctr plugins ls
 Goto stargz-snapshotter [releases](https://github.com/containerd/stargz-snapshotter/releases)  
 
 ```sh
+sudo -s 
+
 version=v0.14.3
 arch=amd64
-# GET THE CORRECT SYNTAX
-# curl -l -o stargz-snapshotter-${version}-linux-${arch}.tar.gz https://github.com/containerd/stargz-snapshotter/releases/download/${version}/stargz-snapshotter-${version}-linux-${arch}.tar.gz
-
-sudo -s  
+# get plugin
+curl -Lo stargz-snapshotter-${version}-linux-${arch}.tar.gz https://github.com/containerd/stargz-snapshotter/releases/download/${version}/stargz-snapshotter-${version}-linux-${arch}.tar.gz
 
 tar -C /usr/local/bin -xvf stargz-snapshotter-${version}-linux-${arch}.tar.gz containerd-stargz-grpc ctr-remote
-wget -O /etc/systemd/system/stargz-snapshotter.service https://raw.githubusercontent.com/containerd/stargz-snapshotter/${version}/script/config/etc/systemd/system/stargz-snapshotter.service
+curl -Lo ./stargz-snapshotter.service https://raw.githubusercontent.com/containerd/stargz-snapshotter/$version/script/config/etc/systemd/system/stargz-snapshotter.service
+cp ./stargz-snapshotter.service /etc/systemd/system/stargz-snapshotter.service 
+
 systemctl enable --now stargz-snapshotter
 systemctl restart containerd
 systemctl restart docker
 ```
 
+Example stargz-snapshotter.service
 
 ```ini
 [Unit]
