@@ -29,6 +29,10 @@ done < <(jq -r '. | keys[] as $key | .[$key]."containerimage.digest"' ./bake-met
 It is possible to target individual builds.  
 
 ```sh
+# list the targets
+docker buildx bake -f docker-bake.hcl --print
+
+# build only ffmpeg5-image-scratch
 docker buildx bake -f docker-bake.hcl --metadata-file ./bake-metadata.json ffmpeg5-image-scratch
 ```
 
