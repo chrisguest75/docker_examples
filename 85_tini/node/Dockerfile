@@ -14,7 +14,7 @@ COPY tests ./tests
 RUN npm run lint
 RUN npm run test:coverage
 RUN npm run build
-RUN npm audit
+RUN npm run audit 
 RUN npm ci --only=production && npm cache clean --force
 
 FROM gcr.io/distroless/nodejs:16 AS PRODUCTION
