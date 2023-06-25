@@ -25,6 +25,7 @@ NOTES:
 TODO:
 
 * HEALTHCHECK inside container
+* Add a sleep time to endpoint to test if timeout works.
 
 ## 🏠 Start
 
