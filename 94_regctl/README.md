@@ -12,6 +12,7 @@ TODO:
 * Push a helm chart in registry https://collabnix.com/how-to-build-push-helm-chart-to-docker-hub-flawlessly/
 * Different content types
 * How does the referrers API do?
+* Get it working with AWS ECR.  
 
 ## Install
 
