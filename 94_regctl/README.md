@@ -69,6 +69,10 @@ The [OCI Distribution Specification](https://github.com/opencontainers/distribut
 
 # get the file
 ./bins/regctl-darwin-amd64 artifact get registry-1.docker.io/chrisguest/demo --output ./out 
+
+# show artifact metadata
+./bins/regctl-darwin-amd64 image manifest registry-1.docker.io/chrisguest/demo
+
 ```
 
 ## ECR
