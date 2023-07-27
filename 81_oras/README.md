@@ -2,6 +2,8 @@
 
 Demonstrate how to use OCI Registry-as-Storage (ORAS)  
 
+Related [94_regctl](../94_regctl/README.md)  
+
 ## Reason
 
 Registries are evolving as generic artifact stores. To enable this goal, the ORAS project provides a way to push and pull OCI Artifacts to and from OCI Registries.  
