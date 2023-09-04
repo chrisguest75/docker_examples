@@ -1,0 +1,24 @@
+include:
+  - path: ./service_a/docker-compose.nginx3.yaml
+    project_directory: ./service_a
+    env_file: ./service_a/compose.env
+
+
+services:
+    nginx:
+        image: "nginx:1.20.1"
+        environment:
+            - VERSION=nginx:1.20.1
+            - ANOTHER_VALUE1=${TEST_VALUE1}
+            - ANOTHER_VALUE2=ANOTHER_VALUE2
+            - ANOTHER_VALUE3=ANOTHER_VALUE3
+            - ANOTHER_VALUE4=ANOTHER_VALUE4
+        ports:
+            - "8080:80"
+        networks:
+            - service_bridge
+
+networks:
+    service_bridge:
+        driver: bridge
+

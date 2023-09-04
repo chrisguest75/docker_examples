@@ -1,0 +1,15 @@
+services:
+    nginx3:
+        image: "nginx:1.21.1"
+        environment:
+            - VERSION=nginx:1.21.1
+            - ANOTHER_VALUE1=${TEST_VALUE1}
+            - ANOTHER_VALUE2=ANOTHER_VALUE2
+            - ANOTHER_VALUE3=ANOTHER_VALUE3
+            - ANOTHER_VALUE4=ANOTHER_VALUE4
+        ports:
+            - "8082:80"
+        networks:
+            - service_bridge
+
+

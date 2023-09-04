@@ -15,6 +15,11 @@ Docker is a fast moving project. If you want to keep check on the changes being 
 * Check latest releases and commits into moby/buildkit repo [releases](https://github.com/moby/buildkit/releases)  
 * Check latest releases and commits into docker/compose repo [repo](https://github.com/docker/compose)  
 * Check latest releases and commits into containerd/containerd [repo](https://github.com/containerd/containerd)  
+* The compose speciifcation [compose-spec/compose-spec](https://github.com/compose-spec/compose-spec)
+* The OCI image specification [opencontainers/image-spec](https://github.com/opencontainers/image-spec/tree/main)
+* The OCI runtime specification [opencontainers/runtime-spec](https://github.com/opencontainers/runtime-spec/blob/main/spec.md)
+* The OCI distribution specification [opencontainers/distribution-spec](https://github.com/opencontainers/distribution-spec/blob/main/spec.md)
+* The OCI blog [here](https://opencontainers.org/posts/blog/)  
 * Check the docker blog [here](https://www.docker.com/blog/)  
 
 ## Docker Desktop Architecture
