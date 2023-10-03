@@ -1,13 +1,13 @@
 # README.md
 
-Demonstrate how to inject a sidecar container with some extra debugging tools 
+Demonstrate how to inject a sidecar container with some extra debugging tools  
 
 ## Table of Contents
 
 - [Docker](#docker)
 - [Docker Compose](#docker-compose)
 
-## Docker 
+## Docker
 
 ### Start-nodejs
 
@@ -30,6 +30,7 @@ docker run --privileged -it --rm --pid=container:$(docker ps --filter name=code_
 ```
 
 Show all processes in the namespace
+
 ```sh
 # should see node process in other container
 ps -aux
@@ -44,7 +45,8 @@ lsof -p 1
 ## debug-nginx
 ### Start nginx
 
-Build and execute the container with some code we want to debug.
+Build and execute the container with some code we want to debug.  
+
 ```sh
 # simple nginx
 docker run -d -p 8080:80 -it --rm --name nginx_sidecar nginx:1.21.0  
@@ -52,7 +54,9 @@ docker exec -it  $(docker ps --filter name=nginx_sidecar -q) /bin/sh
 ```
 
 ### Start inspection container
-Inject the container with some extra debugging tools
+
+Inject the container with some extra debugging tools  
+
 ```sh
 docker build -f debug.Dockerfile -t debug_sidecar . 
 docker run --privileged -it --rm --pid=container:$(docker ps --filter name=nginx_sidecar -q) --network=container:$(docker ps --filter name=nginx_sidecar -q) --name debug_sidecar --entrypoint /bin/bash debug_sidecar  
@@ -118,7 +122,9 @@ docker stop $(docker ps --filter name=nginx_sidecar -q)
 docker compose config --profiles  
 docker compose --profile nginx --profile code build --no-cache  
 ```
-### Sharing pid namespace        
+
+### Sharing pid namespace
+
 ```sh
 docker compose config --profiles  
 docker compose --profile code build --no-cache  
@@ -130,7 +136,8 @@ docker compose --profile code up -d
 docker exec -it  $(docker ps --filter name=26_sidecar_debugging_debug_code_1 -q) /bin/bash 
 ```
 
-Show all processes in the namespace from the debug container
+Show all processes in the namespace from the debug container  
+
 ```sh
 # should see node process in other container
 ps -aux
@@ -140,11 +147,13 @@ echo $BASHPID
 ```
 
 ### 🧼 Cleanup
+
 ```sh
 docker compose --profile code down    
 ```
 
 ### Sharing network namespace
+
 ```sh
 docker compose config --profiles  
 docker compose --profile nginx build --no-cache  
@@ -157,6 +166,7 @@ docker exec -it  $(docker ps --filter name=26_sidecar_debugging_debug_nginx_1 -q
 ```
 
 Show all processes in the namespace from the debug container
+
 ```sh
 # should see node process in other container
 ps -aux
@@ -169,6 +179,7 @@ curl 0.0.0.0:80
 ```
 
 ### Cleanup nginx
+
 ```sh
 docker compose --profile nginx down    
 ```

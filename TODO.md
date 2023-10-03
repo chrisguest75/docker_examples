@@ -31,3 +31,4 @@ https://www.andreafortuna.org/2019/11/26/cve-2019-14271-a-docker-cp-container-es
 1. https://adamo.wordpress.com/2022/05/05/removing-all-containers-via-ssh/ ssh remote_user@remote_host "docker ps -a -q|xargs -n 1 docker rm -f "
 1. https://github.com/google/gvisor
 2. https://github.com/tonistiigi/binfmt - docker desktop supports it
+1. https://github.com/jwilder/dockerize
