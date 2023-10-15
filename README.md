@@ -134,8 +134,9 @@ Popular container runtimes include Docker's containerd, Google's gVisor, and Red
   - [31 - Structure Tests](#31---structure-tests)
   - [32 - File extraction](#32---file-extraction)
   - [33 - Label metadata](#33---label-metadata)
-  - [34 - Build Volume from S3](#34---build-volume-from-s3)
-  - [34 - Volume Images](#34---volume-images)
+  - [34 - Build volume from S3](#34---build-volume-from-s3)
+  - [34 - Simple volumes](#34---simple-volumes)
+  - [34 - Volume images](#34---volume-images)
   - [35 - Layer Poisoning](#35---layer-poisoning)
   - [36 - Layers Speed Tests](#36---layers-speed-tests)
   - [37 - Registry Proxy](#37---registry-proxy)
@@ -374,12 +375,17 @@ Steps [README.md](./32_file_extraction/README.md)
 Demonstrates adding label metadata to builds that helps us trace pipelines and build sources.  
 Steps [README.md](./33_label_metadata/README.md)  
 
-## 34 - Build Volume from S3
+## 34 - Build volume from S3
 
 Demonstrate how to build a data volume for use by other containers.  
 Steps [README.md](./34_build_volume_from_s3/README.md)  
 
-## 34 - Volume Images
+## 34 - Simple volumes
+
+Demonstrates using simple volumes.  
+Steps [README.md](./34_simple_volumes/README.md)  
+
+## 34 - Volume images
 
 Demonstrates how to configure an image that can be mounted as a volume into a container.  
 Steps [README.md](./34_volume_images/README.md)  

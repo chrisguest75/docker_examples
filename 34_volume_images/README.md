@@ -146,14 +146,26 @@ docker compose --profile all down
 # list volumes (it's not listed as a volume)
 docker volume ls    
 
-# inspect and find mountpoint
-docker volume inspect 67e772ddc94278d6560894b79e9b6c070197f1a3f826510de4cc749644b6b49
+# inspect and find mountpoint (volumne_name or anonymous id guid)
+docker volume inspect volume_name
 
 # enter host container (on macosx)
 docker run -it --privileged --pid=host debian nsenter -t 1 -m -u -n -i sh
 
 # list the contents of the volume
-ls "/var/lib/docker/volumes/67e772ddc94278d6560894b79e9b6c070197f1a3f826510de4cc749644b6b497/_data"
+ls "/var/lib/docker/volumes/volume_name/_data"
+```
+
+## Create and copy files
+
+Execute a container and copy bash out if it.  
+
+```sh
+# NOTE: This still needs to be available to host path (devcontainer challenge)
+docker run --rm -v $PWD:/source -v my_volume_name:/dest -w /source alpine cp index.html /dest
+
+# list files in a volume
+docker run -it --rm -v my_volume_name:/dest -it --name volumetest ubuntu:22.04 /bin/bash -c "ls -la /dest" 
 ```
 
 ## 🧼 Cleanup
@@ -168,3 +180,4 @@ docker system prune --all
 * docker volume create [here](https://docs.docker.com/engine/reference/commandline/volume_create/)
 * Mount a Volume to a Container [here](https://earthly.dev/blog/docker-volumes/#mount-a-volume-to-a-container)
 * How to Compose Projects Using Docker-Compose [here](https://www.freecodecamp.org/news/the-docker-handbook/#how-to-compose-projects-using-docker-compose)
+* Copy a file inside a docker volume with a one-liner! [here](https://levelup.gitconnected.com/copy-a-file-inside-a-docker-volume-with-a-one-liner-e6fb71e2e4ae)
