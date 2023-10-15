@@ -2,6 +2,10 @@
 
 Demonstrates using simple volumes.  
 
+TODO:
+
+* mount a volume during build and copy files to it to seeed it.
+
 ## Reason
 
 A useful demonstration of volume sharing for testing capabilties in pipelines.  

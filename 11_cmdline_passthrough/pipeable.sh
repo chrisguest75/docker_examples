@@ -1,5 +1,7 @@
 #!/bin/sh
 
+echo $@
+
 while IFS="" read -r line
 do
   # shellcheck disable=SC2053

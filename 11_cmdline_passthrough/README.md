@@ -1,12 +1,13 @@
-# 11 - Cmdline passthrough
+# CMDLINE PASSTHROUGH
 
-Demonstrate passing parameters and piping into docker run.
+Demonstrate passing parameters and piping data into docker run.
 
 This helps to create oneliner docker commands.  
 
 ## 🏠 Build
 
 ```sh
+# build 
 docker build -t oneliner .
 ```
 
@@ -15,7 +16,10 @@ docker build -t oneliner .
 Simple commands
 
 ```sh
+# sleep for 10 seconds
 docker run oneliner sleep 10  
+
+# run a script and pass in a parameter
 docker run oneliner /bin/demo Hello from the demo.sh  
 ```
 
@@ -24,10 +28,13 @@ docker run oneliner /bin/demo Hello from the demo.sh
 Piping we have to make the run interactive.  
 
 ```sh
-cat pipeable.sh | docker run -i oneliner /bin/pipeable
+# pipe a file into a container (with parameters as well)
+cat pipeable.sh | docker run -i oneliner /bin/pipeable test1 test2
 
+# pipe a file into a container
 docker run -i oneliner /bin/pipeable < pipeable.sh
 
+# pipe heredoc
 docker run -i oneliner /bin/pipeable <<EOF
 HEREDOCS
 EOF

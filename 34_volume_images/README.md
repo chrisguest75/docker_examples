@@ -156,7 +156,7 @@ docker run -it --privileged --pid=host debian nsenter -t 1 -m -u -n -i sh
 ls "/var/lib/docker/volumes/volume_name/_data"
 ```
 
-## Create and copy files
+## Create and copy files into a volume
 
 Execute a container and copy bash out if it.  
 
@@ -166,6 +166,34 @@ docker run --rm -v $PWD:/source -v my_volume_name:/dest -w /source alpine cp ind
 
 # list files in a volume
 docker run -it --rm -v my_volume_name:/dest -it --name volumetest ubuntu:22.04 /bin/bash -c "ls -la /dest" 
+```
+
+## Pipe files into a volume generically 
+
+If you're running docker outside docker (in a devcontainer) and you need to create a volume to share files into another container because mounting requires host paths.  
+You can build a container that allows you to pipe the binary data into files.  
+
+```sh
+# create a volume
+docker volume create 34_test_piping_into_volume
+
+docker volume ls
+
+# test locally 
+cat ./README.md | ./pipeable.sh --pipe --target=./test.txt
+cat ./README.md | ./pipeable.sh --debug --list --target=./  
+
+# build the container to pipe to volume
+docker build -f Dockerfile.pipeable -t default_pipeable .
+
+# pipe a binary file into the volume
+cat Dockerfile.pipeable | docker run -i -v 34_test_piping_into_volume:/myvolume default_pipeable --pipe --target=/myvolume/test.txt
+
+# list volume contents
+cat Dockerfile.pipeable | docker run -i -v 34_test_piping_into_volume:/myvolume default_pipeable --list --target=/myvolume
+
+# show contents on the volume
+cat Dockerfile.pipeable | docker run -i -v 34_test_piping_into_volume:/myvolume default_pipeable --show --target=/myvolume/test.txt
 ```
 
 ## 🧼 Cleanup
@@ -181,3 +209,4 @@ docker system prune --all
 * Mount a Volume to a Container [here](https://earthly.dev/blog/docker-volumes/#mount-a-volume-to-a-container)
 * How to Compose Projects Using Docker-Compose [here](https://www.freecodecamp.org/news/the-docker-handbook/#how-to-compose-projects-using-docker-compose)
 * Copy a file inside a docker volume with a one-liner! [here](https://levelup.gitconnected.com/copy-a-file-inside-a-docker-volume-with-a-one-liner-e6fb71e2e4ae)
+* How can I handle raw binary data in a bash pipe? [here](https://unix.stackexchange.com/questions/19043/how-can-i-handle-raw-binary-data-in-a-bash-pipe)  

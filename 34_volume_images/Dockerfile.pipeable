@@ -1,0 +1,20 @@
+# syntax=docker/dockerfile:1.4
+FROM bash:5.0.7 as bash1
+
+WORKDIR /bin
+
+COPY --chmod=755 pipeable.sh /bin/pipeable
+
+#COPY --chmod=755 <<EOF /bin/pipeable.sh
+##!/bin/sh
+#echo \$@
+#cat - > \$1
+
+##while IFS="" read -r line  
+##do
+##    # shellcheck disable=SC2053
+##    echo "[PIPED] \${line}" 
+##done > \$1
+#EOF
+
+ENTRYPOINT ["/bin/pipeable"]
