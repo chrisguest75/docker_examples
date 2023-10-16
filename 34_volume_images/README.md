@@ -170,8 +170,8 @@ docker run -it --rm -v my_volume_name:/dest -it --name volumetest ubuntu:22.04 /
 
 ## Pipe files into a volume generically
 
-If you're running docker outside docker (in a devcontainer) and you need to create a volume to share files into another container because mounting requires host paths.  
-You can build a container that allows you to pipe the binary data into files.  
+If you're running docker outside docker (in a devcontainer). You'll find it difficult to mount paths into the containers when running them. This is because the mount path will need to be provided for the host.
+A work around for this is to pipefile into a volume using a container. You can then use the volume as a mount.  
 
 ```sh
 # create a volume
