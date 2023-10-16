@@ -15,6 +15,7 @@ OPTIONS:
     -p --pipe                  pipe file
     -l --list                  list all files in <target>
     -s --show                  cat a <target> file
+    -m --md5                   md5 file <target>
     -t|--target=<target>       write file output to <target>
 
     --debug                    debug mode
