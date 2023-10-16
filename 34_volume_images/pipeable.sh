@@ -34,6 +34,8 @@ fi
 TARGET="./"
 PIPE=false  
 LIST=false
+SHOW=false
+MD5=false
 DEBUG=false
 
 for i in "$@"
@@ -62,6 +64,11 @@ case $i in
         SHOW=true
         shift
     ;;
+    -m|--md5)
+        # shellcheck disable=SC2034
+        MD5=true
+        shift
+    ;;
     --debug)
         set -x
         # shellcheck disable=SC2034
@@ -82,4 +89,8 @@ fi
 
 if [ "$SHOW" = true ]; then
     cat "$TARGET"
+fi
+
+if [ "$MD5" = true ]; then
+    md5sum "$TARGET"
 fi

@@ -194,6 +194,10 @@ cat Dockerfile.pipeable | docker run -i -v 34_test_piping_into_volume:/myvolume 
 
 # show contents on the volume
 cat Dockerfile.pipeable | docker run -i -v 34_test_piping_into_volume:/myvolume default_pipeable --show --target=/myvolume/test.txt
+
+# file md5 on the volume
+cat Dockerfile.pipeable | docker run -i -v 34_test_piping_into_volume:/myvolume default_pipeable --md5 --target=/myvolume/test.txt
+
 ```
 
 ## 🧼 Cleanup
