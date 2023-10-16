@@ -189,14 +189,17 @@ docker build -f Dockerfile.pipeable -t default_pipeable .
 # pipe a binary file into the volume
 cat Dockerfile.pipeable | docker run -i -v 34_test_piping_into_volume:/myvolume default_pipeable --pipe --target=/myvolume/test.txt
 
+# check local md5
+md5sum ./Dockerfile.pipeable 
+
 # list volume contents
-cat Dockerfile.pipeable | docker run -i -v 34_test_piping_into_volume:/myvolume default_pipeable --list --target=/myvolume
+docker run -i -v 34_test_piping_into_volume:/myvolume default_pipeable --list --target=/myvolume
 
 # show contents on the volume
-cat Dockerfile.pipeable | docker run -i -v 34_test_piping_into_volume:/myvolume default_pipeable --show --target=/myvolume/test.txt
+docker run -i -v 34_test_piping_into_volume:/myvolume default_pipeable --show --target=/myvolume/test.txt
 
 # file md5 on the volume
-cat Dockerfile.pipeable | docker run -i -v 34_test_piping_into_volume:/myvolume default_pipeable --md5 --target=/myvolume/test.txt
+docker run -i -v 34_test_piping_into_volume:/myvolume default_pipeable --md5 --target=/myvolume/test.txt
 
 ```
 
