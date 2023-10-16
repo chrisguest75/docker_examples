@@ -4,7 +4,7 @@ Demonstrates using simple volumes.
 
 TODO:
 
-* mount a volume during build and copy files to it to seeed it.
+* mount a volume during build and copy files to it to seed it.
 
 ## Reason
 

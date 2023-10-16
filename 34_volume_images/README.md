@@ -168,7 +168,7 @@ docker run --rm -v $PWD:/source -v my_volume_name:/dest -w /source alpine cp ind
 docker run -it --rm -v my_volume_name:/dest -it --name volumetest ubuntu:22.04 /bin/bash -c "ls -la /dest" 
 ```
 
-## Pipe files into a volume generically 
+## Pipe files into a volume generically
 
 If you're running docker outside docker (in a devcontainer) and you need to create a volume to share files into another container because mounting requires host paths.  
 You can build a container that allows you to pipe the binary data into files.  
@@ -205,6 +205,7 @@ docker system prune --all
 
 ## 👀 Resources
 
+* docker Volumes docs [here](https://docs.docker.com/storage/volumes/)
 * docker volume create [here](https://docs.docker.com/engine/reference/commandline/volume_create/)
 * Mount a Volume to a Container [here](https://earthly.dev/blog/docker-volumes/#mount-a-volume-to-a-container)
 * How to Compose Projects Using Docker-Compose [here](https://www.freecodecamp.org/news/the-docker-handbook/#how-to-compose-projects-using-docker-compose)
