@@ -1,0 +1,36 @@
+# syntax=docker/dockerfile:1.4
+FROM ubuntu:22.04
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+WORKDIR /scratch
+COPY modifyme.txt modifyme.txt
+
+# NOTE: Escape the \$ otherwise they are rendered at buildtime
+COPY --chmod=755 <<EOF /bin/folders.sh
+#!/usr/bin/env bash
+echo "> *************** /mycache"
+ls -lR /mycache
+
+EOF
+
+COPY --chmod=755 <<EOF /bin/addcache.sh
+#!/usr/bin/env bash
+BUILDTIME=\$(date "+%Y%m%d-%H%M%S")
+echo "File was built \$BUILDTIME" 
+echo "File was built \$BUILDTIME" > /mycache/\$BUILDTIME
+
+EOF
+
+RUN --mount=type=cache,target=/mycache,sharing=locked \
+    /bin/folders.sh 
+
+RUN --mount=type=cache,target=/mycache,sharing=locked \
+    /bin/addcache.sh 
+
+RUN --mount=type=cache,target=/mycache,sharing=locked \
+    /bin/folders.sh 
+
+# NOTE: This is not required as there is an undocumented flag --chmod
+ENTRYPOINT ["/bin/folders.sh"]
+CMD [""]

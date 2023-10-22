@@ -3,6 +3,10 @@ FROM ubuntu:22.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 
+# this triggers a full rebuild allowing us to look at the cache
+WORKDIR /scratch
+COPY modifyme.txt modifyme.txt
+
 # NOTE: Escape the \$ otherwise they are rendered at buildtime
 COPY --chmod=755 <<EOF /bin/folders.sh
 #!/usr/bin/env bash
@@ -34,12 +38,13 @@ cat /etc/apt/apt.conf.d/keep-cache
 EOF
 
 #ARG CURL_VERSION=7.47.0-1ubuntu2.14
-ARG CURL_VERSION=7.81.0-1ubuntu1.6
+ARG CURL_VERSION=7.81.0-1ubuntu1.14
 
 RUN /bin/folders.sh && \
     rm -f /etc/apt/apt.conf.d/docker-clean; \
     echo 'Binary::apt::APT::Keep-Downloaded-Packages "true";' \
     > /etc/apt/apt.conf.d/keep-cache
+
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
     set -x; \

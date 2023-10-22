@@ -3,6 +3,10 @@ FROM ubuntu:22.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 
+# this triggers a full rebuild allowing us to look at the cache
+WORKDIR /scratch
+COPY modifyme.txt modifyme.txt
+
 # NOTE: Escape the \$ otherwise they are rendered at buildtime
 COPY --chmod=755 <<EOF /bin/folders.sh
 #!/usr/bin/env bash
@@ -16,6 +20,10 @@ EOF
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
     /bin/folders.sh 
+
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    apt update
 
 # NOTE: This is not required as there is an undocumented flag --chmod
 ENTRYPOINT ["/bin/folders.sh"]
