@@ -1,0 +1,74 @@
+# syntax=docker/dockerfile:1.4
+FROM ubuntu:22.04
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+# this triggers a full rebuild allowing us to look at the cache
+WORKDIR /scratch
+COPY modifyme.txt modifyme.txt
+
+# NOTE: Escape the \$ otherwise they are rendered at buildtime
+COPY --chmod=755 <<EOF /bin/folders.sh
+#!/usr/bin/env bash
+echo "> *************** /var/lib/apt"
+ls -lR /var/lib/apt
+
+echo "> *************** /var/cache/apt"
+ls -lR /var/cache/apt
+
+echo "> *************** /etc/apt/apt.conf.d"
+ls -lR /etc/apt/apt.conf.d
+
+apt-config dump | grep -i cache
+
+echo "> *************** /etc/apt/apt.conf.d/docker-autoremove-suggests"
+cat /etc/apt/apt.conf.d/docker-autoremove-suggests
+
+echo "> *************** /etc/apt/apt.conf.d/docker-disable-periodic-update"
+cat /etc/apt/apt.conf.d/docker-disable-periodic-update
+
+echo "> *************** /etc/apt/apt.conf.d/docker-gzip-indexes"
+cat /etc/apt/apt.conf.d/docker-gzip-indexes
+
+echo "> *************** /etc/apt/apt.conf.d/docker-no-languages"
+cat /etc/apt/apt.conf.d/docker-no-languages
+
+echo "> *************** /etc/apt/apt.conf.d/keep-cache"
+cat /etc/apt/apt.conf.d/keep-cache
+EOF
+
+#ARG CURL_VERSION=7.47.0-1ubuntu2.14
+ARG CURL_VERSION=7.81.0-1ubuntu1.14
+
+RUN /bin/folders.sh && \
+    rm -f /etc/apt/apt.conf.d/docker-clean; \
+    echo 'Binary::apt::APT::Keep-Downloaded-Packages "true";' \
+    > /etc/apt/apt.conf.d/keep-cache
+
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    set -x; \
+    /bin/folders.sh \
+    && apt update && apt-cache madison curl \
+    && apt install -fy -qq --no-install-recommends jq ca-certificates curl=${CURL_VERSION} \
+    && /bin/folders.sh 
+
+#    && apt-get clean \
+#    && rm -rf /var/lib/apt/lists/*
+
+RUN apt-cache madison bash curl
+RUN apt list --installed bash curl -a
+
+# NOTE: Escape the \$ otherwise they are rendered at buildtime
+COPY --chmod=755 <<EOF /bin/check.sh
+#!/usr/bin/env bash
+curl --version
+jq --version
+
+/bin/folders.sh
+EOF
+
+
+# NOTE: This is not required as there is an undocumented flag --chmod
+ENTRYPOINT ["/bin/check.sh"]
+CMD [""]
