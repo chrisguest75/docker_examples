@@ -1,33 +1,67 @@
 # README
 
-Demonstrate RUN mount caching package manager downloads.
+Demonstrate BUILD mount caching package manager downloads.
 
-NOTE: This does not seem to be working on mac. Rebuilds or the show cache do not show existing packages.  
+NOTES:
 
-## 🏠 Build Cache
+* Using `--no-cache` resets the cache.  
+* Using the cache means you don't have to clean up after package installation.  
+
+TODO:
+
+* Why does `touch ./modifyme.txt && echo "modify" >> ./modifyme.txt` this not invalidate context?
+* How are caches shared between images?  
+
+## 👀 Custom Cache
+
+Use a custom folder and cache it.  
 
 ```sh
 # build
-docker build --no-cache --progress=plain -t buildcache -f Dockerfile.buildcache .  
-docker run -it --rm buildcache
-```
+touch ./modifyme.txt && echo "modify" > ./modifyme.txt
+docker build --no-cache --progress=plain -t customcache -f Dockerfile.customcache .  
 
-## 👀 Build Cache
+# repeat this and see the number of files in cache grow
+touch ./modifyme.txt && echo "modify" >> ./modifyme.txt
+docker build --progress=plain -t customcache -f Dockerfile.customcache .  
 
-```sh
-# build
-docker build --no-cache --progress=plain -t showcache -f Dockerfile.showcache .  
-docker run -it --rm showcache
-```
-
-## ⚡️ Show Cache
-
-```sh
-# run
-docker run -it --rm buildcache
+# this will fail as /mycache does not exist
+docker run -it --rm customcache
 
 # step inside container
-docker run -it --rm --entrypoint /bin/bash buildcache
+docker run -it --rm --entrypoint /bin/bash customcache
+```
+
+## Show APT Cache
+
+```sh
+# build
+touch ./modifyme.txt && echo "modify" > ./modifyme.txt
+docker build --no-cache --progress=plain -t showcache -f Dockerfile.showcache .  
+
+# repeat this and see the number of files in cache grow
+touch ./modifyme.txt && echo "modify" >> ./modifyme.txt
+docker build --progress=plain -t showcache -f Dockerfile.showcache .  
+
+# step inside container
+docker run -it --rm --entrypoint /bin/bash showcache
+ls -lR /var/cache/apt
+ls -lR /var/lib/apt
+```
+
+## 🏠 Build APT Cache
+
+Use cache to cache APT packages.  
+
+```sh
+# build
+touch ./modifyme.txt && echo "modify" > ./modifyme.txt
+docker build --no-cache --progress=plain -t buildcache -f Dockerfile.buildcache .  
+
+touch ./modifyme.txt && echo "modify" >> ./modifyme.txt
+docker build --progress=plain -t buildcache -f Dockerfile.buildcache .  
+
+docker run -it --rm buildcache
 ```
 
 ## 👀 Resources
