@@ -101,7 +101,6 @@ docker compose --profile all cp helloworld.txt code:/usr/share/nginx/html
 
 # see file is copied into live volume
 docker compose --profile all exec -it nginx ls /usr/share/nginx/html
-
 ```
 
 ### Use docker commands against compose started containers
@@ -161,7 +160,7 @@ ls "/var/lib/docker/volumes/volume_name/_data"
 Execute a container and copy bash out if it.  
 
 ```sh
-# NOTE: This still needs to be available to host path (devcontainer challenge)
+# NOTE: This source path still needs to be available to host path (devcontainer challenge)
 docker run --rm -v $PWD:/source -v my_volume_name:/dest -w /source alpine cp index.html /dest
 
 # list files in a volume
@@ -200,7 +199,6 @@ docker run -i -v 34_test_piping_into_volume:/myvolume default_pipeable --show --
 
 # file md5 on the volume
 docker run -i -v 34_test_piping_into_volume:/myvolume default_pipeable --md5 --target=/myvolume/test.txt
-
 ```
 
 ## 🧼 Cleanup
