@@ -31,6 +31,10 @@ BuildKit is an improved backend to replace the legacy builder. It comes with new
 
 NOTE: Buildx always enables BuildKit.  
 
+## Remote examples
+
+REF: [REMOTE.md](./REMOTE.md)  
+
 ## Create builders
 
 ```sh
