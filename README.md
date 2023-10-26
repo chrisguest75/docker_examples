@@ -188,6 +188,7 @@ Popular container runtimes include Docker's containerd, Google's gVisor, and Red
   - [90 - Builders](#90---builders)
   - [91 - Buildkit Frontends](#91---buildkit-frontends)
   - [93 - Metadata](#93---metadata)
+  - [98 - API Direct](#98---api-direct)
 
 ## 00 - Cheatsheet
 
@@ -644,3 +645,8 @@ Steps [README.md](./91_buildkit_frontends/README.md)
 
 Demonstrate how the metadata output file works.  
 Steps [README.md](./93_metadata/README.md)  
+
+## 98 - API Direct
+
+Demonstrate how to invoke the API directly.  
+Steps [README.md](./98_api_direct/README.md)  
