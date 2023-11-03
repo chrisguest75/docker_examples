@@ -185,7 +185,7 @@ Popular container runtimes include Docker's containerd, Google's gVisor, and Red
   - [86 - WASM/WASI](#86---wasmwasi)
   - [87 - Lazy Pulling](#87---lazy-pulling)
   - [89 - Managing Diskspace](#89---managing-diskspace)
-  - [90 - Builders](#90---builders)
+  - [90 - Contexts and Builders](#90---contexts-and-builders)
   - [91 - Buildkit Frontends](#91---buildkit-frontends)
   - [93 - Metadata](#93---metadata)
   - [98 - API Direct](#98---api-direct)
@@ -631,10 +631,10 @@ Steps [README.md](./87_lazy_pulling/README.md)
 Give some examples and advice on how to manage disk space with docker.  
 Steps [README.md](./89_managing_diskspace/README.md)  
 
-## 90 - Builders
+## 90 - Contexts and Builders
 
 Demonstrate how to use docker builders.  
-Steps [README.md](./90_builders/README.md)  
+Steps [README.md](./90_contexts_and_builders/README.md)  
 
 ## 91 - Buildkit Frontends
 

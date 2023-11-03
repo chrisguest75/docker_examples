@@ -5,7 +5,8 @@ Use a shared docker socket on another machine.
 TODO:
 
 * sockets vs tcp
-* How is builder different to a context?
+* How is builder different to a context?  It seems that you get builders per context.  
+  * Run docker buildx ls with a remote context that is not connected and you'll see.
 
 ## SSH
 
