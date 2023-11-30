@@ -2,6 +2,14 @@
 
 Give some examples and advice on how to manage disk space with docker.  
 
+NOTE:
+
+* This is mainly aimed at MacOS.  
+
+## Image sizes
+
+Goto [IMAGE_SIZES.md](IMAGE_SIZES.md) for examples of how to think about image sizes.  
+
 ## Checking allocation
 
 ```sh

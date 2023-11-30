@@ -13,6 +13,7 @@ TODO:
 * caching?
 * layers?  
 * artifacts?
+* dockerhub login registry-1.docker.io example (I don't seem to be able to list nginx data) 
 
 ## Install
 
@@ -24,6 +25,8 @@ brew install oras
 ## Browsing
 
 You can get quick summaries of artifacts/images in a repository  
+
+### AWS ECR
 
 ```sh
 . ./.env 
@@ -41,13 +44,17 @@ oras repository show-tags xxxxxxxxxxx.dkr.ecr.us-east-1.amazonaws.com/ocitest
 oras manifest fetch xxxxxxxxxxx.dkr.ecr.us-east-1.amazonaws.com/ocitest:0.0.1 | jq .
 ```
 
-## Docker (works)
+## Store arbitrary data in OCI compatible registry
+
+### Docker (works)
 
 Goto [https://hub.docker.com/](https://hub.docker.com/)
 
 ```sh
+# registry credentials
 . ./.env 
 
+# create a layer
 mkdir -p ./build
 echo "bar" > ./build/foo.txt 
 echo "{\"name\":\"foo\",\"value\":\"bar\"}" > ./build/config.json
@@ -67,7 +74,7 @@ mkdir -p ./pulled/${IMAGE_VERSION}
 oras pull -o ./pulled/${IMAGE_VERSION} docker.io/chrisguest/ocitest:${IMAGE_VERSION}
 ```
 
-## AWS (works)
+### AWS (works)
 
 ```sh
 IMAGE_VERSION=0.0.1
@@ -78,7 +85,7 @@ mkdir -p ./pulled/${IMAGE_VERSION}
 oras pull -o ./pulled/${IMAGE_VERSION} xxxxxxxxxxx.dkr.ecr.us-east-1.amazonaws.com/ocitest:${IMAGE_VERSION}
 ```
 
-## Quay (not working)
+### Quay (not working)
 
 Goto [https://quay.io/](https://quay.io/)  
 
@@ -96,7 +103,6 @@ oras push quay.io/guestchris75/ocitest:${IMAGE_VERSION} --config ./build/config.
 
 docker login quay.io
 oras push quay.io/guestchris75/ocitest:${IMAGE_VERSION} --config ./build/config.json:application/vnd.docker.volume.v1+tar.gz ./build/foo.txt:text/plain
-
 ```
 
 ## Resources
