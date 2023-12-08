@@ -36,7 +36,10 @@ oras repository list registry-1.docker.io/library
 oras repository show-tags registry-1.docker.io/chrisguest/ocitest
 oras repository show-tags registry-1.docker.io/library/redis
 
-# manifest for an image/artifact
+# manifest for an image/artifact (including labels)
+oras manifest fetch-config registry-1.docker.io/chrisguest/ocitest:0.0.1 | jq .
+
+# manifest for an image/artifact (including layers)
 oras manifest fetch registry-1.docker.io/chrisguest/ocitest:0.0.1 | jq .
 oras manifest fetch registry-1.docker.io/library/redis:6.2 | jq .
 ```
@@ -55,7 +58,10 @@ oras repository list xxxxxxxxxxx.dkr.ecr.us-east-1.amazonaws.com
 # show tags
 oras repository show-tags xxxxxxxxxxx.dkr.ecr.us-east-1.amazonaws.com/ocitest
 
-# manifest for an image/artifact
+# manifest for an image/artifact (including labels)
+oras manifest fetch-config xxxxxxxxxxx.dkr.ecr.us-east-1.amazonaws.com/ocitest:0.0.1 | jq .
+
+# manifest for an image/artifact (including layers)
 oras manifest fetch xxxxxxxxxxx.dkr.ecr.us-east-1.amazonaws.com/ocitest:0.0.1 | jq .
 ```
 
