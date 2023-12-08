@@ -33,6 +33,14 @@ ls -lR /var/lib/docker
 
 ## Cleanup
 
+Cleanup dangling or `<none>` tag images.  
+
+```sh
+docker rmi $(docker images -f "dangling=true" -q)
+```
+
+Cleanup all images.  
+
 ```sh
 docker stop $(docker ps -qa)
 docker rm $(docker ps -qa)
