@@ -13,7 +13,6 @@ TODO:
 * caching?
 * layers?  
 * artifacts?
-* dockerhub login registry-1.docker.io example (I don't seem to be able to list nginx data) 
 
 ## Install
 
@@ -25,6 +24,22 @@ brew install oras
 ## Browsing
 
 You can get quick summaries of artifacts/images in a repository  
+
+### Dockerhub
+
+```sh
+# list images
+oras repository list registry-1.docker.io/chrisguest
+oras repository list registry-1.docker.io/library
+
+# show tags
+oras repository show-tags registry-1.docker.io/chrisguest/ocitest
+oras repository show-tags registry-1.docker.io/library/redis
+
+# manifest for an image/artifact
+oras manifest fetch registry-1.docker.io/chrisguest/ocitest:0.0.1 | jq .
+oras manifest fetch registry-1.docker.io/library/redis:6.2 | jq .
+```
 
 ### AWS ECR
 
