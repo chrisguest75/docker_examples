@@ -8,7 +8,7 @@ TODO:
 * Looking at the contents
 * CSC? missing
 
-## Prereqs 
+## Prereqs
 
 You'll need docker desktop switched into Windows Container mode.  
 
@@ -19,6 +19,8 @@ Enable-WindowsOptionalFeature -Online -FeatureName $(“Microsoft-Hyper-V”, �
 ```
 
 ## Build
+
+Open a windows cmd prompt.  
 
 ```sh
 docker context ls
@@ -32,14 +34,16 @@ docker context ls
 docker context ls
 ```
 
-## Build IIS 
+## Build IIS
 
 ```sh
 # in windows cmd prompt (build iis)
 docker --context desktop-windows build -f Dockerfile.iis -t iisexample:latest .
 
-docker run --rm -it -p 8000:80 --name iisexample iisexample:latest 
+docker images
 
+docker run --rm -it -p 8000:80 --name iisexample iisexample:latest 
+docker run --rm -d -p 8000:80 --name iisexample iisexample:latest 
 
 ```
 
