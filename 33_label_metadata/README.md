@@ -15,6 +15,13 @@ URL=$(git remote get-url origin)
 BY=$(whoami)
 # this is a org custom label
 ON=$(hostname)
+cat <<- EOF > ./details.txt
+CREATED=$CREATED
+VERSION=$VERSION
+URL=$URL
+BY=$BY
+ON=$ON
+EOF
 docker build --progress=plain --label "org.opencontainers.image.created=${CREATED}" --label "org.opencontainers.image.version=${VERSION}" --label "org.opencontainers.image.url=${URL}" --label "org.opencontainers.image.authors=${BY}" --label "org.chrisguest75.builton=${ON}" --no-cache -t labels -f Dockerfile .
 ```
 
