@@ -1,0 +1,12 @@
+FROM mcr.microsoft.com/dotnet/sdk:6.0
+
+# Set the working directory to C:\app
+WORKDIR C:\\app
+
+# Copy the application files into the container
+COPY .\\ .
+
+RUN dotnet build 
+
+ENTRYPOINT ["c:\\app\\bin\\Debug\\net6.0\\app.exe"]
+CMD ["c:\\app\\bin\\Debug\\net6.0\\app.exe"]
