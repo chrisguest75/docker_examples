@@ -21,6 +21,13 @@ npm run docker:build
 npm run docker:run
 ```
 
+## Update
+
+```sh
+npm exec better-npm-audit audit 
+npm update --save
+```
+
 ## Debugging
 
 Ensure that the sourcemap output is enabled.  
