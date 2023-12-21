@@ -31,7 +31,7 @@ docker build --progress=plain --no-cache -t pyenvpy .
 docker build --progress=plain -t pyenvpy .
 
 # run
-docker run -it --name pyenvpy --rm pyenvpy   
+docker run -it --name pyenvpy --rm pyenvpy
 
 # debug
 docker run -it --rm --name pyenvpy --entrypoint "/bin/bash" pyenvpy
