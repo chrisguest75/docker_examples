@@ -11,6 +11,18 @@ TODO:
 * Test with fargate
 * Test on linux for zombie processes.
 
+## Contents
+
+- [TINI](#tini)
+  - [Contents](#contents)
+  - [Reason](#reason)
+  - [Test with simple Bash](#test-with-simple-bash)
+  - [Testing bash with handlers](#testing-bash-with-handlers)
+  - [Test with Python](#test-with-python)
+  - [Test custom tini](#test-custom-tini)
+  - [Test with Node](#test-with-node)
+  - [Resources](#resources)
+
 ## Reason
 
 Doing a quick test of killing a docker container running a simple bash script takes 10 seconds without handling SIGTERM/SIGKILL.  
