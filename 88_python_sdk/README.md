@@ -22,7 +22,7 @@ Demonstrates:
 # required if you're already in a virtualenv.
 export PIPENV_IGNORE_VIRTUALENVS=1 
 export PIPENV_VENV_IN_PROJECT=1
-pipenv install
+pipenv install --dev
 
 pipenv shell
 code . 
@@ -45,6 +45,15 @@ pipenv run start:buildx
 pipenv run test
 # filtering
 pipenv run test -k test_buildx 
+```
+
+## Upgrade
+
+Use pipenv to upgrade packages  
+
+```sh
+pipenv update
+pipenv update --dev
 ```
 
 ## Created
