@@ -30,6 +30,13 @@ npm run lint
 npm run docker:run
 ```
 
+## Update
+
+```sh
+npm exec better-npm-audit audit 
+npm update --save
+```
+
 ## How to recreate
 
 Create folder  
