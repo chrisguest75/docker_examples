@@ -1,12 +1,29 @@
 # Docker Examples and Demos
 
-[![Repository](https://skillicons.dev/icons?i=docker,nginx,bash,linux,html)](https://skillicons.dev)
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-%23FE5196?logo=conventionalcommits&logoColor=white)](https://conventionalcommits.org) [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)  
+
+[![Repository](https://skillicons.dev/icons?i=docker,nginx,bash,linux,html)](https://skillicons.dev)  
 
 A repository for showing examples of different Docker related concepts and tools. Work through examples to demonstrate and prove concepts that exist.  
 
 The aim is to use examples to show how Docker behaves when building containers and to highlight incorrect assumptions about behaviour.  
 
 A list of things still to try and investigate [TODO.md](./TODO.md)  
+
+## Conventional Commits
+
+NOTE: This repo has switched to [conventional commits](https://www.conventionalcommits.org/en/v1.0.0). It requires `pre-commit` and `commitizen` to help with controlling this.  
+
+```sh
+# install pre-commmit (prerequisite for commitizen)
+brew install pre-commit
+brew install commitizen
+# conventional commits extension
+code --install-extension vivaxy.vscode-conventional-commits
+
+# install hooks
+pre-commit install --hook-type commit-msg --hook-type pre-push
+```
 
 ## Checking changes in Docker
 
@@ -90,13 +107,14 @@ The container runtime is a crucial component in the container ecosystem, respons
 
 Popular container runtimes include Docker's containerd, Google's gVisor, and Red Hat's CRI-O. These runtimes often implement the Container Runtime Interface (CRI) to work with Kubernetes, allowing seamless container management within Kubernetes clusters.  
 
-## Table of contents
+## Contents
 
 - [Docker Examples and Demos](#docker-examples-and-demos)
+  - [Conventional Commits](#conventional-commits)
   - [Checking changes in Docker](#checking-changes-in-docker)
   - [Docker Desktop Architecture](#docker-desktop-architecture)
     - [Container Runtime](#container-runtime)
-  - [Table of contents](#table-of-contents)
+  - [Contents](#contents)
   - [00 - Cheatsheet](#00---cheatsheet)
   - [00 - Troubleshooting](#00---troubleshooting)
   - [01 - Layers, Hiding and Squashing](#01---layers-hiding-and-squashing)
