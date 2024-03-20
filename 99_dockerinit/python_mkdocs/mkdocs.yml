@@ -1,0 +1,37 @@
+site_name: Docker Examples
+
+site_docs: /
+
+theme:
+  name: material
+
+  palette:
+      # light mode
+      - scheme: default
+        toggle:
+          icon: material/brightness-7
+    
+      # dark mode
+      - scheme: slate
+        toggle:
+          icon: material/brightness-6
+
+markdown_extensions:
+  - pymdownx.tabbed:
+      alternate_style: true
+  - admonition
+  # - pymdownx.details
+  # - attr_list
+  # - pymdownx.emoji:
+  #     emoji_index: !!python/name:material.extensions.emoji.twemoji
+  #     emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  # - pymdownx.superfences:
+  #     custom_fences:
+  #       - name: mermaid
+  #         class: mermaid
+  #         format: !!python/name:pymdownx.superfences.fence_code_format  
+
+plugins:
+  - blog
+  - search:
+  
