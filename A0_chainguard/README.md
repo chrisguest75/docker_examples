@@ -8,6 +8,11 @@ NOTES:
 * apko - Building images from packages
 * melange - Creating packages for use in aplko
 
+TODO: 
+
+* node - https://edu.chainguard.dev/chainguard/chainguard-images/reference/node/
+
+
 ## Simple Pull
 
 ```sh
@@ -58,10 +63,21 @@ docker load < ./apko/work/wolfi-ffmpeg.tar
 docker run -it wolfi-ffmpeg:test-amd64
 ```
 
+## NodeJS
+
+```sh
+docker pull cgr.dev/chainguard/node-lts:latest
+
+# node --version
+docker run -it cgr.dev/chainguard/node-lts:latest --version
+```
+
 ## Resources
 
 * Chainguard [here](https://www.chainguard.dev/)
 * Chainguard Academy [here](https://edu.chainguard.dev/)
+
+* https://iximiuz.com/en/posts/containers-making-images-better/
 
 ### APKO
 
