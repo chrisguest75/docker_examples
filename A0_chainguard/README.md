@@ -101,6 +101,8 @@ docker run -it wolfi-ffmpeg-nodejs:test-amd64
 grype -o json wolfi-ffmpeg-nodejs:test-amd64 
 # comparee to
 grype -o json node:latest   
+
+# docker scout quickview wolfi-ffmpeg-nodejs:test-amd64 
 ```
 
 ## NodeJS
@@ -119,15 +121,15 @@ docker run -it cgr.dev/chainguard/node-lts:latest --version
 * Chainguard [here](https://www.chainguard.dev/)
 * Chainguard Academy [here](https://edu.chainguard.dev/)
 
-* https://iximiuz.com/en/posts/containers-making-images-better/
+* In Pursuit of Better Container Images: Alpine, Distroless, Apko, Chisel, DockerSlim, oh my! [here](https://iximiuz.com/en/posts/containers-making-images-better/)
+* Is Your Container Image Really Distroless? [here](https://www.docker.com/blog/is-your-container-image-really-distroless/)
 
 ### APKO Links
 
-* https://edu.chainguard.dev/open-source/apko/getting-started-with-apko/
+* Getting Started with apko [here](https://edu.chainguard.dev/open-source/apko/getting-started-with-apko/)
 * https://github.com/wolfi-dev/os
 * https://github.com/chainguard-dev/apko/
 
 ### Cosign Links
 
 * https://edu.chainguard.dev/open-source/sigstore/cosign/how-to-install-cosign/
-
