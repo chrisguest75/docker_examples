@@ -1,17 +1,24 @@
-# README
+# DOCKER SCAN
+
+![maintenance-status](https://img.shields.io/badge/maintenance-deprecated-red.svg)  
+
 Demonstrate some examples of using `docker scan`.
 
 Docker scan works with public and private images
 
 For reducing number of vulnerabilities refer to:
+
 * Distroless [README.md](../28_distroless/README.md)  
 * Nix [README.md](https://github.com/chrisguest75/nix-examples/blob/master/README.md)  
 
-Other scanning examples:
+## Alternative Scanners
+
 * Grype [README.md](../49_grype/README.md)  
 * Trivy [README.md](../48_trivy/README.md)  
+* Docker Scout [README.md](../A1_docker_scout/README.md)  
 
 ## Scanning
+
 ```sh
 # show options
 docker scan
@@ -21,6 +28,7 @@ docker scan --login
 ```
 
 ## Simple scans
+
 ```sh
 # pull is unnecessary 
 docker scan ubuntu:18.04    
@@ -34,12 +42,14 @@ docker scan nginx:1.21.0-alpine
 ```
 
 ## Export JSON
+
 ```sh
 mkdir -p ./scans/docker
 docker scan --json nginx:1.21.0 > ./scans/docker/nginx1_21_0.json  
 ```
 
 ## Script to scan many and create report
+
 ```sh
 # scan images listed in `images_to_scan.json`
 ./scan.sh
@@ -48,7 +58,9 @@ docker scan --json nginx:1.21.0 > ./scans/docker/nginx1_21_0.json
 ```
 
 ## Load data into MongoDB for aggregation
+
 Query the data (gui)
+
 ```sh
 https://robomongo.org/
 brew install robo-3t
@@ -79,13 +91,16 @@ mongoimport --username=root --password=rootpassword --host 0.0.0.0 -
 ```
 
 ## Query the data (cli)
+
 ```sh
 mongo -u root -p rootpassword
 use images
 show collections
 db.scans.find()
 ```
+
 ## Example queries
+
 ```js
 // count images matching
 db.getCollection('scans').find({path: 'ubuntu:20.04'}).count()
@@ -107,6 +122,7 @@ db.getCollection('scans').distinct("vulnerabilities.id", {path: 'ubuntu:20.04'})
 ```
 
 ## Aggregations
+
 ```js
 // total number of vulnerabilities
 db.getCollection('scans').aggregate([{$project: { count: { $size:"$vulnerabilities" }}}])
@@ -149,25 +165,27 @@ db.getCollection('scans').aggregate([
 ```
 
 
+## Cleanup
 
-## Cleanup 
 ```sh
 docker compose down     
 ```
 
 ## Processing with JQ (this is done automatically by `scan.sh`)
+
 ```sh
 mkdir -p ./out
 # pull all images (docker scan) into a single json document
 ./aggregate.sh | jq -s '{images: (.)}' > ./out/images.json  
 ```
 
-
 ## Liveserver in vscode
-Use the live share extension.  
-The example uses a `./scans/out/images_docker.json` file that has to be served up from a webserver.
 
-```sh 
+Use the live share extension.  
+
+The example uses a `./scans/out/images_docker.json` file that has to be served up from a webserver.  
+
+```sh
 # use a live server to server up pages that have resources
 code --install-extension ritwickdey.LiveServer
 ```

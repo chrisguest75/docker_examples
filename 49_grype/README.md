@@ -10,10 +10,11 @@ For reducing number of vulnerabilities refer to:
 * Distroless [README.md](../28_distroless/README.md)  
 * Nix [README.md](https://github.com/chrisguest75/nix-examples/blob/master/README.md)  
 
-Other scanning examples:
+## Alternative Scanners
 
-* Docker Scan [README.md](../45_docker_scan_process_mongo/README.md)  
 * Trivy [README.md](../48_trivy/README.md)  
+* Docker Scan [README.md](../45_docker_scan_process_mongo/README.md)  
+* Docker Scout [README.md](../A1_docker_scout/README.md)  
 
 TODO:
 
