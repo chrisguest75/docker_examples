@@ -8,10 +8,9 @@ NOTES:
 * apko - Building images from packages
 * melange - Creating packages for use in aplko
 
-TODO: 
+TODO:
 
 * node - https://edu.chainguard.dev/chainguard/chainguard-images/reference/node/
-
 
 ## Simple Pull
 
@@ -42,6 +41,8 @@ cosign verify \
 
 ## APKO
 
+### Wolfi Base
+
 ```sh
 # apko version
 docker run --rm cgr.dev/chainguard/apko version
@@ -54,13 +55,28 @@ docker run --rm -v ${PWD}/apko/wolfi-base:/apko -v ${PWD}/apko/work:/work -w /wo
 # load and test
 docker load < ./apko/work/wolfi-test.tar
 docker run -it wolfi-base:test-amd64
+```
 
+### FFMPEG
+
+```sh
 # create ffmpeg image
 docker run --rm -v ${PWD}/apko/ffmpeg:/apko -v ${PWD}/apko/work:/work -w /work cgr.dev/chainguard/apko build /apko/wolfi-ffmpeg.yaml wolfi-ffmpeg:test wolfi-ffmpeg.tar
 
 # load and test
 docker load < ./apko/work/wolfi-ffmpeg.tar
 docker run -it wolfi-ffmpeg:test-amd64
+```
+
+### FFMPEG with Node
+
+```sh
+# create ffmpeg image
+docker run --rm -v ${PWD}/apko/ffmpeg_nodejs:/apko -v ${PWD}/apko/work:/work -w /work cgr.dev/chainguard/apko build /apko/wolfi-ffmpeg-nodejs.yaml wolfi-ffmpeg-nodejs:test wolfi-ffmpeg-nodejs.tar
+
+# load and test
+docker load < ./apko/work/wolfi-ffmpeg-nodejs.tar
+docker run -it wolfi-ffmpeg-nodejs:test-amd64
 ```
 
 ## NodeJS
