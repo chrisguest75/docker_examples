@@ -18,5 +18,6 @@ nodejs-20.yaml
 
 ## Resources
 
-* https://edu.chainguard.dev/open-source/wolfi/wolfi-with-dockerfiles/
+* Creating Wolfi Images with Dockerfiles [here](https://edu.chainguard.dev/open-source/wolfi/wolfi-with-dockerfiles/)  
 * https://github.com/wolfi-dev/os?tab=readme-ov-files
+* https://edu.chainguard.dev/open-source/wolfi/hello-wolfi/

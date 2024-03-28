@@ -1,0 +1,20 @@
+contents:
+  repositories:
+    - https://packages.wolfi.dev/bootstrap/stage3
+    - https://packages.wolfi.dev/os
+    - '@local /work/packages'
+  keyring:
+    - https://packages.wolfi.dev/bootstrap/stage3/wolfi-signing.rsa.pub
+    - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
+  packages:
+    - busybox
+    - hello-minicli@local
+
+environment:
+  PATH: /usr/sbin:/sbin:/usr/bin:/bin
+
+entrypoint:
+  command: /usr/bin/minicli fact
+
+archs:
+  - x86_64
