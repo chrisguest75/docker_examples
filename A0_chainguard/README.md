@@ -8,6 +8,21 @@ NOTES:
 * apko - Building images from packages
 * melange - Creating packages for use in aplko
 
+## Contents
+
+- [CHAINGUARD](#chainguard)
+  - [Contents](#contents)
+  - [Simple Pull](#simple-pull)
+  - [Cosign](#cosign)
+  - [APKO](#apko)
+    - [Wolfi Base](#wolfi-base)
+    - [FFMPEG](#ffmpeg)
+    - [FFMPEG with Node](#ffmpeg-with-node)
+  - [NodeJS](#nodejs)
+  - [Resources](#resources)
+    - [APKO Links](#apko-links)
+    - [Cosign Links](#cosign-links)
+
 TODO:
 
 * node - https://edu.chainguard.dev/chainguard/chainguard-images/reference/node/
@@ -41,12 +56,12 @@ cosign verify \
 
 ## APKO
 
-### Wolfi Base
-
 ```sh
 # apko version
 docker run --rm cgr.dev/chainguard/apko version
 ```
+
+### Wolfi Base
 
 ```sh
 # create a base image
@@ -59,6 +74,8 @@ docker run -it wolfi-base:test-amd64
 
 ### FFMPEG
 
+Create an image with ffmpeg  
+
 ```sh
 # create ffmpeg image
 docker run --rm -v ${PWD}/apko/ffmpeg:/apko -v ${PWD}/apko/work:/work -w /work cgr.dev/chainguard/apko build /apko/wolfi-ffmpeg.yaml wolfi-ffmpeg:test wolfi-ffmpeg.tar
@@ -70,6 +87,8 @@ docker run -it wolfi-ffmpeg:test-amd64
 
 ### FFMPEG with Node
 
+Create an image with both ffmpeg and node  
+
 ```sh
 # create ffmpeg image
 docker run --rm -v ${PWD}/apko/ffmpeg_nodejs:/apko -v ${PWD}/apko/work:/work -w /work cgr.dev/chainguard/apko build /apko/wolfi-ffmpeg-nodejs.yaml wolfi-ffmpeg-nodejs:test wolfi-ffmpeg-nodejs.tar
@@ -77,9 +96,16 @@ docker run --rm -v ${PWD}/apko/ffmpeg_nodejs:/apko -v ${PWD}/apko/work:/work -w 
 # load and test
 docker load < ./apko/work/wolfi-ffmpeg-nodejs.tar
 docker run -it wolfi-ffmpeg-nodejs:test-amd64
+
+# scanning
+grype -o json wolfi-ffmpeg-nodejs:test-amd64 
+# comparee to
+grype -o json node:latest   
 ```
 
 ## NodeJS
+
+Get the prebuilt node images  
 
 ```sh
 docker pull cgr.dev/chainguard/node-lts:latest
@@ -95,15 +121,13 @@ docker run -it cgr.dev/chainguard/node-lts:latest --version
 
 * https://iximiuz.com/en/posts/containers-making-images-better/
 
-### APKO
+### APKO Links
 
 * https://edu.chainguard.dev/open-source/apko/getting-started-with-apko/
 * https://github.com/wolfi-dev/os
 * https://github.com/chainguard-dev/apko/
 
-### Cosign
+### Cosign Links
 
 * https://edu.chainguard.dev/open-source/sigstore/cosign/how-to-install-cosign/
-
-
 
