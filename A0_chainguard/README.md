@@ -12,6 +12,7 @@ NOTES:
 
 - [CHAINGUARD](#chainguard)
   - [Contents](#contents)
+  - [Build custom images](#build-custom-images)
   - [Simple Pull](#simple-pull)
   - [Cosign](#cosign)
   - [APKO](#apko)
@@ -23,9 +24,9 @@ NOTES:
     - [APKO Links](#apko-links)
     - [Cosign Links](#cosign-links)
 
-TODO:
+## Build custom images
 
-* node - https://edu.chainguard.dev/chainguard/chainguard-images/reference/node/
+If you wan to build custom packages with known versions use [melange/MELANGE.md](melange/MELANGE.md)  
 
 ## Simple Pull
 
@@ -74,7 +75,7 @@ docker run -it wolfi-base:test-amd64
 
 ### FFMPEG
 
-Create an image with ffmpeg  
+Create an image with latest ffmpeg 
 
 ```sh
 # create ffmpeg image
@@ -87,7 +88,7 @@ docker run -it wolfi-ffmpeg:test-amd64
 
 ### FFMPEG with Node
 
-Create an image with both ffmpeg and node  
+Create an image with both latest ffmpeg and node  
 
 ```sh
 # create ffmpeg image
