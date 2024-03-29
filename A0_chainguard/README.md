@@ -6,7 +6,7 @@ NOTES:
 
 * wolfi - Distroless containers
 * apko - Building images from packages
-* melange - Creating packages for use in aplko
+* melange - Creating packages for use in apko
 
 ## Contents
 
