@@ -2,6 +2,15 @@
 
 Docker Scout analyzes image contents and generates a detailed report of packages and vulnerabilities that it detects.  
 
+## Contents
+
+- [DOCKER SCOUT](#docker-scout)
+  - [Contents](#contents)
+  - [Alternative Scanners](#alternative-scanners)
+  - [Plugin](#plugin)
+  - [Scan](#scan)
+  - [Resources](#resources)
+
 ## Alternative Scanners
 
 * Grype [README.md](../49_grype/README.md)  
@@ -29,6 +38,8 @@ docker scout quickview node:18-bookworm-slim
 
 # break it down by package
 docker scout cves --format only-packages --only-vuln-packages  node:18-bookworm-slim
+
+docker scout cves --format only-packages --only-vuln-packages local://my-image
 ```
 
 ## Resources

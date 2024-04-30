@@ -2,6 +2,15 @@
 
 Build apk packages using declarative pipelines.  
 
+## Contents
+
+- [MELANGE](#melange)
+  - [Contents](#contents)
+  - [Clone package definitions](#clone-package-definitions)
+  - [Build custom image](#build-custom-image)
+  - [Hello Wolfi Workshop Kit](#hello-wolfi-workshop-kit)
+  - [Resources](#resources)
+
 ## Clone package definitions
 
 ```sh
@@ -23,35 +32,48 @@ docker pull cgr.dev/chainguard/apko
 mkdir -p ./out
 docker run --rm -v ./out:/work cgr.dev/chainguard/melange keygen
 
-# build packages
+# build packages (curl)
 docker run --privileged --rm -v $(pwd):/work -- \
   cgr.dev/chainguard/melange build /work/curl.yaml --out-dir /work/out \
   --arch x86_64 --signing-key /work/out/melange.rsa --keyring-append /work/out/melange.rsa.pub
 
+# build packages (node20)
 docker run --privileged --rm -v $(pwd):/work -- \
   cgr.dev/chainguard/melange build /work/nodejs-20.yaml --out-dir /work/out \
   --arch x86_64 --signing-key /work/out/melange.rsa --keyring-append /work/out/melange.rsa.pub
 
+# build packages (ffmpeg)
 docker run --privileged --rm -v $(pwd):/work -- \
   cgr.dev/chainguard/melange build /work/ffmpeg.yaml --out-dir /work/out \
   --arch x86_64 --signing-key /work/out/melange.rsa --keyring-append /work/out/melange.rsa.pub
 
-# build image
-docker run --rm -v $(pwd):/work cgr.dev/chainguard/apko build /work/image.yaml chainguard-ffmpeg-node:latest /work/out/chainguard-ffmpeg-node.tar -k /work/out/melange.rsa.pub
+# build image (NOT WORKING: NOT USING LOCAL PACKAGES)
+docker run --rm -v $(pwd):/work cgr.dev/chainguard/apko build /work/image-node18.yaml chainguard-node18:latest /work/out/chainguard-node18.tar -k /work/out/melange.rsa.pub
+docker run --rm -v $(pwd):/work cgr.dev/chainguard/apko build /work/image-node18-ffmpeg.yaml chainguard-node18-ffmpeg:latest /work/out/chainguard-node18-ffmpeg.tar -k /work/out/melange.rsa.pub
+docker run --rm -v $(pwd):/work cgr.dev/chainguard/apko build /work/image-node20-ffmpeg.yaml chainguard-node20-ffmpeg:latest /work/out/chainguard-node20-ffmpeg.tar -k /work/out/melange.rsa.pub
 
 # load image
-docker load < ./out/chainguard-ffmpeg-node.tar
+docker load < ./out/chainguard-node18.tar
+docker load < ./out/chainguard-node18-ffmpeg.tar
+docker load < ./out/chainguard-node20-ffmpeg.tar
 
-# run built image
-docker run --rm chainguard-ffmpeg-node:latest-amd64 --version
-docker run --rm --entrypoint /usr/bin/ffmpeg chainguard-ffmpeg-node:latest-amd64 -version
-docker run --rm --entrypoint /usr/bin/ffmpeg chainguard-ffmpeg-node:latest-amd64 -codecs
+# run built image (node18)
+docker run --rm chainguard-node18:latest-amd64 --version
+
+docker run --rm chainguard-node18-ffmpeg:latest-amd64 --version
+docker run --rm --entrypoint /usr/bin/ffmpeg chainguard-node18-ffmpeg:latest-amd64 -version
+docker run --rm --entrypoint /usr/bin/ffmpeg chainguard-node18-ffmpeg:latest-amd64 -codecs
+
+# run built image (node20)
+docker run --rm chainguard-node20-ffmpeg:latest-amd64 --version
+docker run --rm --entrypoint /usr/bin/ffmpeg chainguard-node20-ffmpeg:latest-amd64 -version
+docker run --rm --entrypoint /usr/bin/ffmpeg chainguard-node20-ffmpeg:latest-amd64 -codecs
 
 # analyse
-dive chainguard-ffmpeg-node:latest-amd64
+dive chainguard-node18-ffmpeg:latest-amd64
 
 # scan image
-grype -o json chainguard-ffmpeg-node:latest-amd64
+grype -o json chainguard-node18-ffmpeg:latest-amd64
 ```
 
 ## Hello Wolfi Workshop Kit

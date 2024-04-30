@@ -1,6 +1,8 @@
 # CHAINGUARD
 
-Your safe source for open source - Build it right. Build it safe. Build it fast.
+Your safe source for open source - Build it right. Build it safe. Build it fast.  
+
+REF: Chainguard [here](https://www.chainguard.dev/)  
 
 NOTES:
 
@@ -32,10 +34,10 @@ If you wan to build custom packages with known versions use [melange/MELANGE.md]
 
 ```sh
 # get ffmpeg
-docker pull cgr.dev/chainguard/ffmpeg    
+docker pull cgr.dev/chainguard/ffmpeg
 
 # look inside
-dive cgr.dev/chainguard/ffmpeg    
+dive cgr.dev/chainguard/ffmpeg
 
 # run
 docker run -it --entrypoint /usr/bin/ffmpeg cgr.dev/chainguard/ffmpeg 
