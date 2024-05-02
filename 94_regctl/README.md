@@ -23,27 +23,30 @@ mkdir -p ./bins
 gh release list -R regclient/regclient   
 
 # download regbot
-gh release download v0.5.0 -R regclient/regclient -p regbot-darwin-amd64 --output ./bins/regbot-darwin-amd64
+gh release download v0.6.0 -R regclient/regclient -p regbot-darwin-amd64 --output ./bins/regbot-darwin-amd64
 chmod +x ./bins/regbot-darwin-amd64
 
 # download regctl
-gh release download v0.5.0 -R regclient/regclient -p regctl-darwin-amd64 --output ./bins/regctl-darwin-amd64
+gh release download v0.6.0 -R regclient/regclient -p regctl-darwin-amd64 --output ./bins/regctl-darwin-amd64
 chmod +x ./bins/regctl-darwin-amd64
+
+alias regbot=$(pwd)/bins/regbot-darwin-amd64
+alias regctl=$(pwd)/bins/regctl-darwin-amd64
 ```
 
 ## Querying registries
 
 ```sh
 # doesn't work against dockerhub
-./bins/regctl-darwin-amd64 repo ls docker.io/chrisguest
+regctl repo ls docker.io/chrisguest
 
 # list the tags for nginx
-./bins/regctl-darwin-amd64 tag ls docker.io/nginx
-./bins/regctl-darwin-amd64 tag ls docker.io/chrisguest/ocitest
-./bins/regctl-darwin-amd64 tag ls registry.k8s.io/autoscaling/cluster-autoscaler
+regctl tag ls docker.io/nginx
+regctl tag ls docker.io/chrisguest/ocitest
+regctl tag ls registry.k8s.io/autoscaling/cluster-autoscaler
 
 # lists the layers 
-./bins/regctl-darwin-amd64 image manifest docker.io/nginx:latest --platform linux/amd64
+regctl image manifest docker.io/nginx:latest --platform linux/amd64
 ```
 
 ## Artifacts
@@ -52,27 +55,27 @@ The [OCI Distribution Specification](https://github.com/opencontainers/distribut
 
 ```sh
 # login
-./bins/regctl-darwin-amd64 registry login registry-1.docker.io
+regctl registry login registry-1.docker.io
 
 # list does not work
-./bins/regctl-darwin-amd64 artifact list registry-1.docker.io/chrisguest/demo:0.0.1
+regctl artifact list registry-1.docker.io/chrisguest/demo:0.0.1
 # show the API requests
-./bins/regctl-darwin-amd64 artifact list registry-1.docker.io/chrisguest/demo:0.0.1 -v debug
+regctl artifact list registry-1.docker.io/chrisguest/demo:0.0.1 -v debug
 
 # put a file (with tag)
-./bins/regctl-darwin-amd64 artifact put registry-1.docker.io/chrisguest/demo:0.0.1 --file ./README.md
+regctl artifact put registry-1.docker.io/chrisguest/demo:0.0.1 --file ./README.md
 
 # put a file (with latest)
-./bins/regctl-darwin-amd64 artifact put registry-1.docker.io/chrisguest/demo --file ./README.md --artifact-type application/vnd.oci.readme.md
+regctl artifact put registry-1.docker.io/chrisguest/demo --file ./README.md --artifact-type application/vnd.oci.readme.md
 
 # tree only seems to list latest
-./bins/regctl-darwin-amd64 artifact tree registry-1.docker.io/chrisguest/demo
+regctl artifact tree registry-1.docker.io/chrisguest/demo
 
 # get the file
-./bins/regctl-darwin-amd64 artifact get registry-1.docker.io/chrisguest/demo --output ./out 
+regctl artifact get registry-1.docker.io/chrisguest/demo --output ./out 
 
 # show artifact metadata
-./bins/regctl-darwin-amd64 image manifest registry-1.docker.io/chrisguest/demo
+regctl image manifest registry-1.docker.io/chrisguest/demo
 
 ```
 
@@ -80,11 +83,11 @@ The [OCI Distribution Specification](https://github.com/opencontainers/distribut
 
 ```sh
 # NOTE: THis is not working
-AWS_PROFILE=myprofile aws ecr get-login-password | ./bins/regctl-darwin-amd64 registry login --pass-stdin --user AWS  xxxxxxxxxxxxx.dkr.ecr.us-east-1.amazonaws.com
+AWS_PROFILE=myprofile aws ecr get-login-password | regctl registry login --pass-stdin --user AWS  xxxxxxxxxxxxx.dkr.ecr.us-east-1.amazonaws.com
 
-./bins/regctl-darwin-amd64 registry config
+regctl registry config
 
-./bins/regctl-darwin-amd64 repo ls xxxxxxxxxxxxx.dkr.ecr.us-east-1.amazonaws.com
+regctl repo ls xxxxxxxxxxxxx.dkr.ecr.us-east-1.amazonaws.com
 ```
 
 ## Resources
