@@ -24,6 +24,7 @@ NOTES:
   - [NodeJS](#nodejs)
   - [Resources](#resources)
     - [APKO Links](#apko-links)
+    - [Melange](#melange)
     - [Cosign Links](#cosign-links)
 
 ## Build custom images
@@ -132,6 +133,11 @@ docker run -it cgr.dev/chainguard/node-lts:latest --version
 * Getting Started with apko [here](https://edu.chainguard.dev/open-source/apko/getting-started-with-apko/)
 * https://github.com/wolfi-dev/os
 * https://github.com/chainguard-dev/apko/
+
+### Melange
+
+* Package Version Selection [here](https://edu.chainguard.dev/open-source/wolfi/apk-version-selection/)
+* https://github.com/wolfi-dev/os/commits/main/ffmpeg.yaml
 
 ### Cosign Links
 

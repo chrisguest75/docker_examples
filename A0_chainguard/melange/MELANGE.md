@@ -29,12 +29,18 @@ docker pull cgr.dev/chainguard/melange
 docker pull cgr.dev/chainguard/apko
 
 # generate a key
+cd ./A0_chainguard/melange
 mkdir -p ./out
 docker run --rm -v ./out:/work cgr.dev/chainguard/melange keygen
 
 # build packages (curl)
 docker run --privileged --rm -v $(pwd):/work -- \
   cgr.dev/chainguard/melange build /work/curl.yaml --out-dir /work/out \
+  --arch x86_64 --signing-key /work/out/melange.rsa --keyring-append /work/out/melange.rsa.pub
+
+# build packages (node18)
+docker run --privileged --rm -v $(pwd):/work -- \
+  cgr.dev/chainguard/melange build /work/nodejs-18.yaml --out-dir /work/out \
   --arch x86_64 --signing-key /work/out/melange.rsa --keyring-append /work/out/melange.rsa.pub
 
 # build packages (node20)
@@ -47,17 +53,24 @@ docker run --privileged --rm -v $(pwd):/work -- \
   cgr.dev/chainguard/melange build /work/ffmpeg.yaml --out-dir /work/out \
   --arch x86_64 --signing-key /work/out/melange.rsa --keyring-append /work/out/melange.rsa.pub
 
-# build image (NOT WORKING: NOT USING LOCAL PACKAGES)
+# build image (ffmpeg)
+docker run --rm -v $(pwd):/work cgr.dev/chainguard/apko build /work/image-ffmpeg.yaml chainguard-ffmpeg:latest /work/out/chainguard-ffmpeg.tar -k /work/out/melange.rsa.pub 
+# build image (node18)
 docker run --rm -v $(pwd):/work cgr.dev/chainguard/apko build /work/image-node18.yaml chainguard-node18:latest /work/out/chainguard-node18.tar -k /work/out/melange.rsa.pub
+# build image (node18 - ffmpeg)
 docker run --rm -v $(pwd):/work cgr.dev/chainguard/apko build /work/image-node18-ffmpeg.yaml chainguard-node18-ffmpeg:latest /work/out/chainguard-node18-ffmpeg.tar -k /work/out/melange.rsa.pub
+# build image (node20)
 docker run --rm -v $(pwd):/work cgr.dev/chainguard/apko build /work/image-node20-ffmpeg.yaml chainguard-node20-ffmpeg:latest /work/out/chainguard-node20-ffmpeg.tar -k /work/out/melange.rsa.pub
 
 # load image
+docker load < ./out/chainguard-ffmpeg.tar
 docker load < ./out/chainguard-node18.tar
 docker load < ./out/chainguard-node18-ffmpeg.tar
 docker load < ./out/chainguard-node20-ffmpeg.tar
 
 # run built image (node18)
+docker run --rm chainguard-ffmpeg:latest-amd64 -version
+
 docker run --rm chainguard-node18:latest-amd64 --version
 
 docker run --rm chainguard-node18-ffmpeg:latest-amd64 --version

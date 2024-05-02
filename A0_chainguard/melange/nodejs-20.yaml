@@ -15,7 +15,7 @@ environment:
     repositories:
       - https://packages.wolfi.dev/bootstrap/stage3
       - https://packages.wolfi.dev/os
-      - '@local /work/packages'
+      - '@local /work/out'
     keyring:
       - https://packages.wolfi.dev/bootstrap/stage3/wolfi-signing.rsa.pub
       - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub   

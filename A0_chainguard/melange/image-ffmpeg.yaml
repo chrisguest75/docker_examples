@@ -1,20 +1,20 @@
 contents:
   repositories:
+    - '@local /work/out'
     - https://packages.wolfi.dev/bootstrap/stage3
     - https://packages.wolfi.dev/os
-    - '@local /work/out'
+    
   keyring:
     - https://packages.wolfi.dev/bootstrap/stage3/wolfi-signing.rsa.pub
     - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
   packages:
-    - nodejs-18@local
-    - ffmpeg@local
+    - ffmpeg=~6@local
 
 environment:
   PATH: /usr/sbin:/sbin:/usr/bin:/bin
 
 entrypoint:
-  command: /usr/bin/node
+  command: /usr/bin/ffmpeg
 
 archs:
   - x86_64

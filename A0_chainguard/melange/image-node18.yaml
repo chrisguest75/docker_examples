@@ -1,6 +1,6 @@
 contents:
   repositories:
-    - '@local /work/packages'
+    - '@local /work/out'
     - https://packages.wolfi.dev/bootstrap/stage3
     - https://packages.wolfi.dev/os
     
@@ -8,7 +8,7 @@ contents:
     - https://packages.wolfi.dev/bootstrap/stage3/wolfi-signing.rsa.pub
     - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
   packages:
-    - nodejs-18
+    - nodejs-18@local
 
 environment:
   PATH: /usr/sbin:/sbin:/usr/bin:/bin
