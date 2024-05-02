@@ -1,0 +1,16 @@
+# syntax=docker/dockerfile:1.7-labs
+FROM scratch AS base
+
+WORKDIR /scratch
+
+COPY --exclude=*.md --exclude=!README.md . /scratch/
+
+WORKDIR /prefix
+
+COPY --exclude=Dockerfile.* . ./ 
+
+
+WORKDIR /parent
+
+COPY --exclude=**/*.nix --parents **/ffmpeg ./ 
+
