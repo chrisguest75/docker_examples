@@ -53,6 +53,13 @@ curl http://0.0.0.0:8080
 docker context use default
 ```
 
+## Cleanup
+
+```sh
+# remove context
+docker context rm remote-monga
+```
+
 ## Resources
 
 * [chrisguest75/sysadmin_examples/14_interrogate_resources/NETWORK.md](https://github.com/chrisguest75/sysadmin_examples/blob/master/14_interrogate_resources/NETWORK.md)
