@@ -1,0 +1,67 @@
+# syntax=docker/dockerfile:1.4
+FROM ubuntu:22.04 as base
+
+COPY --chmod=755 <<EOF /bin/configure_container.sh
+apt-get update 
+apt-get --no-install-recommends install cpuinfo curl ca-certificates gpg -y 
+
+curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg
+curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
+
+apt-get update
+apt-get install -y nvidia-container-toolkit
+
+apt-get clean 
+rm -rf /var/lib/apt/lists/*
+
+EOF
+RUN /bin/configure_container.sh
+
+# NOTE: Escape the \$ otherwise they are rendered at buildtime
+COPY --chmod=755 <<EOF /bin/details.sh
+#!/usr/bin/env bash
+echo "************************************************" 
+echo "** uname -a"
+echo "************************************************"
+uname -a 
+echo "************************************************" 
+echo "** cat /proc/cpuinfo" 
+echo "************************************************"
+cat /proc/cpuinfo
+echo "************************************************" 
+echo "** cpu-info" 
+echo "************************************************"
+cpu-info
+echo "************************************************" 
+echo "** cache-info" 
+echo "************************************************"
+cache-info
+echo "************************************************" 
+echo "** cpuid-dump" 
+echo "************************************************"
+cpuid-dump
+echo "************************************************" 
+echo "** isa-info" 
+echo "************************************************"
+isa-info
+echo "************************************************" 
+echo "** cat /proc/cmdline " 
+echo "************************************************"
+cat /proc/cmdline 
+echo "************************************************" 
+echo "** ulimit -a" 
+echo "************************************************"
+ulimit -a 
+echo "************************************************" 
+echo "** lsb_release -a" 
+echo "************************************************" 
+#lsb_release -a
+echo "************************************************" 
+echo "** nvidia-smi" 
+echo "************************************************" 
+#nvidia-smi
+EOF
+
+RUN /bin/details.sh
+
+CMD ["/bin/details.sh"]
