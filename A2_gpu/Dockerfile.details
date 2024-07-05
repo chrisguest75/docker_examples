@@ -57,10 +57,14 @@ ulimit -a
 #echo "************************************************" 
 #lsb_release -a
 echo "************************************************" 
-echo "** nvidia-smi" 
+echo "** nvidia" 
 echo "************************************************" 
-nvidia-smi
-nvidia-debugdump --list --debug --dumpall --version
+if [[ $(command -v nvidia-smi) ]]; then 
+    nvidia-smi
+    nvidia-debugdump --list --debug --dumpall --version
+else
+    echo "No nvidia-smi found"
+fi 
 EOF
 
 RUN /bin/details.sh
