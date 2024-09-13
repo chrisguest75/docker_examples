@@ -25,3 +25,4 @@ cat /proc/15/environ
 ## Resources
 
 * docker debug [here](https://docs.docker.com/reference/cli/docker/debug/)
+* How to Fix and Debug Docker Containers Like a Superhero [here](https://www.docker.com/blog/how-to-fix-and-debug-docker-containers-like-a-superhero/)
