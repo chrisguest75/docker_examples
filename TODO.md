@@ -32,3 +32,4 @@ https://www.andreafortuna.org/2019/11/26/cve-2019-14271-a-docker-cp-container-es
 1. https://github.com/google/gvisor
 2. https://github.com/tonistiigi/binfmt - docker desktop supports it
 1. https://github.com/jwilder/dockerize
+2. https://github.com/tonistiigi/xx

@@ -17,6 +17,13 @@ TODO:
 ## Install
 
 ```sh
+# we now have a brew build
+brew install regclient
+```
+
+### Install from github
+
+```sh
 mkdir -p ./bins
 
 # list releases
@@ -82,11 +89,11 @@ regctl image manifest registry-1.docker.io/chrisguest/demo
 ## ECR
 
 ```sh
-# NOTE: THis is not working
 AWS_PROFILE=myprofile aws ecr get-login-password | regctl registry login --pass-stdin --user AWS  xxxxxxxxxxxxx.dkr.ecr.us-east-1.amazonaws.com
 
 regctl registry config
 
+# list the images on ECR
 regctl repo ls xxxxxxxxxxxxx.dkr.ecr.us-east-1.amazonaws.com
 ```
 
