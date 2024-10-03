@@ -31,7 +31,7 @@ docker tag nginx:1.27.0 000000000000.dkr.ecr.eu-west-1.amazonaws.com/test-manife
 docker push 00000000000.dkr.ecr.eu-west-1.amazonaws.com/test-manifest-push:1.27.0
 
 # retagging with metadata
-docker manifest create 633946266320.dkr.ecr.eu-west-1.amazonaws.com/test-manifest-push:new_image 00000000000.dkr.ecr.eu-west-1.amazonaws.com/test-manifest-push:1.27.0
+docker manifest create 00000000000.dkr.ecr.eu-west-1.amazonaws.com/test-manifest-push:new_image 00000000000.dkr.ecr.eu-west-1.amazonaws.com/test-manifest-push:1.27.0
 docker manifest push 00000000000.dkr.ecr.eu-west-1.amazonaws.com/test-manifest-push:new_image
 
 # this will pull the aliased image.
