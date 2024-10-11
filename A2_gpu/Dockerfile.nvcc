@@ -1,0 +1,70 @@
+# syntax=docker/dockerfile:1.4
+FROM ubuntu:22.04 as base
+
+COPY --chmod=755 <<EOF /bin/configure_container.sh
+apt-get update 
+apt-get --no-install-recommends install cpuinfo curl ca-certificates gpg -y 
+
+curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg
+curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
+
+curl -o cuda-ubuntu2204.pin https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-ubuntu2204.pin
+mv cuda-ubuntu2204.pin /etc/apt/preferences.d/cuda-repository-pin-600
+curl -o cuda-repo-ubuntu2204-12-6-local_12.6.2-560.35.03-1_amd64.deb https://developer.download.nvidia.com/compute/cuda/12.6.2/local_installers/cuda-repo-ubuntu2204-12-6-local_12.6.2-560.35.03-1_amd64.deb
+dpkg -i cuda-repo-ubuntu2204-12-6-local_12.6.2-560.35.03-1_amd64.deb
+cp /var/cuda-repo-ubuntu2204-12-6-local/cuda-*-keyring.gpg /usr/share/keyrings/
+apt-get -y install cuda-toolkit-12-6
+
+# curl -o cuda-keyring_1.1-1_all.deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
+# dpkg -i cuda-keyring_1.1-1_all.deb
+
+apt-get update
+apt-get install -y nvidia-container-toolkit cuda-toolkit-12-6
+
+# Do not clean up if using cache mount.
+# apt-get clean 
+# rm -rf /var/lib/apt/lists/*
+
+EOF
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    /bin/configure_container.sh
+
+# NOTE: Escape the \$ otherwise they are rendered at buildtime
+COPY --chmod=755 <<EOF /bin/details.sh
+#!/usr/bin/env bash
+echo "************************************************" 
+echo "** nvidia" 
+echo "************************************************" 
+if [[ $(command -v nvidia-smi) ]]; then 
+    nvidia-smi
+else
+    echo "No nvidia-smi found"
+fi 
+echo "************************************************" 
+echo "** nvcc" 
+echo "************************************************" 
+if [[ $(command -v nvcc) ]]; then 
+    nvcc --version
+else
+    echo "No nvcc found"
+fi 
+
+EOF
+
+RUN /bin/details.sh
+
+WORKDIR /workbench
+COPY ./test.cu .
+
+COPY --chmod=755 <<EOF /bin/nvcc_build.sh
+#!/usr/bin/env bash
+echo "************************************************" 
+echo "** nvcc" 
+echo "************************************************" 
+
+/usr/local/cuda/bin/nvcc test.cu -o test
+./test
+EOF
+
+CMD ["/bin/nvcc_build.sh"]
