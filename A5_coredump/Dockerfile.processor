@@ -1,0 +1,33 @@
+# syntax=docker/dockerfile:1.4
+FROM ubuntu:22.04 as BASE
+
+WORKDIR /scratch
+
+COPY --chmod=755 <<EOF /bin/configure_container.sh
+apt-get update 
+apt-get install lsb-release debian-goodies cpuinfo curl ca-certificates gpg ubuntu-dbgsym-keyring gdb -y 
+
+echo "deb http://ddebs.ubuntu.com $(lsb_release -cs) main restricted universe multiverse
+deb http://ddebs.ubuntu.com $(lsb_release -cs)-updates main restricted universe multiverse
+deb http://ddebs.ubuntu.com $(lsb_release -cs)-proposed main restricted universe multiverse" | \
+tee -a /etc/apt/sources.list.d/ddebs.list
+
+apt-get update
+
+EOF
+
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    /bin/configure_container.sh
+
+
+# NOTE: Escape the \$ otherwise they are rendered at buildtime
+COPY --chmod=755 <<EOF /bin/debug.sh
+#!/usr/bin/env bash
+
+EOF
+
+ENV DEBUGINFOD_URLS="https://debuginfod.ubuntu.com"
+RUN set debuginfod enabled on
+ENTRYPOINT ["/bin/bash", "-c", " /bin/debug.sh"]
+
