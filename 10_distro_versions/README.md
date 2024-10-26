@@ -24,7 +24,10 @@ TODO:
 Preprepared images where logs can be examined.  
 
 ```sh
-just start [ubuntu|alpine|fedora|debian|nix|chainguard]
+just start [ubuntu|alpine|fedora|debian|nix|chainguard|almalinux]
+
+# jump into a shell
+just debug [ubuntu|alpine|fedora|debian|nix|chainguard|almalinux]
 ```
 
 ## Ubuntu

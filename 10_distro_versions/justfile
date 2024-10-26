@@ -22,3 +22,6 @@ start distro: (build_image distro)
   @echo "******************************"
   container-diff analyze --json daemon://10_distro_versions_{{ distro }}:latest | jq .
   #docker buildx imagetools inspect --raw 10_distro_versions_{{ distro }}:latest
+
+debug distro: (build_image distro)
+  docker run -it --rm --entrypoint /bin/sh 10_distro_versions_{{ distro }}
