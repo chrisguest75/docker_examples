@@ -1,8 +1,8 @@
 # syntax=docker/dockerfile:1.4
 FROM fedora:42 AS BASE
 
-RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
-    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+RUN --mount=type=cache,target=/var/cache/yum \
+    --mount=type=cache,target=/var/cache/dnf \
         buildDeps="bash \
                 curl \
                 git \

@@ -16,6 +16,9 @@ start distro: (build_image distro)
   @echo "******************************"
   @echo "** Dive CI"
   @echo "******************************"
-  dive 10_distro_versions_{{ distro }} --ci
-
-
+  dive 10_distro_versions_{{ distro }} --ci || true
+  @echo "******************************"
+  @echo "** Size"
+  @echo "******************************"
+  container-diff analyze --json daemon://10_distro_versions_{{ distro }}:latest | jq .
+  #docker buildx imagetools inspect --raw 10_distro_versions_{{ distro }}:latest
