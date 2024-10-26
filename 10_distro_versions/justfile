@@ -1,0 +1,21 @@
+set dotenv-load := true
+
+# default lists actions
+default:
+  @just -f justfile --list
+
+build_image distro:
+  docker build --progress=plain -f Dockerfile.{{ distro }} -t 10_distro_versions_{{ distro }} .
+
+start distro: (build_image distro)
+  docker run -it --rm 10_distro_versions_{{ distro }}
+  @echo "******************************"
+  @echo "** Labels"
+  @echo "******************************"
+  docker inspect -f '{{{{.Config.Labels}}}}' 10_distro_versions_{{ distro }}
+  @echo "******************************"
+  @echo "** Dive CI"
+  @echo "******************************"
+  dive 10_distro_versions_{{ distro }} --ci
+
+

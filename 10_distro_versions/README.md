@@ -2,15 +2,40 @@
 
 Demonstrate different ways to find distro versions inside a container
 
+TODO:
+
+* Fix up the nix build
+* Add a chainguard example
+* Fix caching in alpine and fedora
+
+## Contents
+
+- [README](#readme)
+  - [Contents](#contents)
+  - [Builds](#builds)
+  - [Ubuntu](#ubuntu)
+  - [Alpine](#alpine)
+  - [NixOS](#nixos)
+  - [Debian](#debian)
+  - [Fedora](#fedora)
+
+## Builds
+
+Preprepared images where logs can be examined.  
+
+```sh
+just start [ubuntu|alpine|fedora|debian|nix|chainguard]
+```
+
 ## Ubuntu
 
 ```sh
 # oci image labels
-docker pull ubuntu:20.04  
-docker inspect -f {{.Config.Labels}} ubuntu:20.04      
+docker pull ubuntu:24.04  
+docker inspect -f {{.Config.Labels}} ubuntu:24.04      
 
 # run the container
-docker run --rm -it --entrypoint /bin/bash ubuntu:20.04
+docker run --rm -it --entrypoint /bin/bash ubuntu:24.04
 
 # kernel versions
 uname -a
