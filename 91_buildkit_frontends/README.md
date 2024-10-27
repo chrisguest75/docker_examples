@@ -2,6 +2,18 @@
 
 Demonstrate how to use `docker frontends`.  
 
+## Contents
+
+- [FRONTENDS](#frontends)
+  - [Contents](#contents)
+  - [Reason](#reason)
+  - [Examples](#examples)
+  - [Build (dockerfile)](#build-dockerfile)
+    - [Add checksums](#add-checksums)
+    - [FROM arch](#from-arch)
+  - [Build (flakes.nix)](#build-flakesnix)
+  - [Resources](#resources)
+
 ## Reason
 
 BuildKit is a toolkit for converting source code into build artifacts, such as executable files or Docker images, in an efficient, concurrent, and cache-friendly manner. It is primarily used as the backend for building Docker images, but it can also be used independently.  
@@ -35,9 +47,9 @@ Based on buildkit frontend [1.5.0 release](https://github.com/moby/buildkit/rele
 
 ```sh
 # download a file with a checksum
-docker buildx build --progress=plain -f Dockerfile.addchecksum -t addchecksum .
+just start addchecksum
 # check it exists
-dive addchecksum
+just dive addchecksum
 ```
 
 ### FROM arch
@@ -46,9 +58,8 @@ You can override the architecture in the docker file.
 Using this technique you can use an AMD64 build to build some tooling or config for an ARM64 final image.  
 
 ```sh
-docker buildx build --progress=plain -f Dockerfile.mixedarch -t mixedarch .
 # examine output and see ARM64 and AMD64 strings coming from different architectures
-docker run -it mixedarch
+just start mixedarch
 ```
 
 ## Build (flakes.nix)
