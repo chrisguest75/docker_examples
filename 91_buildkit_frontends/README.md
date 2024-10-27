@@ -2,10 +2,6 @@
 
 Demonstrate how to use `docker frontends`.  
 
-TODO:
-
-* Find the default version of the buildkit frontend being used.  
-
 ## Contents
 
 - [FRONTENDS](#frontends)
@@ -48,7 +44,9 @@ Examples here are based on other examples.
 
 ### Default frontend
 
-Not specifying a frontend version.  
+Not specifying a frontend version will use the default.  
+
+NOTE: For version v0.16.0 the default frontend is v1.10.0 [here](https://github.com/moby/buildkit/releases/tag/v0.16.0)
 
 ```sh
 just start default
