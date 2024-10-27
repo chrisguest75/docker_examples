@@ -2,6 +2,10 @@
 
 Demonstrate how to use `docker frontends`.  
 
+TODO:
+
+* Find the default version of the buildkit frontend being used.  
+
 ## Contents
 
 - [FRONTENDS](#frontends)
@@ -9,6 +13,7 @@ Demonstrate how to use `docker frontends`.
   - [Reason](#reason)
   - [Examples](#examples)
   - [Build (dockerfile)](#build-dockerfile)
+    - [Default frontend](#default-frontend)
     - [Add checksums](#add-checksums)
     - [FROM arch](#from-arch)
   - [Build (flakes.nix)](#build-flakesnix)
@@ -40,6 +45,14 @@ Examples here are based on other examples.
 * Builders [here](../90_builders/README.md)  
 
 ## Build (dockerfile)
+
+### Default frontend
+
+Not specifying a frontend version.  
+
+```sh
+just start default
+```
 
 ### Add checksums
 
