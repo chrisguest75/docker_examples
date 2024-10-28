@@ -29,6 +29,7 @@ cat /proc/version
 
 # distro versions  
 cat /etc/os-release
+cat /etc/system-release
 
 echo "******************************"
 echo "** Packages"
@@ -36,6 +37,9 @@ echo "******************************"
 # package versions
 yum list --installed
 yum list --upgrades
+
+yum search ffmpeg
+
 EOF
 
 CMD ["/scratch/versions.sh"]

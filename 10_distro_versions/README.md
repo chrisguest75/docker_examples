@@ -4,6 +4,7 @@ Demonstrate different ways to find distro versions inside a container
 
 TODO:
 
+* work out ffmpeg install for almalinux (enterprise)
 * Fix up the nix build
 * Add a chainguard example
 * Fix caching in alpine and fedora

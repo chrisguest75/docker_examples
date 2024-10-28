@@ -25,6 +25,7 @@ cat /proc/version
 
 # distro versions  
 cat /etc/os-release
+cat /etc/system-release
 
 echo "******************************"
 echo "** Packages"
