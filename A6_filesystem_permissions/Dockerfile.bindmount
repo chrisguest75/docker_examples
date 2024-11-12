@@ -1,0 +1,35 @@
+# syntax=docker/dockerfile:1.11.0
+FROM ubuntu:24.10 AS base
+
+#### ROOT
+USER root
+
+ARG USERID=10000
+ARG GROUPID=10000
+ARG APPUSER=appuser
+RUN groupadd --system --gid $GROUPID appuser
+RUN useradd --system --uid $USERID --gid $GROUPID $APPUSER
+
+WORKDIR /scratch/root
+
+COPY --chmod=755 <<EOF /scratch/root/test.sh
+EOF
+
+WORKDIR /scratch/appuser
+
+COPY --chmod=755 <<EOF /scratch/appuser/test.sh
+EOF
+
+COPY --chmod=755 <<EOF /bin/copy.sh
+echo $(whoami)
+id 
+cat /etc/group
+cp /scratch/root/test.sh /mnt/writable/root_test.sh
+cp /scratch/appuser/test.sh /mnt/writable/appuser_test.sh
+
+ls -l /mnt/writable/
+EOF
+
+#USER appuser
+
+CMD ["bash"]
