@@ -26,3 +26,5 @@ start_volume: build
   set -eufo pipefail  
   docker run -it --rm --mount type=volume,source=filesystempermissions_volume,target=/mnt/readonly_volume,readonly --mount type=volume,source=filesystempermissions_volume,target=/mnt/writable_volume --name filesystempermissions filesystempermissions
 
+dive:
+  dive filesystempermissions

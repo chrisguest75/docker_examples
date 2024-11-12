@@ -11,11 +11,16 @@ TODO:
 NOTES:
 
 * Docker recommends using the `--mount` syntax instead of `-v`
+* When docker creates folder inside a container for mounts it creates them with root ownership.  
 
 ## Test
 
 ```sh
+# start with bindmounts
 just start
+
+# CONTAINER TERMINAL
+whoami
 
 ls /mnt/readonly/
 
@@ -33,14 +38,20 @@ ls -l /mnt/writable/
 ## Volume
 
 ```sh
+# create volume
 docker volume create filesystempermissions_volume
 
+# start with volume
 just start_volume
+
+# CONTAINER TERMINAL
+whoami
 
 # permissions don't work
 echo "test" > /mnt/readonly_volume/test.txt
 echo "test" > /mnt/writable_volume/test.txt
 
+ls -l /mnt
 ls -l /mnt/readonly_volume
 ls -l /mnt/writable_volume
 ```

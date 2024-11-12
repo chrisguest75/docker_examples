@@ -30,6 +30,6 @@ cp /scratch/appuser/test.sh /mnt/writable/appuser_test.sh
 ls -l /mnt/writable/
 EOF
 
-#USER appuser
+USER appuser
 
 CMD ["bash"]
