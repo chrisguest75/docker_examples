@@ -1,0 +1,28 @@
+#!/usr/bin/env just --justfile
+# ^ A shebang isn't required, but allows a justfile to be executed
+#   like a script, with `./justfile test`, for example.
+
+set dotenv-load := true
+
+# default lists actions
+default:
+  @just -f justfile --list
+
+
+build:
+  #!/usr/bin/env bash
+  set -eufo pipefail
+  docker build -f Dockerfile.bindmount -t filesystempermissions . 
+  
+start: build
+  #!/usr/bin/env bash
+  set -eufo pipefail  
+  mkdir -p ./mount/readonly
+  mkdir -p ./mount/writable
+  docker run -it --rm --mount type=bind,source=./mount/readonly,target=/mnt/readonly,readonly --mount type=bind,source=./mount/writable,target=/mnt/writable --name filesystempermissions filesystempermissions
+
+start_volume: build
+  #!/usr/bin/env bash
+  set -eufo pipefail  
+  docker run -it --rm --mount type=volume,source=filesystempermissions_volume,target=/mnt/readonly_volume,readonly --mount type=volume,source=filesystempermissions_volume,target=/mnt/writable_volume --name filesystempermissions filesystempermissions
+
