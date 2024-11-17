@@ -24,7 +24,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
 # NOTE: Escape the \$ otherwise they are rendered at buildtime
 COPY --chmod=755 <<EOF /bin/debug.sh
 #!/usr/bin/env bash
-
+echo "Started"
 EOF
 
 ENV DEBUGINFOD_URLS="https://debuginfod.ubuntu.com"
