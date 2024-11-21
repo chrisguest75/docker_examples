@@ -1,5 +1,12 @@
 # 📝 TODO
 
+1. containerd on linux
+2. podman and podman compose.
+3. docker ecs
+4. 
+
+
+
 1. cgroups and namespaces
 1. Start a cgroup manually using an unpacked container.
 1. Can I use a cgroup command inside a container?
