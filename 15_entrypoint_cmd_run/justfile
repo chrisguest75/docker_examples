@@ -1,0 +1,13 @@
+set dotenv-load := true
+
+# default lists actions
+default:
+  @just -f justfile --list
+
+entrypoint target='sh':
+  docker build --target={{ target }} -t entrypointtest_{{ target }} .
+  docker run --rm -it entrypointtest_{{ target }}
+
+cmd target='sh':
+  docker build --target={{ target }}_cmd -t entrypointtest_{{ target }}cmd .
+  docker run --rm -it entrypointtest_{{ target }}cmd   

@@ -133,7 +133,7 @@ Popular container runtimes include Docker's containerd, Google's gVisor, and Red
   - [13 - Users and permissions](#13---users-and-permissions)
   - [14 - CPU - control](#14---cpu---control)
   - [14 - OOM - Out of memory](#14---oom---out-of-memory)
-  - [15 - ENTRYPOINT and CMD](#15---entrypoint-and-cmd)
+  - [15 - ENTRYPOINT and CMD](#15---entrypoint-cmd-run)
   - [16 - Layer caching with non-deterministic executions](#16---layer-caching-with-non-deterministic-executions)
   - [17 - Microscanner](#17---microscanner)
   - [18 - Hadolint](#18---hadolint)
@@ -302,7 +302,7 @@ Steps [README.md](./14_out_of_memory/README.md)
 ## 15 - ENTRYPOINT and CMD
 
 Demonstrate how ENTRYPOINT and CMD differ  
-Steps [README.md](./15_entrypoint_and_cmd/README.md)  
+Steps [README.md](./15_entrypoint_cmd_run/README.md)  
 
 ## 16 - Layer caching with non-deterministic executions
 
