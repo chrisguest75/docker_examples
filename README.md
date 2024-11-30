@@ -118,7 +118,7 @@ Popular container runtimes include Docker's containerd, Google's gVisor, and Red
   - [00 - Cheatsheet](#00---cheatsheet)
   - [00 - Troubleshooting](#00---troubleshooting)
   - [01 - Layers, Hiding and Squashing](#01---layers-hiding-and-squashing)
-  - [01b - Mv, Rm, Sh](#01b---mv-rm-sh)
+  - [01b - Mv, Rm, Sh Scratch](#01b---mv-rm-sh-scratch)
   - [02 - Host and Kernel details](#02---host-and-kernel-details)
   - [03 - Buildargs](#03---buildargs)
   - [04 - Docker Context](#04---docker-context)
@@ -133,7 +133,7 @@ Popular container runtimes include Docker's containerd, Google's gVisor, and Red
   - [13 - Users and permissions](#13---users-and-permissions)
   - [14 - CPU - control](#14---cpu---control)
   - [14 - OOM - Out of memory](#14---oom---out-of-memory)
-  - [15 - ENTRYPOINT and CMD](#15---entrypoint-cmd-run)
+  - [15 - ENTRYPOINT and CMD](#15---entrypoint-and-cmd)
   - [16 - Layer caching with non-deterministic executions](#16---layer-caching-with-non-deterministic-executions)
   - [17 - Microscanner](#17---microscanner)
   - [18 - Hadolint](#18---hadolint)
@@ -223,11 +223,10 @@ Steps [README.md](./00_troubleshooting/README.md)
 Demonstrates how layers are stored, files are hidden and can be squashed.  
 Steps [README.md](./01_layers_hiding/README.md)  
 
-## 01b - Mv, Rm, Sh
+## 01b - Mv, Rm, Sh Scratch
 
-** Not working!! **  
-Building a simple container with mv, rm, sh.  Probably missing libs.  
-Steps [README.md](./01b_mv_cp_rm/README.md)  
+Building a simple container with mv, rm, sh.  
+Steps [README.md](./01b_mv_cp_rm_scratch/README.md)  
 
 ## 02 - Host and Kernel details
 
