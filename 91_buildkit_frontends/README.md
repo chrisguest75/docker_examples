@@ -130,4 +130,3 @@ docker images --digests
 * Concurrent, Cache-efficient, and Dockerfile-agnostic Builder toolkit [here](https://morioh.com/p/274c9a97e133)
 * Install Docker Buildx [here](https://docs.docker.com/build/install-buildx/)  
 * Capturing Build Information with BuildKit [here](https://www.docker.com/blog/capturing-build-information-buildkit/)  
-* 

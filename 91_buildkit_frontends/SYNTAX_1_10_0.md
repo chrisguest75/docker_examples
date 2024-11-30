@@ -2,6 +2,10 @@
 
 Dockerfile syntax 1.10.0 examples.  
 
+NOTES:
+
+* Introduces checks.
+
 ## Test
 
 ```sh
