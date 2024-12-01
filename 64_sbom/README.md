@@ -6,6 +6,19 @@ Demonstrates SBOM generation for docker images.
 
 Refer to [trivy example](../48_trivy/README.md) for installation.  
 
+## Contents
+
+- [README](#readme)
+  - [Contents](#contents)
+  - [Reason](#reason)
+  - [SBOM Example](#sbom-example)
+  - [CycloneDX](#cyclonedx)
+  - [Custom Dockerfiles](#custom-dockerfiles)
+  - [Custom Package Scanning (docker sbom)](#custom-package-scanning-docker-sbom)
+  - [NodeJs Package Scanning (docker sbom)](#nodejs-package-scanning-docker-sbom)
+  - [Using Dependency Track](#using-dependency-track)
+  - [👀 Resources](#-resources)
+
 ## Reason
 
 SBOMs, or Software Bill of Materials, have become a hot topic due to the increasing importance of cybersecurity and software supply chain transparency. An SBOM is essentially a list of all components, libraries, and dependencies used in a software application, along with information about their versions, licenses, and other relevant details.  
@@ -96,6 +109,8 @@ docker sbom $(basename $(pwd))_custompkg | grep "hello-world\|helm"
 ```
 
 ## NodeJs Package Scanning (docker sbom)
+
+Build a typescript container and scan it.  
 
 ```sh
 pushd ./ts_sbom_test

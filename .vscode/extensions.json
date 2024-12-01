@@ -5,6 +5,7 @@
         "vivaxy.vscode-conventional-commits",
         "davidanson.vscode-markdownlint",
         "ms-vscode-remote.remote-wsl",
-        "yzhang.markdown-all-in-one"
+        "yzhang.markdown-all-in-one",
+        "nefrob.vscode-just-syntax"
     ]
 }
