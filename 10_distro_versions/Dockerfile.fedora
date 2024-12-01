@@ -1,0 +1,45 @@
+# syntax=docker/dockerfile:1.4
+FROM fedora:42 AS BASE
+
+RUN --mount=type=cache,target=/var/cache/yum \
+    --mount=type=cache,target=/var/cache/dnf \
+        buildDeps="bash \
+                curl \
+                git \
+                nano" && \
+        yum -y install ${buildDeps} 
+
+WORKDIR /scratch
+
+COPY --chmod=755 <<EOF /scratch/versions.sh
+#!/usr/bin/env bash
+echo "******************************"
+echo "** Application Versions"
+echo "******************************"
+curl --version
+git --version
+bash --version   
+
+echo "******************************"
+echo "** OS Versions"
+echo "******************************"
+# kernel versions
+uname -a
+cat /proc/version
+
+# distro versions  
+cat /etc/os-release
+cat /etc/system-release
+
+echo "******************************"
+echo "** Packages"
+echo "******************************"
+# package versions
+yum list --installed
+yum list --upgrades
+
+yum search ffmpeg
+
+EOF
+
+CMD ["/scratch/versions.sh"]

@@ -2,7 +2,7 @@
 
 Demonstrates SBOM generation for docker images.  
 
-ℹ️ NOTE: `docker sbom` is an experimental feature.  
+ℹ️ NOTE: `docker sbom` is no longer an experimental feature.  
 
 Refer to [trivy example](../48_trivy/README.md) for installation.  
 
@@ -29,6 +29,10 @@ Demonstrates:
 * Detection of custom debian package
 * Detection of custom go binaries
 * Detection of nodejs packages
+
+NOTES:
+
+* This is a really good approach for seeing what packages changed between docker builds.  
 
 📝 TODO:
 

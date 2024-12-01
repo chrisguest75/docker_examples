@@ -1,0 +1,55 @@
+# syntax=docker/dockerfile:1.10.0
+# check=error=true
+FROM ubuntu:24.04 AS base
+
+
+ENV BREAK_CHECK "Should fail build"
+
+ENV LANG=en_US.UTF-8  
+ENV LANGUAGE=en_US:en  
+ENV LC_ALL=en_US.UTF-8  
+ARG DEBIAN_FRONTEND=noninteractive
+
+# RUN rm -f /etc/apt/apt.conf.d/docker-clean; \
+#     echo 'Binary::apt::APT::Keep-Downloaded-Packages "true";' \
+#     > /etc/apt/apt.conf.d/keep-cache
+
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    apt-get update && apt-get install --no-install-recommends -y bash curl git nano locales apt-transport-https 
+
+RUN locale-gen en_US.UTF-8  
+
+WORKDIR /scratch
+
+COPY --chmod=755 <<EOF /scratch/versions.sh
+#!/usr/bin/env bash
+echo "******************************"
+echo "** Application Versions"
+echo "******************************"
+curl --version
+git --version
+bash --version   
+
+echo "******************************"
+echo "** OS Versions"
+echo "******************************"
+# kernel versions
+uname -a
+cat /proc/version
+
+# distro versions  
+cat /etc/os-release
+
+echo "******************************"
+echo "** Packages"
+echo "******************************"
+# package versions
+apt list
+apt update
+apt list --upgradable
+EOF
+
+CMD ["/scratch/versions.sh"]
+
+

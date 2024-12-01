@@ -2,115 +2,53 @@
 
 Demonstrate different ways to find distro versions inside a container
 
-## Ubuntu
+NOTES:
+
+* Print out distro details.  
+* Installing packages in distros.  
+* `dnf` is replacement for `yum`.  
+
+TODO:
+
+* work out ffmpeg7 install for almalinux (enterprise)
+* Fix up the nix build
+* Add a chainguard example
+* Fix caching in alpine and fedora
+
+## Contents
+
+- [README](#readme)
+  - [Contents](#contents)
+  - [Distros](#distros)
+  - [Builds](#builds)
+  - [Troubleshooting](#troubleshooting)
+  - [Resources](#resources)
+
+## Distros
+
+- Ubuntu
+- Alpine
+- Fedora
+- Debian
+- Nix
+- Chainguard
+- Almalinux
+
+## Builds
+
+Preprepared images where logs can be examined.  
 
 ```sh
-# oci image labels
-docker pull ubuntu:20.04  
-docker inspect -f {{.Config.Labels}} ubuntu:20.04      
-
-# run the container
-docker run --rm -it --entrypoint /bin/bash ubuntu:20.04
-
-# kernel versions
-uname -a
-cat /proc/version
-
-# distro versions  
-cat /etc/os-release
-
-# package versions
-apt list
-apt update
-apt list --upgradable
+just start [ubuntu|alpine|fedora|debian|nix|chainguard|almalinux]
 ```
 
-## Alpine
+## Troubleshooting
 
 ```sh
-# oci image labels
-docker pull alpine:3.14.0  
-docker inspect -f {{.Config.Labels}} alpine:3.14.0   
-
-# run the container
-docker run --rm -it --entrypoint /bin/sh alpine:3.14.0   
-
-# kernel versions
-uname -a
-cat /proc/version
-
-# distro versions  
-cat /etc/os-release
-
-# package versions
-apk list --installed
-apk list -u
+# jump into a shell
+just debug [ubuntu|alpine|fedora|debian|nix|chainguard|almalinux]
 ```
 
-## NixOS
+## Resources
 
-```sh
-# oci image labels
-docker pull nixos/nix:2.3.12
-docker inspect -f {{.Config.Labels}} nixos/nix:2.3.12
-
-# run the container
-docker run --rm -it --entrypoint /bin/sh nixos/nix:2.3.12
-
-# kernel versions
-uname -a
-cat /proc/version
-
-# distro versions  
-cat /etc/os-release
-
-# package versions
-apk list --installed
-apk list -u
-```
-
-## Debian
-
-```sh
-# oci image labels
-docker pull debian:bullseye
-docker inspect -f {{.Config.Labels}} debian:bullseye
-
-# run the container
-docker run --rm -it --entrypoint /bin/bash debian:bullseye
-
-# kernel versions
-uname -a
-cat /proc/version
-
-# distro versions  
-cat /etc/os-release
-
-# package versions
-apt list
-apt update
-apt list --upgradable
-```
-
-## Fedora
-
-```sh
-# oci image labels
-docker pull fedora:34
-docker inspect -f {{.Config.Labels}} fedora:34
-
-# run the container
-docker run --rm -it --entrypoint /bin/bash fedora:34
-
-# kernel versions
-uname -a
-cat /proc/version
-
-# distro versions  
-cat /etc/os-release
-
-# package versions
-yum list --installed
-yum list --upgrades
-```
-
+- DNF vs. YUM: Learn the Differences [here](https://phoenixnap.com/kb/dnf-vs-yum)

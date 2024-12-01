@@ -1,16 +1,15 @@
 # syntax=docker/dockerfile:1.7-labs
 FROM scratch AS base
 
+# allow README.md to be copied but not other markdown files
 WORKDIR /scratch
-
 COPY --exclude=*.md --exclude=!README.md . /scratch/
 
+# exclude all the docker files
 WORKDIR /prefix
-
 COPY --exclude=Dockerfile.* . ./ 
 
-
+# copy a nested structure excluding *.nix files
 WORKDIR /parent
-
 COPY --exclude=**/*.nix --parents **/ffmpeg ./ 
 

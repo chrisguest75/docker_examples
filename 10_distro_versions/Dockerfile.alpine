@@ -1,0 +1,39 @@
+# syntax=docker/dockerfile:1.4
+FROM alpine:3.20.3 AS BASE
+
+RUN apk -v --no-cache --update add bash curl git nano
+
+WORKDIR /scratch
+
+COPY --chmod=755 <<EOF /scratch/versions.sh
+#!/usr/bin/env bash
+echo "******************************"
+echo "** Application Versions"
+echo "******************************"
+
+curl --version
+git --version
+bash --version   
+
+echo "******************************"
+echo "** OS Versions"
+echo "******************************"
+
+# kernel versions
+uname -a
+cat /proc/version
+
+# distro versions  
+cat /etc/os-release
+cat /etc/system-release
+
+echo "******************************"
+echo "** Packages"
+echo "******************************"
+
+# package versions
+apk list --installed
+apk list -u
+EOF
+
+CMD ["/scratch/versions.sh"]

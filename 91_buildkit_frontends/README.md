@@ -2,6 +2,19 @@
 
 Demonstrate how to use `docker frontends`.  
 
+## Contents
+
+- [FRONTENDS](#frontends)
+  - [Contents](#contents)
+  - [Reason](#reason)
+  - [Examples](#examples)
+  - [Build (dockerfile)](#build-dockerfile)
+    - [Default frontend](#default-frontend)
+    - [Add checksums](#add-checksums)
+    - [FROM arch](#from-arch)
+  - [Build (flakes.nix)](#build-flakesnix)
+  - [Resources](#resources)
+
 ## Reason
 
 BuildKit is a toolkit for converting source code into build artifacts, such as executable files or Docker images, in an efficient, concurrent, and cache-friendly manner. It is primarily used as the backend for building Docker images, but it can also be used independently.  
@@ -29,15 +42,25 @@ Examples here are based on other examples.
 
 ## Build (dockerfile)
 
+### Default frontend
+
+Not specifying a frontend version will use the default.  
+
+NOTE: For version v0.16.0 the default frontend is v1.10.0 [here](https://github.com/moby/buildkit/releases/tag/v0.16.0)
+
+```sh
+just start default
+```
+
 ### Add checksums
 
 Based on buildkit frontend [1.5.0 release](https://github.com/moby/buildkit/releases/tag/dockerfile%2F1.5.0-labs).  `ADD` now supports a checksum.  
 
 ```sh
 # download a file with a checksum
-docker buildx build --progress=plain -f Dockerfile.addchecksum -t addchecksum .
+just start addchecksum
 # check it exists
-dive addchecksum
+just dive addchecksum
 ```
 
 ### FROM arch
@@ -46,9 +69,8 @@ You can override the architecture in the docker file.
 Using this technique you can use an AMD64 build to build some tooling or config for an ARM64 final image.  
 
 ```sh
-docker buildx build --progress=plain -f Dockerfile.mixedarch -t mixedarch .
 # examine output and see ARM64 and AMD64 strings coming from different architectures
-docker run -it mixedarch
+just start mixedarch
 ```
 
 ## Build (flakes.nix)
@@ -108,4 +130,3 @@ docker images --digests
 * Concurrent, Cache-efficient, and Dockerfile-agnostic Builder toolkit [here](https://morioh.com/p/274c9a97e133)
 * Install Docker Buildx [here](https://docs.docker.com/build/install-buildx/)  
 * Capturing Build Information with BuildKit [here](https://www.docker.com/blog/capturing-build-information-buildkit/)  
-* 

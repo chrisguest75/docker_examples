@@ -1,0 +1,32 @@
+set dotenv-load := true
+
+# default lists actions
+default:
+  @just -f justfile --list
+
+build_image dockerfile:
+  docker build --progress=plain -f Dockerfile.{{ dockerfile }} -t 91_buildkit_frontends{{ dockerfile }} .
+
+start dockerfile: (build_image dockerfile)
+  docker run -it --rm 91_buildkit_frontends{{ dockerfile }}
+
+details dockerfile: (build_image dockerfile)
+  @echo "******************************"
+  @echo "** Labels"
+  @echo "******************************"
+  docker inspect -f '{{{{.Config.Labels}}}}' 91_buildkit_frontends{{ dockerfile }}
+  @echo "******************************"
+  @echo "** Dive CI"
+  @echo "******************************"
+  dive 91_buildkit_frontends{{ dockerfile }} --ci || true
+  @echo "******************************"
+  @echo "** Size"
+  @echo "******************************"
+  container-diff analyze --json daemon://91_buildkit_frontends{{ dockerfile }}:latest | jq .
+
+dive dockerfile: (build_image dockerfile)
+  @echo "91_buildkit_frontends{{ dockerfile }}:latest"
+  dive 91_buildkit_frontends{{ dockerfile }}:latest
+
+debug dockerfile: (build_image dockerfile)
+  docker run -it --rm --entrypoint /bin/sh 91_buildkit_frontends{{ dockerfile }}

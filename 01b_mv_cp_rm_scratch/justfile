@@ -1,0 +1,34 @@
+set dotenv-load := true
+
+export IMAGE_NAME:="scratchtest"
+
+# default lists actions
+default:
+  @just -f justfile --list
+
+build dockerfile='Dockerfile':
+  docker build --progress=plain -f {{ dockerfile }} -t $IMAGE_NAME .
+
+start dockerfile='Dockerfile': (build dockerfile)
+  docker run -it --rm --entrypoint=/bin/sh $IMAGE_NAME
+
+details dockerfile='Dockerfile': (build dockerfile)
+  @echo "******************************"
+  @echo "** Labels"
+  @echo "******************************"
+  docker inspect -f '{{{{.Config.Labels}}}}' $IMAGE_NAME
+  @echo "******************************"
+  @echo "** Dive CI"
+  @echo "******************************"
+  dive $IMAGE_NAME --ci || true
+  @echo "******************************"
+  @echo "** Size"
+  @echo "******************************"
+  container-diff analyze --json daemon://$IMAGE_NAME:latest | jq .
+
+dive dockerfile='Dockerfile': (build dockerfile)
+  @echo "$IMAGE_NAME:latest"
+  dive $IMAGE_NAME:latest
+
+debug dockerfile='Dockerfile': (build dockerfile)
+  docker run -it --rm --entrypoint /bin/sh $IMAGE_NAME
