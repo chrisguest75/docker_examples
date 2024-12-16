@@ -1,0 +1,31 @@
+set dotenv-load := true
+
+#export GPU_SHARE:=""
+# 
+#export GPU_SHARE:="--gpus all"
+# nixos (CDI)
+export GPU_SHARE:="--device=nvidia.com/gpu=all"
+
+# default lists actions
+default:
+  @just -f example.justfile --list
+
+# can be applied anytime
+sanity: 
+  #!/usr/bin/env bash
+  docker pull nvidia/cuda:12.5.0-runtime-ubuntu22.04
+  #docker run --gpus all docker.io/nvidia/cuda:12.5.0-runtime-ubuntu22.04 
+  # nixos
+  docker run ${GPU_SHARE} docker.io/nvidia/cuda:12.5.0-runtime-ubuntu22.04  
+
+details:
+  #!/usr/bin/env bash
+  docker build --progress=plain -f Dockerfile.details -t a2_gpu .
+  docker run ${GPU_SHARE} a2_gpu
+
+cuda:
+  #!/usr/bin/env bash
+  docker build --progress=plain -f Dockerfile.nvcc -t a2_gpu_nvcc .
+  # share in gpu
+  docker run ${GPU_SHARE} a2_gpu_nvcc
+

@@ -15,16 +15,26 @@ Ref: [shell_examples/81_gpu](https://github.com/chrisguest75/shell_examples/tree
   - [Compiling with NVCC](#compiling-with-nvcc)
   - [👀 Resources](#-resources)
 
+NOTES:
+
+- `--gpus all` only works on docker desktop. Linux docker uses CDI (Container Device Interface).  
+- `justfile` is setup for NixOS CDI.  
+
 ## 📋 Script to follow
 
 When run on a different system it shows the kernel version will be different. Shows the kernel version during build.  
 
 ## Checks
 
+Use `just sanity` or the following.  
+
 ```sh
 docker pull nvidia/cuda:12.5.0-runtime-ubuntu22.04
 
 docker run --gpus all docker.io/nvidia/cuda:12.5.0-runtime-ubuntu22.04 
+
+# nixos
+docker run --device=nvidia.com/gpu=all docker.io/nvidia/cuda:12.5.0-runtime-ubuntu22.04  
 
 # enter the container
 docker run -it --gpus all --entrypoint /bin/bash docker.io/nvidia/cuda:12.5.0-runtime-ubuntu22.04 
@@ -33,7 +43,9 @@ docker run -it --gpus all --entrypoint /bin/bash docker.io/nvidia/cuda:12.5.0-ru
 
 ## 🏠 Build
 
-Building will output version
+Use `just details` or the following.  
+
+Building will output versions of nvidia and cuda.  
 
 ```sh
 # building can output the current kernel version
@@ -61,6 +73,8 @@ docker run --gpus all -it --entrypoint /bin/bash a2_gpu
 
 ## Compiling with NVCC
 
+Use `just cuda` or the following.  
+
 ```sh
 docker build --progress=plain -f Dockerfile.nvcc -t a2_gpu_nvcc .
 # share in gpu
@@ -80,3 +94,4 @@ docker run -it --gpus all --entrypoint /bin/bash a2_gpu_nvcc
 - NVIDIA Corporation Dockerhub [here](https://hub.docker.com/u/nvidia)
 - CUDA on WSL User Guide [here](https://docs.nvidia.com/cuda/wsl-user-guide/index.html)
 - NVIDIA CUDA Installation Guide for Linux [here](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#)
+- nvidia container toolkit does not work on Docker but works in Podman [here](https://github.com/NixOS/nixpkgs/issues/337873)
