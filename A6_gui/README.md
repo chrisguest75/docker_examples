@@ -1,11 +1,14 @@
 # X11 AND WAYLAND
 
+Demonstrate how to run X11 applications in a docker container.  
+
 TODO:
 
 * Browsers
 * Get x11 and wayland working
 * VNC
 * ssh
+* Test on mac, nix and wsl
 
 ## Run
 
