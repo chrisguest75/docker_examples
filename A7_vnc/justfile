@@ -1,0 +1,24 @@
+set dotenv-load := true
+
+export DEFAULT_APPLICATION:="vnc"
+# default lists actions
+default:
+  @just -f example.justfile --list
+
+# build docker image 
+docker-build application="$DEFAULT_APPLICATION": 
+  #!/usr/bin/env bash
+  set -xeufo pipefail  
+  docker build --progress=plain -f Dockerfile.{{ application }} -t {{ application }}_gui:latest .
+
+# get shell in docker container
+docker-shell application="$DEFAULT_APPLICATION": (docker-build application)
+  #!/usr/bin/env bash
+  set -xeufo pipefail  
+  docker run -it --entrypoint bash {{ application }}_gui:latest
+
+# run docker image
+docker-run application="$DEFAULT_APPLICATION": (docker-build application)
+  #!/usr/bin/env bash
+  set -xeufo pipefail  
+  docker run -it -p 5900:5900 {{ application }}_gui:latest

@@ -1,0 +1,30 @@
+# syntax=docker/dockerfile:1.11
+FROM ubuntu:24.04 AS base
+
+###########################################
+## Build and test
+###########################################
+
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    --mount=type=tmpfs,target=/tmp \ 
+    apt-get update \
+    && apt-get install -fy  \ 
+        x11-apps \
+        x11vnc \
+        xvfb
+#&& apt-get clean \
+#&& rm -rf /var/lib/apt/lists/*
+
+RUN echo "exec xgc &" > ~/.xinitrc 
+RUN echo "exec xcalc &" >> ~/.xinitrc 
+RUN echo "exec xclock &" >> ~/.xinitrc 
+RUN chmod +x ~/.xinitrc
+
+# NOTE: This does not work because of character encoding.
+
+#COPY --chmod=777 <<EOF ~/.xinitrc 
+#exec xcalc
+#EOF
+
+CMD ["x11vnc", "-create", "-forever"]
