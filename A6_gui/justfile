@@ -1,0 +1,29 @@
+set dotenv-load := true
+
+# default lists actions
+default:
+  @just -f example.justfile --list
+
+docker-build application="xcalc": 
+  #!/usr/bin/env bash
+  set -xeufo pipefail  
+  docker build --progress=plain -f Dockerfile.{{ application }} -t {{ application }}_gui:latest .
+
+docker-shell application="xcalc":
+  #!/usr/bin/env bash
+  set -xeufo pipefail  
+  docker run -it -e XDG_RUNTIME_DIR=/tmp \
+           -e WAYLAND_DISPLAY=$WAYLAND_DISPLAY \
+           -v $XDG_RUNTIME_DIR/$WAYLAND_DISPLAY:/tmp/$WAYLAND_DISPLAY  \
+           --user=$(id -u):$(id -g) \
+           --entrypoint bash \
+           {{ application }}_gui:latest
+
+docker-run application="xcalc":
+  #!/usr/bin/env bash
+  set -xeufo pipefail  
+  docker run -e XDG_RUNTIME_DIR=/tmp \
+           -e WAYLAND_DISPLAY=$WAYLAND_DISPLAY \
+           -v $XDG_RUNTIME_DIR/$WAYLAND_DISPLAY:/tmp/$WAYLAND_DISPLAY  \
+           --user=$(id -u):$(id -g) \
+           {{ application }}_gui:latest
