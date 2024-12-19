@@ -4,11 +4,13 @@ set dotenv-load := true
 default:
   @just -f example.justfile --list
 
+# build docker image 
 docker-build application="xcalc": 
   #!/usr/bin/env bash
   set -xeufo pipefail  
   docker build --progress=plain -f Dockerfile.{{ application }} -t {{ application }}_gui:latest .
 
+# get shell in docker container
 docker-shell application="xcalc":
   #!/usr/bin/env bash
   set -xeufo pipefail  
@@ -19,6 +21,7 @@ docker-shell application="xcalc":
            --entrypoint bash \
            {{ application }}_gui:latest
 
+# run docker image
 docker-run application="xcalc":
   #!/usr/bin/env bash
   set -xeufo pipefail  
