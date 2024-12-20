@@ -33,3 +33,17 @@ cuda:
   docker build ${NO_CACHE} --progress=plain -f Dockerfile.nvcc -t a2_gpu_nvcc .
   docker run ${GPU_SHARE} a2_gpu_nvcc
 
+compose-up:
+  docker compose up 
+ 
+compose-down:
+  docker compose down
+
+compose-ps:
+  docker compose ps 
+
+compose-shell service='sanity':
+  docker compose exec -it {{ service }} bash
+
+compose-logs service='sanity':
+  docker compose logs {{ service }} 
