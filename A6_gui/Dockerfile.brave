@@ -1,0 +1,49 @@
+# syntax=docker/dockerfile:1.11
+FROM ubuntu:24.04 AS base
+
+###########################################
+## Build and test
+###########################################
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    --mount=type=tmpfs,target=/tmp \ 
+    apt-get update \
+    && apt-get install -fy  \ 
+        curl
+
+RUN mkdir -p --mode=0755 /usr/share/keyrings
+RUN curl -o /usr/share/keyrings/brave-browser-archive-keyring.gpg "https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg"
+RUN chmod a+r /usr/share/keyrings/brave-browser-archive-keyring.gpg
+RUN echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main" > /etc/apt/sources.list.d/brave-browser-release.list 
+RUN apt-get update
+RUN apt-get install -y brave-browser
+
+COPY --chmod=755 <<EOF /bin/runapp.sh
+#!/usr/bin/env bash
+
+echo "************************"
+echo "uname:$(uname -a)"
+
+echo "whoami:$(whoami)"
+echo "pwd:$(pwd)"
+echo "id:$(id)"
+echo "groups:$(groups)"
+
+getent passwd
+getent group
+
+echo "************************"
+
+brave-browser --no-sandbox
+
+EOF
+
+# ubuntu has a default user now.
+USER ubuntu
+RUN echo "whoami:$(whoami) - pwd:$(pwd)"
+
+CMD ["/bin/runapp.sh"]
+
