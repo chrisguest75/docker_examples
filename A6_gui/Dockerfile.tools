@@ -15,7 +15,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
         x11-apps
 #&& apt-get clean \
 #&& rm -rf /var/lib/apt/lists/*
-
+ENV XAPP=xcalc
 COPY --chmod=755 <<EOF /bin/runapp.sh
 #!/usr/bin/env bash
 
@@ -32,7 +32,7 @@ getent group
 
 echo "************************"
 
-xcalc
+\${XAPP}
 
 EOF
 

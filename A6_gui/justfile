@@ -4,6 +4,11 @@ set dotenv-load := true
 default:
   @just -f example.justfile --list
 
+nix:
+  #!/usr/bin/env bash
+  set -xeufo pipefail  
+  nix-shell -p xorg.xhost --command zsh
+
 # build docker image 
 docker-build application="xcalc": 
   #!/usr/bin/env bash
@@ -22,11 +27,7 @@ docker-shell application="xcalc":
            {{ application }}_gui:latest
 
 # run docker image
-docker-run application="xcalc": (docker-build "xcalc") 
+docker-run application="xcalc" override="xcalc": (docker-build application) 
   #!/usr/bin/env bash
   set -xeufo pipefail  
-  docker run -e XDG_RUNTIME_DIR=/tmp \
-           -e WAYLAND_DISPLAY=$WAYLAND_DISPLAY \
-           -v $XDG_RUNTIME_DIR/$WAYLAND_DISPLAY:/tmp/$WAYLAND_DISPLAY  \
-           --user=$(id -u):$(id -g) \
-           {{ application }}_gui:latest
+  xhost +local:users && docker run -ti -e XAPP={{ override }} -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix {{ application }}_gui:latest
