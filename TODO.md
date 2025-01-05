@@ -1,5 +1,6 @@
 # 📝 TODO
 
+1. pipewire??
 1. cgroups and namespaces
 1. Start a cgroup manually using an unpacked container.
 1. Can I use a cgroup command inside a container?

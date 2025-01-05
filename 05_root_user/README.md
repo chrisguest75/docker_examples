@@ -9,6 +9,10 @@ TODO:
 
 Refer to [../13_users_and_permissions/README.md](../13_users_and_permissions/README.md) for more examples.  
 
+NOTES:
+
+* It looks as though the ubuntu containers now come with a preinstalled ubuntu user id:1000.  
+
 ## 📋 Script to follow
 
 Demonstrate internal users and privilege  
@@ -17,23 +21,23 @@ Demonstrate internal users and privilege
 
 ```sh
 # build root
-docker build --no-cache -t roottest -f root.Dockerfile .
+just docker-build root
 # build myuser
-docker build --no-cache -t usertest -f user.Dockerfile .
+just docker-build user
 ```
 
 ### Run as privileged (root)
 
 ```sh
 # roottest
-docker run -it --rm --privileged --entrypoint "/bin/bash" --name roottest roottest
+docker run -it --rm --privileged --entrypoint "/bin/bash" --name 05_root 05_root
 
 # in container shell
 whoami
 cat /proc/timer_list
 
 # from another terminal
-docker inspect $(docker ps --filter name=roottest -q)
+docker inspect $(docker ps --filter name=05_root -q)
 
 # "MaskedPaths": null,
 # "ReadonlyPaths": null
@@ -43,7 +47,7 @@ docker inspect $(docker ps --filter name=roottest -q)
 
 ```sh
 # usertest
-docker run -it --rm --privileged --entrypoint "/bin/bash" --name usertest usertest
+docker run -it --rm --privileged --entrypoint "/bin/bash" --name 05_user 05_user
 
 # in container shell
 whoami
@@ -51,7 +55,7 @@ whoami
 cat /proc/timer_list
 
 # from another terminal
-docker inspect $(docker ps --filter name=usertest -q)
+docker inspect $(docker ps --filter name=05_user -q)
 
 # "MaskedPaths": null,
 # "ReadonlyPaths": null
@@ -61,7 +65,7 @@ docker inspect $(docker ps --filter name=usertest -q)
 
 ```sh
 # roottest
-docker run -it --rm --entrypoint "/bin/bash" --name roottest roottest
+docker run -it --rm --entrypoint "/bin/bash" --name 05_root 05_root
 
 # in container shell
 whoami
@@ -69,7 +73,7 @@ whoami
 cat /proc/timer_list
 
 # from another terminal
-docker inspect $(docker ps --filter name=roottest -q)
+docker inspect $(docker ps --filter name=05_root -q)
 
 # should see in output
 "MaskedPaths": [
@@ -97,7 +101,7 @@ docker inspect $(docker ps --filter name=roottest -q)
 
 ```sh
 # usertest
-docker run -it --rm --entrypoint "/bin/bash" --name usertest usertest
+docker run -it --rm --entrypoint "/bin/bash" --name 05_user 05_user
 
 # in container shell
 whoami
@@ -105,7 +109,7 @@ whoami
 cat /proc/timer_list
 
 # from another terminal
-docker inspect $(docker ps --filter name=usertest -q)
+docker inspect $(docker ps --filter name=05_user -q)
 
 ```
 
@@ -124,7 +128,7 @@ docker run -it --rm --pid=container:$(docker ps --filter name=mynginx -q) --entr
 cat /proc/1/root/etc/nginx/nginx.conf
 
 # open unprivileged root user sidecar (allows us to edit files)
-docker run -it --rm --pid=container:$(docker ps --filter name=mynginx -q) --entrypoint "/bin/bash" roottest
+docker run -it --rm --pid=container:$(docker ps --filter name=mynginx -q) --entrypoint "/bin/bash" 05_root
 
 # Change the nginx static file
 cat /proc/1/root/etc/nginx/nginx.conf
@@ -142,7 +146,7 @@ open http://localhost:8080/
 
 ```sh
 # open privileged sidecar
-docker run -it --rm --privileged --entrypoint "/bin/bash" roottest
+docker run -it --rm --privileged --entrypoint "/bin/bash" 05_root
 
 # try and nsenter into the host
 # try and list all the containers from inside.

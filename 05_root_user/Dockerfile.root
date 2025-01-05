@@ -1,0 +1,24 @@
+# syntax=docker/dockerfile:1.11
+FROM ubuntu:24.04
+RUN uname -a 
+
+# NOTE: Escape the \$ otherwise they are rendered at buildtime
+COPY --chmod=755 <<EOF /bin/test.sh
+#!/usr/bin/env bash
+
+echo "************************"
+echo "uname:$(uname -a)"
+
+echo "whoami:$(whoami)"
+echo "pwd:$(pwd)"
+echo "id:$(id)"
+echo "groups:$(groups)"
+
+getent passwd
+getent group
+
+echo "************************"
+
+EOF
+
+CMD ["/bin/test.sh"]

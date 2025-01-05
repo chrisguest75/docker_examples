@@ -1,0 +1,30 @@
+FROM ubuntu:24.04
+
+# NOTE: Escape the \$ otherwise they are rendered at buildtime
+COPY --chmod=755 <<EOF /bin/test.sh
+#!/usr/bin/env bash
+
+echo "************************"
+echo "uname:$(uname -a)"
+
+echo "whoami:$(whoami)"
+echo "pwd:$(pwd)"
+echo "id:$(id)"
+echo "groups:$(groups)"
+
+getent passwd
+getent group
+
+echo "************************"
+
+EOF
+
+ARG USERID=1001
+ARG GROUPID=1001
+RUN groupadd --system --gid $GROUPID myuser
+RUN useradd --system --uid $USERID --gid $GROUPID myuser
+
+USER myuser
+
+CMD ["/bin/test.sh"]
+
