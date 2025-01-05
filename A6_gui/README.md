@@ -4,6 +4,7 @@ Demonstrate how to run X11 applications in a docker container.
 
 TODO:
 
+* xcalc not working as it cannot find the display.
 * Browsers
 * Get x11 and wayland working
 * VNC

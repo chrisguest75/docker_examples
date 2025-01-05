@@ -16,4 +16,35 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
 #&& apt-get clean \
 #&& rm -rf /var/lib/apt/lists/*
 
-CMD ["xcalc"]
+#ARG USERID=1001
+#ARG GROUPID=1001
+#RUN groupadd --system --gid $GROUPID mynewuser
+#RUN useradd --system --uid $USERID --gid $GROUPID mynewuser
+
+#### NEW USER 
+#USER mynewuser
+
+COPY --chmod=755 <<EOF /bin/runapp.sh
+#!/usr/bin/env bash
+
+echo "************************"
+echo "uname:$(uname -a)"
+
+echo "whoami:$(whoami)"
+echo "pwd:$(pwd)"
+echo "id:$(id)"
+echo "groups:$(groups)"
+
+getent passwd
+getent group
+
+echo "************************"
+
+xcalc
+
+EOF
+
+USER ubuntu
+RUN echo "whoami:$(whoami) - pwd:$(pwd)"
+
+CMD ["/bin/runapp.sh"]
