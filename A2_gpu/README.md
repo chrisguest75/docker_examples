@@ -4,6 +4,10 @@ Demonstrates some techniques for working with GPUs with Docker.
 
 Ref: [shell_examples/81_gpu](https://github.com/chrisguest75/shell_examples/tree/master/81_gpu)  
 
+NOTES:
+
+- Docker is shifting to CDI for sharing in devices like GPU. Looks like this could extend to USB and FPGA in the future.  
+
 ## Contents
 
 - [GPU](#gpu)
@@ -29,6 +33,9 @@ When run on a different system it shows the kernel version will be different. Sh
 Use `just sanity` or the following.  
 
 ```sh
+# You may see this if no gpu is shared in.  
+# 
+# WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
 docker pull nvidia/cuda:12.5.0-runtime-ubuntu22.04
 
 docker run --gpus all docker.io/nvidia/cuda:12.5.0-runtime-ubuntu22.04 
@@ -95,3 +102,6 @@ docker run -it --gpus all --entrypoint /bin/bash a2_gpu_nvcc
 - CUDA on WSL User Guide [here](https://docs.nvidia.com/cuda/wsl-user-guide/index.html)
 - NVIDIA CUDA Installation Guide for Linux [here](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#)
 - nvidia container toolkit does not work on Docker but works in Podman [here](https://github.com/NixOS/nixpkgs/issues/337873)
+- Compose Spec Site [here](https://www.compose-spec.io/)
+- Using docker-compose and cdi to passthrough gpu to container via podman [here](https://github.com/NVIDIA/nvidia-container-toolkit/issues/126)
+- docker-compose: Passing gpu with driver: cdi is not supported [here](https://github.com/containers/podman/issues/19338)

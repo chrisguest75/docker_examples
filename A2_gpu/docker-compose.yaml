@@ -1,0 +1,39 @@
+services:
+    sanity:
+        image: "nvidia/cuda:12.5.0-runtime-ubuntu22.04"
+        deploy:
+            resources:
+                reservations:
+                    devices:
+                        - driver: cdi
+                          capabilities: [gpu, utility, compute]
+                          device_ids:
+                                - nvidia.com/gpu=all
+
+    details:
+        build:
+            context: .
+            dockerfile: ./Dockerfile.details
+        deploy:
+            resources:
+                reservations:
+                    devices:
+                        - driver: cdi
+                          capabilities: [gpu, utility, compute]
+                          device_ids:
+                                - nvidia.com/gpu=all
+    cuda:
+        build:
+            context: .
+            dockerfile: ./Dockerfile.nvcc
+        deploy:
+            resources:
+                reservations:
+                    devices:
+                        - driver: cdi
+                          capabilities: [gpu, utility, compute]
+                          device_ids:
+                                - nvidia.com/gpu=all
+
+
+    

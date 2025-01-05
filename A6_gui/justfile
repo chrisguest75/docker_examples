@@ -1,0 +1,33 @@
+set dotenv-load := true
+
+# default lists actions
+default:
+  @just -f example.justfile --list
+
+nix:
+  #!/usr/bin/env bash
+  set -xeufo pipefail  
+  nix-shell -p xorg.xhost --command zsh
+
+# build docker image 
+docker-build application="xcalc": 
+  #!/usr/bin/env bash
+  set -xeufo pipefail  
+  docker build --progress=plain -f Dockerfile.{{ application }} -t {{ application }}_gui:latest .
+
+# get shell in docker container
+docker-shell application="xcalc":
+  #!/usr/bin/env bash
+  set -xeufo pipefail  
+  docker run -it -e XDG_RUNTIME_DIR=/tmp \
+           -e WAYLAND_DISPLAY=$WAYLAND_DISPLAY \
+           -v $XDG_RUNTIME_DIR/$WAYLAND_DISPLAY:/tmp/$WAYLAND_DISPLAY  \
+           --user=$(id -u):$(id -g) \
+           --entrypoint bash \
+           {{ application }}_gui:latest
+
+# run docker image
+docker-run application="xcalc" override="xcalc": (docker-build application) 
+  #!/usr/bin/env bash
+  set -xeufo pipefail  
+  xhost +local:users && docker run -ti -e XAPP={{ override }} -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix {{ application }}_gui:latest

@@ -1,0 +1,43 @@
+# syntax=docker/dockerfile:1.11
+FROM ubuntu:24.04 AS base
+
+###########################################
+## Build and test
+###########################################
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    --mount=type=tmpfs,target=/tmp \ 
+    apt-get update \
+    && apt-get install -fy  \ 
+        x11-apps
+#&& apt-get clean \
+#&& rm -rf /var/lib/apt/lists/*
+
+COPY --chmod=755 <<EOF /bin/runapp.sh
+#!/usr/bin/env bash
+
+echo "************************"
+echo "uname:$(uname -a)"
+
+echo "whoami:$(whoami)"
+echo "pwd:$(pwd)"
+echo "id:$(id)"
+echo "groups:$(groups)"
+
+getent passwd
+getent group
+
+echo "************************"
+
+xcalc
+
+EOF
+
+# ubuntu has a default user now.
+USER ubuntu
+RUN echo "whoami:$(whoami) - pwd:$(pwd)"
+
+CMD ["/bin/runapp.sh"]
