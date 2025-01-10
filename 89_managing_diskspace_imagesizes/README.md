@@ -19,6 +19,7 @@ docker system df
 # follow a link
 readlink `which docker`
 
+# macos
 ls -la ~/Library/Containers/com.docker.docker/Data/vms/0/data
 ```
 

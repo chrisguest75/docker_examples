@@ -1,0 +1,45 @@
+set dotenv-load := true
+
+# default lists actions
+default:
+  @just -f example.justfile --list
+
+docker-dive image="$IMAGE_NAME": 
+  @echo "******************************"
+  @echo "** Dive CI"
+  @echo "******************************"
+  dive {{ image }} --ci || true
+
+docker-details image="$IMAGE_NAME": 
+  #!/usr/bin/env bash
+  #set -eufo pipefail  
+  echo "******************************"
+  echo "** Label {{ image }}"
+  echo "******************************"
+  docker inspect -f '{{{{.Config.Labels}}}}' {{ image }}
+  echo "******************************"
+  echo "** Size {{ image }}"
+  echo "******************************"
+  echo "Uncompressed Size: $(container-diff analyze --json daemon://{{ image }} | jq '.[0].Analysis[0].Size' | numfmt --to=si)"
+
+  echo "******************************"
+  echo "** Size Manifest {{ image }}"
+  echo "******************************"
+  dockersize() { docker manifest inspect -v "$1" | jq -c 'if type == "array" then .[] else . end' |  jq -r '[ ( .Descriptor.platform | [ .os, .architecture, .variant, ."os.version" ] | del(..|nulls) | join("/") ), ( [ ( .OCIManifest // .SchemaV2Manifest ).layers[].size ] | add ) ] | join(" ")' | numfmt --to iec --format '%.2f' --field 2 | sort | column -t ; } 
+  dockersize {{ image }}
+
+# save image locally to get tarball size
+docker-save image="$IMAGE_NAME" target="./image.tar":
+  #!/usr/bin/env bash
+  set -eufo pipefail  
+  mkdir -p ./out
+  docker save {{ image }} > ./out/{{ target }}
+  ls -la ./out/{{ target }}
+
+# layer by layer impace
+docker-history image="$IMAGE_NAME":
+  #!/usr/bin/env bash
+  set -xeufo pipefail  
+  docker history {{ image }} --no-trunc
+   
+
