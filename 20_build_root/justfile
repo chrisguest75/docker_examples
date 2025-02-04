@@ -1,0 +1,32 @@
+set dotenv-load := true
+
+export DEFAULT_APPLICATION:="root"
+
+# default lists actions
+default:
+  @just -f example.justfile --list
+
+# build docker image 
+docker-build application="${DEFAULT_APPLICATION}": 
+  #!/usr/bin/env bash
+  set -xeufo pipefail  
+  docker build --target base --progress=plain -f Dockerfile.{{ application }} -t {{ application }}_build:latest .
+
+# get shell in docker container
+docker-shell application="${DEFAULT_APPLICATION}": (docker-build application)
+  #!/usr/bin/env bash
+  set -xeufo pipefail  
+  docker run -it --entrypoint bash {{ application }}_build:latest
+
+# run docker image
+docker-run application="${DEFAULT_APPLICATION}": (docker-build application)
+  #!/usr/bin/env bash
+  set -xeufo pipefail  
+  docker run -it {{ application }}_build:latest
+
+docker-extract id="":
+  #!/usr/bin/env bash
+  set -xeufo pipefail  
+  docker cp {{ id }}:/scratch/buildroot-2024.11.1/.config .
+  docker cp {{ id }}:/scratch/buildroot-2024.11.1/output/images/rootfs.tar .
+  

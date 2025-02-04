@@ -1,0 +1,53 @@
+# syntax=docker/dockerfile:1.11
+FROM ubuntu:24.04 AS base
+
+###########################################
+## Build and test
+###########################################
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    --mount=type=tmpfs,target=/tmp \ 
+    apt-get update \
+    && apt-get install -fy  \ 
+        which \
+        sed \
+        make \
+        binutils \
+        build-essential \
+        diffutils \
+        gcc \
+        g++ \
+        bash \
+        patch \
+        gzip \
+        bzip2 \
+        perl \
+        tar \
+        cpio \
+        unzip \
+        rsync \
+        file \
+        bc \
+        findutils \
+        curl \ 
+        wget \
+        python3 \
+        libncurses5-dev
+
+WORKDIR /scratch
+
+RUN wget https://buildroot.org/downloads/buildroot-2024.11.1.tar.gz
+RUN tar -xvf buildroot-2024.11.1.tar.gz
+
+WORKDIR /scratch/buildroot-2024.11.1
+
+FROM base AS compile
+
+WORKDIR /scratch/buildroot-2024.11.1
+
+COPY .config .
+RUN make
+
