@@ -9,3 +9,7 @@ nix:
   set -eufo pipefail
   nix develop --command zsh
 
+distrobox-create:
+  #!/usr/bin/env bash
+  set -eufo pipefail
+  distrobox create --name archlinux --init --image archlinux:latest
