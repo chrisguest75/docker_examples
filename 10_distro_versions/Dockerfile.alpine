@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1.4
-FROM alpine:3.20.3 AS BASE
+FROM alpine:3.21.3 AS BASE
 
 RUN apk -v --no-cache --update add bash curl git nano
 
