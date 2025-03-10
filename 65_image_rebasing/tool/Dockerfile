@@ -1,0 +1,43 @@
+# syntax=docker/dockerfile:1.4
+ARG BUILDIMAGE=node:latest
+ARG PRODUCTIONIMAGE=node:latest
+
+FROM $BUILDIMAGE AS BUILDER
+LABEL dockerfile.baseimage="$IMAGE" dockerfile.description="tool" dockerfile.stage="BUILDER"
+
+WORKDIR /scratch
+COPY --link=false --chmod=755 <<EOF /usr/local/bin/node_capture_out.sh
+#!/usr/bin/env bash
+/usr/local/bin/node \$1 > \$2 
+EOF
+
+COPY --link=false package.json package-lock.json ./
+# https://docs.npmjs.com/cli/v7/commands/npm-ci
+RUN npm ci
+
+COPY tsconfig.json .prettierrc jest.config.js .eslintrc ./
+COPY src ./src
+COPY tests ./tests
+#RUN npm run lint
+RUN npm run test:coverage
+RUN npm run build
+RUN npm audit
+RUN npm ci --only=production && npm cache clean --force
+RUN /usr/local/bin/node_capture_out.sh ./build/src/index.js ./build/out.txt
+
+FROM $PRODUCTIONIMAGE AS PRODUCTION
+ARG DESCRIPTION="Test rebasing"
+LABEL dockerfile.baseimage="$IMAGE" dockerfile.description="" dockerfile.stage="PRODUCTION"
+
+COPY --link=false --chmod=755 <<EOF /usr/local/bin/node_cat.sh
+#!/usr/bin/env bash
+cat \$1
+/usr/local/bin/node \$2
+EOF
+
+WORKDIR /work
+
+COPY --from=BUILDER --link=false /scratch/node_modules ./node_modules
+COPY --from=BUILDER --link=false /scratch/build ./
+
+CMD ["/usr/local/bin/node_cat.sh", "/work/out.txt", "/work/src/index.js"]
