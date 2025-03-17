@@ -8,8 +8,10 @@ QEMU example [here](https://github.com/chrisguest75/sysadmin_examples/tree/maste
 
 * buildx builders
 * build for graviton?
+* arm not running on nixos
+* build multi image manifest is not working on default install
 
-Supported architectures  
+## Supported architectures  
 
 ```sh
 # list the supported platforms
@@ -31,6 +33,21 @@ docker images -q | xargs -L 1 docker inspect | jq -c '.[] | [.Id, .Architecture,
 ```
 
 ## 🏠 Build
+
+### Just
+
+```sh
+just bake-build
+
+# build multi
+just bake-build ubuntu-image-multi
+
+# run
+just docker-run-amd64
+just docker-run-arm64
+```
+
+### CLI
 
 ```sh
 # build using docker defaults
@@ -56,3 +73,4 @@ docker run -it --rm ubuntu_allarch
 
 * Docker Buildx [here](https://docs.docker.com/buildx/working-with-buildx/)
 * Building Multi-Arch Images for Arm and x86 with Docker Desktop [here](https://www.docker.com/blog/multi-arch-images/)
+* https://medium.com/@life-is-short-so-enjoy-it/docker-how-to-build-and-push-multi-arch-docker-images-to-docker-hub-64dea4931df9

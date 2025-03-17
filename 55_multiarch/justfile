@@ -1,0 +1,26 @@
+set dotenv-load := true
+
+# default lists actions
+default:
+  @just -f example.justfile --list
+
+nix:
+  #!/usr/bin/env bash
+  set -eufo pipefail
+  nix develop --command zsh
+
+bake-build filter="":
+  #!/usr/bin/env bash
+  set -eufo pipefail
+  mkdir -p out || true
+  docker buildx bake -f ./docker-bake.hcl --metadata-file ./out/bake-metadata.json {{ filter }}
+
+docker-run-amd64 image="55_multiarch:amd64":
+  #!/usr/bin/env bash
+  set -eufo pipefail
+  docker run -it --rm {{ image }}
+
+docker-run-arm64 image="55_multiarch:arm64":
+  #!/usr/bin/env bash
+  set -eufo pipefail
+  docker run -it --platform linux/arm64 --rm {{ image }}
