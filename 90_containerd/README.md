@@ -7,20 +7,15 @@ TODO:
 * firecracker can be containerd plugin
 * dive does not work with containerd.  Why is this?
 * Get Estargz compression working on linux.
-https://www.usenix.org/system/files/conference/fast16/fast16-papers-harter.pdf 
-https://link.medium.com/Jl8qGEQPGyb 
-https://github.com/containerd/stargz-snapshotter/issues/258 
+* https://www.usenix.org/system/files/conference/fast16/fast16-papers-harter.pdf 
+* https://link.medium.com/Jl8qGEQPGyb 
+*https://github.com/containerd/stargz-snapshotter/issues/258 
 * https://github.com/containerd/stargz-snapshotter/blob/main/docs/ctr-remote.md 
 * https://github.com/containerd/containerd/blob/main/docs/rootless.md
-
-
-https://github.com/containerd/stargz-snapshotter/blob/main/docs/INSTALL.md
-Checked vendor/modules.txt to see what version was included
-https://github.com/moby/moby/tree/219f21bf07502b447095649b5a2764661737f164
-
-https://github.com/containerd/stargz-snapshotter/blob/main/docs/overview.md
-
-https://manpages.ubuntu.com/manpages/jammy/man8/mount.fuse.8.html
+* https://github.com/containerd/stargz-snapshotter/blob/main/docs/INSTALL.md
+* Checked vendor/modules.txt to see what version was included https://github.com/moby/moby/tree/219f21bf07502b447095649b5a2764661737f164
+* https://github.com/containerd/stargz-snapshotter/blob/main/docs/overview.md
+* https://manpages.ubuntu.com/manpages/jammy/man8/mount.fuse.8.html
 
 ## Install Docker Desktop
 
@@ -224,16 +219,8 @@ brew install nerdctl
 * runc is a CLI tool for spawning and running containers on Linux according to the OCI specification. [here](https://github.com/opencontainers/runc)  
 * Why and How to Use containerd From Command Line [here](https://iximiuz.com/en/posts/containerd-command-line-clients/)
 * Extending Docker’s Integration with containerd [here](https://www.docker.com/blog/extending-docker-integration-with-containerd/)
-
-https://docs.docker.com/engine/reference/commandline/dockerd/
-
-https://medium.com/nttlabs/startup-containers-in-lightning-speed-with-lazy-image-distribution-on-containerd-243d94522361
-
-https://www.tutorialworks.com/difference-docker-containerd-runc-crio-oci/?utm_content=cmp-true
-
-https://docs.docker.com/engine/install/linux-postinstall/
-
-
-https://github.com/containerd/nerdctl/blob/main/docs/stargz.md
-
-
+* https://docs.docker.com/engine/reference/commandline/dockerd/
+* https://medium.com/nttlabs/startup-containers-in-lightning-speed-with-lazy-image-distribution-on-containerd-243d94522361
+* https://www.tutorialworks.com/difference-docker-containerd-runc-crio-oci/?utm_content=cmp-true
+* https://docs.docker.com/engine/install/linux-postinstall/
+* https://github.com/containerd/nerdctl/blob/main/docs/stargz.md
