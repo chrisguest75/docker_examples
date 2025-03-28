@@ -39,12 +39,15 @@ docker images -q | xargs -L 1 docker inspect | jq -c '.[] | [.Id, .Architecture,
 ```sh
 just bake-build
 
-# build multi
-just --set DOCKER_IMAGE_NAME imagenametest2 --set DOCKER_IMAGE_TAG latest2 bake-build ubuntu-image-multi
-
 # run
 just docker-run-amd64
 just docker-run-arm64
+
+
+# create an ecr to test multi-arch
+just --set AWS_PROFILE myprofile --set AWS_ACCOUNT 0000000000000 create-ecr
+
+just --set DOCKER_IMAGE_NAME 0000000000000.dkr.ecr.eu-west-2.amazonaws.com/55_multiarch --set DOCKER_IMAGE_TAG latest bake-build-push ubuntu-image-multi
 ```
 
 ### CLI

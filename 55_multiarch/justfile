@@ -1,5 +1,9 @@
 set dotenv-load := true
 
+export AWS_PROFILE:=""
+export AWS_REGION:="eu-west-2"
+export AWS_ACCOUNT:=""
+
 export DOCKER_IMAGE_NAME:="55_multiarch"
 export DOCKER_IMAGE_TAG:="latest"
 
@@ -7,10 +11,12 @@ export DOCKER_IMAGE_TAG:="latest"
 default:
   @just -f example.justfile --list
 
+
 nix:
   #!/usr/bin/env bash
   set -eufo pipefail
   nix develop --command zsh
+
 
 bake-build filter="":
   #!/usr/bin/env bash
@@ -19,14 +25,46 @@ bake-build filter="":
   export IMAGE_NAME=${DOCKER_IMAGE_NAME}
   export IMAGE_TAG=${DOCKER_IMAGE_TAG}
   docker buildx bake -f ./docker-bake.hcl --metadata-file ./out/bake-metadata.json {{ filter }}
-  #docker buildx bake -f ./docker-bake.hcl {{ filter }}
+
+
+bake-build-push filter="":
+  #!/usr/bin/env bash
+  set -xeufo pipefail
+  mkdir -p out || true
+  export IMAGE_NAME=${DOCKER_IMAGE_NAME}
+  export IMAGE_TAG=${DOCKER_IMAGE_TAG}
+  docker buildx bake -f ./docker-bake.hcl --metadata-file ./out/bake-metadata.json --push {{ filter }}
+
 
 docker-run-amd64 image="55_multiarch_amd64:latest":
   #!/usr/bin/env bash
   set -eufo pipefail
   docker run -it --rm {{ image }}
 
+
 docker-run-arm64 image="55_multiarch_arm64:latest":
   #!/usr/bin/env bash
   set -eufo pipefail
   docker run -it --platform linux/arm64 --rm {{ image }}
+
+
+create-ecr:
+  #!/usr/bin/env bash
+  set -eufo pipefail
+  if [ -z "${AWS_PROFILE}" ]; then
+    echo "AWS_PROFILE is not set"
+    exit 1
+  fi
+  export AWS_REGION=${AWS_REGION}
+  export AWS_ACCOUNT=${AWS_ACCOUNT}
+ 
+  aws --no-cli-pager ecr describe-registry
+  aws --no-cli-pager ecr describe-repositories  | jq .
+  aws --no-cli-pager ecr describe-images --repository-name "${DOCKER_IMAGE_NAME}"
+
+  export REPOSITORY_URL=$(aws --no-cli-pager ecr create-repository --repository-name "${DOCKER_IMAGE_NAME}"  | jq .repository.repositoryUri)
+  echo $REPOSITORY_URL
+
+  aws ecr get-login-password | docker login --username AWS --password-stdin "${AWS_ACCOUNT}.dkr.ecr.${AWS_REGION}.amazonaws.com"
+
+
