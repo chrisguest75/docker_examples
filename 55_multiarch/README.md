@@ -47,7 +47,11 @@ just docker-run-arm64
 # create an ecr to test multi-arch
 just --set AWS_PROFILE myprofile --set AWS_ACCOUNT 0000000000000 create-ecr
 
+# build and push 
 just --set DOCKER_IMAGE_NAME 0000000000000.dkr.ecr.eu-west-2.amazonaws.com/55_multiarch --set DOCKER_IMAGE_TAG latest bake-build-push ubuntu-image-multi
+
+# show manifest images 
+docker images --tree
 ```
 
 ### CLI
