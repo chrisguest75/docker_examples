@@ -1,9 +1,9 @@
 
-variable "TAG" {
-  default = "latest"
+variable "IMAGE_NAME" {
+  default = "55_multiarch"
 }
-variable "SCRATCH" {
-  default = "scratch"
+variable "IMAGE_TAG" {
+  default = "latest"
 }
 
 #***********************************************
@@ -15,7 +15,7 @@ target "ubuntu-image-amd64" {
   context = "."
   platforms = ["linux/amd64"]
   dockerfile = "Dockerfile.ubuntu"
-  tags = ["55_multiarch:amd64"]
+  tags = ["${IMAGE_NAME}_amd64:${IMAGE_TAG}"]
   output = ["type=docker"]
 }
 
@@ -24,7 +24,7 @@ target "ubuntu-image-arm64" {
   context = "."
   platforms = ["linux/arm64"]
   dockerfile = "Dockerfile.ubuntu"
-  tags = ["55_multiarch:arm64"]
+  tags = ["${IMAGE_NAME}_arm64:${IMAGE_TAG}"]
   output = ["type=docker"]
 }
 
@@ -33,8 +33,8 @@ target "ubuntu-image-multi" {
   context = "."
   platforms = ["linux/amd64", "linux/arm64"]
   dockerfile = "Dockerfile.ubuntu"
-  tags = ["55_multiarch:latest"]
-  output = ["type=docker"]
+  tags = ["${IMAGE_NAME}:${IMAGE_TAG}"]
+  output = []
 }
 
 group "default" {

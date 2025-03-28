@@ -1,5 +1,8 @@
 set dotenv-load := true
 
+export DOCKER_IMAGE_NAME:="55_multiarch"
+export DOCKER_IMAGE_TAG:="latest"
+
 # default lists actions
 default:
   @just -f example.justfile --list
@@ -11,16 +14,19 @@ nix:
 
 bake-build filter="":
   #!/usr/bin/env bash
-  set -eufo pipefail
+  set -xeufo pipefail
   mkdir -p out || true
+  export IMAGE_NAME=${DOCKER_IMAGE_NAME}
+  export IMAGE_TAG=${DOCKER_IMAGE_TAG}
   docker buildx bake -f ./docker-bake.hcl --metadata-file ./out/bake-metadata.json {{ filter }}
+  #docker buildx bake -f ./docker-bake.hcl {{ filter }}
 
-docker-run-amd64 image="55_multiarch:amd64":
+docker-run-amd64 image="55_multiarch_amd64:latest":
   #!/usr/bin/env bash
   set -eufo pipefail
   docker run -it --rm {{ image }}
 
-docker-run-arm64 image="55_multiarch:arm64":
+docker-run-arm64 image="55_multiarch_arm64:latest":
   #!/usr/bin/env bash
   set -eufo pipefail
   docker run -it --platform linux/arm64 --rm {{ image }}

@@ -7,9 +7,9 @@ QEMU example [here](https://github.com/chrisguest75/sysadmin_examples/tree/maste
 📝 TODO:
 
 * buildx builders
-* build for graviton?
 * arm not running on nixos
 * build multi image manifest is not working on default install
+* push image to ecr 
 
 ## Supported architectures  
 
@@ -40,7 +40,7 @@ docker images -q | xargs -L 1 docker inspect | jq -c '.[] | [.Id, .Architecture,
 just bake-build
 
 # build multi
-just bake-build ubuntu-image-multi
+just --set DOCKER_IMAGE_NAME imagenametest2 --set DOCKER_IMAGE_TAG latest2 bake-build ubuntu-image-multi
 
 # run
 just docker-run-amd64

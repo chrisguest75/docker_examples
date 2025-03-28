@@ -1,4 +1,4 @@
-FROM ubuntu:20.04 as BASE
+FROM ubuntu:20.04 AS base
 
 WORKDIR /scratch
 COPY ./show_architecture.sh ./show_architecture.sh
