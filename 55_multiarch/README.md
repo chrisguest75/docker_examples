@@ -6,10 +6,10 @@ QEMU example [here](https://github.com/chrisguest75/sysadmin_examples/tree/maste
 
 📝 TODO:
 
+
+* ARM not running on nixos
 * buildx builders
-* arm not running on nixos
 * build multi image manifest is not working on default install
-* push image to ecr 
 
 ## Supported architectures  
 
