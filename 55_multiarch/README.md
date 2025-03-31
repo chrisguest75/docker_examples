@@ -32,7 +32,9 @@ docker pull --platform=linux/amd64 ubuntu:20.04
 docker images -q | xargs -L 1 docker inspect | jq -c '.[] | [.Id, .Architecture, .RepoTags[]]'
 ```
 
-## 🏠 Build
+## 🏠 Build and Run
+
+NOTE: If on ubuntu then install `sudo apt install qemu-user-static`.  Once installed running ARM images just works.  
 
 ### Just
 
@@ -42,7 +44,6 @@ just bake-build
 # run
 just docker-run-amd64
 just docker-run-arm64
-
 
 # create an ecr to test multi-arch
 just --set AWS_PROFILE myprofile --set AWS_ACCOUNT 0000000000000 create-ecr
@@ -82,3 +83,4 @@ docker run -it --rm ubuntu_allarch
 * Building Multi-Arch Images for Arm and x86 with Docker Desktop [here](https://www.docker.com/blog/multi-arch-images/)
 * https://medium.com/@life-is-short-so-enjoy-it/docker-how-to-build-and-push-multi-arch-docker-images-to-docker-hub-64dea4931df9
 * https://medium.com/@john.shaw.zen/docker-buildx-bake-pass-in-secret-e8ccd1e43a9d
+* https://dbhi.github.io/qus/intro.html
