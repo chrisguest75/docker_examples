@@ -2,7 +2,14 @@
 
 Demonstrate how to use `bake` to build multiple images.  
 
-REF: Nix 09_distroless [here](https://github.com/chrisguest75/nix-examples/blob/master/09_distroless/README.md)  
+* REF: Nix 09_distroless [here](https://github.com/chrisguest75/nix-examples/blob/master/09_distroless/README.md)  
+* REF: 55_multiarch [here](../55_multiarch/README.md)
+
+TODO:
+
+* buildsecrets
+* buildargs
+* platform
 
 ## Reason
 

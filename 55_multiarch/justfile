@@ -24,7 +24,10 @@ bake-build filter="":
   mkdir -p out || true
   export IMAGE_NAME=${DOCKER_IMAGE_NAME}
   export IMAGE_TAG=${DOCKER_IMAGE_TAG}
-  docker buildx bake -f ./docker-bake.hcl --no-cache --metadata-file ./out/bake-metadata.json {{ filter }}
+  mkdir -p secrets || true
+  echo "this_is_a_file_secret" > ./secrets/secret_token.txt
+  export SECRET_TOKEN="this_is_a_secret"
+  docker buildx bake --progress=plain -f ./docker-bake.hcl --no-cache --metadata-file ./out/bake-metadata.json {{ filter }}
 
 
 bake-build-push filter="":
@@ -33,7 +36,10 @@ bake-build-push filter="":
   mkdir -p out || true
   export IMAGE_NAME=${DOCKER_IMAGE_NAME}
   export IMAGE_TAG=${DOCKER_IMAGE_TAG}
-  docker buildx bake -f ./docker-bake.hcl --metadata-file ./out/bake-metadata.json --push {{ filter }}
+  mkdir -p secrets || true
+  echo "this_is_a_file_secret" > ./secrets/secret_token.txt
+  export SECRET_TOKEN="this_is_a_secret"
+  docker buildx bake --progress=plain -f ./docker-bake.hcl --metadata-file ./out/bake-metadata.json --push {{ filter }}
 
 
 docker-run-amd64 image="55_multiarch_amd64:latest":

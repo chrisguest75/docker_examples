@@ -1,6 +1,36 @@
+# syntax=docker/dockerfile:1.11
 FROM ubuntu:20.04 AS base
 
+ARG VERSION=""
+ARG DEBIAN_FRONTEND=noninteractive
+
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+  --mount=type=cache,target=/var/lib/apt,sharing=locked \
+  <<EOF bash
+  set -euxo pipefail
+  apt update
+  apt install -y curl
+EOF
+ENV VERSION=${VERSION}
 WORKDIR /scratch
-COPY ./show_architecture.sh ./show_architecture.sh
+
+# file: target is where to place the secret file in the docker
+RUN --mount=type=secret,id=file_secret,target=/tmp/credential.json \
+    cat /tmp/credential.json
+
+# via environment variable
+RUN --mount=type=secret,id=SECRET_TOKEN \
+    cat /run/secrets/SECRET_TOKEN
+
+COPY --chmod=755 <<EOF /scratch/show_architecture.sh
+#!/usr/bin/env bash
+echo "\${VERSION}"
+cat /proc/version
+lscpu
+uname -a   
+EOF
+
+RUN /scratch/show_architecture.sh
+
 ENTRYPOINT ["/bin/bash", "-c", "/scratch/show_architecture.sh"]
 

@@ -2,12 +2,12 @@
 
 Demonstrate building and running multi-arch images
 
-QEMU example [here](https://github.com/chrisguest75/sysadmin_examples/tree/master/16_qemu)  
+* REF: QEMU example [here](https://github.com/chrisguest75/sysadmin_examples/tree/master/16_qemu)  
+* REF: [79_bake/README.md](../79_bake/README.md)
 
 📝 TODO:
 
-
-* ARM not running on nixos
+* ARM not running on nixos (it builds)
 * buildx builders
 * build multi image manifest is not working on default install
 
@@ -81,3 +81,4 @@ docker run -it --rm ubuntu_allarch
 * Docker Buildx [here](https://docs.docker.com/buildx/working-with-buildx/)
 * Building Multi-Arch Images for Arm and x86 with Docker Desktop [here](https://www.docker.com/blog/multi-arch-images/)
 * https://medium.com/@life-is-short-so-enjoy-it/docker-how-to-build-and-push-multi-arch-docker-images-to-docker-hub-64dea4931df9
+* https://medium.com/@john.shaw.zen/docker-buildx-bake-pass-in-secret-e8ccd1e43a9d
