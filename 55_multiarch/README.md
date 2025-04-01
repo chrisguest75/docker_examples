@@ -2,15 +2,17 @@
 
 Demonstrate building and running multi-arch images
 
-* REF: QEMU example [here](https://github.com/chrisguest75/sysadmin_examples/tree/master/16_qemu)  
-* REF: [79_bake/README.md](../79_bake/README.md)
-
 📝 TODO:
 
 * ARM not running on nixos (it builds)
 * buildx builders
 * build multi image manifest is not working on default install
 * `docker run --privileged --rm tonistiigi/binfmt --install all` https://github.com/docker/buildx/issues/1986
+
+NOTES:
+
+* REF: QEMU example [here](https://github.com/chrisguest75/sysadmin_examples/tree/master/16_qemu)  
+* REF: [79_bake/README.md](../79_bake/README.md)
 
 ## Supported architectures  
 
@@ -40,23 +42,30 @@ NOTE: If on ubuntu then install `sudo apt install qemu-user-static`.  Once insta
 ### Just
 
 ```sh
+# build two different images
 just bake-build
 
-# run
+# run individual images
 just docker-run-amd64
 just docker-run-arm64
 
-# create an ecr to test multi-arch
-just --set AWS_PROFILE myprofile --set AWS_ACCOUNT 0000000000000 create-ecr
+export AWS_PROFILE=myprofile
+export AWS_REGION=eu-west-2 
+export AWS_ACCOUNT=000000000000
 
+# create an ecr to test multi-arch
+just --set AWS_PROFILE ${AWS_PROFILE} --set AWS_ACCOUNT ${AWS_ACCOUNT} ecr-create
+just --set AWS_PROFILE ${AWS_PROFILE} --set AWS_ACCOUNT ${AWS_ACCOUNT} ecr-login
 # build and push 
-just --set DOCKER_IMAGE_NAME 0000000000000.dkr.ecr.eu-west-2.amazonaws.com/55_multiarch --set DOCKER_IMAGE_TAG latest bake-build-push ubuntu-image-multi
+just --set DOCKER_IMAGE_NAME ${AWS_ACCOUNT}.dkr.ecr.${AWS_REGION}.amazonaws.com/55_multiarch --set DOCKER_IMAGE_TAG latest bake-build-push ubuntu-image-multi
 
 # show manifest images 
 docker images --tree
+just docker-run-ecr ${AWS_ACCOUNT}.dkr.ecr.${AWS_REGION}.amazonaws.com/55_multiarch:latest "linux/amd64" 
+just docker-run-ecr ${AWS_ACCOUNT}.dkr.ecr.${AWS_REGION}.amazonaws.com/55_multiarch:latest "linux/arm64" 
 ```
 
-### CLI
+### CLI (without Bake)
 
 ```sh
 # build using docker defaults

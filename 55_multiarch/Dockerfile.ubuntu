@@ -9,7 +9,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
   <<EOF bash
   set -euxo pipefail
   apt update
-  apt install -y curl
+  apt install -y curl util-linux
 EOF
 ENV VERSION=${VERSION}
 WORKDIR /scratch

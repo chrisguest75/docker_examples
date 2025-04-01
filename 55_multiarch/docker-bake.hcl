@@ -70,4 +70,3 @@ group "default" {
     ]
 }
 
-#    "ubuntu-image-multi"

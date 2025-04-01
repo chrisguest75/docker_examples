@@ -53,8 +53,19 @@ docker-run-arm64 image="55_multiarch_arm64:latest":
   set -eufo pipefail
   docker run -it --platform linux/arm64 --rm {{ image }}
 
+ecr-login:
+  #!/usr/bin/env bash
+  set -eufo pipefail
+  if [ -z "${AWS_PROFILE}" ]; then
+    echo "AWS_PROFILE is not set"
+    exit 1
+  fi
+  export AWS_REGION=${AWS_REGION}
+  export AWS_ACCOUNT=${AWS_ACCOUNT}
 
-create-ecr:
+  aws ecr get-login-password | docker login --username AWS --password-stdin "${AWS_ACCOUNT}.dkr.ecr.${AWS_REGION}.amazonaws.com"
+
+ecr-create:
   #!/usr/bin/env bash
   set -eufo pipefail
   if [ -z "${AWS_PROFILE}" ]; then
@@ -69,8 +80,14 @@ create-ecr:
   aws --no-cli-pager ecr describe-images --repository-name "${DOCKER_IMAGE_NAME}"
 
   export REPOSITORY_URL=$(aws --no-cli-pager ecr create-repository --repository-name "${DOCKER_IMAGE_NAME}"  | jq .repository.repositoryUri)
-  echo $REPOSITORY_URL
+  echo "REPOSITORY_URL=${REPOSITORY_URL}"
 
-  aws ecr get-login-password | docker login --username AWS --password-stdin "${AWS_ACCOUNT}.dkr.ecr.${AWS_REGION}.amazonaws.com"
+
+docker-run-ecr image="" platform="linux/arm64":
+  #!/usr/bin/env bash
+  set -xeufo pipefail
+  docker run -it --platform {{ platform }} --rm {{ image }}
+
+  
 
 
