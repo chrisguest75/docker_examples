@@ -10,6 +10,7 @@ Demonstrate building and running multi-arch images
 * ARM not running on nixos (it builds)
 * buildx builders
 * build multi image manifest is not working on default install
+* `docker run --privileged --rm tonistiigi/binfmt --install all` https://github.com/docker/buildx/issues/1986
 
 ## Supported architectures  
 
@@ -84,3 +85,4 @@ docker run -it --rm ubuntu_allarch
 * https://medium.com/@life-is-short-so-enjoy-it/docker-how-to-build-and-push-multi-arch-docker-images-to-docker-hub-64dea4931df9
 * https://medium.com/@john.shaw.zen/docker-buildx-bake-pass-in-secret-e8ccd1e43a9d
 * https://dbhi.github.io/qus/intro.html
+* https://medium.com/hprog99/a-comprehensive-guide-to-docker-bake-building-bundling-and-shipping-applications-at-scale-77030333586f
