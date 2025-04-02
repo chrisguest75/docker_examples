@@ -77,7 +77,7 @@ ecr-create:
  
   aws --no-cli-pager ecr describe-registry
   aws --no-cli-pager ecr describe-repositories  | jq .
-  aws --no-cli-pager ecr describe-images --repository-name "${DOCKER_IMAGE_NAME}"
+  aws --no-cli-pager ecr describe-images --repository-name "${DOCKER_IMAGE_NAME}" || true
 
   export REPOSITORY_URL=$(aws --no-cli-pager ecr create-repository --repository-name "${DOCKER_IMAGE_NAME}"  | jq .repository.repositoryUri)
   echo "REPOSITORY_URL=${REPOSITORY_URL}"

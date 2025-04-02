@@ -1,23 +1,22 @@
 # REGCTL
 
-regctl is a CLI interface to the regclient library. In addition to the features listed for regclient, regctl adds the following abilities:
+`regctl` is a CLI interface to the regclient library. In addition to the features listed for regclient, regctl adds the following abilities:
 
 * Formatting output with templates.
 * Push and pull arbitrary artifacts.
-
-Related [81_oras](../81_oras/README.md)  
+* REF: [81_oras](../81_oras/README.md)  
+* REF: [55_multiarch/README.md](../55_multiarch/README.md)
 
 TODO:
 
 * Push a helm chart in registry https://collabnix.com/how-to-build-push-helm-chart-to-docker-hub-flawlessly/
 * Different content types
 * How does the referrers API do?
-* Get it working with AWS ECR.  
 
 ## Install
 
 ```sh
-# we now have a brew build
+# we now have a brew build (0.8.2)
 brew install regclient
 ```
 
@@ -88,6 +87,8 @@ regctl image manifest registry-1.docker.io/chrisguest/demo
 
 ## ECR
 
+NOTE: It's really useful for copying multi-arch images across accounts.
+
 ```sh
 AWS_PROFILE=myprofile aws ecr get-login-password | regctl registry login --pass-stdin --user AWS  xxxxxxxxxxxxx.dkr.ecr.us-east-1.amazonaws.com
 
@@ -95,6 +96,8 @@ regctl registry config
 
 # list the images on ECR
 regctl repo ls xxxxxxxxxxxxx.dkr.ecr.us-east-1.amazonaws.com
+
+
 ```
 
 ## Resources

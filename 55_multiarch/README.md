@@ -4,6 +4,11 @@ Demonstrate building and running multi-arch images
 
 📝 TODO:
 
+* retagging multiarch
+    * nerdctl
+    * ctr
+    * manifest reconstruct
+
 * ARM not running on nixos (it builds)
 * buildx builders
 * build multi image manifest is not working on default install
@@ -13,6 +18,7 @@ NOTES:
 
 * REF: QEMU example [here](https://github.com/chrisguest75/sysadmin_examples/tree/master/16_qemu)  
 * REF: [79_bake/README.md](../79_bake/README.md)
+* REF: [94_regctl/README.md](../94_regctl/README.md)
 
 ## Supported architectures  
 
@@ -63,6 +69,62 @@ just --set DOCKER_IMAGE_NAME ${AWS_ACCOUNT}.dkr.ecr.${AWS_REGION}.amazonaws.com/
 docker images --tree
 just docker-run-ecr ${AWS_ACCOUNT}.dkr.ecr.${AWS_REGION}.amazonaws.com/55_multiarch:latest "linux/amd64" 
 just docker-run-ecr ${AWS_ACCOUNT}.dkr.ecr.${AWS_REGION}.amazonaws.com/55_multiarch:latest "linux/arm64" 
+```
+
+## Retagging
+
+NOTE: Docker will only pull one platform at a time even if the image is multi platform.  
+
+```sh
+# create a target repo
+just --set AWS_PROFILE ${AWS_PROFILE} --set AWS_ACCOUNT ${AWS_ACCOUNT} --set DOCKER_IMAGE_NAME 55_multiarchtarget ecr-create    
+```
+
+### Docker
+
+```sh
+export AWS_PROFILE=myprofile
+export AWS_REGION=eu-west-2 
+export AWS_ACCOUNT=000000000000
+docker pull --platform linux/amd64 "${AWS_ACCOUNT}.dkr.ecr.${AWS_REGION}.amazonaws.com/55_multiarch"
+docker pull --platform linux/arm64 "${AWS_ACCOUNT}.dkr.ecr.${AWS_REGION}.amazonaws.com/55_multiarch"
+docker manifest inspect "${AWS_ACCOUNT}.dkr.ecr.${AWS_REGION}.amazonaws.com/55_multiarch:latest"
+```
+
+### Regclient
+
+```sh
+export AWS_PROFILE=myprofile
+export AWS_REGION=eu-west-2 
+export AWS_ACCOUNT=000000000000
+# create ecr in same account
+just --set AWS_PROFILE ${AWS_PROFILE} --set AWS_ACCOUNT ${AWS_ACCOUNT} --set DOCKER_IMAGE_NAME 55_multiarchtesttarget ecr-create    
+AWS_PROFILE=${AWS_PROFILE} aws ecr get-login-password | regctl registry login --user AWS --pass-stdin ${AWS_ACCOUNT}.dkr.ecr.${AWS_REGION}.amazonaws.com
+regctl repo ls ${AWS_ACCOUNT}.dkr.ecr.${AWS_REGION}.amazonaws.com 
+
+# works like a charm...
+regctl image copy "${AWS_ACCOUNT}.dkr.ecr.${AWS_REGION}.amazonaws.com/55_multiarch:latest" "${AWS_ACCOUNT}.dkr.ecr.${AWS_REGION}.amazonaws.com/55_multiarchtarget:latest"
+
+# create another account
+export AWS_PROFILE_SRC=myprofile
+export AWS_REGION_SRC=eu-west-2 
+export AWS_ACCOUNT_SRC=000000000000
+export AWS_PROFILE_DST=myprofiledst
+export AWS_REGION_DST=eu-west-2 
+export AWS_ACCOUNT_DST=000000000000
+just --set AWS_PROFILE ${AWS_PROFILE_DST} --set AWS_ACCOUNT ${AWS_ACCOUNT_DST} --set DOCKER_IMAGE_NAME 55_multiarchtesttarget ecr-create
+
+AWS_PROFILE=${AWS_PROFILE_DST} aws ecr get-login-password | regctl registry login --user AWS --pass-stdin ${AWS_ACCOUNT_DST}.dkr.ecr.${AWS_REGION_DST}.amazonaws.com
+
+regctl registry config
+
+regctl repo ls "${AWS_ACCOUNT_DST}.dkr.ecr.${AWS_REGION_DST}.amazonaws.com" 
+
+# copy across account
+regctl image copy "${AWS_ACCOUNT_SRC}.dkr.ecr.${AWS_REGION_SRC}.amazonaws.com/55_multiarch:latest" "${AWS_ACCOUNT_DST}.dkr.ecr.${AWS_REGION_DST}.amazonaws.com/55_multiarchtesttarget:latest"
+docker manifest inspect "${AWS_ACCOUNT_DST}.dkr.ecr.${AWS_REGION_DST}.amazonaws.com/55_multiarchtesttarget:latest"
+regctl tag ls "${AWS_ACCOUNT_DST}.dkr.ecr.${AWS_REGION_DST}.amazonaws.com/55_multiarchtesttarget:latest"                                   
+regctl manifest get "${AWS_ACCOUNT_DST}.dkr.ecr.${AWS_REGION_DST}.amazonaws.com/55_multiarchtesttarget:latest"                   
 ```
 
 ### CLI (without Bake)
