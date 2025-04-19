@@ -1,0 +1,40 @@
+set dotenv-load := true
+
+export IMAGE_NAME:='a5_core_dump'
+
+# default lists actions
+default:
+  @just -f justfile --list
+
+
+build distro="processor":
+  #!/usr/bin/env bash
+  docker buildx build --progress=plain --load -f "Dockerfile.{{ distro }}" -t "${IMAGE_NAME}_{{ distro }}:latest" .
+
+start distro="processor": (build distro)
+  #!/usr/bin/env bash
+  docker run -it --rm "${IMAGE_NAME}_{{ distro }}:latest"
+
+debug distro="processor": (build distro)
+  #!/usr/bin/env bash
+  docker run -it --rm --entrypoint /bin/bash "${IMAGE_NAME}_{{ distro }}:latest"
+
+dive distro="processor": (build distro)
+  #!/usr/bin/env bash
+  dive "${IMAGE_NAME}_{{ distro }}:latest"
+
+details distro="processor": (build distro)
+  #!/usr/bin/env bash
+  @echo "******************************"
+  @echo "** Labels"
+  @echo "******************************"
+  docker inspect -f '{{{{ .Config.Labels }}}}' "${IMAGE_NAME}_{{ distro }}:latest"
+  @echo "******************************"
+  @echo "** Dive CI"
+  @echo "******************************"
+  dive "${IMAGE_NAME}_{{ distro }}:latest" --ci || true
+  @echo "******************************"
+  @echo "** Size"
+  @echo "******************************"
+  container-diff analyze --json daemon://"${IMAGE_NAME}_{{ distro }}:latest" | jq .
+
