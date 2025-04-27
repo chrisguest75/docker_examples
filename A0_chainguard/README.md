@@ -34,7 +34,7 @@ If you wan to build custom packages with known versions use [melange/MELANGE.md]
 ## Simple Pull
 
 ```sh
-# get ffmpeg
+# get ffmpeg (ffmpeg is no longer available, replace with bash)
 docker pull cgr.dev/chainguard/ffmpeg
 
 # look inside
