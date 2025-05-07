@@ -7,7 +7,8 @@ TODO:
 * try and nsenter into the host
 * try and list all the host processes from inside the container.
 
-Refer to [../13_users_and_permissions/README.md](../13_users_and_permissions/README.md) for more examples.  
+REF: [13_users_and_permissions/README.md](../13_users_and_permissions/README.md)  
+REF: [chrisguest75/sysadmin_examples/10_file_permissions/README.md](https://github.com/chrisguest75/sysadmin_examples/blob/master/10_file_permissions/README.md)
 
 NOTES:
 
