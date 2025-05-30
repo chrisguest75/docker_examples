@@ -1,5 +1,4 @@
-# syntax=docker/dockerfile:1.4
-FROM ubuntu:20.04
+FROM ubuntu:24.10
 
 ARG DEBIAN_FRONTEND=noninteractive
 

@@ -1,0 +1,26 @@
+set dotenv-load := true
+
+export DOCKER_IMAGE_NAME:="60_heredocs"
+export DOCKER_IMAGE_TAG:="latest"
+
+# default lists actions
+default:
+  @just -f example.justfile --list
+
+
+nix:
+  #!/usr/bin/env bash
+  set -eufo pipefail
+  nix develop --command zsh
+
+
+build :
+  #!/usr/bin/env bash
+  set -xeufo pipefail
+  docker build --progress=plain --no-cache -t heredoc .
+
+run:
+  #!/usr/bin/env bash
+  set -xeufo pipefail
+  docker run -it --rm --name heredoc heredoc
+
