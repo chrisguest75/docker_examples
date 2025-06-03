@@ -40,7 +40,7 @@ TODO:
 Preprepared images where logs can be examined.  
 
 ```sh
-just start [ubuntu|alpine|fedora|debian|nix|chainguard|almalinux]
+just start [ubuntu|alpine|fedora|debian|nix|chainguard|almalinux] --no-cache
 ```
 
 ## Troubleshooting

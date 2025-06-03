@@ -17,10 +17,10 @@ nix:
 build :
   #!/usr/bin/env bash
   set -xeufo pipefail
-  docker build --progress=plain --no-cache -t heredoc .
+  docker build --network host --progress=plain --no-cache -t heredoc .
 
 run:
   #!/usr/bin/env bash
   set -xeufo pipefail
-  docker run -it --rm --name heredoc heredoc
+  docker run --network host -it --rm --name heredoc heredoc
 

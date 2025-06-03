@@ -4,11 +4,11 @@ set dotenv-load := true
 default:
   @just -f justfile --list
 
-build_image distro:
-  docker build --progress=plain -f Dockerfile.{{ distro }} -t 10_distro_versions_{{ distro }} .
+build_image distro *args:
+  docker build --network host --progress=plain -f Dockerfile.{{ distro }} {{ args }} -t 10_distro_versions_{{ distro }} .
 
-start distro: (build_image distro)
-  docker run -it --rm 10_distro_versions_{{ distro }}
+start distro *args: (build_image distro args)
+  docker run --net host -it --rm 10_distro_versions_{{ distro }}
   @echo "******************************"
   @echo "** Labels"
   @echo "******************************"
@@ -24,4 +24,4 @@ start distro: (build_image distro)
   #docker buildx imagetools inspect --raw 10_distro_versions_{{ distro }}:latest
 
 debug distro: (build_image distro)
-  docker run -it --rm --entrypoint /bin/sh 10_distro_versions_{{ distro }}
+  docker run --net host -it --rm --entrypoint /bin/sh 10_distro_versions_{{ distro }}

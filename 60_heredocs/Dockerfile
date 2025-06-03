@@ -2,9 +2,16 @@ FROM ubuntu:24.10
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update \
-    && apt-get install -fy -qq --no-install-recommends ca-certificates curl \
-    && apt-get clean 
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    <<EOF bash
+    set -euxo pipefail
+    apt-get update 
+    apt-get install -fy -qq --no-install-recommends ca-certificates curl 
+    apt-get clean 
+EOF
+
+RUN 
 
 # NOTE: Escape the \$ otherwise they are rendered at buildtime
 COPY --chmod=755 <<EOF /bin/ping.sh
