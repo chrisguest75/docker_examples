@@ -5,6 +5,7 @@ Give some examples and advice on how to manage disk space with docker.
 NOTE:
 
 * This is mainly aimed at MacOS.  
+* buildx can be pruned on its own
 
 ## Image sizes
 
@@ -49,6 +50,9 @@ docker rmi $(docker images -qa)
 
 docker image prune --all --volumes --force
 docker system prune --all --force
+
+# prune buildx cache as well
+docker buildx prune
 ```
 
 ## Troubleshooting
