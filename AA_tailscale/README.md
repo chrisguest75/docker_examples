@@ -2,6 +2,12 @@
 
 Adding a docker container as a node in a tailnet.  
 
+NOTES:
+
+* Creating an machine install script generates an auth key
+* If using ephemeral this will be revoked as soon as the machine joins - meaning a new one will need to be generated when it expires.  
+* Auth keys can be found in `Settings->Personal Settings->Keys`
+
 ## Container
 
 ```sh
