@@ -1,19 +1,20 @@
 # 📝 TODO
 
-1. pipewire??
-1. cgroups and namespaces
-1. Start a cgroup manually using an unpacked container.
-1. Can I use a cgroup command inside a container?
-1. quay.io and special labels  
-1. botb - break out the box image https://github.com/brompwnie/botb
-1. Show how multistage builds work for testing
-1. Demo using cache-from.....  Use a timed layer.
-1. Use different CAPS_SYS parameters.
-1. Build a apt-mirror https://www.tecmint.com/setup-local-repositories-in-ubuntu/
-1. Speed of different file system layers.  i.e. If we have a 1000 layers how fast is it to find a file?
-1. Diffing using different tools https://docs.docker.com/engine/reference/commandline/diff/
-1. Kaniko. Caching, speed?  
-2. Docker container escape with docker copy.
+1. Use packer to create an image.
+2. cgroups and namespaces
+3. Start a cgroup manually using an unpacked container.
+4. Can I use a cgroup command inside a container?
+5. quay.io and special labels  
+6. botb - break out the box image https://github.com/brompwnie/botb
+7. Show how multistage builds work for testing
+8. Demo using cache-from.....  Use a timed layer.
+9. Use different CAPS_SYS parameters.
+10. Build a apt-mirror https://www.tecmint.com/setup-local-repositories-in-ubuntu/
+11. Speed of different file system layers.  i.e. If we have a 1000 layers how fast is it to find a file?
+12. Diffing using different tools https://docs.docker.com/engine/reference/commandline/diff/
+13. Kaniko. Caching, speed?  
+14. Calculating accurate image sizes - looks like container-diff can output this.
+15. Docker container escape with docker copy.
 https://www.andreafortuna.org/2019/11/26/cve-2019-14271-a-docker-cp-container-escape-vulnerability/
 1. Add procdump to the sidecar
 2. mounting volumes and permissions.
