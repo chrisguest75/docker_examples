@@ -1,0 +1,2 @@
+FROM ghcr.io/prefix-dev/pixi:latest AS build
+

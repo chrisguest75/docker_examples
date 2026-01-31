@@ -1,0 +1,12 @@
+set dotenv-load := true
+
+# default lists actions
+default:
+  @just -f example.justfile --list
+
+pixi-example example="playground":
+  #!/usr/bin/env bash
+  set -eufo pipefail
+
+  docker run -it --rm -v "${PWD}/{{example}}:/workspace" -w /workspace ghcr.io/prefix-dev/pixi:latest sh
+
