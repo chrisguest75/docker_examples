@@ -8,7 +8,7 @@ TODO:
 * Devcontainer
 * Creating own packages
 * Build a lightweight container.
-* 
+* uv, python
 
 ## Playground
 
@@ -38,6 +38,28 @@ just pixi-example python3.14
 # enter shell
 pixi shell
 python ./main.py
+```
+
+### uv
+
+From scratch:
+
+```sh
+just pixi-example playground
+pixi init
+pixi add uv
+pixi shell 
+uv init
+uv add requests
+```
+
+From uv example:
+
+```sh
+just pixi-example uv
+pixi shell
+uv sync
+uv run main.py
 ```
 
 ## Resources

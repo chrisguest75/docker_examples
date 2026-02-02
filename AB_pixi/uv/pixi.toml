@@ -1,0 +1,10 @@
+[workspace]
+channels = ["conda-forge"]
+name = "workspace"
+platforms = ["linux-aarch64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+uv = ">=0.9.28,<0.10"
