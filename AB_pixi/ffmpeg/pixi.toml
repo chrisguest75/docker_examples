@@ -1,0 +1,10 @@
+[workspace]
+channels = ["conda-forge"]
+name = "workspace"
+platforms = ["linux-aarch64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+ffmpeg = ">=8.0.1,<9"
