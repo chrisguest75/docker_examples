@@ -1,5 +1,7 @@
 # DOCKER DEBUG BUILD
 
+NOTE: This is not working yet.  
+
 ## Install DX Extension
 
 Install `docker.docker` extension.  
