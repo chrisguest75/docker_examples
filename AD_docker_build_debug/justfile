@@ -14,5 +14,5 @@ build-debug:
   #!/usr/bin/env bash
   set -eufo pipefail
 
-  DOCKER_CLI_EXPERIMENTAL=enabled docker buildx build debug --debug .
+  BUILDX_EXPERIMENTAL=1 docker buildx dap build .
 
