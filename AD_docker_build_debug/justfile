@@ -1,0 +1,18 @@
+set dotenv-load := true
+
+# default lists actions
+default:
+  @just -f example.justfile --list
+
+build-normal:
+  #!/usr/bin/env bash
+  set -eufo pipefail
+
+  docker buildx build -f Dockerfile -t debug-build:latest .
+
+build-debug:
+  #!/usr/bin/env bash
+  set -eufo pipefail
+
+  DOCKER_CLI_EXPERIMENTAL=enabled docker buildx build debug --debug .
+

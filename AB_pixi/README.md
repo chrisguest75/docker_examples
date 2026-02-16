@@ -4,15 +4,14 @@ Demonstrate using `pixi` package manager from [pixi.prefix.dev](https://pixi.pre
 
 TODO:
 
-* Install software.
 * Devcontainer
 * Creating own packages
 * Build a lightweight container.
-* uv, python
+* zsh is not working on arm
 
 ## Playground
 
-Start from scratch
+Start from scratch and run some python
 
 ```sh
 # it will enter the playground folder 
@@ -20,17 +19,26 @@ just pixi-example playground
 
 # create the pixi.toml file
 pixi init
+pixi add uv
+pixi run uv run main.py 
 ```
 
 ## Examples
 
 ### ffmpeg
 
+Build an ffmpeg8 environment
+
 ```sh
 just pixi-example ffmpeg
+pixi install
+pixi shell
+ffmpeg
 ```
 
 ### Python
+
+Python 3.14 environment
 
 ```sh
 just pixi-example python3.14 
@@ -38,6 +46,13 @@ just pixi-example python3.14
 # enter shell
 pixi shell
 python ./main.py
+
+```
+
+Build container
+
+```sh
+just pixi-example-build python3.14 
 ```
 
 ### uv
