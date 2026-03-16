@@ -1,0 +1,15 @@
+# syntax=docker/dockerfile:1.4
+FROM ubuntu:20.04 as BASE
+
+WORKDIR /scratch
+
+# NOTE: Escape the \$ otherwise they are rendered at buildtime
+COPY --chmod=755 <<EOF /bin/show_architecture.sh
+#!/usr/bin/env bash
+cat /proc/version
+lscpu
+uname -a    
+EOF
+
+ENTRYPOINT ["/bin/bash", "-c", " /bin/show_architecture.sh"]
+
