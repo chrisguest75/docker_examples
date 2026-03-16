@@ -8,6 +8,8 @@ TODO:
 * nerdctl
 * does slim ai use it?
 * Test time to pull and run from registry.
+* NOTE: This does not work on linux - even using containerd.
+* Check how to get these examples working on ubuntu with containerd
 
 ## Reason
 
@@ -52,7 +54,7 @@ export BASEIMAGE=scratch
 #export BASEIMAGE=gcr.io/distroless/nodejs16-debian11
 export IMAGE_NAME_ZSTD=ttl.sh/$(uuidgen):1h
 export IMAGE_NAME_ZSTD=${IMAGE_NAME_ZSTD:l}
-export COMPRESSION_LEVEL=15
+export COMPRESSION_LEVEL=5
 
 docker build --build-arg=baseimage=$BASEIMAGE --build-arg=NIX_FILE=ffmpeg-full.nix --build-arg=PROGRAM_FILE=ffmpeg --progress=plain -f Dockerfile.ffmpeg --target PRODUCTION --output type=image,name=$IMAGE_NAME_ZSTD,oci-mediatypes=true,compression=zstd,compression-level=$COMPRESSION_LEVEL,force-compression=true,push=true .
 
