@@ -2,7 +2,8 @@
 
 Demonstrates how users work within a container.  
 
-Refer to [../05_root_user/README.md](../05_root_user/README.md) for more examples.  
+REF: [05_root_user/README.md](../05_root_user/README.md)  
+REF: [chrisguest75/sysadmin_examples/10_file_permissions/README.md](https://github.com/chrisguest75/sysadmin_examples/blob/master/10_file_permissions/README.md)
 
 ## 🏠 Script to follow
 

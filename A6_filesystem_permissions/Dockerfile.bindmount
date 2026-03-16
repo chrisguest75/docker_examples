@@ -1,0 +1,46 @@
+# syntax=docker/dockerfile:1.11.0
+FROM ubuntu:24.10 AS base
+
+#### ROOT
+USER root
+
+ARG USERID=10000
+ARG GROUPID=10000
+ARG APPUSER=appuser
+RUN groupadd --system --gid $GROUPID appuser
+RUN useradd --system --uid $USERID --gid $GROUPID $APPUSER
+
+WORKDIR /scratch/root
+
+COPY --chmod=750 <<EOF /scratch/root/test.sh
+#!/usr/bin/env bash
+echo "Hello bindmount from test.sh"
+EOF
+
+WORKDIR /scratch/appuser
+
+COPY --chmod=750 <<EOF /scratch/appuser/testroot.sh
+#!/usr/bin/env bash
+echo "Hello bindmount from testroot.sh"
+EOF
+
+COPY --chmod=755 <<EOF /bin/copy.sh
+#!/usr/bin/env bash
+echo $(whoami)
+id 
+cat /etc/group
+cp /scratch/root/test.sh /mnt/writable/root_test.sh
+cp /scratch/appuser/test.sh /mnt/writable/appuser_test.sh
+
+ls -l /mnt/writable/
+EOF
+
+USER appuser
+
+# copy with ownership
+COPY --chmod=755 --chown=appuser:appuser <<EOF /scratch/appuser/testuser.sh
+#!/usr/bin/env bash
+echo "Hello bindmount from testuser.sh"
+EOF
+
+CMD ["bash"]
